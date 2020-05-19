@@ -1,0 +1,65 @@
+.calendar{
+    display: inline-block;
+    margin-top: 65px;
+    width: 100%;
+    text-align: center;
+}
+
+
+.navbar {
+    background-color: rgba(153, 153, 153, 0.233) !important;
+    width: 100%;
+    border-radius: 20px;
+    margin-right: 60px;
+}
+
+.navbar-nav {
+    margin: 5px auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+.options{
+    background-color: rgb(197, 197, 248);
+    border: rgb(109, 109, 247) 1px solid;
+    border-radius: 10px;
+    min-width: 200px;
+    height: 150px;
+    margin: 10px 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.day{
+    background-color: rgb(197, 197, 248);
+    border: rgb(109, 109, 247) 1px solid;
+    border-radius: 10px;
+    min-width: 200px;
+    height: 150px;
+    margin: 10px 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width:576px) {
+    .calendar{
+        margin-top: 2px;
+    }
+
+    .navbar{
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+        width: 100px;
+    }
+}
+
+@media only screen and (min-width:577px) {
+    .navbar-brand {
+        display: none;
+    }
+}
