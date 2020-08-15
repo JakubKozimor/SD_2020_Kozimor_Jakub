@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.99.100:3306/learning?useSSL=false&serverTimezone=CET
+    username: root
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
