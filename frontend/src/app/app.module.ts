@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeworkComponent } from './components/homework/homework.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { ClassesComponent } from './components/classes/classes.component';
+import { FormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

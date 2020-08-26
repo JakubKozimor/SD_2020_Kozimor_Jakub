@@ -5,7 +5,7 @@
   <div class="con">
     <app-header></app-header>
     <div class="page-content">
-      <app-calendar></app-calendar>
+      <app-calendar *ngIf="actualRouter != '/classes'"></app-calendar>
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>

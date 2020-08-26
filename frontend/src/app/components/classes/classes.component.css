@@ -1,0 +1,38 @@
+.classes{
+    margin-top: 65px;
+    width: 100%;
+    display: inline-block;
+}
+
+.left{
+    display: inline-block;
+    width: 65%;
+}
+
+.iframe{
+    margin: 4% 6%;
+    min-width: 50%;
+    min-height: 55%;
+    position: fixed;
+    display: inline-block;
+}
+
+.files{
+    bottom: 10%;
+    display: inline-block;
+    position: fixed;
+}
+
+.right{
+    width: 35%;
+    display: inline-block;
+    position: fixed;
+    right: 0px;
+}
+
+
+
+.chat{
+    min-width: 100%;
+    min-height: 520px;
+}
