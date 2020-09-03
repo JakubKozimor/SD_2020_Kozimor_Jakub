@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="15" author="Jakub">
+        <insert tableName="roles">
+            <column name="name" value="ROLE_STUDENT"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_TEACHER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="name" value="student"/>
+            <column name="email" value="student@mail.com"/>
+            <column name="password" value="student"/>
+        </insert>
+        <insert tableName="users">
+            <column name="name" value="student1"/>
+            <column name="email" value="student1@mail.com"/>
+            <column name="password" value="student1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="name" value="teacher"/>
+            <column name="email" value="teacher@mail.com"/>
+            <column name="password" value="teacher"/>
+        </insert>
+
+        <insert tableName="users_roles">
+            <column name="role_id" value="1"/>
+            <column name="user_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="role_id" value="1"/>
+            <column name="user_id" value="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="role_id" value="2"/>
+            <column name="user_id" value="3"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

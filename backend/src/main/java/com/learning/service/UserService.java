@@ -1,10 +1,13 @@
 package com.learning.service;
 
-import com.learning.entity.User;
+import com.learning.domain.entity.Subject;
+import com.learning.domain.entity.User;
 
-import java.util.List;
+import java.util.Set;
 
 public interface UserService {
-
-    List<User> getAllUsers();
+    User getTeacherById(Long id);
+    Set<Subject> getAllSubjectsByUserId(Long id);
+    void addUserToSubject(Long userId, Long subjectId);
+    void addUserToLesson(Long userId, Long lessonId);
 }
