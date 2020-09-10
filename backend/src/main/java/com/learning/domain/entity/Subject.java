@@ -1,6 +1,8 @@
 package com.learning.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.learning.domain.entity.enums.Day;
+import com.learning.domain.entity.enums.Week;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,8 +25,12 @@ public class Subject {
     private Long subjectId;
     @Column(name = "subject_name")
     private String name;
-    @Column(name = "subject_date")
-    private Date subjectDate;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "day")
+    private Day day;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "week")
+    private Week week;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "subject_id")
     @JsonManagedReference
@@ -33,6 +39,10 @@ public class Subject {
     @JoinColumn(name = "subject_id")
     @JsonManagedReference
     private List<Homework> homeworks;
+    @Column(name = "start_time")
+    private String startTime;
+    @Column(name = "long_of_time_time")
+    private Integer longOfTime;
 
     public void addFile(SubjectFile lessonFile) {
         if (files == null) {

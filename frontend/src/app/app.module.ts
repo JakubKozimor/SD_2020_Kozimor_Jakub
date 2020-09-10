@@ -11,6 +11,7 @@ import { HomeworkComponent } from './components/homework/homework.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

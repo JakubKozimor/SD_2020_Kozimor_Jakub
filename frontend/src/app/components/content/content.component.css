@@ -28,23 +28,6 @@
     min-width: 300px;
 }
 
-.small-column{
-    display: inline-table;
-    width: 30%;
-
-}
-
-.header-info{
-    display: block;
-    border-bottom: 1px black solid;
-}
-
-.info{
-    display: flex;
-    height: 50px;
-    justify-content: center;
-    align-items: center;
-}
 
 
 @media only screen and (max-width:576px) {
@@ -53,11 +36,6 @@
         margin-top: auto;
     }
 
-    .info-div {
-        display: block;
-        width: 300px;
-        margin: 10px auto;
-    }
 }
 
 

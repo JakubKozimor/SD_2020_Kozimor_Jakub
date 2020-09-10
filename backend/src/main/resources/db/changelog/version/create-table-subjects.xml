@@ -13,7 +13,17 @@
             <column name="subject_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="subject_date" type="DATE">
+            <column name="day" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="week" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="long_of_time_time" type="INT">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

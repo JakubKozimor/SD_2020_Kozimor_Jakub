@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectService } from 'src/app/services/subject.service';
+import { Subject } from 'src/app/common/subject';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-calendar',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor() { }
+  subjectsList: Subject[];
+
+  constructor(private subjectService: SubjectService) { }
 
   ngOnInit(): void {
+    this.listOfSubjects();
+  }
+
+  listOfSubjects() {
+    this.subjectService.getAllSubjectsByUser(1).subscribe(data => this.subjectsList = data)
   }
 
 }

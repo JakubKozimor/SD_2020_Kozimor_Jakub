@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Homework } from 'src/app/common/homework';
+import { HomeworkService } from 'src/app/services/homework.service';
 
 @Component({
   selector: 'app-homework',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeworkComponent implements OnInit {
 
-  constructor() { }
+  homeworkList: Homework[];
+  today: Date;
+  daysToDeadline: number;
+
+  constructor(private homeworkService: HomeworkService) { }
 
   ngOnInit(): void {
+    this.listOfHomework();
+  }
+
+  listOfHomework(){
+    this.homeworkService.getAllSubjectsByUser(1).subscribe(data => this.homeworkList = data.content)
+  }
+
+  countTime(deadline: Date){
+    this.today = new Date;
+    this.daysToDeadline=Number(String(deadline).substr(8,2))-this.today.getDate()
+    if (this.daysToDeadline < 2){
+      return this.daysToDeadline + " Dzień"
+    } else {
+      return this.daysToDeadline + " Dni"
+    }
+    
   }
 
 }

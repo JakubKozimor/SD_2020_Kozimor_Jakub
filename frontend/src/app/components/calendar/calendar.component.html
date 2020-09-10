@@ -12,32 +12,59 @@
           <div class="options">
             <a>Opcje</a>
             <hr>
-            <span>Tydzień</span>
+            <span>A</span>
+            <br>
+            <span>B</span>
           </div>
         </li>
         <li class="nav-item">
           <div class="day">
-            Poniedziałek
+            <p>Poniedziałek</p>
+            <hr>
+            <div *ngFor="let tempSubject of subjectsList">
+              <p *ngIf="tempSubject.day == 'MONDAY'">
+                {{tempSubject.startTime}} {{tempSubject.name}}
+            </div>
           </div>
         </li>
         <li class="nav-item">
           <div class="day">
-            Poniedziałek
+            <p>Wtorek</p>
+            <hr>
+            <div *ngFor="let tempSubject of subjectsList">
+              <p *ngIf="tempSubject.day == 'TUESDAY'">
+                {{tempSubject.startTime}} {{tempSubject.name}}
+            </div>
           </div>
         </li>
         <li class="nav-item">
           <div class="day">
-            Poniedziałek
+            <p>Środa</p>
+            <hr>
+            <div *ngFor="let tempSubject of subjectsList">
+              <p *ngIf="tempSubject.day == 'WEDNESDAY'">
+                {{tempSubject.startTime}} {{tempSubject.name}}
+            </div>
           </div>
         </li>
         <li class="nav-item">
           <div class="day">
-            Poniedziałek
+            <p>Czwartek</p>
+            <hr>
+            <div *ngFor="let tempSubject of subjectsList">
+              <p *ngIf="tempSubject.day == 'THURSDAY'">
+                {{tempSubject.startTime}} {{tempSubject.name}}
+            </div>
           </div>
         </li>
         <li class="nav-item">
           <div class="day">
-            Poniedziałek
+            <p>Piątek</p>
+            <hr>
+            <div *ngFor="let tempSubject of subjectsList">
+              <p *ngIf="tempSubject.day == 'FRIDAY'">
+                {{tempSubject.startTime}} {{tempSubject.name}}
+            </div>
           </div>
         </li>
       </ul>

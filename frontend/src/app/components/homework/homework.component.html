@@ -6,16 +6,12 @@
         <span class="data">Pozostało</span>
         <span class="data"></span>
     </div>
-    <div class="info-div">
-        <span class="data">Programowanie</span>
-        <span class="data">20.05.2020</span>
-        <span class="data">1 dzień</span>
-        <a class="btn btn-primary data">Przejdź</a>
-    </div>
-    <div class="info-div">
-        <span class="data">Systemy operacyjne</span>
-        <span class="data">22.05.2020</span>
-        <span class="data">3 dni</span>
-        <a class="btn btn-primary data">Przejdź</a>
+    <div class="info-div" *ngFor="let tempHomework of homeworkList">
+        <div *ngIf="tempHomework.status == 'ACTIVE'">
+            <span class="data">{{tempHomework.title}}</span>
+            <span class="data">{{tempHomework.deadline}}</span>
+            <span class="data">{{countTime(tempHomework.deadline)}}</span>
+            <a class="btn btn-primary data">Przejdź</a>
+        </div>
     </div>
   </main>

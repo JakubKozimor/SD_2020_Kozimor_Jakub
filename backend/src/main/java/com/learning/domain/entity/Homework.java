@@ -1,6 +1,7 @@
 package com.learning.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.learning.domain.entity.enums.HomeworkStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,7 @@ public class Homework {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "homework_id")
-    private Long subjectId;
+    private Long homeworkId;
     @Column(name = "title")
     private String title;
     @Column(name = "description")
@@ -34,6 +35,9 @@ public class Homework {
     @JoinColumn(name = "subject_id")
     @JsonBackReference
     private Subject subject;
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private HomeworkStatus status;
 
     public void addFile(HomeworkFile homeworkFile) {
         if (files == null) {

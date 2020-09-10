@@ -3,20 +3,14 @@
     <h2>Najbliższe zajęcia</h2>
     <hr>
     <div class="big-column">
-      <div class="small-column">
-        <a class="header-info">Data</a>
-        <a class="info">12.06</a>
-        <a class="info">12.06</a>
+      <div class="head-row">
+        Dzień Od Do Przedmiot
       </div>
-      <div class="small-column">
-        <a class="header-info">Godzina</a>
-        <a class="info">15:00 - 16:30</a>
-        <a class="info">15:00 - 16:30</a>
-      </div>
-      <div class="small-column">
-        <a class="header-info">Przedmiot</a>
-        <a class="info">Programowanie obiektowe</a>
-        <a class="info">Programowanie</a>
+      <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+        {{getDay(tempSubject.day)}}
+        {{tempSubject.startTime}}
+        {{countTime(tempSubject.startTime, tempSubject.longOfTime)}}
+        {{tempSubject.name}}
       </div>
     </div>
   </div>
@@ -24,17 +18,14 @@
     <h2>Zadania</h2>
     <hr>
     <div class="big-column">
-      <div class="small-column">
-        <a class="header-info">Data</a>
-        <a class="info">12.06</a>
+      <div class="head-row">
+        Przedmiot termin 
       </div>
-      <div class="small-column">
-        <a class="header-info">Godzina</a>
-        <a class="info">20:00</a>
-      </div>
-      <div class="small-column">
-        <a class="header-info">Przedmiot</a>
-        <a class="info">Programowanie obiektowe</a>
+      <div class="homework-row" *ngFor="let tempHomework of homeworkList">
+        <div *ngIf="tempHomework.status == 'ACTIVE'">
+          {{tempHomework.title}}
+          {{tempHomework.deadline}}
+        </div>
       </div>
     </div>
   </div>
