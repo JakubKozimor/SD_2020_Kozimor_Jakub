@@ -8,11 +8,11 @@ import { Homework } from '../common/homework';
 })
 export class HomeworkService {
 
-  private BASE_URL = 'http://localhost:8080/homework';
+  private BASE_URL = 'http://localhost:8080/homeworks';
   constructor(private httpClient: HttpClient) { }
 
   public getAllSubjectsByUser(userId: number): Observable<GetResponseHomework> {
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/getAll?id=${userId}&page=0&size=10`);
+    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/all?id=${userId}&page=0&size=10`);
   }
 }
 

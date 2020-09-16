@@ -12,9 +12,11 @@ import { TeachersComponent } from './components/teachers/teachers.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './components/message/message.component';
 
 
 const routes: Routes = [
+  { path: 'createMessage/:teacherId', component: MessageComponent},
   { path: 'classes', component: ClassesComponent},
   { path: 'teachers', component: TeachersComponent},
   { path: 'homework', component: HomeworkComponent},
@@ -33,6 +35,7 @@ const routes: Routes = [
     HomeworkComponent,
     TeachersComponent,
     ClassesComponent,
+    MessageComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

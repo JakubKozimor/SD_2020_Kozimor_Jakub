@@ -1,5 +1,6 @@
 package com.learning.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.learning.domain.entity.enums.Day;
 import com.learning.domain.entity.enums.Week;
@@ -43,6 +44,9 @@ public class Subject {
     private String startTime;
     @Column(name = "long_of_time_time")
     private Integer longOfTime;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    private User teacher;
 
     public void addFile(SubjectFile lessonFile) {
         if (files == null) {

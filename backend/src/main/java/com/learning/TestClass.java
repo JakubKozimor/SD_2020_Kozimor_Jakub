@@ -1,31 +1,27 @@
 package com.learning;
 
+import com.learning.domain.dto.TeacherDto;
 import com.learning.domain.entity.*;
 import com.learning.domain.entity.enums.Day;
 import com.learning.domain.entity.enums.HomeworkStatus;
+import com.learning.domain.entity.enums.MessageStatus;
 import com.learning.domain.entity.enums.Week;
-import com.learning.service.HomeworkService;
-import com.learning.service.LessonService;
-import com.learning.service.SubjectService;
-import com.learning.service.UserService;
+import com.learning.domain.mapper.TeacherMapper;
+import com.learning.service.*;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
 import java.sql.Date;
-import java.sql.Time;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 @Controller
@@ -35,10 +31,13 @@ public class TestClass {
     private final SubjectService subjectService;
     private final HomeworkService homeworkService;
     private final LessonService lessonService;
+    private final TeacherMapper teacherMapper;
+    private final MessageService messageService;
 
 
     @EventListener(ApplicationReadyEvent.class)
     public void test() throws IOException, ParseException {
+
 /*
         //create subject files
 
@@ -60,9 +59,11 @@ public class TestClass {
         //todo should be if with 0
         subject.setStartTime(dateTime.getHour() + ":" + dateTime.getMinute());
         subject.setLongOfTime(90);
+
         subjectService.addSubject(subject);
 
-        userService.addUserToSubject(1L,1L);
+        userService.addUserToSubject(1L, 1L);
+        userService.addUserToSubject(3L, 1L);
 
         //create homework file
         HomeworkFile homeworkFile = new HomeworkFile();
@@ -83,7 +84,7 @@ public class TestClass {
 
         homeworkService.saveHomework(homework);
 
-        subjectService.addHomeworkToSubject(1L,2L);
+        subjectService.addHomeworkToSubject(1L, 1L);
 
         //create lesson file
         LessonFile file = new LessonFile();
@@ -99,20 +100,19 @@ public class TestClass {
         lesson.addFile(file);
         lesson.addFile(file1);
         lesson.setLessonDate(Date.valueOf(LocalDate.now()));
-        lessonService.addLesson(3L,lesson);
+        lessonService.addLesson(3L, lesson);
 
         userService.addUserToLesson(1L, 1L);
 */
 
-//        //encode file
-//        File file = new File("src/main/resource/Git.pdf");
+        //encode file
+//        File file = new File("C:\\Users\\Guzik\\IdeaProjects\\SD_2020_Kozimor_Jakub\\backend\\src\\main\\resources\\download.jpg");
 //        String encodedString = new String(Base64.encodeBase64(FileUtils.readFileToByteArray(file)));
 //
 //      //decode file and write to file
-//        File fileResult = new File("src/main/resources/result.pdf");
+//        File fileResult = new File("src/main/resources/result.jpg");
 //        FileOutputStream fos = new FileOutputStream(fileResult);
 //        byte[] decoder = Base64.decodeBase64(encodedString.getBytes());
 //        fos.write(decoder);
-
     }
 }

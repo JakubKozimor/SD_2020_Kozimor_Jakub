@@ -32,6 +32,9 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     @Transactional
     public void addSubject(Subject subject) {
+        //TODO to change
+        User user = userRepository.findById(3L).orElseThrow(UserNotFoundException::new);
+        subject.setTeacher(user);
         subjectRepository.save(subject);
     }
 

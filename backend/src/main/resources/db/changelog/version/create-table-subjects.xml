@@ -25,6 +25,8 @@
             <column name="long_of_time_time" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="teacher_user_id" type="BIGINT">
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

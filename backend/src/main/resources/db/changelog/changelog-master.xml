@@ -16,6 +16,8 @@
     <include  file="version/create-table-subjects-files.xml" relativeToChangelogFile="true"/>
     <include  file="version/create-table-homeworks.xml" relativeToChangelogFile="true"/>
     <include  file="version/create-table-homeworks-files.xml" relativeToChangelogFile="true"/>
+    <include  file="version/create-table-messages.xml" relativeToChangelogFile="true"/>
+    <include  file="version/create-table-message-files.xml" relativeToChangelogFile="true"/>
     <include  file="version/const.xml" relativeToChangelogFile="true"/>
     <include  file="version/insertData.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
