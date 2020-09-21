@@ -22,10 +22,10 @@
             <column name="start_time" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="long_of_time_time" type="INT">
+            <column name="long_of_time" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="teacher_user_id" type="BIGINT">
+            <column name="teacher_id" type="BIGINT">
             </column>
         </createTable>
     </changeSet>

@@ -18,6 +18,12 @@
             </column>
             <column name="lesson_date" type="DATE">
             </column>
+            <column name="start_time" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

@@ -2,6 +2,8 @@ package com.learning.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.learning.domain.entity.enums.HomeworkStatus;
+import com.learning.domain.entity.enums.LessonStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +34,10 @@ public class Lesson {
     private User teacher;
     @Column(name = "lesson_date")
     private Date lessonDate;
+    @Column(name = "start_time")
+    private String startTime;
+    @Enumerated(EnumType.STRING)
+    private LessonStatus status;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "lesson_id")
     @JsonManagedReference

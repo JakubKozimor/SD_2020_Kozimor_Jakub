@@ -41,9 +41,10 @@ public class Subject {
     private List<Homework> homeworks;
     @Column(name = "start_time")
     private String startTime;
-    @Column(name = "long_of_time_time")
+    @Column(name = "long_of_time")
     private Integer longOfTime;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id")
     @JsonBackReference
     private User teacher;
 

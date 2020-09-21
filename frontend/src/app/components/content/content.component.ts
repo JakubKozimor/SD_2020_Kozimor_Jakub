@@ -33,8 +33,13 @@ export class ContentComponent implements OnInit {
   }
 
   countTime(startTime: string, longOfTime: string) {
-    this.hour = Number(startTime.substr(0, 2));
-    this.minute = Number(startTime.substr(3, 4));
+    if (isNaN(Number(startTime.substr(0, 2)))) {
+      this.hour = Number(startTime.substr(0, 1));
+      this.minute = Number(startTime.substr(2, 3));
+    } else {
+      this.hour = Number(startTime.substr(0, 2));
+      this.minute = Number(startTime.substr(3, 4));
+    }
     this.subjectTime = Number(longOfTime);
     this.minute += this.subjectTime;
 

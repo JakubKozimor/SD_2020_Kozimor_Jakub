@@ -37,7 +37,6 @@ public class TestClass {
 
     @EventListener(ApplicationReadyEvent.class)
     public void test() throws IOException, ParseException {
-
 /*
         //create subject files
 
@@ -52,10 +51,8 @@ public class TestClass {
         LocalDateTime dateTime = LocalDateTime.now();
         Subject subject = new Subject();
         subject.setName("Programowanie");
-        subject.setDay(Day.FRIDAY);
+        subject.setDay(Day.MONDAY);
         subject.setWeek(Week.A);
-        subject.addFile(subjectFile);
-        subject.addFile(subjectFile1);
         //todo should be if with 0
         subject.setStartTime(dateTime.getHour() + ":" + dateTime.getMinute());
         subject.setLongOfTime(90);
@@ -75,11 +72,9 @@ public class TestClass {
 
         // create homework
         Homework homework = new Homework();
-        homework.addFile(homeworkFile);
-        homework.addFile(homeworkFile1);
         homework.setTitle("Formatka w html");
-        homework.setDescription("cokolwiek");
-        homework.setDeadline(Date.valueOf(LocalDate.now().minusDays(1)));
+        homework.setDescription("Zrobić najprostszą formatę w html");
+        homework.setDeadline(Date.valueOf(LocalDate.now()));
         homework.setStatus(HomeworkStatus.LATE);
 
         homeworkService.saveHomework(homework);
@@ -104,15 +99,5 @@ public class TestClass {
 
         userService.addUserToLesson(1L, 1L);
 */
-
-        //encode file
-//        File file = new File("C:\\Users\\Guzik\\IdeaProjects\\SD_2020_Kozimor_Jakub\\backend\\src\\main\\resources\\download.jpg");
-//        String encodedString = new String(Base64.encodeBase64(FileUtils.readFileToByteArray(file)));
-//
-//      //decode file and write to file
-//        File fileResult = new File("src/main/resources/result.jpg");
-//        FileOutputStream fos = new FileOutputStream(fileResult);
-//        byte[] decoder = Base64.decodeBase64(encodedString.getBytes());
-//        fos.write(decoder);
     }
 }

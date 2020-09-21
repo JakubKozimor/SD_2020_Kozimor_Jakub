@@ -20,8 +20,9 @@ public class HomeworkFile {
     private Long homeworkFileId;
     @Column(name = "name")
     private String fileName;
+    @Lob
     @Column(name = "file")
-    private String fileContent;
+    private byte[] fileContent;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "homework_id")
     @JsonBackReference
