@@ -20,12 +20,15 @@ export class AllMessagesComponent implements OnInit {
   }
 
   listOfReadMessages(){
-    this.messageService.getAllReadMEssagesByUser(3).subscribe(data => this.messageReadList = data.content)
+    this.messageService.getAllReadMessagesByUser(3).subscribe(data => this.messageReadList = data.content)
   }
 
   listOfUnreadMessages(){
-    this.messageService.getAllUnreadMEssagesByUser(3).subscribe(data => this.messageReadList = data.content)
+    this.messageService.getAllUnreadMessagesByUser(3).subscribe(data => this.messageUnreadList = data.content)
+  }
 
+  changeStatus(messageId: number){
+    this.messageService.changeMessageStatus(messageId);
   }
 
 }

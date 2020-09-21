@@ -18,7 +18,7 @@ public class FilesController {
 
     private final MessageFileService messageFileService;
 
-    @GetMapping(value = "/messageFile/download/{fileId}", produces = "application/octet-stream")
+    @GetMapping(value = "/message-file/download/{fileId}", produces = "application/octet-stream")
     public @ResponseBody
     ResponseEntity<InputStreamResource> downloadMessageFile(@PathVariable Long fileId,
                                                             HttpServletResponse response) {

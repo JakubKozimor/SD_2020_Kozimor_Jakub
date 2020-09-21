@@ -20,28 +20,34 @@ public class MessageController {
 
     private final MessageService messageService;
 
-    @GetMapping("/allRead")
+    @GetMapping("/all-read")
     public ResponseEntity<Page<MessageDto>> getReadMessages(@RequestParam("id") Long id,
                                                             @RequestParam("page") int page,
                                                             @RequestParam("size") int size) {
         return new ResponseEntity<>(messageService.getReadMessages(id, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
-    @GetMapping("/allUnread")
+    @GetMapping("/all-unread")
     public ResponseEntity<Page<MessageDto>> getUnreadMessages(@RequestParam("id") Long id,
                                                               @RequestParam("page") int page,
                                                               @RequestParam("size") int size) {
         return new ResponseEntity<>(messageService.getUnreadMessages(id, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
-    @GetMapping("/messageDetails/{messageId}")
+    @GetMapping("/message-details/{messageId}")
     public ResponseEntity<MessageDetailsDto> getMessageDetails(@PathVariable("messageId") Long messageId) {
         return new ResponseEntity<>(messageService.getMessageDetails(messageId), HttpStatus.OK);
     }
 
-    @PostMapping("/newMessage")
+    @PostMapping("/new-message")
     public ResponseEntity<Void> addMessage(@RequestBody MessageDto message) throws IOException {
         messageService.addMessage(message);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PatchMapping("/update-status-message/{messageId}")
+    public ResponseEntity<Void> updateStatusMessage(@PathVariable("messageId") Long messageId) {
+        messageService.updateStatusMessage(messageId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -17,6 +17,7 @@ public class MessageDetailsDto {
     private Long messageId;
     private String title;
     private String content;
+    private Long userId;
     private String firstName;
     private String lastName;
     private String email;

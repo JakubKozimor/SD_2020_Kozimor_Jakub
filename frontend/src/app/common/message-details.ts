@@ -4,6 +4,7 @@ export class MessageDetails {
     messageId: number;
     title: string;
     content: string;
+    userId: number;
     firstName: string;
     lastName: string;
     email: string;

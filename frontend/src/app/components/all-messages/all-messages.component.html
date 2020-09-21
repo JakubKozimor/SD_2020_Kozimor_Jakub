@@ -1,29 +1,32 @@
 <div>
-    <h1>Wiadomości przeczytane</h1>
-    <div>
-      <span>Tytuł</span>
-      <span>Data</span>
-      <span>Więcej</span>
-    </div>
-    <div *ngFor="let tempMessage of messageReadList">
-      <div>
-        <span>{{tempMessage.title}}</span>
-        <span>{{tempMessage.date}}</span>
-        <button class="btn btn-primary" routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
-      </div>
-    </div>
-  </div>
-  
+  <h1>Wiadomości przeczytane</h1>
   <div>
-    <h1>Wiadomości nieprzeczytane</h1>
+    <span>Tytuł</span>
+    <span>Data</span>
+    <span>Więcej</span>
+  </div>
+  <div *ngFor="let tempMessage of messageReadList">
     <div>
-      <span>Tytuł</span>
-      <span>Data</span>
-      <span>Więcej</span>
-    </div>
-    <div *ngFor="let tempMessage of messageUnreadList">
-      <div>
-        <span>{{tempMessage.title}}</span>
-      </div>
+      <span>{{tempMessage.title}}</span>
+      <span>{{tempMessage.date}}</span>
+      <button class="btn btn-primary" routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
     </div>
   </div>
+</div>
+
+<div>
+  <h1>Wiadomości nieprzeczytane</h1>
+  <div>
+    <span>Tytuł</span>
+    <span>Data</span>
+    <span>Więcej</span>
+  </div>
+  <div *ngFor="let tempMessage of messageUnreadList">
+    <div>
+      <span>{{tempMessage.title}}</span>
+      <span>{{tempMessage.date}}</span>
+      <button class="btn btn-primary" (click)="changeStatus(tempMessage.messageId)"
+        routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
+    </div>
+  </div>
+</div>

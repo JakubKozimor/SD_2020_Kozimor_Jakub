@@ -21,19 +21,23 @@ export class MessageService {
   constructor(private httpClient: HttpClient) { }
 
   addMessage(message: Message) {
-    this.httpClient.post(`${this.BASE_URL}/newMessage`, message).subscribe();
+    this.httpClient.post(`${this.BASE_URL}/new-message`, message).subscribe();
   }
 
-  getAllReadMEssagesByUser(userId: number): Observable<GetResponseMessage> {
-    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/allRead?id=${userId}&page=0&size=10`);
+  getAllReadMessagesByUser(userId: number): Observable<GetResponseMessage> {
+    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/all-read?id=${userId}&page=0&size=10`);
   }
 
-  getAllUnreadMEssagesByUser(userId: number): Observable<GetResponseMessage> {
-    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/allUnread?id=${userId}&page=0&size=10`);
+  getAllUnreadMessagesByUser(userId: number): Observable<GetResponseMessage> {
+    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/all-unread?id=${userId}&page=0&size=10`);
   }
 
   getMessageDetails(messageId: number): Observable<MessageDetails> {
-    return this.httpClient.get<MessageDetails>(`${this.BASE_URL}//messageDetails/${messageId}`);
+    return this.httpClient.get<MessageDetails>(`${this.BASE_URL}//message-details/${messageId}`);
+  }
+
+  changeMessageStatus(messageId: number){
+    this.httpClient.patch(`${this.BASE_URL}/update-status-message/${messageId}`,httpOptions).subscribe();
   }
 }
 

@@ -23,5 +23,6 @@ public interface MessageMapper {
     @Mapping(target = "firstName", source = "userFrom.firstName")
     @Mapping(target = "lastName", source = "userFrom.lastName")
     @Mapping(target = "email", source = "userFrom.email")
+    @Mapping(target = "userId", source = "userFrom.userId")
     MessageDetailsDto toMessageDetailsDto(Message message);
 }

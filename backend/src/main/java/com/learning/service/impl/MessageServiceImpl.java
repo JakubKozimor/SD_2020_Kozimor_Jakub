@@ -87,4 +87,10 @@ public class MessageServiceImpl implements MessageService {
         return messageFile;
     }
 
+    @Override
+    public void updateStatusMessage(Long messageId) {
+        Message message = messageRepository.findById(messageId).orElseThrow(MessageNotFoundException::new);
+        message.setStatus(MessageStatus.READ);
+        messageRepository.save(message);
+    }
 }
