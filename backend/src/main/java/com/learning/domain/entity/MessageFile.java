@@ -17,7 +17,7 @@ public class MessageFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
-    private Long lessonFileId;
+    private Long messageFileId;
     @Column(name = "name")
     private String fileName;
     @Lob

@@ -1,0 +1,11 @@
+<p>Tytuł: {{messageDetails.title}}</p>
+<p>Treść: {{messageDetails.content}}</p>
+<p>Imie: {{messageDetails.firstName}}</p>
+<p>Nazwisko: {{messageDetails.lastName}}</p>
+<p>Email: {{messageDetails.email}}</p>
+<div>
+    <div *ngFor="let tempFile of messageDetails.files">
+        <p>{{tempFile.fileName}}</p>
+        <button class="btn btn-primary data" (click)="downloadFile(tempFile.messageFileId)" >Pobierz</button>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -18,6 +19,7 @@ public class MessageDto {
     private String content;
     private Long userFrom;
     private Long userTo;
+    private LocalDateTime date;
     private MessageStatus status;
     private List<MessageFileDto> files;
 }

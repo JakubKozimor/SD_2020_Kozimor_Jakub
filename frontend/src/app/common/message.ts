@@ -4,6 +4,7 @@ export class Message {
     messageId: string;
     userFrom: number;
     userTo: number;
+    date: Date;
     status: string;
     files: MessageFile[];
 

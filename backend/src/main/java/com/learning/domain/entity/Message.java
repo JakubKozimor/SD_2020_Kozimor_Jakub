@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class Message {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "to_user")
     private User userTo;
+    @Column(name = "date")
+    private LocalDateTime date;
     @Enumerated(EnumType.STRING)
     private MessageStatus status;
     @OneToMany(cascade = CascadeType.ALL)

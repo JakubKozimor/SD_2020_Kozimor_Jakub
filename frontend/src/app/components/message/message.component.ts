@@ -35,9 +35,9 @@ export class MessageComponent implements OnInit {
               private messageService: MessageService) {
 
   }
-
   ngOnInit(): void {
   }
+
 
   onUpload(event, fileNumber: number) {
     let me = this;

@@ -1,7 +1,7 @@
 package com.learning.exception;
 
-public class MessageNotFoundException extends RuntimeException {
-    public MessageNotFoundException() {
-        super("Message not found");
+public class MessageFileNotFoundException extends RuntimeException {
+    public MessageFileNotFoundException() {
+        super("File not found");
     }
 }

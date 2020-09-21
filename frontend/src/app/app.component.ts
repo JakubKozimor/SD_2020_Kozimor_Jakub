@@ -14,7 +14,6 @@ export class AppComponent {
     router.events.subscribe((url: any) => {
       if (url.url != undefined) {
         this.actualRouter = url.url;
-        console.log(this.actualRouter);
       }
     });
   }

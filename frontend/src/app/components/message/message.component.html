@@ -1,60 +1,58 @@
 <div>
-    <div>
-        <h1>Wiadomość</h1>
-        <form (ngSubmit)="onSubmit()" #messageForm="ngForm">
-          <div class="form-group">
-            <label>Tytuł</label>
-            <input type="text" class="form-control" id="title"
-                   required
-                   [(ngModel)]="model.title" name="title"
-                   #title="ngModel">
-            <div [hidden]="title.valid || title.pristine"
-                 class="alert alert-danger">
-              Tytuł jest wymagany
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Wiadomość</label>
-            <input type="text" class="form-control" id="content"
-                   required
-                   [(ngModel)]="model.content" name="content"
-                   #content="ngModel">
-            <div [hidden]="content.valid || content.pristine"
-                 class="alert alert-danger">
-              Treść jest wymagana
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Pliki</label>
-            <br>
-            <input #inputFile1 type="file" (change)="onUpload($event, 1)">
-            <input type="button" (click)="reset(1)" value="X"/>
-          </div>
-
-          <div class="form-group" *ngIf="messageFile1 != undefined && inputFile1.value != '' || messageFile2 != undefined && myInputVariable2.nativeElement.value != ''">
-            <input #inputFile2 type="file" (change)="onUpload($event, 2)">
-            <input type="button" (click)="reset(2)" value="X"/>
-          </div>
-
-          <div class="form-group" *ngIf="messageFile2 != undefined && myInputVariable2.nativeElement.value != '' || messageFile3 != undefined && myInputVariable3.nativeElement.value != ''">
-            <input #inputFile3 type="file" (change)="onUpload($event, 3)">
-            <input type="button" (click)="reset(3)" value="X"/>
-          </div>
-
-          <div class="form-group" *ngIf="messageFile3 != undefined && myInputVariable3.nativeElement.value != '' || messageFile4 != undefined && myInputVariable4.nativeElement.value != ''">
-            <input #inputFile4 type="file" (change)="onUpload($event, 4)">
-            <input type="button" (click)="reset(4)" value="X"/>
-          </div>
-
-          <div class="form-group" *ngIf="messageFile4 != undefined && myInputVariable4.nativeElement.value != '' || messageFile5 != undefined && myInputVariable5.nativeElement.value != ''">
-            <input #inputFile5 type="file" (change)="onUpload($event, 5)">
-            <input type="button" (click)="reset(5)" value="X"/>
-          </div>
-
-          <button type="submit" class="btn btn-success" [disabled]="!messageForm.form.valid">Wyślij</button>
-        </form>
+  <div>
+    <h1>Wiadomość</h1>
+    <form (ngSubmit)="onSubmit()" #messageForm="ngForm">
+      <div class="form-group">
+        <label>Tytuł</label>
+        <input type="text" class="form-control" id="title" required [(ngModel)]="model.title" name="title"
+          #title="ngModel">
+        <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+          Tytuł jest wymagany
+        </div>
       </div>
+
+      <div class="form-group">
+        <label>Wiadomość</label>
+        <input type="text" class="form-control" id="content" required [(ngModel)]="model.content" name="content"
+          #content="ngModel">
+        <div [hidden]="content.valid || content.pristine" class="alert alert-danger">
+          Treść jest wymagana
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Pliki</label>
+        <br>
+        <input #inputFile1 type="file" (change)="onUpload($event, 1)">
+        <input type="button" (click)="reset(1)" value="X" />
+      </div>
+
+      <div class="form-group"
+        *ngIf="messageFile1 != undefined && inputFile1.value != '' || messageFile2 != undefined && myInputVariable2.nativeElement.value != ''">
+        <input #inputFile2 type="file" (change)="onUpload($event, 2)">
+        <input type="button" (click)="reset(2)" value="X" />
+      </div>
+
+      <div class="form-group"
+        *ngIf="messageFile2 != undefined && myInputVariable2.nativeElement.value != '' || messageFile3 != undefined && myInputVariable3.nativeElement.value != ''">
+        <input #inputFile3 type="file" (change)="onUpload($event, 3)">
+        <input type="button" (click)="reset(3)" value="X" />
+      </div>
+
+      <div class="form-group"
+        *ngIf="messageFile3 != undefined && myInputVariable3.nativeElement.value != '' || messageFile4 != undefined && myInputVariable4.nativeElement.value != ''">
+        <input #inputFile4 type="file" (change)="onUpload($event, 4)">
+        <input type="button" (click)="reset(4)" value="X" />
+      </div>
+
+      <div class="form-group"
+        *ngIf="messageFile4 != undefined && myInputVariable4.nativeElement.value != '' || messageFile5 != undefined && myInputVariable5.nativeElement.value != ''">
+        <input #inputFile5 type="file" (change)="onUpload($event, 5)">
+        <input type="button" (click)="reset(5)" value="X" />
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!messageForm.form.valid">Wyślij</button>
+    </form>
+  </div>
 
 </div>

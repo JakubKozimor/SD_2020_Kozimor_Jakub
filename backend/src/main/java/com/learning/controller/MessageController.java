@@ -1,5 +1,6 @@
 package com.learning.controller;
 
+import com.learning.domain.dto.MessageDetailsDto;
 import com.learning.domain.dto.MessageDto;
 import com.learning.service.MessageService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,17 @@ public class MessageController {
         return new ResponseEntity<>(messageService.getReadMessages(id, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
+    @GetMapping("/allUnread")
+    public ResponseEntity<Page<MessageDto>> getUnreadMessages(@RequestParam("id") Long id,
+                                                              @RequestParam("page") int page,
+                                                              @RequestParam("size") int size) {
+        return new ResponseEntity<>(messageService.getUnreadMessages(id, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @GetMapping("/messageDetails/{messageId}")
+    public ResponseEntity<MessageDetailsDto> getMessageDetails(@PathVariable("messageId") Long messageId) {
+        return new ResponseEntity<>(messageService.getMessageDetails(messageId), HttpStatus.OK);
+    }
 
     @PostMapping("/newMessage")
     public ResponseEntity<Void> addMessage(@RequestBody MessageDto message) throws IOException {

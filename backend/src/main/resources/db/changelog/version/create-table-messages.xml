@@ -18,6 +18,8 @@
             </column>
             <column name="to_user" type="BIGINT">
             </column>
+            <column name="date" type="DATETIME">
+            </column>
             <column name="status" type="VARCHAR(255)">
             </column>
         </createTable>

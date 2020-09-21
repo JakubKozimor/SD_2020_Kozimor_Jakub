@@ -1,7 +1,7 @@
 package com.learning.exception;
 
-public class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException() {
-        super("User not found");
+public class MessageNotFoundException extends RuntimeException {
+    public MessageNotFoundException() {
+        super("Message not found");
     }
 }
