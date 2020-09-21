@@ -19,19 +19,19 @@ export class HomeworkComponent implements OnInit {
     this.listOfHomework();
   }
 
-  listOfHomework(){
+  listOfHomework() {
     this.homeworkService.getAllSubjectsByUser(1).subscribe(data => this.homeworkList = data.content)
   }
 
-  countTime(deadline: Date){
+  countTime(deadline: Date) {
     this.today = new Date;
-    this.daysToDeadline=Number(String(deadline).substr(8,2))-this.today.getDate()
-    if (this.daysToDeadline < 2){
+    this.daysToDeadline = Number(String(deadline).substr(8, 2)) - this.today.getDate()
+    if (this.daysToDeadline < 2) {
       return this.daysToDeadline + " Dzień"
     } else {
       return this.daysToDeadline + " Dni"
     }
-    
+
   }
 
 }

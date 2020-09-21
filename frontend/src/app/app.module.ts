@@ -18,13 +18,13 @@ import { AllMessagesComponent } from './components/all-messages/all-messages.com
 
 
 const routes: Routes = [
-  { path: 'viewMessage/:messageId', component: MessageDetailsComponent},
-  { path: 'createMessage/:teacherId', component: MessageComponent},
-  { path: 'allMessages', component: AllMessagesComponent},
-  { path: 'classes', component: ClassesComponent},
-  { path: 'teachers', component: TeachersComponent},
-  { path: 'homework', component: HomeworkComponent},
-  { path: 'menu', component: ContentComponent},
+  { path: 'viewMessage/:messageId', component: MessageDetailsComponent },
+  { path: 'createMessage/:teacherId', component: MessageComponent },
+  { path: 'allMessages', component: AllMessagesComponent },
+  { path: 'classes', component: ClassesComponent },
+  { path: 'teachers', component: TeachersComponent },
+  { path: 'homework', component: HomeworkComponent },
+  { path: 'menu', component: ContentComponent },
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
   { path: '**', redirectTo: '/menu', pathMatch: 'full' }
 ];

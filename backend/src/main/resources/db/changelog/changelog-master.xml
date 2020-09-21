@@ -5,19 +5,19 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include  file="version/create-table-users.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-roles.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-users-roles.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-lessons.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-lessons-files.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-lessons-student.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-subjects.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-subject-student.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-subjects-files.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-homeworks.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-homeworks-files.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-messages.xml" relativeToChangelogFile="true"/>
-    <include  file="version/create-table-message-files.xml" relativeToChangelogFile="true"/>
-    <include  file="version/const.xml" relativeToChangelogFile="true"/>
-    <include  file="version/insertData.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-users.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-roles.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-users-roles.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-lessons.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-lessons-files.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-lessons-student.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-subjects.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-subject-student.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-subjects-files.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-homeworks.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-homeworks-files.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-messages.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-message-files.xml" relativeToChangelogFile="true"/>
+    <include file="version/const.xml" relativeToChangelogFile="true"/>
+    <include file="version/insertData.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

@@ -36,8 +36,8 @@ export class MessageService {
     return this.httpClient.get<MessageDetails>(`${this.BASE_URL}//message-details/${messageId}`);
   }
 
-  changeMessageStatus(messageId: number){
-    this.httpClient.patch(`${this.BASE_URL}/update-status-message/${messageId}`,httpOptions).subscribe();
+  changeMessageStatus(messageId: number) {
+    this.httpClient.patch(`${this.BASE_URL}/update-status-message/${messageId}`, httpOptions).subscribe();
   }
 }
 

@@ -14,6 +14,9 @@
                                  referencedColumnNames="user_id" referencedTableName="users"/>
     </changeSet>
     <changeSet id="16" author="Jakub">
-        <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="lessons_files" constraintName="lessons_files_fk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="lesson_id" referencedTableName="lessons"/>
+        <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="lessons_files"
+                                 constraintName="lessons_files_fk1" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="lesson_id"
+                                 referencedTableName="lessons"/>
     </changeSet>
 </databaseChangeLog>

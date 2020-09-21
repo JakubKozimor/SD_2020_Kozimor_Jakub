@@ -17,7 +17,7 @@ export class TeachersComponent implements OnInit {
     this.listOfTeachers();
   }
 
-  listOfTeachers(){
+  listOfTeachers() {
     this.teacherService.getAllTeachersByUser(1).subscribe(data => this.teacherList = data.content)
   }
 

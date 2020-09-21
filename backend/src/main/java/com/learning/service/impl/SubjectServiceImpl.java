@@ -80,7 +80,7 @@ public class SubjectServiceImpl implements SubjectService {
         int subjectTime = Integer.parseInt(subject.getStartTime().replaceAll("[^0-9]+", ""));
         int minute = LocalTime.now().getMinute();
         String currentTimeString;
-        if (minute < Constants.TENMINUTE)
+        if (minute < Constants.TEN_MINUTE)
             currentTimeString = LocalTime.now().getHour() + ":0" + LocalTime.now().getMinute();
         else currentTimeString = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute();
         int currentTimeValue = Integer.parseInt(currentTimeString.replaceAll("[^0-9]+", ""));

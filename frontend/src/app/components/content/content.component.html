@@ -19,7 +19,7 @@
     <hr>
     <div class="big-column">
       <div class="head-row">
-        Przedmiot termin 
+        Przedmiot termin
       </div>
       <div class="homework-row" *ngFor="let tempHomework of homeworkList">
         <div *ngIf="tempHomework.status == 'ACTIVE'">
@@ -27,6 +27,6 @@
           {{tempHomework.deadline}}
         </div>
       </div>
-    </div> 
+    </div>
   </div>
 </main>

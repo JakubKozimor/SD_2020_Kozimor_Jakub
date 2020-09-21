@@ -32,7 +32,7 @@ export class MessageComponent implements OnInit {
   model = new Message('', '');
 
   constructor(private route: ActivatedRoute,
-              private messageService: MessageService) {
+    private messageService: MessageService) {
 
   }
   ngOnInit(): void {

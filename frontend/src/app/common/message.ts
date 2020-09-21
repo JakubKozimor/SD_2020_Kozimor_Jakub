@@ -10,11 +10,11 @@ export class Message {
 
     constructor(
         public title: string,
-        public content: string,     
-      ) {  }
+        public content: string,
+    ) { }
 
-    addFile(file: MessageFile){
-        if (this.files == undefined){
+    addFile(file: MessageFile) {
+        if (this.files == undefined) {
             this.files = new Array;
         }
         this.files.push(file);
