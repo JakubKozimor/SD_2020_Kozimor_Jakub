@@ -62,7 +62,7 @@ export class ContentComponent implements OnInit {
     if (day == 'TUESDAY') {
       return "Wtorek"
     }
-    if (day == 'WEDNESDAY') {
+    if (day == 'WEDNESDAY') { 
       return "Środa"
     }
     if (day == 'THURSDAY') {

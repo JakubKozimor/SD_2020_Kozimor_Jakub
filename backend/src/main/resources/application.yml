@@ -11,5 +11,10 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog/changelog-master.xml
 
+
+
+token:
+  jwtSecret: secretKey
+  jwtExpirationInMs: 86400000
 #swagger ui
 #http://localhost:8080/swagger-ui.htmló

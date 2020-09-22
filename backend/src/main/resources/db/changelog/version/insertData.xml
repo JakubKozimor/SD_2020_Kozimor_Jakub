@@ -17,22 +17,22 @@
 
 
         <insert tableName="users">
-            <column name="first_name" value="student"/>
-            <column name="last_name" value="studentLastName"/>
-            <column name="email" value="student@mail.com"/>
-            <column name="password" value="student"/>
+            <column name="first_name" value="FirstStudentFirstName"/>
+            <column name="last_name" value="FirstStudentLastName"/>
+            <column name="email" value="firstStudent@gmail.com"/>
+            <column name="password" value="test"/>
         </insert>
         <insert tableName="users">
-            <column name="first_name" value="student1"/>
-            <column name="last_name" value="studentLastName1"/>
-            <column name="email" value="student1@mail.com"/>
-            <column name="password" value="student1"/>
+            <column name="first_name" value="SecondStudentFirstName"/>
+            <column name="last_name" value="SecondStudentLastName"/>
+            <column name="email" value="secondStudent@gmail.com"/>
+            <column name="password" value="$2a$08$yy90aVZQQdI0CaoyH3.fSOMix..sgNL7JWKQ9O1MxWb3He/dR9cP2"/>
         </insert>
         <insert tableName="users">
-            <column name="first_name" value="teacher"/>
-            <column name="last_name" value="teacherLastName"/>
+            <column name="first_name" value="TeacherFirstName"/>
+            <column name="last_name" value="TeacherLastName"/>
             <column name="email" value="teacher@mail.com"/>
-            <column name="password" value="teacher"/>
+            <column name="password" value="$2a$08$yy90aVZQQdI0CaoyH3.fSOMix..sgNL7JWKQ9O1MxWb3He/dR9cP2"/>
         </insert>
 
 
