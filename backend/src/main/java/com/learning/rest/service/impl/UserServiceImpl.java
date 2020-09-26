@@ -1,5 +1,8 @@
 package com.learning.rest.service.impl;
 
+import com.learning.exception.lesson.LessonNotFoundException;
+import com.learning.exception.subject.SubjectNotFoundException;
+import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.Lesson;
 import com.learning.rest.domain.entity.Subject;
@@ -7,9 +10,6 @@ import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.repository.LessonRepository;
 import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
-import com.learning.exception.lesson.LessonNotFoundException;
-import com.learning.exception.subject.SubjectNotFoundException;
-import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.UserService;
 import lombok.RequiredArgsConstructor;
