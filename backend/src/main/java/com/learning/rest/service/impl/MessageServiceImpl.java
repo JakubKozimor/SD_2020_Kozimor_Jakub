@@ -1,5 +1,7 @@
 package com.learning.rest.service.impl;
 
+import com.learning.exception.message.MessageNotFoundException;
+import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.base64.Base64Helper;
 import com.learning.rest.domain.dto.MessageDetailsDto;
 import com.learning.rest.domain.dto.MessageDto;
@@ -12,13 +14,10 @@ import com.learning.rest.domain.mapper.MessageFileMapper;
 import com.learning.rest.domain.mapper.MessageMapper;
 import com.learning.rest.domain.repository.MessageRepository;
 import com.learning.rest.domain.repository.UserRepository;
-import com.learning.exception.message.MessageNotFoundException;
-import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +47,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Page<MessageDto> getUnreadMessages(Long userId, PageRequest pageable) {
+    public Page<MessageDto> getUnreadMessages(Long userId, Pageable pageable) {
         User userTo = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<MessageDto> messageDtoListToUser = messageRepository.findAllByUserToAndStatus(userTo, MessageStatus.UNREAD)
                 .stream()

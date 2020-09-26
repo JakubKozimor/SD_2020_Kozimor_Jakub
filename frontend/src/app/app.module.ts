@@ -6,28 +6,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { Routes, RouterModule } from '@angular/router';
 import { HomeworkComponent } from './components/homework/homework.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { ClassesComponent } from './components/classes/classes.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MessageComponent } from './components/message/message.component';
 import { MessageDetailsComponent } from './components/message-details/message-details.component';
 import { AllMessagesComponent } from './components/all-messages/all-messages.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AppRoutingModule } from './app-routing.module';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
-
-const routes: Routes = [
-  { path: 'viewMessage/:messageId', component: MessageDetailsComponent },
-  { path: 'createMessage/:teacherId', component: MessageComponent },
-  { path: 'allMessages', component: AllMessagesComponent },
-  { path: 'classes', component: ClassesComponent },
-  { path: 'teachers', component: TeachersComponent },
-  { path: 'homework', component: HomeworkComponent },
-  { path: 'menu', component: ContentComponent },
-  { path: '', redirectTo: '/menu', pathMatch: 'full' },
-  { path: '**', redirectTo: '/menu', pathMatch: 'full' }
-];
 
 @NgModule({
   declarations: [
@@ -42,14 +33,24 @@ const routes: Routes = [
     MessageComponent,
     MessageDetailsComponent,
     AllMessagesComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

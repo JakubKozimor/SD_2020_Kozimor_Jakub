@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Homework } from '../common/homework';
 
@@ -7,12 +7,28 @@ import { Homework } from '../common/homework';
   providedIn: 'root'
 })
 export class HomeworkService {
-
   private BASE_URL = 'http://localhost:8080/homeworks';
   constructor(private httpClient: HttpClient) { }
 
-  public getAllSubjectsByUser(userId: number): Observable<GetResponseHomework> {
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/all?id=${userId}&page=0&size=10`);
+  public getAllSubjectsByUser(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseHomework> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+
+    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/all`, { params });
+  }
+
+  getPageParams(pageIndex: number, pageSize: number): HttpParams {
+    return new HttpParams()
+      .append('page', `${pageIndex}`)
+      .append('size', `${pageSize}`);
+  }
+
+  getAcctualUserId() {
+    return localStorage.getItem('user_id');
   }
 }
 

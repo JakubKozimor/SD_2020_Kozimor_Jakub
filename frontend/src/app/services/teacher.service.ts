@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Teacher } from '../common/teacher';
 import { Observable } from 'rxjs';
 
@@ -10,8 +10,27 @@ export class TeacherService {
   private BASE_URL = 'http://localhost:8080/teachers';
   constructor(private httpClient: HttpClient) { }
 
-  public getAllTeachersByUser(userId: number): Observable<GetResponseTeacher> {
-    return this.httpClient.get<GetResponseTeacher>(`${this.BASE_URL}/all?id=${userId}&page=0&size=10`);
+
+
+  public getAllTeachersByUser(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseTeacher> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+
+    return this.httpClient.get<GetResponseTeacher>(`${this.BASE_URL}/${userId}/all`, { params });
+  }
+
+  getPageParams(pageIndex: number, pageSize: number): HttpParams {
+    return new HttpParams()
+      .append('page', `${pageIndex}`)
+      .append('size', `${pageSize}`);
+  }
+
+  getAcctualUserId() {
+    return localStorage.getItem('user_id');
   }
 }
 export interface GetResponseTeacher {

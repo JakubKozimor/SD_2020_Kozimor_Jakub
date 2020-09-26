@@ -1,17 +1,20 @@
 package com.learning.rest.service.impl;
 
 import com.learning.constants.CustomConstants;
+import com.learning.exception.homework.HomeworkNotFoundException;
+import com.learning.exception.subject.SubjectNotFoundException;
+import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.repository.HomeworkRepository;
 import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
-import com.learning.exception.homework.HomeworkNotFoundException;
-import com.learning.exception.subject.SubjectNotFoundException;
-import com.learning.exception.user.UserNotFoundException;
+import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.SubjectService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,17 +51,18 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> getAllSubjectsByUserId(Long id) {
-        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-        return user.getSubjects()
+    public Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        List<Subject> subjectList = user.getSubjects()
                 .stream()
                 .sorted(Comparator.comparing(o -> Integer.valueOf(o.getStartTime().replaceAll("[^0-9]+", ""))))
                 .collect(Collectors.toList());
+        return (Page<Subject>) PageHelper.preparePageFromList(subjectList, pageable);
     }
 
     @Override
-    public List<Subject> getFirstFiveSubjectsByUserId(Long id) {
-        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public List<Subject> getFirstFiveSubjectsByUserId(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         return user.getSubjects()
                 .stream()
                 .filter(subject -> LocalDate.now().getDayOfWeek().getValue() <= subject.getDay().ordinal() + 1)

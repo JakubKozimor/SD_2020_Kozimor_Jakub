@@ -25,8 +25,8 @@ public class TeacherServiceImpl implements TeacherService {
     private final TeacherMapper teacherMapper;
 
     @Override
-    public Page<TeacherDto> getAllTeachersByUserId(Long id, Pageable pageable) {
-        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public Page<TeacherDto> getAllTeachersByUserId(Long userId, Pageable pageable) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         Set<Subject> subjects = user.getSubjects();
         List<TeacherDto> teachersDtoList = subjects.stream()
                 .map(this::mapToUserDto)

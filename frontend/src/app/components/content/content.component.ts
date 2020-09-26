@@ -10,6 +10,8 @@ import { Homework } from 'src/app/common/homework';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
+  pageIndex: number;
+  pageSize: number;
 
   subjectsList: Subject[];
   homeworkList: Homework[];
@@ -25,11 +27,14 @@ export class ContentComponent implements OnInit {
     this.listOfHomework();
   }
   listOfSubjects() {
-    this.subjectService.getFiveFirstSubjectsByUser(1).subscribe(data => this.subjectsList = data)
+    this.subjectService.getFiveFirstSubjectsByUser().subscribe(data => this.subjectsList = data)
   }
 
   listOfHomework() {
-    this.homeworkService.getAllSubjectsByUser(1).subscribe(data => this.homeworkList = data.content)
+    this.pageIndex = 0;
+    this.pageSize = 100;
+
+    this.homeworkService.getAllSubjectsByUser(this.pageIndex, this.pageSize).subscribe(data => this.homeworkList = data.content)
   }
 
   countTime(startTime: string, longOfTime: string) {
@@ -62,7 +67,7 @@ export class ContentComponent implements OnInit {
     if (day == 'TUESDAY') {
       return "Wtorek"
     }
-    if (day == 'WEDNESDAY') { 
+    if (day == 'WEDNESDAY') {
       return "Środa"
     }
     if (day == 'THURSDAY') {

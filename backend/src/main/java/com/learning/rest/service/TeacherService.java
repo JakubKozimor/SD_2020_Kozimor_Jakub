@@ -5,5 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface TeacherService {
-    Page<TeacherDto> getAllTeachersByUserId(Long id, Pageable pageable);
+    Page<TeacherDto> getAllTeachersByUserId(Long userId, Pageable pageable);
 }

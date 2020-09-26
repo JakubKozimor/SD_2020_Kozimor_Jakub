@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageFile } from 'src/app/common/message-file';
 import { Message } from 'src/app/common/message';
 import { ActivatedRoute, Router } from '@angular/router';

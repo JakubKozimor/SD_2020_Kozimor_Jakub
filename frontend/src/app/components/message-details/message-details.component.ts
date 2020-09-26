@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageDetails } from 'src/app/common/message-details';
-import { MessageFile } from 'src/app/common/message-file';
 import { FileServiceService } from 'src/app/services/file-service.service';
 import { MessageService } from 'src/app/services/message.service';
 

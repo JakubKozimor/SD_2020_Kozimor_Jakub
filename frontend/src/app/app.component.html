@@ -3,9 +3,9 @@
 
 <body>
   <div class="con">
-    <app-header></app-header>
+    <app-header *ngIf="isToken"></app-header>
     <div class="page-content">
-      <app-calendar *ngIf="actualRouter != '/classes'"></app-calendar>
+      <app-calendar *ngIf="actualRouter != '/classes' && isToken"></app-calendar>
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>

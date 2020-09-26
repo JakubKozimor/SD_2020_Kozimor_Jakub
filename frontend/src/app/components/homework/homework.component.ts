@@ -8,7 +8,8 @@ import { HomeworkService } from 'src/app/services/homework.service';
   styleUrls: ['./homework.component.css']
 })
 export class HomeworkComponent implements OnInit {
-
+  pageIndex: number;
+  pageSize: number;
   homeworkList: Homework[];
   today: Date;
   daysToDeadline: number;
@@ -20,7 +21,9 @@ export class HomeworkComponent implements OnInit {
   }
 
   listOfHomework() {
-    this.homeworkService.getAllSubjectsByUser(1).subscribe(data => this.homeworkList = data.content)
+    this.pageIndex = 0;
+    this.pageSize = 10;
+    this.homeworkService.getAllSubjectsByUser(this.pageIndex, this.pageSize).subscribe(data => this.homeworkList = data.content)
   }
 
   countTime(deadline: Date) {

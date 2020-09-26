@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectService } from 'src/app/services/subject.service';
 import { Subject } from 'src/app/common/subject';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-
+  pageIndex: number;
+  pageSize: number;
   subjectsList: Subject[];
 
   constructor(private subjectService: SubjectService) { }
@@ -20,7 +20,9 @@ export class CalendarComponent implements OnInit {
   }
 
   listOfSubjects() {
-    this.subjectService.getAllSubjectsByUser(1).subscribe(data => this.subjectsList = data)
+    this.pageIndex = 0;
+    this.pageSize = 100;
+    this.subjectService.getAllSubjectsByUser(this.pageIndex, this.pageSize).subscribe(data => this.subjectsList = data.content)
   }
 
 }

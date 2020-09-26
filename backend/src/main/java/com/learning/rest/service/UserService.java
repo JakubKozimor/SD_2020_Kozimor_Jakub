@@ -6,11 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface UserService {
-    User getTeacherById(Long id);
+    User getTeacherById(Long teacherId);
 
     void addUserToSubject(Long userId, Long subjectId);
 
     void addUserToLesson(Long userId, Long lessonId);
 
-    Page<Homework> getAllHomeworks(Long id, Pageable pageable);
+    Page<Homework> getAllHomeworks(Long teacherId, Pageable pageable);
 }

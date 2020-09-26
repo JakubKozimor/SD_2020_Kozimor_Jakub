@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +9,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AppComponent {
 
   actualRouter: string;
+  isToken: boolean;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router) {
     router.events.subscribe((url: any) => {
       if (url.url != undefined) {
         this.actualRouter = url.url;
       }
     });
+    this.isToken = localStorage.getItem('access_token') != null;
   }
 
   title = 'frontend';

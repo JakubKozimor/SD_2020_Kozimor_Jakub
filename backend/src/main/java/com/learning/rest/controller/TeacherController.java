@@ -4,9 +4,10 @@ import com.learning.rest.domain.dto.TeacherDto;
 import com.learning.rest.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,10 +18,10 @@ public class TeacherController {
 
     private final TeacherService teacherService;
 
-    @GetMapping("/all")
-    public ResponseEntity<Page<TeacherDto>> getTeachersByUser(@RequestParam("id") Long id,
-                                                              @RequestParam("page") int page,
-                                                              @RequestParam("size") int size) {
-        return new ResponseEntity<>(teacherService.getAllTeachersByUserId(id, PageRequest.of(page, size)), HttpStatus.OK);
+    @PreAuthorize("#userId == principal.id")
+    @GetMapping("/{userId}/all")
+    public ResponseEntity<Page<TeacherDto>> getTeachersByUser(@PathVariable Long userId,
+                                                              Pageable pageable) {
+        return new ResponseEntity<>(teacherService.getAllTeachersByUserId(userId, pageable), HttpStatus.OK);
     }
 }

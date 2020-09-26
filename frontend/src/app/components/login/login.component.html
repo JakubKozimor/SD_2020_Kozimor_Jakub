@@ -1,0 +1,16 @@
+<h3> Logowanie </h3>
+<div>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div>
+            <div>Email</div>
+            <input type="text" formControlName="email" placeholder="Login" />
+            <label *ngIf="email.invalid" [ngClass]="'error'"> Niepoprawy email </label>
+        </div>
+        <div>
+            <div>Hasło</div>
+            <input type="password" formControlName="password" placeholder="Hasło" />
+            <label *ngIf="password.invalid" [ngClass]="'error'"> Niepoprawne hasło </label>
+        </div>
+
+        <button>Zaloguj</button>
+    </form>

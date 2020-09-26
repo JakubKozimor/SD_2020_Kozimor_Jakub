@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Page<Homework> getAllHomeworks(Long id, Pageable pageable) {
-        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public Page<Homework> getAllHomeworks(Long userId, Pageable pageable) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<Homework> homeworkList = new ArrayList<>();
         user.getSubjects()
                 .forEach(subject -> homeworkList.addAll(subject.getHomeworks()));

@@ -20,19 +20,19 @@
             <column name="first_name" value="FirstStudentFirstName"/>
             <column name="last_name" value="FirstStudentLastName"/>
             <column name="email" value="firstStudent@gmail.com"/>
-            <column name="password" value="test"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
         </insert>
         <insert tableName="users">
             <column name="first_name" value="SecondStudentFirstName"/>
             <column name="last_name" value="SecondStudentLastName"/>
             <column name="email" value="secondStudent@gmail.com"/>
-            <column name="password" value="$2a$08$yy90aVZQQdI0CaoyH3.fSOMix..sgNL7JWKQ9O1MxWb3He/dR9cP2"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
         </insert>
         <insert tableName="users">
             <column name="first_name" value="TeacherFirstName"/>
             <column name="last_name" value="TeacherLastName"/>
             <column name="email" value="teacher@mail.com"/>
-            <column name="password" value="$2a$08$yy90aVZQQdI0CaoyH3.fSOMix..sgNL7JWKQ9O1MxWb3He/dR9cP2"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
         </insert>
 
 

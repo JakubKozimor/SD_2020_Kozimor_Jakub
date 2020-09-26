@@ -8,7 +8,8 @@ import { MessageService } from 'src/app/services/message.service';
   styleUrls: ['./all-messages.component.css']
 })
 export class AllMessagesComponent implements OnInit {
-
+  pageIndex: number;
+  pageSize: number;
   messageReadList: Message[];
   messageUnreadList: Message[];
 
@@ -20,11 +21,15 @@ export class AllMessagesComponent implements OnInit {
   }
 
   listOfReadMessages() {
-    this.messageService.getAllReadMessagesByUser(3).subscribe(data => this.messageReadList = data.content)
+    this.pageIndex = 0;
+    this.pageSize = 10;
+    this.messageService.getAllReadMessagesByUser(this.pageIndex, this.pageSize).subscribe(data => this.messageReadList = data.content)
   }
 
   listOfUnreadMessages() {
-    this.messageService.getAllUnreadMessagesByUser(3).subscribe(data => this.messageUnreadList = data.content)
+    this.pageIndex = 0;
+    this.pageSize = 10;
+    this.messageService.getAllUnreadMessagesByUser(this.pageIndex, this.pageSize).subscribe(data => this.messageUnreadList = data.content)
   }
 
   changeStatus(messageId: number) {

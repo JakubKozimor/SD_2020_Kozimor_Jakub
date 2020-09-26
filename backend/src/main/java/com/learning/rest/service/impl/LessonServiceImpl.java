@@ -1,10 +1,10 @@
 package com.learning.rest.service.impl;
 
+import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.domain.entity.Lesson;
 import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.repository.LessonRepository;
 import com.learning.rest.domain.repository.UserRepository;
-import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

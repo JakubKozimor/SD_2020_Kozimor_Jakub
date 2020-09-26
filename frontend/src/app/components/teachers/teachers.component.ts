@@ -8,7 +8,8 @@ import { TeacherService } from 'src/app/services/teacher.service';
   styleUrls: ['./teachers.component.css']
 })
 export class TeachersComponent implements OnInit {
-
+  pageIndex: number;
+  pageSize: number;
   teacherList: Teacher[];
 
   constructor(private teacherService: TeacherService) { }
@@ -18,7 +19,9 @@ export class TeachersComponent implements OnInit {
   }
 
   listOfTeachers() {
-    this.teacherService.getAllTeachersByUser(1).subscribe(data => this.teacherList = data.content)
+    this.pageIndex = 0;
+    this.pageSize = 10;
+    this.teacherService.getAllTeachersByUser(this.pageIndex, this.pageSize).subscribe(data => this.teacherList = data.content)
   }
 
 }

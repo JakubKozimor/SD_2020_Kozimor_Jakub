@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from '../common/message';
@@ -24,20 +24,44 @@ export class MessageService {
     this.httpClient.post(`${this.BASE_URL}/new-message`, message).subscribe();
   }
 
-  getAllReadMessagesByUser(userId: number): Observable<GetResponseMessage> {
-    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/all-read?id=${userId}&page=0&size=10`);
+  getAllReadMessagesByUser(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseMessage> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+
+    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-read`, { params });
   }
 
-  getAllUnreadMessagesByUser(userId: number): Observable<GetResponseMessage> {
-    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/all-unread?id=${userId}&page=0&size=10`);
+  getAllUnreadMessagesByUser(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseMessage> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+
+    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-unread`, { params });
   }
 
   getMessageDetails(messageId: number): Observable<MessageDetails> {
-    return this.httpClient.get<MessageDetails>(`${this.BASE_URL}//message-details/${messageId}`);
+    return this.httpClient.get<MessageDetails>(`${this.BASE_URL}/message-details/${messageId}`);
   }
 
   changeMessageStatus(messageId: number) {
     this.httpClient.patch(`${this.BASE_URL}/update-status-message/${messageId}`, httpOptions).subscribe();
+  }
+
+  getPageParams(pageIndex: number, pageSize: number): HttpParams {
+    return new HttpParams()
+      .append('page', `${pageIndex}`)
+      .append('size', `${pageSize}`);
+  }
+
+  getAcctualUserId() {
+    return localStorage.getItem('user_id');
   }
 }
 
