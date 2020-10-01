@@ -1,5 +1,6 @@
 package com.learning.rest.controller;
 
+import com.learning.rest.service.HomeworkFileService;
 import com.learning.rest.service.MessageFileService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FilesController {
 
     private final MessageFileService messageFileService;
+    private final HomeworkFileService homeworkFileService;
 
     @GetMapping(value = "/message-file/download/{fileId}", produces = "application/octet-stream")
     public @ResponseBody
@@ -24,5 +26,14 @@ public class FilesController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new InputStreamResource(messageFileService.downloadFile(fileId, response)));
+    }
+
+    @GetMapping(value = "/homework-file/download/{fileId}", produces = "application/octet-stream")
+    public @ResponseBody
+    ResponseEntity<InputStreamResource> downloadHomeworkFile(@PathVariable Long fileId,
+                                                            HttpServletResponse response) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new InputStreamResource(homeworkFileService.downloadFile(fileId, response)));
     }
 }

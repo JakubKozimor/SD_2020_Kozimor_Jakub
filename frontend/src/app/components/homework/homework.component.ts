@@ -23,7 +23,7 @@ export class HomeworkComponent implements OnInit {
   listOfHomework() {
     this.pageIndex = 0;
     this.pageSize = 10;
-    this.homeworkService.getAllSubjectsByUser(this.pageIndex, this.pageSize).subscribe(data => this.homeworkList = data.content)
+    this.homeworkService.getAllActiveHomeworkByUser(this.pageIndex, this.pageSize).subscribe(data => this.homeworkList = data.content)
   }
 
   countTime(deadline: Date) {

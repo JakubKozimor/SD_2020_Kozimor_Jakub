@@ -68,7 +68,8 @@ public class MessageServiceImpl implements MessageService {
         User userFrom = userRepository.findById(messageDto.getUserFrom()).orElseThrow(UserNotFoundException::new);
         User userTo = userRepository.findById(messageDto.getUserTo()).orElseThrow(UserNotFoundException::new);
         Message message = messageMapper.toMessage(messageDto);
-        messageDto.getFiles().stream()
+        messageDto.getFiles()
+                .stream()
                 .map(this::mapToMessageFile)
                 .forEach(message::addFile);
         message.setUserFrom(userFrom);

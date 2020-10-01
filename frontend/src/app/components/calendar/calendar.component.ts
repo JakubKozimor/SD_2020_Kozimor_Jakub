@@ -13,16 +13,24 @@ export class CalendarComponent implements OnInit {
   pageSize: number;
   subjectsList: Subject[];
 
+  week = "ALL";
+
   constructor(private subjectService: SubjectService) { }
 
   ngOnInit(): void {
+
     this.listOfSubjects();
   }
 
   listOfSubjects() {
     this.pageIndex = 0;
     this.pageSize = 100;
-    this.subjectService.getAllSubjectsByUser(this.pageIndex, this.pageSize).subscribe(data => this.subjectsList = data.content)
+    this.subjectService.getAllSubjectsByUser(this.pageIndex, this.pageSize, this.week).subscribe(data => this.subjectsList = data.content)
+  }
+
+  changeWeek(week: string) {
+    this.week = week;
+    this.ngOnInit();
   }
 
 }

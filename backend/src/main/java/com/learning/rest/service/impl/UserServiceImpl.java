@@ -52,14 +52,4 @@ public class UserServiceImpl implements UserService {
     public User getTeacherById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
-
-
-    @Override
-    public Page<Homework> getAllHomeworks(Long userId, Pageable pageable) {
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        List<Homework> homeworkList = new ArrayList<>();
-        user.getSubjects()
-                .forEach(subject -> homeworkList.addAll(subject.getHomeworks()));
-        return (Page<Homework>) PageHelper.preparePageFromList(homeworkList, pageable);
-    }
 }

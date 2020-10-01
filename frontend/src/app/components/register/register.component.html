@@ -1,1 +1,43 @@
-<p>register works!</p>
+<h3> Rejsetracja </h3>
+<form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div>
+        <div>Imie</div>
+        <input type="text" formControlName="firstName" placeholder="Imie" />
+        <label *ngIf="firstName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
+    </div>
+    <div>
+        <div>Nazwisko</div>
+        <input type="text" formControlName="lastName" placeholder="Nazwisko" />
+        <label *ngIf="lastName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
+    </div>
+    <div>
+        <div>Email</div>
+        <input type="text" formControlName="email" placeholder="Email" />
+        <label *ngIf="email.invalid" [ngClass]="'error'"> Niepoprawy email </label>
+    </div>
+    <div>
+        <div>Hasło</div>
+        <input type="password" formControlName="password" placeholder="Hasło" />
+        <label *ngIf="password.invalid" [ngClass]="'error'"> Niepoprawne hasło </label>
+    </div>
+    <div>
+        <div>Powtórz hasło</div>
+        <input type="password" formControlName="passwordConfirmation" placeholder="Powtórz hasło"
+            (change)="checkPasswordConfirmation()" />
+        <label *ngIf="passwordConfirmation.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
+        <label *ngIf="theSamePassword == false && passwordConfirmation.valid" [ngClass]="'error'"> Hasła muszą być takie
+            same </label>
+    </div>
+    <div>
+        <div>Rola</div>
+        <select formControlName="roleName">
+            <option value="ROLE_STUDENT">Student</option>
+            <option value="ROLE_TEACHER">Nauczyciel</option>
+          </select>
+          <label *ngIf="roleName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
+    </div>
+    <button>Rejestracja</button>
+
+    <label *ngIf="message != undefined"> {{message}} </label>
+</form>
+<button routerLink="/login">Wróć</button>

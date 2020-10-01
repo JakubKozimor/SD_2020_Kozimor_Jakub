@@ -13,11 +13,12 @@ export class SubjectService {
   public getAllSubjectsByUser(
     pageIndex: number,
     pageSize: number,
+    week: string
   ): Observable<GetResponseSubject> {
 
     let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('week', `${week}`);
     const userId = this.getAcctualUserId();
-
     return this.httpClient.get<GetResponseSubject>(`${this.BASE_URL}/${userId}/all`, { params });
   }
 
@@ -25,7 +26,7 @@ export class SubjectService {
 
     const userId = this.getAcctualUserId();
 
-    return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/fiveFirst`);
+    return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first`);
   }
 
   getPageParams(pageIndex: number, pageSize: number): HttpParams {

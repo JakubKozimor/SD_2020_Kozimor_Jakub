@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
+import { AddHomeworkComponent } from './components/add-homework/add-homework.component';
 import { AllMessagesComponent } from './components/all-messages/all-messages.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { ContentComponent } from './components/content/content.component';
+import { HomeworkDetailsComponent } from './components/homework-details/homework-details.component';
 import { HomeworkComponent } from './components/homework/homework.component';
 import { LoginComponent } from './components/login/login.component';
 import { MessageDetailsComponent } from './components/message-details/message-details.component';
@@ -11,6 +14,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const appRoute: Routes = [
+  { path: 'createHomeworkAnswer/:homeworkId', component: AddHomeworkAnswerComponent },
+  { path: 'addHomework/:subjectId', component: AddHomeworkComponent },
+  { path: 'viewHomework/:homeworkId', component: HomeworkDetailsComponent },
   { path: 'viewMessage/:messageId', component: MessageDetailsComponent },
   { path: 'createMessage/:teacherId', component: MessageComponent },
   { path: 'allMessages', component: AllMessagesComponent },

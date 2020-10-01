@@ -1,7 +1,9 @@
 package com.learning.rest.controller;
 
+import com.learning.rest.domain.dto.HomeworkDetailsDto;
+import com.learning.rest.domain.dto.HomeworkDto;
 import com.learning.rest.domain.entity.Homework;
-import com.learning.rest.service.UserService;
+import com.learning.rest.service.HomeworkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,18 +12,40 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/homeworks")
 @CrossOrigin
 @RequiredArgsConstructor
 public class HomeworkController {
 
-    private final UserService userService;
+    private final HomeworkService homeworkService;
 
     @PreAuthorize("#userId == principal.id")
-    @GetMapping("/{userId}/all")
-    public ResponseEntity<Page<Homework>> getAllHomeworkByUser(@PathVariable Long userId,
-                                                               Pageable pageable) {
-        return new ResponseEntity<>(userService.getAllHomeworks(userId, pageable), HttpStatus.OK);
+    @GetMapping("/{userId}/active")
+    public ResponseEntity<Page<Homework>> getAllActiveHomeworkByUser(@PathVariable Long userId,
+                                                                     Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getAllActiveHomeworks(userId, pageable), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#userId == principal.id")
+    @GetMapping("/{userId}/five-first")
+    public ResponseEntity<List<Homework>> getFiveActiveHomeworkByUser(@PathVariable Long userId) {
+        return new ResponseEntity<>(homeworkService.getFiveActiveHomework(userId), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/homework-details/{homeworkId}")
+    public ResponseEntity<HomeworkDetailsDto> getMessageDetails(@PathVariable("homeworkId") Long homeworkId) {
+        return new ResponseEntity<>(homeworkService.getHomeworkDetails(homeworkId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @PostMapping("/{subjectId}/add")
+    public ResponseEntity<Void> createHomework(@PathVariable("subjectId") Long subjectId,
+                                               @RequestBody HomeworkDto homework) {
+        homeworkService.createHomework(homework, subjectId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

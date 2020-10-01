@@ -1,6 +1,7 @@
 package com.learning.rest.service;
 
 import com.learning.rest.domain.entity.Subject;
+import com.learning.rest.domain.entity.enums.Week;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,7 +12,7 @@ public interface SubjectService {
 
     void addHomeworkToSubject(Long subjectId, Long homeworkId);
 
-    Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable);
+    Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable, Week week);
 
     List<Subject> getFirstFiveSubjectsByUserId(Long userId);
 }

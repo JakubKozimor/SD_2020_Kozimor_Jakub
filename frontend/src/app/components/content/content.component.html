@@ -19,13 +19,14 @@
     <hr>
     <div class="big-column">
       <div class="head-row">
-        Przedmiot termin
+        Zadanie termin przycisk
       </div>
       <div class="homework-row" *ngFor="let tempHomework of homeworkList">
-        <div *ngIf="tempHomework.status == 'ACTIVE'">
+        <div>
           {{tempHomework.title}}
           {{tempHomework.deadline}}
         </div>
+        <button class="btn btn-primary" routerLink="/viewHomework/{{ tempHomework.homeworkId }}">Szczegóły</button>
       </div>
     </div>
   </div>

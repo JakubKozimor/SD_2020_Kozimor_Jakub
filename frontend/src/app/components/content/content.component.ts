@@ -34,7 +34,7 @@ export class ContentComponent implements OnInit {
     this.pageIndex = 0;
     this.pageSize = 100;
 
-    this.homeworkService.getAllSubjectsByUser(this.pageIndex, this.pageSize).subscribe(data => this.homeworkList = data.content)
+    this.homeworkService.getFiveFirstHomeworksByUser().subscribe(data => this.homeworkList = data)
   }
 
   countTime(startTime: string, longOfTime: string) {

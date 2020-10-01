@@ -4,32 +4,48 @@ import { BehaviorSubject } from 'rxjs';
 import { Credentials } from '../common/credentials';
 import { LoginResponse } from '../common/login-response';
 import { TokenDecoded } from '../common/token-decoded';
+import { User } from '../common/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private url = 'http://localhost:8080';
+  private url = 'http://localhost:8080/auth';
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.loggedIn);
 
   constructor(private http: HttpClient) { }
 
   login(credentials: Credentials): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post(this.url + '/auth/login', credentials).subscribe(
+      this.http.post(this.url + '/login', credentials).subscribe(
         (data: LoginResponse) => {
           this.saveToken("Bearer " + data.accessToken);
           const tokenDecoded: TokenDecoded = JSON.parse(atob(data.accessToken.split('.')[1]));
           localStorage.setItem('user_id', (+tokenDecoded.sub).toString());
           this.isLoggedInSubject.next(this.loggedIn);
           window.location.reload();
-          // this.router.navigate(['']);
-
         },
         (error) => {
           console.log("Login error")
         }
       );
+    });
+  }
+
+  register(user: User): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.http.post(this.url + '/register', user)
+        .subscribe(
+          (data) => {
+            resolve("Zarejestrowano");
+          },
+          (error) => {
+            if (error.status === 409) {
+              reject("Użytkownik z takim adresem email istnieje");
+            }
+            reject("Nieudana rejestracja");
+          }
+        );
     });
   }
 

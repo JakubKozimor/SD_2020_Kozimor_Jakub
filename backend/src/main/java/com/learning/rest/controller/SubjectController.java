@@ -1,6 +1,7 @@
 package com.learning.rest.controller;
 
 import com.learning.rest.domain.entity.Subject;
+import com.learning.rest.domain.entity.enums.Week;
 import com.learning.rest.service.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,12 +24,13 @@ public class SubjectController {
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/all")
     public ResponseEntity<Page<Subject>> getAllSubjectsByUser(@PathVariable Long userId,
-                                                              Pageable pageable) {
-        return new ResponseEntity<>(subjectService.getAllSubjectsByUserId(userId, pageable), HttpStatus.OK);
+                                                              Pageable pageable,
+                                                              @RequestParam("week") Week week) {
+        return new ResponseEntity<>(subjectService.getAllSubjectsByUserId(userId, pageable, week), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")
-    @GetMapping("/{userId}/fiveFirst")
+    @GetMapping("/{userId}/five-first")
     public ResponseEntity<List<Subject>> getFirstFiveSubjectsByUser(@PathVariable Long userId) {
         return new ResponseEntity<>(subjectService.getFirstFiveSubjectsByUserId(userId), HttpStatus.OK);
     }

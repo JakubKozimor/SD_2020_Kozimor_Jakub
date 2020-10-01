@@ -1,0 +1,15 @@
+<div *ngIf="homeworkDetails != undefined">
+    <p>Tytuł: {{homeworkDetails.title}}</p>
+    <p>Opis: {{homeworkDetails.description}}</p>
+    <p>Termin: {{transformDate(homeworkDetails.deadline)}}</p>
+    <p>Przedmiot: {{homeworkDetails.subject}}</p>
+    <p>Status: {{homeworkDetails.status}}</p>
+    <div>
+        <div *ngFor="let tempFile of homeworkDetails.files">
+            <p>{{tempFile.fileName}}</p>
+            <button class="btn btn-primary"
+                (click)="downloadFile(tempFile.homeworkFileId, tempFile.fileName)">Pobierz</button>
+        </div>
+    </div>
+    <button class="btn btn-success" routerLink="/createHomeworkAnswer/{{homeworkDetails.homeworkId}}">Dodaj odpowiedź</button>
+</div>

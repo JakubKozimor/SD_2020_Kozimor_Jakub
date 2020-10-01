@@ -59,7 +59,7 @@
             <column name="subject_name" value="Programowanie obiektowe"/>
             <column name="day" value="MONDAY"/>
             <column name="week" value="ALL"/>
-            <column name="start_time" value="13:15"/>
+            <column name="start_time" value="13:05"/>
             <column name="long_of_time" value="90"/>
             <column name="teacher_id" value="3"/>
         </insert>
@@ -84,7 +84,7 @@
         <insert tableName="subjects">
             <column name="subject_id" value="4"/>
             <column name="subject_name" value="Programowanie zespołowe"/>
-            <column name="day" value="THURSDAY"/>
+            <column name="day" value="MONDAY"/>
             <column name="week" value="ALL"/>
             <column name="start_time" value="11:30"/>
             <column name="long_of_time" value="90"/>
@@ -150,9 +150,9 @@
             <column name="homework_id" value="3"/>
             <column name="title" value="Użycie bootstrapa"/>
             <column name="description" value="Poprawić wygląd strony używając bootstrapa"/>
-            <column name="deadline" value="2020-09-29"/>
+            <column name="deadline" value="2020-10-03"/>
             <column name="subject_id" value="2"/>
-            <column name="status" value="DONE"/>
+            <column name="status" value="ACTIVE"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="4"/>
@@ -166,7 +166,7 @@
             <column name="homework_id" value="5"/>
             <column name="title" value="Spring"/>
             <column name="description" value="Zrobić połączenie z angularem"/>
-            <column name="deadline" value="2020-09-28"/>
+            <column name="deadline" value="2020-10-02"/>
             <column name="subject_id" value="4"/>
             <column name="status" value="ACTIVE"/>
         </insert>

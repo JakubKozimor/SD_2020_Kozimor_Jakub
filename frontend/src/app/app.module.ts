@@ -18,6 +18,11 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { HomeworkDetailsComponent } from './components/homework-details/homework-details.component';
+import { DatePipe } from '@angular/common';
+import { AddHomeworkComponent } from './components/add-homework/add-homework.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
 
 
 @NgModule({
@@ -35,15 +40,20 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     AllMessagesComponent,
     LoginComponent,
     RegisterComponent,
+    HomeworkDetailsComponent,
+    AddHomeworkComponent,
+    AddHomeworkAnswerComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    NgbModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

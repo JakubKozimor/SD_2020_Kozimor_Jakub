@@ -27,7 +27,7 @@ export class MessageDetailsComponent implements OnInit {
   }
 
   downloadFile(fileId: number, fileName: string) {
-    this.fileService.downloadFile(fileId, fileName);
+    this.fileService.downloadMessageFile(fileId, fileName);
   }
 
 }

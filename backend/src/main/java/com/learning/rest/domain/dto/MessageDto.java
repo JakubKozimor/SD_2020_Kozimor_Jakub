@@ -12,7 +12,6 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
 public class MessageDto {
     private Long messageId;
     private String title;

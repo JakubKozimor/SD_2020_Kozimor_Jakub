@@ -7,6 +7,7 @@ import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.entity.enums.Week;
 import com.learning.rest.domain.repository.HomeworkRepository;
 import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
@@ -20,8 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,43 +52,77 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable) {
+    public Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable, Week week) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<Subject> subjectList = user.getSubjects()
                 .stream()
-                .sorted(Comparator.comparing(o -> Integer.valueOf(o.getStartTime().replaceAll("[^0-9]+", ""))))
+                .filter(subject -> this.filterByWeek(subject, week))
+                .sorted(this::sortByTime)
                 .collect(Collectors.toList());
         return (Page<Subject>) PageHelper.preparePageFromList(subjectList, pageable);
+    }
+
+    private boolean filterByWeek(Subject subject, Week week) {
+        if (week == Week.ALL || subject.getWeek() == Week.ALL)
+            return true;
+        else
+            return subject.getWeek() == week;
     }
 
     @Override
     public List<Subject> getFirstFiveSubjectsByUserId(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        return user.getSubjects()
+        Set<Subject> allSubjects = user.getSubjects();
+
+        List<Subject> fiveSubjects = allSubjects
                 .stream()
-                .filter(subject -> LocalDate.now().getDayOfWeek().getValue() <= subject.getDay().ordinal() + 1)
-                .filter(subject -> {
-                    if (LocalDate.now().getDayOfWeek().getValue() == subject.getDay().ordinal() + 1) {
-                        return filterByTime(subject);
-                    } else return true;
-                })
-                .limit(5)
-                .sorted((o1, o2) -> {
-                    if (o1.getDay() == o2.getDay()) {
-                        return Integer.valueOf(o1.getStartTime().replaceAll("[^0-9]+", "")).compareTo(Integer.valueOf(o2.getStartTime().replaceAll("[^0-9]+", "")));
-                    } else return 1;
-                })
+                .filter(this::filterByDay)
+                .filter(this::filterByTime)
+                .limit(CustomConstants.FIVE_SUBJECTS)
                 .collect(Collectors.toList());
+        if (fiveSubjects.size() < CustomConstants.FIVE_SUBJECTS)
+            return this.addFromNextWeek(allSubjects, fiveSubjects);
+        else
+            return fiveSubjects;
     }
 
     private boolean filterByTime(Subject subject) {
-        int subjectTime = Integer.parseInt(subject.getStartTime().replaceAll("[^0-9]+", ""));
-        int minute = LocalTime.now().getMinute();
-        String currentTimeString;
-        if (minute < CustomConstants.TEN_MINUTE)
-            currentTimeString = LocalTime.now().getHour() + ":0" + LocalTime.now().getMinute();
-        else currentTimeString = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute();
-        int currentTimeValue = Integer.parseInt(currentTimeString.replaceAll("[^0-9]+", ""));
-        return subjectTime > currentTimeValue;
+        if (LocalDate.now().getDayOfWeek().getValue() == subject.getDay().ordinal() + 1) {
+            int subjectTime = Integer.parseInt(subject.getStartTime().replaceAll(CustomConstants.INTEGER_FROM_HOURS_REGEX, ""));
+            int minute = LocalTime.now().getMinute();
+            String currentTimeString;
+            if (minute < CustomConstants.TEN_MINUTE)
+                currentTimeString = LocalTime.now().getHour() + ":0" + LocalTime.now().getMinute();
+            else currentTimeString = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute();
+            int currentTimeValue = Integer.parseInt(currentTimeString.replaceAll(CustomConstants.INTEGER_FROM_HOURS_REGEX, ""));
+            return subjectTime > currentTimeValue;
+        } else return true;
+    }
+
+    private boolean filterByDay(Subject subject) {
+        return LocalDate.now().getDayOfWeek().getValue() <= subject.getDay().ordinal() + 1;
+    }
+
+    private int sortByDayAndTime(Subject o1, Subject o2) {
+        if (o1.getDay() == o2.getDay())
+            return this.sortByTime(o1, o2);
+        else
+            return o1.getDay().compareTo(o2.getDay());
+    }
+
+    private int sortByTime(Subject o1, Subject o2) {
+        return Integer.valueOf(o1.getStartTime().replaceAll(CustomConstants.INTEGER_FROM_HOURS_REGEX, "")).compareTo(Integer.valueOf(o2.getStartTime().replaceAll("[^0-9]+", "")));
+    }
+
+    private List<Subject> addFromNextWeek(Set<Subject> allSubjects, List<Subject> fiveSubjects) {
+        List<Subject> sortedListAllSubjects = allSubjects.stream()
+                .sorted(this::sortByDayAndTime)
+                .collect(Collectors.toList());
+        for (Subject tempSubject : sortedListAllSubjects) {
+            fiveSubjects.add(tempSubject);
+            if (fiveSubjects.size() == CustomConstants.FIVE_SUBJECTS)
+                break;
+        }
+        return fiveSubjects;
     }
 }

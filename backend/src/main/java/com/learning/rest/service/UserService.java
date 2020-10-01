@@ -11,6 +11,4 @@ public interface UserService {
     void addUserToSubject(Long userId, Long subjectId);
 
     void addUserToLesson(Long userId, Long lessonId);
-
-    Page<Homework> getAllHomeworks(Long teacherId, Pageable pageable);
 }
