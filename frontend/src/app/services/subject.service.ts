@@ -8,8 +8,9 @@ import { Subject } from '../common/subject';
 })
 export class SubjectService {
   private BASE_URL = 'http://localhost:8080/subjects';
-  constructor(private httpClient: HttpClient) { }
 
+  constructor(private httpClient: HttpClient) { }
+  
   public getAllSubjectsByUser(
     pageIndex: number,
     pageSize: number,
@@ -22,11 +23,9 @@ export class SubjectService {
     return this.httpClient.get<GetResponseSubject>(`${this.BASE_URL}/${userId}/all`, { params });
   }
 
-  public getFiveFirstSubjectsByUser(): Observable<Subject[]> {
-
+  public getFiveFirstSubjectsByUser(week:string): Observable<Subject[]> {
     const userId = this.getAcctualUserId();
-
-    return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first`);
+    return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first?week=${week}`);
   }
 
   getPageParams(pageIndex: number, pageSize: number): HttpParams {

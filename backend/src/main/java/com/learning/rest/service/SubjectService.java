@@ -14,5 +14,5 @@ public interface SubjectService {
 
     Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable, Week week);
 
-    List<Subject> getFirstFiveSubjectsByUserId(Long userId);
+    List<Subject> getFirstFiveSubjectsByUserId(Long userId, Week week);
 }

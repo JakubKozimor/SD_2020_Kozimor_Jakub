@@ -35,7 +35,6 @@ export class HomeworkDetailsComponent implements OnInit {
   }
 
   transformDate(date) {
-    console.log(date);
-    return this.datePipe.transform(date, 'yyyy-MM-dd'); //whatever format you need. 
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
 }

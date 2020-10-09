@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Subject } from 'src/app/common/subject';
 import { SubjectService } from 'src/app/services/subject.service';
 import { HomeworkService } from 'src/app/services/homework.service';
 import { Homework } from 'src/app/common/homework';
+import { ActivatedRoute } from '@angular/router';
+import { Global } from 'src/app/global';
 
 @Component({
   selector: 'app-content',
@@ -13,27 +15,36 @@ export class ContentComponent implements OnInit {
   pageIndex: number;
   pageSize: number;
 
-  subjectsList: Subject[];
   homeworkList: Homework[];
 
   hour: number;
   minute: number;
   subjectTime: number;
 
-  constructor(private subjectService: SubjectService, private homeworkService: HomeworkService) { }
+  subjectsList: Subject[];
+
+  constructor(
+    private subjectService: SubjectService, 
+    private homeworkService: HomeworkService,
+    private route: ActivatedRoute,
+    private global: Global) { }
 
   ngOnInit(): void {
-    this.listOfSubjects();
-    this.listOfHomework();
+    this.listOfFiveSubjects();
+    this.listOfHomework(); 
+    this.route.params.subscribe(routeParams => {
+      this.listOfFiveSubjects();
+    });
   }
-  listOfSubjects() {
-    this.subjectService.getFiveFirstSubjectsByUser().subscribe(data => this.subjectsList = data)
+  
+  listOfFiveSubjects() {
+    let week = this.global.getWeek();
+    this.subjectService.getFiveFirstSubjectsByUser(week).subscribe(data => this.subjectsList = data);
   }
 
   listOfHomework() {
     this.pageIndex = 0;
     this.pageSize = 100;
-
     this.homeworkService.getFiveFirstHomeworksByUser().subscribe(data => this.homeworkList = data)
   }
 

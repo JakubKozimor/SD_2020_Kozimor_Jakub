@@ -23,6 +23,7 @@ import { DatePipe } from '@angular/common';
 import { AddHomeworkComponent } from './components/add-homework/add-homework.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
+import { DoneHomeworksComponent } from './components/done-homeworks/done-homeworks.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add
     HomeworkDetailsComponent,
     AddHomeworkComponent,
     AddHomeworkAnswerComponent,
+    DoneHomeworksComponent,
   ],
   imports: [
     AppRoutingModule,

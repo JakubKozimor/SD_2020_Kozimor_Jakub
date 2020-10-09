@@ -5,6 +5,7 @@ import { AddHomeworkComponent } from './components/add-homework/add-homework.com
 import { AllMessagesComponent } from './components/all-messages/all-messages.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { ContentComponent } from './components/content/content.component';
+import { DoneHomeworksComponent } from './components/done-homeworks/done-homeworks.component';
 import { HomeworkDetailsComponent } from './components/homework-details/homework-details.component';
 import { HomeworkComponent } from './components/homework/homework.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const appRoute: Routes = [
+  { path: 'homeworks-done', component: DoneHomeworksComponent },
   { path: 'createHomeworkAnswer/:homeworkId', component: AddHomeworkAnswerComponent },
   { path: 'addHomework/:subjectId', component: AddHomeworkComponent },
   { path: 'viewHomework/:homeworkId', component: HomeworkDetailsComponent },
@@ -23,9 +25,9 @@ const appRoute: Routes = [
   { path: 'classes', component: ClassesComponent },
   { path: 'teachers', component: TeachersComponent },
   { path: 'homework', component: HomeworkComponent },
-  { path: 'menu', component: ContentComponent },
-  { path: '', redirectTo: '/menu', pathMatch: 'full' },
-  { path: '**', redirectTo: '/menu', pathMatch: 'full' }
+  { path: 'menu/:week', component: ContentComponent },
+  { path: '', redirectTo: '/menu/ALL', pathMatch: 'full' },
+  { path: '**', redirectTo: '/menu/ALL', pathMatch: 'full' }
 ];
 
 const loginRoute: Routes = [

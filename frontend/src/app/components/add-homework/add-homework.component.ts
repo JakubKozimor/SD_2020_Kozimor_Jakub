@@ -11,8 +11,6 @@ import { HomeworkService } from 'src/app/services/homework.service';
   styleUrls: ['./add-homework.component.css']
 })
 export class AddHomeworkComponent implements OnInit {
-  model;
-
   validateForm!: FormGroup;
   formSubmitted = false;
 

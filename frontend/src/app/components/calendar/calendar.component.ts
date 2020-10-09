@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { SubjectService } from 'src/app/services/subject.service';
 import { Subject } from 'src/app/common/subject';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
+import { Global } from 'src/app/global';
 
 
 @Component({
@@ -13,12 +16,16 @@ export class CalendarComponent implements OnInit {
   pageSize: number;
   subjectsList: Subject[];
 
+  fiveSubjectList: Subject[];
+
   week = "ALL";
 
-  constructor(private subjectService: SubjectService) { }
+  constructor(
+    private subjectService: SubjectService,
+    private router: Router,
+    private global: Global) { }
 
   ngOnInit(): void {
-
     this.listOfSubjects();
   }
 
@@ -30,7 +37,15 @@ export class CalendarComponent implements OnInit {
 
   changeWeek(week: string) {
     this.week = week;
+    this.global.setWeek(week);
+    this.changeRoute(week);
     this.ngOnInit();
+  }
+
+  changeRoute(week: string){
+    if(this.router.url.includes("menu")){
+      this.router.navigate(['menu/'+week]);
+    }
   }
 
 }

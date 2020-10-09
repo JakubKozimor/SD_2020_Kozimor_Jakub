@@ -2,6 +2,7 @@ package com.learning.rest.controller;
 
 import com.learning.rest.domain.dto.HomeworkDetailsDto;
 import com.learning.rest.domain.dto.HomeworkDto;
+import com.learning.rest.domain.dto.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.service.HomeworkService;
 import lombok.RequiredArgsConstructor;
@@ -30,9 +31,30 @@ public class HomeworkController {
     }
 
     @PreAuthorize("#userId == principal.id")
+    @GetMapping("/{userId}/late")
+    public ResponseEntity<Page<Homework>> getAllLateHomeworkByUser(@PathVariable Long userId,
+                                                                     Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getAllLateHomeworks(userId, pageable), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#userId == principal.id")
+    @GetMapping("/{userId}/done")
+    public ResponseEntity<Page<Homework>> getAllDoneHomeworkByUser(@PathVariable Long userId,
+                                                                   Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getAllDoneHomeworks(userId, pageable), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#userId == principal.id")
+    @GetMapping("/{userId}/rated")
+    public ResponseEntity<Page<RatedHomeworkDto>> getAllRatedHomeworkByUser(@PathVariable Long userId,
+                                                                            Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getAllRatedHomeworks(userId, pageable), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/five-first")
     public ResponseEntity<List<Homework>> getFiveActiveHomeworkByUser(@PathVariable Long userId) {
-        return new ResponseEntity<>(homeworkService.getFiveActiveHomework(userId), HttpStatus.OK);
+        return new ResponseEntity<>(homeworkService.getFiveActiveHomeworks(userId), HttpStatus.OK);
     }
 
 

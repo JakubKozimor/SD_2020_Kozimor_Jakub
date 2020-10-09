@@ -70,18 +70,19 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> getFirstFiveSubjectsByUserId(Long userId) {
+    public List<Subject> getFirstFiveSubjectsByUserId(Long userId, Week week) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         Set<Subject> allSubjects = user.getSubjects();
 
         List<Subject> fiveSubjects = allSubjects
                 .stream()
+                .filter(subject -> this.filterByWeek(subject, week))
                 .filter(this::filterByDay)
                 .filter(this::filterByTime)
                 .limit(CustomConstants.FIVE_SUBJECTS)
                 .collect(Collectors.toList());
         if (fiveSubjects.size() < CustomConstants.FIVE_SUBJECTS)
-            return this.addFromNextWeek(allSubjects, fiveSubjects);
+            return this.addFromNextWeek(allSubjects, fiveSubjects, week);
         else
             return fiveSubjects;
     }
@@ -114,8 +115,9 @@ public class SubjectServiceImpl implements SubjectService {
         return Integer.valueOf(o1.getStartTime().replaceAll(CustomConstants.INTEGER_FROM_HOURS_REGEX, "")).compareTo(Integer.valueOf(o2.getStartTime().replaceAll("[^0-9]+", "")));
     }
 
-    private List<Subject> addFromNextWeek(Set<Subject> allSubjects, List<Subject> fiveSubjects) {
+    private List<Subject> addFromNextWeek(Set<Subject> allSubjects, List<Subject> fiveSubjects, Week week) {
         List<Subject> sortedListAllSubjects = allSubjects.stream()
+                .filter(subject -> this.filterByWeek(subject, week))
                 .sorted(this::sortByDayAndTime)
                 .collect(Collectors.toList());
         for (Subject tempSubject : sortedListAllSubjects) {

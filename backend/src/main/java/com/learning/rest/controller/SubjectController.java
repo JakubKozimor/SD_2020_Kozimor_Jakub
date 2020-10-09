@@ -31,7 +31,8 @@ public class SubjectController {
 
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/five-first")
-    public ResponseEntity<List<Subject>> getFirstFiveSubjectsByUser(@PathVariable Long userId) {
-        return new ResponseEntity<>(subjectService.getFirstFiveSubjectsByUserId(userId), HttpStatus.OK);
+    public ResponseEntity<List<Subject>> getFirstFiveSubjectsByUser(@PathVariable Long userId,
+                                                                    @RequestParam("week") Week week) {
+        return new ResponseEntity<>(subjectService.getFirstFiveSubjectsByUserId(userId,week), HttpStatus.OK);
     }
 }

@@ -43,7 +43,7 @@ public class MessageController {
     @PostMapping("/new-message")
     public ResponseEntity<Void> addMessage(@RequestBody MessageDto message) throws IOException {
         messageService.addMessage(message);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PatchMapping("/update-status-message/{messageId}")

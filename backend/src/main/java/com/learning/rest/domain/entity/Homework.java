@@ -38,6 +38,9 @@ public class Homework {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private HomeworkStatus status;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "homework")
+    private List<HomeworkAnswer> homeworkAnswers;
 
     public void addFile(HomeworkFile homeworkFile) {
         if (files == null) {

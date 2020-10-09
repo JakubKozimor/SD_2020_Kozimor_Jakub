@@ -11,5 +11,5 @@
                 (click)="downloadFile(tempFile.homeworkFileId, tempFile.fileName)">Pobierz</button>
         </div>
     </div>
-    <button class="btn btn-success" routerLink="/createHomeworkAnswer/{{homeworkDetails.homeworkId}}">Dodaj odpowiedź</button>
+    <button *ngIf="homeworkDetails.status == 'ACTIVE'" class="btn btn-success" routerLink="/createHomeworkAnswer/{{homeworkDetails.homeworkId}}">Dodaj odpowiedź</button>
 </div>
