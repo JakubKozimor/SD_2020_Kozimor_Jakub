@@ -1,6 +1,6 @@
 package com.learning.rest.domain.mapper;
 
-import com.learning.rest.domain.dto.TeacherDto;
+import com.learning.rest.domain.dto.teacher.TeacherDto;
 import com.learning.rest.domain.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,8 +1,8 @@
 package com.learning.rest.service;
 
-import com.learning.rest.domain.dto.HomeworkDetailsDto;
-import com.learning.rest.domain.dto.HomeworkDto;
-import com.learning.rest.domain.dto.RatedHomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
+import com.learning.rest.domain.dto.homework.HomeworkDto;
+import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

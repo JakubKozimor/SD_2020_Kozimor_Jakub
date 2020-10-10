@@ -1,8 +1,8 @@
 package com.learning.rest.service.map;
 
 import com.learning.rest.base64.Base64Helper;
-import com.learning.rest.domain.dto.HomeworkFileDto;
-import com.learning.rest.domain.dto.RatedHomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkFileDto;
+import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.HomeworkAnswer;
 import com.learning.rest.domain.entity.HomeworkFile;

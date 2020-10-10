@@ -1,7 +1,7 @@
 package com.learning.rest.controller;
 
-import com.learning.rest.domain.dto.MessageDetailsDto;
-import com.learning.rest.domain.dto.MessageDto;
+import com.learning.rest.domain.dto.message.MessageDetailsDto;
+import com.learning.rest.domain.dto.message.MessageDto;
 import com.learning.rest.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

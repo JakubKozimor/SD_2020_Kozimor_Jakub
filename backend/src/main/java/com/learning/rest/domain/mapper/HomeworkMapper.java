@@ -1,8 +1,8 @@
 package com.learning.rest.domain.mapper;
 
-import com.learning.rest.domain.dto.HomeworkDetailsDto;
-import com.learning.rest.domain.dto.HomeworkDto;
-import com.learning.rest.domain.dto.RatedHomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
+import com.learning.rest.domain.dto.homework.HomeworkDto;
+import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

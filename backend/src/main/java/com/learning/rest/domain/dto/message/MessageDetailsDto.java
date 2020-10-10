@@ -1,4 +1,4 @@
-package com.learning.rest.domain.dto;
+package com.learning.rest.domain.dto.message;
 
 import com.learning.rest.domain.entity.MessageFile;
 import lombok.Getter;

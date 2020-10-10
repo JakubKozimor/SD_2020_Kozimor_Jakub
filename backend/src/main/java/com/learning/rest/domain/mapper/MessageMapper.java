@@ -1,7 +1,7 @@
 package com.learning.rest.domain.mapper;
 
-import com.learning.rest.domain.dto.MessageDetailsDto;
-import com.learning.rest.domain.dto.MessageDto;
+import com.learning.rest.domain.dto.message.MessageDetailsDto;
+import com.learning.rest.domain.dto.message.MessageDto;
 import com.learning.rest.domain.entity.Message;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

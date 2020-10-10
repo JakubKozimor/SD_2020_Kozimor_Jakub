@@ -42,4 +42,17 @@ export class FileServiceService {
     });
   }
 
+  downloadHomeworkAnswerFile(fileId: number, fileName: string) {
+    this.httpClient.get(`${this.BASE_URL}/homework-answer/download/${fileId}`, {
+      responseType: 'blob'
+    }).subscribe(blob => {
+      const a = document.createElement('a')
+      const objectUrl = URL.createObjectURL(blob)
+      a.href = objectUrl;
+      a.download = `${fileName}`;
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
+  }
+
 }

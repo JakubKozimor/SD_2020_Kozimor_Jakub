@@ -1,7 +1,7 @@
 package com.learning.rest.service.impl;
 
 import com.learning.exception.user.UserNotFoundException;
-import com.learning.rest.domain.dto.TeacherDto;
+import com.learning.rest.domain.dto.teacher.TeacherDto;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.mapper.TeacherMapper;

@@ -1,4 +1,4 @@
-package com.learning.rest.domain.dto;
+package com.learning.rest.domain.dto.homeworkAnswer;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class HomeworkAnswerDto {
+    private Long homeworkAnswerId;
     private String message;
     private List<HomeworkAnswerFileDto> files;
     private Long homeworkId;

@@ -1,6 +1,6 @@
 package com.learning.rest.domain.mapper;
 
-import com.learning.rest.domain.dto.HomeworkAnswerFileDto;
+import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerFileDto;
 import com.learning.rest.domain.entity.HomeworkAnswerFile;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

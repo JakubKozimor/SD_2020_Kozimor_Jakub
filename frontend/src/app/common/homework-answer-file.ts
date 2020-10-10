@@ -1,5 +1,5 @@
 export class HomeworkAnswerFile {
-    homeworkFileId: number;
+    homeworkAnswerFileId: number;
     fileName: string;
     fileContent: string;
 }

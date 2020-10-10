@@ -1,6 +1,6 @@
 package com.learning.rest.controller;
 
-import com.learning.rest.domain.dto.TeacherDto;
+import com.learning.rest.domain.dto.teacher.TeacherDto;
 import com.learning.rest.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

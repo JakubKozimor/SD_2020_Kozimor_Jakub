@@ -6,6 +6,7 @@ import { AllMessagesComponent } from './components/all-messages/all-messages.com
 import { ClassesComponent } from './components/classes/classes.component';
 import { ContentComponent } from './components/content/content.component';
 import { DoneHomeworksComponent } from './components/done-homeworks/done-homeworks.component';
+import { HomeworkAnswerDetailsComponent } from './components/homework-answer-details/homework-answer-details.component';
 import { HomeworkDetailsComponent } from './components/homework-details/homework-details.component';
 import { HomeworkComponent } from './components/homework/homework.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const appRoute: Routes = [
+  { path: 'homework-answer-details/:homeworkId', component: HomeworkAnswerDetailsComponent },
   { path: 'homeworks-done', component: DoneHomeworksComponent },
   { path: 'createHomeworkAnswer/:homeworkId', component: AddHomeworkAnswerComponent },
   { path: 'addHomework/:subjectId', component: AddHomeworkComponent },

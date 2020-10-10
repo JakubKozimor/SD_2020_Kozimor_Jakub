@@ -1,6 +1,6 @@
 package com.learning.rest.service;
 
-import com.learning.rest.domain.dto.TeacherDto;
+import com.learning.rest.domain.dto.teacher.TeacherDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

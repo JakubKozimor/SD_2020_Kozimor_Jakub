@@ -1,14 +1,15 @@
-package com.learning.rest.domain.dto;
+package com.learning.rest.domain.dto.message;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
 @NoArgsConstructor
-public class HomeworkAnswerFileDto {
-    private Long homeworkAnswerFileId;
+public class MessageFileDto {
+    private Long lessonFileId;
     private String fileName;
     private String fileContent;
 }

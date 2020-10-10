@@ -1,4 +1,4 @@
-package com.learning.rest.domain.dto;
+package com.learning.rest.domain.dto.homework;
 
 import com.learning.rest.domain.entity.HomeworkFile;
 import com.learning.rest.domain.entity.enums.HomeworkStatus;

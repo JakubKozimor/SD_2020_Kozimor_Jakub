@@ -1,4 +1,4 @@
-package com.learning.rest.domain.dto;
+package com.learning.rest.domain.dto.homework;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

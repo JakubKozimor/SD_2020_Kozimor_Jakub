@@ -14,7 +14,7 @@
             <span class="data">{{tempHomework.title}}</span>
             <span class="data">{{tempHomework.deadline}}</span>
             <span class="data">{{tempHomework.grade}}</span>
-            <a class="btn btn-secondary data">Zobacz odpoiwedź</a>
+            <a class="btn btn-secondary data" routerLink="/homework-answer-details/{{ tempHomework.homeworkId }}">Zobacz odpoiwedź</a>
         </div>
     </div>
     <div class="pagination">
@@ -44,8 +44,8 @@
         <div>
             <span class="data">{{tempHomework.title}}</span>
             <span class="data">{{tempHomework.deadline}}</span>
-            <a *ngIf="isBeforeDeadline(tempHomework.deadline)" class="btn btn-primary data">Edytuj odpowiedź</a>
-            <a *ngIf="!isBeforeDeadline(tempHomework.deadline)" class="btn btn-secondary data">Zobacz odpoiwedź</a>
+            <a *ngIf="isBeforeDeadline(tempHomework.deadline)" class="btn btn-primary data" routerLink="/homework-answer-details/{{ tempHomework.homeworkId }}">Edytuj odpowiedź</a>
+            <a *ngIf="!isBeforeDeadline(tempHomework.deadline)" class="btn btn-secondary data" routerLink="/homework-answer-details/{{ tempHomework.homeworkId }}">Zobacz odpoiwedź</a>
         </div>
     </div>
     <div class="pagination">

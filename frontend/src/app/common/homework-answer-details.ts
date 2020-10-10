@@ -1,10 +1,8 @@
 import { HomeworkAnswerFile } from './homework-answer-file';
 
-export class HomeworkAnswer {
+export class HomeworkAnswerDetails {
     homeworkAnswerId: number;
     message: string;
+    grade: string;
     files: HomeworkAnswerFile[];
-    homeworkId: number;
-    studentId: number;
-    rate: number;
 }
