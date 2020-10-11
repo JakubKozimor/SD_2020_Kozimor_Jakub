@@ -59,7 +59,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Page<MessageDto> getSendMessages(Long userId, Pageable pageable) {
+    public Page<MessageDto> getSentMessages(Long userId, Pageable pageable) {
         User userFrom = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<Message> allMessagesFromUser = messageRepository.findAllByUserFrom(userFrom);
         List<MessageDto> allMessagesFromUserDto = allMessagesFromUser

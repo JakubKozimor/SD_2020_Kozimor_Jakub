@@ -68,7 +68,7 @@
     <span>Data</span>
     <span>Więcej</span>
   </div>
-  <div *ngFor="let tempMessage of messageSendList">
+  <div *ngFor="let tempMessage of messageSentList">
     <div>
       <span>{{tempMessage.title}}</span>
       <span>{{transformDate(tempMessage.date)}}</span>
@@ -79,12 +79,12 @@
 </div>
 
 <div class="pagination">
-  <ngb-pagination [(page)]="theSendMessagesPageNumber" [pageSize]="theSendMessagesPageSize"
-      [collectionSize]="theSendMessagesElements" [maxSize]="4" [boundaryLinks]="true"
-      (pageChange)="listOfSendMessages()">
+  <ngb-pagination [(page)]="theSentMessagesPageNumber" [pageSize]="theSentMessagesPageSize"
+      [collectionSize]="theSentMessagesElements" [maxSize]="4" [boundaryLinks]="true"
+      (pageChange)="listOfSentMessages()">
   </ngb-pagination>
   <div>
-      <select class="form-control" (change)="updateSendMessagesQuantity($event.target.value)">
+      <select class="form-control" (change)="updateSentMessagesQuantity($event.target.value)">
           <option selected="true">5</option>
           <option>10</option>
           <option>15</option>

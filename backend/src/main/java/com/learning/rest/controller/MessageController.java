@@ -36,10 +36,10 @@ public class MessageController {
     }
 
     @PreAuthorize("#userId == principal.id")
-    @GetMapping("/{userId}/all-send")
-    public ResponseEntity<Page<MessageDto>> getSendMessages(@PathVariable Long userId,
+    @GetMapping("/{userId}/all-sent")
+    public ResponseEntity<Page<MessageDto>> getSentMessages(@PathVariable Long userId,
                                                             Pageable pageable) {
-        return new ResponseEntity<>(messageService.getSendMessages(userId, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(messageService.getSentMessages(userId, pageable), HttpStatus.OK);
     }
 
     @GetMapping("/message-details/{messageId}")

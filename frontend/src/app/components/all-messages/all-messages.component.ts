@@ -11,11 +11,11 @@ import { MessageService } from 'src/app/services/message.service';
 export class AllMessagesComponent implements OnInit {
   messageReadList: Message[];
   messageUnreadList: Message[];
-  messageSendList: Message[];
+  messageSentList: Message[];
 
-  theSendMessagesPageNumber: number = 1;
-  theSendMessagesPageSize: number = 5;
-  theSendMessagesElements: number = 0;
+  theSentMessagesPageNumber: number = 1;
+  theSentMessagesPageSize: number = 5;
+  theSentMessagesElements: number = 0;
 
   theUnreadMessagesPageNumber: number = 1;
   theUnreadMessagesPageSize: number = 5;
@@ -32,7 +32,7 @@ export class AllMessagesComponent implements OnInit {
   ngOnInit(): void {
     this.listOfReadMessages();
     this.listOfUnreadMessages();
-    this.listOfSendMessages();
+    this.listOfSentMessages();
   }
 
   listOfReadMessages() {
@@ -65,19 +65,19 @@ export class AllMessagesComponent implements OnInit {
     this.listOfUnreadMessages();
   }
 
-  listOfSendMessages() {
-    this.messageService.getAllSendMessagesByUser(this.theSendMessagesPageNumber - 1, this.theSendMessagesPageSize).subscribe(data => {
-      this.messageSendList = data.content;
-      this.theSendMessagesPageNumber = data.number + 1;
-      this.theSendMessagesPageSize = data.size;
-      this.theSendMessagesElements = data.totalElements;
+  listOfSentMessages() {
+    this.messageService.getAllSentMessagesByUser(this.theSentMessagesPageNumber - 1, this.theSentMessagesPageSize).subscribe(data => {
+      this.messageSentList = data.content;
+      this.theSentMessagesPageNumber = data.number + 1;
+      this.theSentMessagesPageSize = data.size;
+      this.theSentMessagesElements = data.totalElements;
     })
   }
 
-  updateSendMessagesQuantity(pageSize: number) {
-    this.theSendMessagesPageSize = pageSize;
-    this.theSendMessagesPageNumber = 1;
-    this.listOfSendMessages();
+  updateSentMessagesQuantity(pageSize: number) {
+    this.theSentMessagesPageSize = pageSize;
+    this.theSentMessagesPageNumber = 1;
+    this.listOfSentMessages();
   }
 
   changeStatus(messageId: number) {

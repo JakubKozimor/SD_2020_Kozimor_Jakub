@@ -48,7 +48,7 @@ export class MessageService {
     return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-unread`, { params });
   }
 
-  getAllSendMessagesByUser(
+  getAllSentMessagesByUser(
     pageIndex: number,
     pageSize: number,
   ): Observable<GetResponseMessage> {
@@ -56,7 +56,7 @@ export class MessageService {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
 
-    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-send`, { params });
+    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-sent`, { params });
   }
 
   getMessageDetails(messageId: number): Observable<MessageDetails> {
