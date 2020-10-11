@@ -20,9 +20,13 @@ public interface MessageMapper {
     @Mapping(target = "files", ignore = true)
     MessageDto toMessageDto(Message message);
 
-    @Mapping(target = "firstName", source = "userFrom.firstName")
-    @Mapping(target = "lastName", source = "userFrom.lastName")
-    @Mapping(target = "email", source = "userFrom.email")
-    @Mapping(target = "userId", source = "userFrom.userId")
+    @Mapping(target = "userFromFirstName", source = "userFrom.firstName")
+    @Mapping(target = "userFromLastName", source = "userFrom.lastName")
+    @Mapping(target = "userFromEmail", source = "userFrom.email")
+    @Mapping(target = "userFromId", source = "userFrom.userId")
+    @Mapping(target = "userToFirstName", source = "userTo.firstName")
+    @Mapping(target = "userToLastName", source = "userTo.lastName")
+    @Mapping(target = "userToEmail", source = "userTo.email")
+    @Mapping(target = "userToId", source = "userTo.userId")
     MessageDetailsDto toMessageDetailsDto(Message message);
 }

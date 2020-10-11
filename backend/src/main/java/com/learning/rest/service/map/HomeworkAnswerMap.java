@@ -16,6 +16,8 @@ import com.learning.rest.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class HomeworkAnswerMap {
@@ -27,10 +29,13 @@ public class HomeworkAnswerMap {
 
     public HomeworkAnswer mapFromHomeworkAnswerDtoToHomeworkAnswer(HomeworkAnswerDto homeworkAnswerDto) {
         HomeworkAnswer homeworkAnswer = homeworkAnswerMapper.toHomeworkAnswer(homeworkAnswerDto);
-        homeworkAnswerDto.getFiles()
-                .stream()
-                .map(this::mapToHomeworkAnswerFile)
-                .forEach(homeworkAnswer::addFile);
+        List<HomeworkAnswerFileDto> homeworkAnswerFilesDto = homeworkAnswerDto.getFiles();
+        if (homeworkAnswerFilesDto != null && !homeworkAnswerFilesDto.isEmpty()) {
+            homeworkAnswerDto.getFiles()
+                    .stream()
+                    .map(this::mapToHomeworkAnswerFile)
+                    .forEach(homeworkAnswer::addFile);
+        }
         User student = userRepository.findById(homeworkAnswerDto.getStudentId()).orElseThrow(UserNotFoundException::new);
         Homework homework = homeworkRepository.findById(homeworkAnswerDto.getHomeworkId()).orElseThrow(HomeworkNotFoundException::new);
         homeworkAnswer.setStudent(student);

@@ -22,7 +22,7 @@ const appRoute: Routes = [
   { path: 'addHomework/:subjectId', component: AddHomeworkComponent },
   { path: 'viewHomework/:homeworkId', component: HomeworkDetailsComponent },
   { path: 'viewMessage/:messageId', component: MessageDetailsComponent },
-  { path: 'createMessage/:teacherId', component: MessageComponent },
+  { path: 'createMessage/:userToId', component: MessageComponent },
   { path: 'allMessages', component: AllMessagesComponent },
   { path: 'classes', component: ClassesComponent },
   { path: 'teachers', component: TeachersComponent },

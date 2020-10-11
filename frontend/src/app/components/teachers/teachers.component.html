@@ -16,4 +16,18 @@
                 sie</button>
         </div>
     </div>
+    <div class="pagination">
+        <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize"
+            [collectionSize]="theElements" [maxSize]="4" [boundaryLinks]="true"
+            (pageChange)="listOfTeachers()">
+        </ngb-pagination>
+        <div>
+            <select class="form-control" (change)="updateQuantity($event.target.value)">
+                <option selected="true">5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+            </select>
+        </div>
+      </div>
 </main>

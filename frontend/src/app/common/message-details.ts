@@ -4,10 +4,14 @@ export class MessageDetails {
     messageId: number;
     title: string;
     content: string;
-    userId: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+    userFromId: number;
+    userFromFirstName: string;
+    userFromLastName: string;
+    userFromEmail: string;
+    userToId: number;
+    userToFirstName: string;
+    userToLastName: string;
+    userToEmail: string;
     date: Date;
     files: MessageFile[];
 }

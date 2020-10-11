@@ -3,6 +3,7 @@ import { MessageFile } from 'src/app/common/message-file';
 import { Message } from 'src/app/common/message';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-message',
@@ -11,34 +12,37 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class MessageComponent implements OnInit {
 
-  @ViewChild('inputFile1') myInputVariable1: ElementRef;
-  @ViewChild('inputFile2') myInputVariable2: ElementRef;
-  @ViewChild('inputFile3') myInputVariable3: ElementRef;
-  @ViewChild('inputFile4') myInputVariable4: ElementRef;
-  @ViewChild('inputFile5') myInputVariable5: ElementRef;
 
+  validateForm!: FormGroup;
+  formSubmitted = false;
   messageFile: MessageFile;
-
   tempFiles: MessageFile[] = new Array;
+  message: Message;
 
-  messageFile1: MessageFile;
-  messageFile2: MessageFile;
-  messageFile3: MessageFile;
-  messageFile4: MessageFile;
-  messageFile5: MessageFile;
-
-
-  model = new Message('', '');
-
-  constructor(private route: ActivatedRoute,
-    private messageService: MessageService) {
+  constructor(
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    private fb: FormBuilder) {
 
   }
   ngOnInit(): void {
+    this.validateForm = this.createMessageForm();
   }
 
+  createMessageForm(): FormGroup {
+    const form = this.fb.group({
+      title: [null, [Validators.required]],
+      content: [null],
+      files: [null]
+    });
+    return form;
+  }
 
-  onUpload(event, fileNumber: number) {
+  get title(): any {
+    return this.validateForm.get('title');
+  }
+
+  onUpload(event) {
     let me = this;
     let file = event.target.files[0];
     let reader = new FileReader();
@@ -47,75 +51,34 @@ export class MessageComponent implements OnInit {
       me.messageFile = new MessageFile;
       me.messageFile.fileName = String(event.target.files[0].name);
       me.messageFile.fileContent = String(reader.result);
-      if (fileNumber == 1) {
-        me.messageFile1 = me.messageFile;
-      }
-      if (fileNumber == 2) {
-        me.messageFile2 = me.messageFile;
-      }
-      if (fileNumber == 3) {
-        me.messageFile3 = me.messageFile;
-      }
-      if (fileNumber == 4) {
-        me.messageFile4 = me.messageFile;
-      }
-      if (fileNumber == 5) {
-        me.messageFile5 = me.messageFile;
-      }
       me.tempFiles.push(me.messageFile);
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
+
+    this.validateForm.controls['files'].setValue(this.tempFiles);
   }
 
-  onSubmit() {
-    this.model.userFrom = 1;
-    this.model.userTo = Number(this.route.snapshot.paramMap.get("teacherId"));
-    this.model.files = this.tempFiles;
-    this.messageService.addMessage(this.model);
+  reset(fileNumber: MessageFile) {
+    const index: number = this.tempFiles.indexOf(fileNumber);
+    if (index !== -1) {
+      this.tempFiles.splice(index, 1);
+    }
+    this.validateForm.controls['files'].setValue(this.tempFiles);
   }
 
-  reset(fileNumber: number) {
-    if (fileNumber == 1) {
-      this.myInputVariable1.nativeElement.value = '';
-      const index: number = this.tempFiles.indexOf(this.messageFile1);
-      if (index !== -1) {
-        this.tempFiles.splice(index, 1);
-      }
-      this.messageFile1 = undefined;
-    }
-    if (fileNumber == 2) {
-      this.myInputVariable2.nativeElement.value = '';
-      const index: number = this.tempFiles.indexOf(this.messageFile2);
-      if (index !== -1) {
-        this.tempFiles.splice(index, 1);
-      }
-      this.messageFile2 = undefined;
-    }
-    if (fileNumber == 3) {
-      this.myInputVariable3.nativeElement.value = '';
-      const index: number = this.tempFiles.indexOf(this.messageFile3);
-      if (index !== -1) {
-        this.tempFiles.splice(index, 1);
-      }
-      this.messageFile3 = undefined;
-    }
-    if (fileNumber == 4) {
-      this.myInputVariable4.nativeElement.value = '';
-      const index: number = this.tempFiles.indexOf(this.messageFile4);
-      if (index !== -1) {
-        this.tempFiles.splice(index, 1);
-      }
-      this.messageFile4 = undefined;
-    }
-    if (fileNumber == 5) {
-      this.myInputVariable5.nativeElement.value = '';
-      const index: number = this.tempFiles.indexOf(this.messageFile5);
-      if (index !== -1) {
-        this.tempFiles.splice(index, 1);
-      }
-      this.messageFile5 = undefined;
+  submitForm() {
+    this.formSubmitted = true;
+    if (this.validateForm.valid) {
+      let userToId = Number(this.route.snapshot.paramMap.get("userToId"));
+      this.message = this.validateForm.value;
+      this.message.userTo = userToId;
+      this.messageService.addMessage(this.message);
+      this.validateForm.reset();
+      this.tempFiles = new Array;
+    } else {
+      this.formSubmitted = false;
     }
   }
 }

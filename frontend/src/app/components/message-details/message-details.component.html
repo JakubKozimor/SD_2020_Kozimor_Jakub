@@ -1,10 +1,18 @@
 <div *ngIf="messageDetails != undefined">
     <p>Tytuł: {{messageDetails.title}}</p>
     <p>Treść: {{messageDetails.content}}</p>
-    <p>Imie: {{messageDetails.firstName}}</p>
-    <p>Nazwisko: {{messageDetails.lastName}}</p>
-    <p>Email: {{messageDetails.email}}</p>
-    <button class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userId }}">Odpowiedz</button>
+    <p>Data: {{transformDate(messageDetails.date)}}</p>
+    <h3>Nadawca</h3>
+    <p>Id: {{messageDetails.userFromId}}</p>
+    <p>Imie: {{messageDetails.userFromFirstName}}</p>
+    <p>Nazwisko: {{messageDetails.userFromLastName}}</p>
+    <p>Email: {{messageDetails.userFromEmail}}</p>
+    <h3>Odbiorca</h3>
+    <p>Id: {{messageDetails.userToId}}</p>
+    <p>Imie: {{messageDetails.userToFirstName}}</p>
+    <p>Nazwisko: {{messageDetails.userToLastName}}</p>
+    <p>Email: {{messageDetails.userToEmail}}</p>
+    <h3>Pliki</h3>
     <div>
         <div *ngFor="let tempFile of messageDetails.files">
             <p>{{tempFile.fileName}}</p>
@@ -12,4 +20,6 @@
                 (click)="downloadFile(tempFile.messageFileId, tempFile.fileName)">Pobierz</button>
         </div>
     </div>
+    <br>
+    <button class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userFromId }}">Odpowiedz</button>
 </div>

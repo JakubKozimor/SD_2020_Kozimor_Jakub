@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageDetails } from 'src/app/common/message-details';
@@ -13,9 +14,11 @@ export class MessageDetailsComponent implements OnInit {
 
   messageDetails: MessageDetails;
 
-  constructor(private messageService: MessageService,
+  constructor(
+    private messageService: MessageService,
     private route: ActivatedRoute,
-    private fileService: FileServiceService) { }
+    private fileService: FileServiceService,
+    private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     let messageId = this.route.snapshot.paramMap.get('messageId');
@@ -28,6 +31,10 @@ export class MessageDetailsComponent implements OnInit {
 
   downloadFile(fileId: number, fileName: string) {
     this.fileService.downloadMessageFile(fileId, fileName);
+  }
+
+  transformDate(date) {
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
 
 }

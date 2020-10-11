@@ -6,6 +6,7 @@ import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerDetailsDto;
 import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.HomeworkAnswer;
+import com.learning.rest.domain.entity.HomeworkAnswerFile;
 import com.learning.rest.domain.mapper.HomeworkAnswerMapper;
 import com.learning.rest.domain.repository.HomeworkAnswerFileRepository;
 import com.learning.rest.domain.repository.HomeworkAnswerRepository;
@@ -47,8 +48,11 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
     @Override
     public void updateHomeworkAnswer(HomeworkAnswerDto homeworkAnswerDto) {
         HomeworkAnswer homeworkAnswer = homeworkAnswerMap.mapFromHomeworkAnswerDtoToHomeworkAnswer(homeworkAnswerDto);
-        homeworkAnswer.getFiles()
-                .forEach(homeworkAnswerFile -> homeworkAnswerFile.setHomeworkAnswerFileId(null));
+        List<HomeworkAnswerFile> homeworkAnswerFiles = homeworkAnswer.getFiles();
+        if (homeworkAnswerFiles != null && !homeworkAnswerFiles.isEmpty()) {
+            homeworkAnswer.getFiles()
+                    .forEach(homeworkAnswerFile -> homeworkAnswerFile.setHomeworkAnswerFileId(null));
+        }
         homeworkAnswerRepository.save(homeworkAnswer);
     }
 

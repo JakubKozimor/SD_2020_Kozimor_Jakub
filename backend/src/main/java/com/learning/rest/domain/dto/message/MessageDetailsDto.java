@@ -17,10 +17,14 @@ public class MessageDetailsDto {
     private Long messageId;
     private String title;
     private String content;
-    private Long userId;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private Long userFromId;
+    private String userFromFirstName;
+    private String userFromLastName;
+    private String userFromEmail;
+    private Long userToId;
+    private String userToFirstName;
+    private String userToLastName;
+    private String userToEmail;
     private LocalDateTime date;
     private List<MessageFile> files;
 }

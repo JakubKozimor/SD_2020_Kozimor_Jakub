@@ -72,8 +72,7 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public List<Subject> getFirstFiveSubjectsByUserId(Long userId, Week week) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        Set<Subject> allSubjects = user.getSubjects();
-
+        List<Subject> allSubjects = user.getSubjects();
         List<Subject> fiveSubjects = allSubjects
                 .stream()
                 .filter(subject -> this.filterByWeek(subject, week))
@@ -115,7 +114,7 @@ public class SubjectServiceImpl implements SubjectService {
         return Integer.valueOf(o1.getStartTime().replaceAll(CustomConstants.INTEGER_FROM_HOURS_REGEX, "")).compareTo(Integer.valueOf(o2.getStartTime().replaceAll("[^0-9]+", "")));
     }
 
-    private List<Subject> addFromNextWeek(Set<Subject> allSubjects, List<Subject> fiveSubjects, Week week) {
+    private List<Subject> addFromNextWeek(List<Subject> allSubjects, List<Subject> fiveSubjects, Week week) {
         List<Subject> sortedListAllSubjects = allSubjects.stream()
                 .filter(subject -> this.filterByWeek(subject, week))
                 .sorted(this::sortByDayAndTime)

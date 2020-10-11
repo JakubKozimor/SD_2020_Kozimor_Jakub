@@ -8,7 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -55,11 +57,11 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "subject_id")}
     )
     @JsonBackReference
-    private Set<Subject> subjects;
+    private List<Subject> subjects;
 
     public void addSubject(Subject subject) {
         if (subjects == null) {
-            subjects = new HashSet<>();
+            subjects = new ArrayList<>();
         }
         subjects.add(subject);
     }

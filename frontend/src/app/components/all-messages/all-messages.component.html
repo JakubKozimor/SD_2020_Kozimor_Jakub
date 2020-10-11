@@ -8,9 +8,24 @@
   <div *ngFor="let tempMessage of messageReadList">
     <div>
       <span>{{tempMessage.title}}</span>
-      <span>{{tempMessage.date}}</span>
+      <span>{{transformDate(tempMessage.date)}}</span>
       <button class="btn btn-primary" routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
     </div>
+  </div>
+</div>
+
+<div class="pagination">
+  <ngb-pagination [(page)]="theReadMessagesPageNumber" [pageSize]="theReadMessagesPageSize"
+      [collectionSize]="theReadMessagesElements" [maxSize]="4" [boundaryLinks]="true"
+      (pageChange)="listOfReadMessages()">
+  </ngb-pagination>
+  <div>
+      <select class="form-control" (change)="updateReadMessagesQuantity($event.target.value)">
+          <option selected="true">5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+      </select>
   </div>
 </div>
 
@@ -24,9 +39,56 @@
   <div *ngFor="let tempMessage of messageUnreadList">
     <div>
       <span>{{tempMessage.title}}</span>
-      <span>{{tempMessage.date}}</span>
+      <span>{{transformDate(tempMessage.date)}}</span>
       <button class="btn btn-primary" (click)="changeStatus(tempMessage.messageId)"
         routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
     </div>
+  </div>
+</div>
+
+<div class="pagination">
+  <ngb-pagination [(page)]="theUnreadMessagesPageNumber" [pageSize]="theUnreadMessagesPageSize"
+      [collectionSize]="theUnreadMessagesElements" [maxSize]="4" [boundaryLinks]="true"
+      (pageChange)="listOfUnreadMessages()">
+  </ngb-pagination>
+  <div>
+      <select class="form-control" (change)="updateUnreadMessagesQuantity($event.target.value)">
+          <option selected="true">5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+      </select>
+  </div>
+</div>
+
+<div>
+  <h1>Wiadomości wysłane</h1>
+  <div>
+    <span>Tytuł</span>
+    <span>Data</span>
+    <span>Więcej</span>
+  </div>
+  <div *ngFor="let tempMessage of messageSendList">
+    <div>
+      <span>{{tempMessage.title}}</span>
+      <span>{{transformDate(tempMessage.date)}}</span>
+      <button class="btn btn-primary" (click)="changeStatus(tempMessage.messageId)"
+        routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
+    </div>
+  </div>
+</div>
+
+<div class="pagination">
+  <ngb-pagination [(page)]="theSendMessagesPageNumber" [pageSize]="theSendMessagesPageSize"
+      [collectionSize]="theSendMessagesElements" [maxSize]="4" [boundaryLinks]="true"
+      (pageChange)="listOfSendMessages()">
+  </ngb-pagination>
+  <div>
+      <select class="form-control" (change)="updateSendMessagesQuantity($event.target.value)">
+          <option selected="true">5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+      </select>
   </div>
 </div>

@@ -21,6 +21,8 @@ export class MessageService {
   constructor(private httpClient: HttpClient) { }
 
   addMessage(message: Message) {
+    const userId = this.getAcctualUserId();
+    message.userFrom = Number(userId);
     this.httpClient.post(`${this.BASE_URL}/new-message`, message).subscribe();
   }
 
@@ -44,6 +46,17 @@ export class MessageService {
     const userId = this.getAcctualUserId();
 
     return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-unread`, { params });
+  }
+
+  getAllSendMessagesByUser(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseMessage> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+
+    return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-send`, { params });
   }
 
   getMessageDetails(messageId: number): Observable<MessageDetails> {

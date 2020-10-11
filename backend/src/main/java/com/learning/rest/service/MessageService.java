@@ -17,4 +17,6 @@ public interface MessageService {
     MessageDetailsDto getMessageDetails(Long messageId);
 
     void updateStatusMessage(Long messageId);
+
+    Page<MessageDto> getSendMessages(Long userId, Pageable pageable);
 }

@@ -18,7 +18,9 @@ import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +59,17 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public Page<MessageDto> getSendMessages(Long userId, Pageable pageable) {
+        User userFrom = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        List<Message> allMessagesFromUser = messageRepository.findAllByUserFrom(userFrom);
+        List<MessageDto> allMessagesFromUserDto = allMessagesFromUser
+                .stream()
+                .map(messageMapper::toMessageDto)
+                .collect(Collectors.toList());
+        return (Page<MessageDto>) PageHelper.preparePageFromList(allMessagesFromUserDto, pageable);
+    }
+
+    @Override
     public MessageDetailsDto getMessageDetails(Long messageId) {
         Message message = messageRepository.findById(messageId).orElseThrow(MessageNotFoundException::new);
         return messageMapper.toMessageDetailsDto(message);
@@ -68,10 +81,13 @@ public class MessageServiceImpl implements MessageService {
         User userFrom = userRepository.findById(messageDto.getUserFrom()).orElseThrow(UserNotFoundException::new);
         User userTo = userRepository.findById(messageDto.getUserTo()).orElseThrow(UserNotFoundException::new);
         Message message = messageMapper.toMessage(messageDto);
-        messageDto.getFiles()
-                .stream()
-                .map(this::mapToMessageFile)
-                .forEach(message::addFile);
+        List<MessageFileDto> messageFilesDto = messageDto.getFiles();
+        if (messageFilesDto != null) {
+            messageDto.getFiles()
+                    .stream()
+                    .map(this::mapToMessageFile)
+                    .forEach(message::addFile);
+        }
         message.setUserFrom(userFrom);
         message.setUserTo(userTo);
         message.setStatus(MessageStatus.UNREAD);
