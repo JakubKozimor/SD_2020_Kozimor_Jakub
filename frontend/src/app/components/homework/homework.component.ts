@@ -30,7 +30,7 @@ export class HomeworkComponent implements OnInit {
   }
 
   listOfActiveHomework() {
-    this.homeworkService.getAllActiveHomeworkByUser(this.theActiveHomeworkPageNumber - 1, this.theActiveHomeworkPageSize).subscribe(data => {
+    this.homeworkService.getAllActiveHomeworkByUser(this.theActiveHomeworkPageNumber - 1, this.theActiveHomeworkPageSize, 0).subscribe(data => {
       this.activeHomeworkList = data.content;
       this.theActiveHomeworkPageNumber = data.number + 1;
       this.theActiveHomeworkPageSize = data.size;
@@ -39,7 +39,7 @@ export class HomeworkComponent implements OnInit {
   }
 
   listOfLateHomework() {
-    this.homeworkService.getAllLateHomeworkByUser(this.theLateHomeworkPageNumber - 1, this.theLateHomeworkPageSize).subscribe(data => {
+    this.homeworkService.getAllLateHomeworkByUser(this.theLateHomeworkPageNumber - 1, this.theLateHomeworkPageSize, 0).subscribe(data => {
       this.lateHomeworkList = data.content;
       this.theLateHomeworkPageNumber = data.number + 1;
       this.theLateHomeworkPageSize = data.size;

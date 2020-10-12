@@ -15,10 +15,13 @@ export class HomeworkService {
   getAllActiveHomeworkByUser(
     pageIndex: number,
     pageSize: number,
+    subjectId: number
   ): Observable<GetResponseHomework> {
 
     let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('subjectId', `${subjectId}`);
     const userId = this.getAcctualUserId();
+    
 
     return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/active`, { params });
   }
@@ -26,9 +29,11 @@ export class HomeworkService {
   getAllDoneHomeworkByUser(
     pageIndex: number,
     pageSize: number,
+    subjectId: number
   ): Observable<GetResponseHomework> {
 
     let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('subjectId', `${subjectId}`);
     const userId = this.getAcctualUserId();
 
     return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/done`, { params });
@@ -37,9 +42,11 @@ export class HomeworkService {
   getAllLateHomeworkByUser(
     pageIndex: number,
     pageSize: number,
+    subjectId: number
   ): Observable<GetResponseHomework> {
 
     let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('subjectId', `${subjectId}`);
     const userId = this.getAcctualUserId();
 
     return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/late`, { params });
@@ -48,9 +55,11 @@ export class HomeworkService {
   getAllRatedHomeworkByUser(
     pageIndex: number,
     pageSize: number,
+    subjectId: number
   ): Observable<GetResponseRatedHomework> {
 
     let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('subjectId', `${subjectId}`);
     const userId = this.getAcctualUserId();
 
     return this.httpClient.get<GetResponseRatedHomework>(`${this.BASE_URL}/${userId}/rated`, { params });

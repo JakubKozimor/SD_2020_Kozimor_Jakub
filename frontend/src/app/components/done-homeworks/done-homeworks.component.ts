@@ -21,7 +21,8 @@ export class DoneHomeworksComponent implements OnInit {
   theRatedHomeworkPageSize: number = 5;
   theRatedHomeworkTotalElements: number = 0;
 
-  constructor(private homeworkService: HomeworkService) { }
+  constructor(
+    private homeworkService: HomeworkService) { }
 
   ngOnInit(): void {
     this.listOfDoneHomework();
@@ -36,7 +37,7 @@ export class DoneHomeworksComponent implements OnInit {
   }
 
   listOfDoneHomework() {
-    this.homeworkService.getAllDoneHomeworkByUser(this.theDoneHomeworkPageNumber - 1, this.theDoneHomeworkPageSize).subscribe(data => {
+    this.homeworkService.getAllDoneHomeworkByUser(this.theDoneHomeworkPageNumber - 1, this.theDoneHomeworkPageSize, 0).subscribe(data => {
       this.doneHomeworkList = data.content;
       this.theDoneHomeworkPageNumber = data.number + 1;
       this.theDoneHomeworkPageSize = data.size;
@@ -45,7 +46,7 @@ export class DoneHomeworksComponent implements OnInit {
   }
 
   listOfRatedHomework() {
-    this.homeworkService.getAllRatedHomeworkByUser(this.theRatedHomeworkPageNumber - 1, this.theRatedHomeworkPageSize).subscribe(data => {
+    this.homeworkService.getAllRatedHomeworkByUser(this.theRatedHomeworkPageNumber - 1, this.theRatedHomeworkPageSize, 0).subscribe(data => {
       this.ratedHomeworkList = data.content;
       this.theRatedHomeworkPageNumber = data.number + 1;
       this.theRatedHomeworkPageSize = data.size;

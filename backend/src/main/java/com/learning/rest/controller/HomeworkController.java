@@ -26,29 +26,33 @@ public class HomeworkController {
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/active")
     public ResponseEntity<Page<Homework>> getAllActiveHomeworkByUser(@PathVariable Long userId,
-                                                                     Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getAllActiveHomeworks(userId, pageable), HttpStatus.OK);
+                                                                     Pageable pageable,
+                                                                     @RequestParam("subjectId") Long subjectId) {
+        return new ResponseEntity<>(homeworkService.getAllActiveHomeworks(userId, pageable, subjectId), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/late")
     public ResponseEntity<Page<Homework>> getAllLateHomeworkByUser(@PathVariable Long userId,
-                                                                     Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getAllLateHomeworks(userId, pageable), HttpStatus.OK);
+                                                                   Pageable pageable,
+                                                                   @RequestParam("subjectId") Long subjectId) {
+        return new ResponseEntity<>(homeworkService.getAllLateHomeworks(userId, pageable, subjectId), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/done")
     public ResponseEntity<Page<Homework>> getAllDoneHomeworkByUser(@PathVariable Long userId,
-                                                                   Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getAllDoneHomeworks(userId, pageable), HttpStatus.OK);
+                                                                   Pageable pageable,
+                                                                   @RequestParam("subjectId") Long subjectId) {
+        return new ResponseEntity<>(homeworkService.getAllDoneHomeworks(userId, pageable, subjectId), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/rated")
     public ResponseEntity<Page<RatedHomeworkDto>> getAllRatedHomeworkByUser(@PathVariable Long userId,
-                                                                            Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getAllRatedHomeworks(userId, pageable), HttpStatus.OK);
+                                                                            Pageable pageable,
+                                                                            @RequestParam("subjectId") Long subjectId) {
+        return new ResponseEntity<>(homeworkService.getAllRatedHomeworks(userId, pageable, subjectId), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")

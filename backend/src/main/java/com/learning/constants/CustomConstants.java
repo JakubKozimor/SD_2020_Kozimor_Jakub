@@ -9,4 +9,5 @@ public interface CustomConstants {
     String INTEGER_FROM_HOURS_REGEX = "[^0-9]+";
     int FIVE_SUBJECTS = 5;
     int FIVE_HOMEWORKS = 5;
+    Long EMPTY_SUBJECT_ID = 0L;
 }

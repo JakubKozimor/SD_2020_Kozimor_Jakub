@@ -16,8 +16,6 @@ export class CalendarComponent implements OnInit {
   pageSize: number;
   subjectsList: Subject[];
 
-  fiveSubjectList: Subject[];
-
   week = "ALL";
 
   constructor(

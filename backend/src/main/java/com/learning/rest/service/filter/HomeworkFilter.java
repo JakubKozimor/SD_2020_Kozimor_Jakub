@@ -42,4 +42,11 @@ public class HomeworkFilter {
                 .filter(homework -> homework.getStatus() == homeworkStatus)
                 .collect(Collectors.toList());
     }
+
+    public List<Homework> filterBySubject(List<Homework> allHomeworkList, Long subjectId) {
+        return allHomeworkList
+                .stream()
+                .filter(homework -> homework.getSubject().getSubjectId().equals(subjectId))
+                .collect(Collectors.toList());
+    }
 }

@@ -25,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
 import { DoneHomeworksComponent } from './components/done-homeworks/done-homeworks.component';
 import { HomeworkAnswerDetailsComponent } from './components/homework-answer-details/homework-answer-details.component';
+import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
+import { HomeworksBySubjectComponent } from './components/homeworks-by-subject/homeworks-by-subject.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { HomeworkAnswerDetailsComponent } from './components/homework-answer-det
     AddHomeworkAnswerComponent,
     DoneHomeworksComponent,
     HomeworkAnswerDetailsComponent,
+    AllSubjectsComponent,
+    HomeworksBySubjectComponent,
   ],
   imports: [
     AppRoutingModule,

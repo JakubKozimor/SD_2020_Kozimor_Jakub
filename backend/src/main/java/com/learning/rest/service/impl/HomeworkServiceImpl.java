@@ -42,8 +42,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     private final HomeworkMap homeworkMap;
 
     @Override
-    public Page<Homework> getAllActiveHomeworks(Long userId, Pageable pageable) {
+    public Page<Homework> getAllActiveHomeworks(Long userId, Pageable pageable, Long subjectId) {
         List<Homework> allHomeworkList = this.getHomeworkListByUser(userId);
+        if (subjectId > CustomConstants.EMPTY_SUBJECT_ID)
+            allHomeworkList = homeworkFilter.filterBySubject(allHomeworkList, subjectId);
         List<Homework> activeHomeworks = homeworkFilter.filterByStatus(allHomeworkList, HomeworkStatus.ACTIVE);
         activeHomeworks = activeHomeworks
                 .stream()
@@ -62,8 +64,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Page<Homework> getAllLateHomeworks(Long userId, Pageable pageable) {
+    public Page<Homework> getAllLateHomeworks(Long userId, Pageable pageable, Long subjectId) {
         List<Homework> allHomeworkList = this.getHomeworkListByUser(userId);
+        if (subjectId > CustomConstants.EMPTY_SUBJECT_ID)
+            allHomeworkList = homeworkFilter.filterBySubject(allHomeworkList, subjectId);
         List<Homework> lateHomeworks = homeworkFilter.filterByStatus(allHomeworkList, HomeworkStatus.LATE);
         lateHomeworks = lateHomeworks
                 .stream()
@@ -74,8 +78,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Page<Homework> getAllDoneHomeworks(Long userId, Pageable pageable) {
+    public Page<Homework> getAllDoneHomeworks(Long userId, Pageable pageable, Long subjectId) {
         List<Homework> allHomeworkList = this.getHomeworkListByUser(userId);
+        if (subjectId > CustomConstants.EMPTY_SUBJECT_ID)
+            allHomeworkList = homeworkFilter.filterBySubject(allHomeworkList, subjectId);
         allHomeworkList = allHomeworkList
                 .stream()
                 .filter(homework -> !homeworkFilter.homeworkHasUserAnswer(userId, homework))
@@ -86,8 +92,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Page<RatedHomeworkDto> getAllRatedHomeworks(Long userId, Pageable pageable) {
+    public Page<RatedHomeworkDto> getAllRatedHomeworks(Long userId, Pageable pageable, Long subjectId) {
         List<Homework> allHomeworkList = this.getHomeworkListByUser(userId);
+        if (subjectId > CustomConstants.EMPTY_SUBJECT_ID)
+            allHomeworkList = homeworkFilter.filterBySubject(allHomeworkList, subjectId);
         List<RatedHomeworkDto> ratedHomeworks = allHomeworkList
                 .stream()
                 .filter(homework -> !homeworkFilter.homeworkHasUserAnswer(userId, homework))

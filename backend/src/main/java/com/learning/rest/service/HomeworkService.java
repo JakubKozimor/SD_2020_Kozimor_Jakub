@@ -10,17 +10,17 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface HomeworkService {
-    Page<Homework> getAllActiveHomeworks(Long teacherId, Pageable pageable);
+    Page<Homework> getAllActiveHomeworks(Long teacherId, Pageable pageable, Long subjectId);
 
-    Page<Homework> getAllLateHomeworks(Long userId, Pageable pageable);
+    Page<Homework> getAllLateHomeworks(Long userId, Pageable pageable, Long subjectId);
 
-    Page<Homework> getAllDoneHomeworks(Long userId, Pageable pageable);
+    Page<Homework> getAllDoneHomeworks(Long userId, Pageable pageable, Long subjectId);
+
+    Page<RatedHomeworkDto> getAllRatedHomeworks(Long userId, Pageable pageable, Long subjectId);
 
     List<Homework> getFiveActiveHomeworks(Long userId);
 
     HomeworkDetailsDto getHomeworkDetails(Long homeworkId);
 
     void createHomework(HomeworkDto homeworkDto, Long subjectId);
-
-    Page<RatedHomeworkDto> getAllRatedHomeworks(Long userId, Pageable pageable);
 }

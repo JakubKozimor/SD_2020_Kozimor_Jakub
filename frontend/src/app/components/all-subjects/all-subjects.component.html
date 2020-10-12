@@ -1,0 +1,44 @@
+<div>
+    Nazwa | dzień | tydzień | godzina rozpoczecia | długość | Pliki | Zadania
+</div>
+<div *ngFor="let tempSubject of subjectsList">
+    <span>{{ tempSubject.name }} |</span>
+    <span>{{ tempSubject.day }} |</span>
+    <span>{{ tempSubject.week }} |</span>
+    <span>{{ tempSubject.startTime }} |</span>
+    <span>{{ tempSubject.longOfTime }} |</span>
+    <button class="btn btn-secondary" (click)="showFiles(tempSubject.subjectId)">Pliki</button>
+    <button class="btn btn-primary" routerLink="/subject-homework/{{ tempSubject.subjectId }}">Zadania</button>
+</div>
+
+
+<div class="pagination">
+    <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize" [collectionSize]="theElements" [maxSize]="4"
+        [boundaryLinks]="true" (pageChange)="listOfSubjects()">
+    </ngb-pagination>
+    <div>
+        <select class="form-control" (change)="updateQuantity($event.target.value)">
+            <option selected="true">5</option>
+            <option>10</option>
+            <option>15</option>
+            <option>20</option>
+        </select>
+    </div>
+</div>
+
+<div *ngIf="showFilesBoolean">
+    <h1>Pliki</h1>
+
+    <div *ngIf="filesPresent()">
+        Brak plików
+    </div>
+    <div *ngIf="!filesPresent()">
+        <div *ngFor="let tempFile of tempSubjectsFiles">
+            <p>{{tempFile.fileName}}</p>
+            <p>File ID: {{tempFile.lessonFileId}}</p>
+            <button class="btn btn-primary"
+                (click)="downloadSubjectFile(tempFile.lessonFileId, tempFile.fileName)">Pobierz</button>
+        </div>
+    </div>
+
+</div>
