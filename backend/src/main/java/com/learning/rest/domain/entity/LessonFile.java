@@ -20,8 +20,9 @@ public class LessonFile {
     private Long lessonFileId;
     @Column(name = "name")
     private String fileName;
+    @Lob
     @Column(name = "file")
-    private String fileContent;
+    private byte[] fileContent;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "lesson_id")
     @JsonBackReference

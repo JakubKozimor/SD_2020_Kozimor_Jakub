@@ -1,9 +1,9 @@
 package com.learning.rest.service.impl;
 
-import com.learning.exception.homework.HomeworkFileNotFoundException;
-import com.learning.rest.domain.entity.HomeworkFile;
-import com.learning.rest.domain.repository.HomeworkFileRepository;
-import com.learning.rest.service.HomeworkFileService;
+import com.learning.exception.lesson.LessonFileNotFoundException;
+import com.learning.rest.domain.entity.LessonFile;
+import com.learning.rest.domain.repository.LessonFileRepository;
+import com.learning.rest.service.LessonFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,14 @@ import java.io.ByteArrayInputStream;
 
 @Service
 @RequiredArgsConstructor
-public class HomeworkFileServiceImpl implements HomeworkFileService {
+public class LessonFileServiceImpl implements LessonFileService {
 
-    private final HomeworkFileRepository homeworkFileRepository;
+    private final LessonFileRepository lessonFileRepository;
 
     @Override
     public ByteArrayInputStream downloadFile(Long fileId, HttpServletResponse response) {
-        HomeworkFile homeworkFile = homeworkFileRepository.findById(fileId).orElseThrow(HomeworkFileNotFoundException::new);
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + homeworkFile.getFileName());
-        return new ByteArrayInputStream(homeworkFile.getFileContent());
+        LessonFile lessonFile = lessonFileRepository.findById(fileId).orElseThrow(LessonFileNotFoundException::new);
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + lessonFile.getFileName());
+        return new ByteArrayInputStream(lessonFile.getFileContent());
     }
 }

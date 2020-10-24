@@ -35,4 +35,5 @@ public class RegisterRequest {
     @NotBlank
     @Enumerated(EnumType.STRING)
     private RoleName roleName;
+    private String twitchNick;
 }

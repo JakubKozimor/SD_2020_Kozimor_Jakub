@@ -19,7 +19,7 @@ export class SubjectService {
 
     let params = this.getPageParams(pageIndex, pageSize);
     params = params.append('week', `${week}`);
-    const userId = this.getAcctualUserId();
+    const userId = Number(this.getAcctualUserId());
     return this.httpClient.get<GetResponseSubject>(`${this.BASE_URL}/${userId}/all`, { params });
   }
 

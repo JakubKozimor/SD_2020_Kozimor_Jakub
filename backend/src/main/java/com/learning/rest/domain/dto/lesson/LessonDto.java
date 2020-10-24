@@ -10,11 +10,11 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class LessonDto {
-    Long classesId;
-    Long subjectId;
-    String subjectName;
-    String url;
-    String startTime;
-    List<ClassesFileDto> files;
-    String status;
+    private Long lessonId;
+    private Long subjectId;
+    private String subjectName;
+    private String url;
+    private String startTime;
+    private List<LessonFileDto> files;
+    private String status;
 }

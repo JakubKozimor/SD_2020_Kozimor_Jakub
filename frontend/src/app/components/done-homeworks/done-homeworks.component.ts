@@ -31,7 +31,7 @@ export class DoneHomeworksComponent implements OnInit {
 
   isBeforeDeadline(deadline: Date): boolean {
     let today = new Date;
-    today.setDate(today.getDate()-1)
+    today.setDate(today.getDate())
     let deadlineInDate = new Date(deadline);
     return today < deadlineInDate;
   }

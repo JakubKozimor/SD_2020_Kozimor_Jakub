@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +52,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getTeacherById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    @Override
+    public String getUserFirstNameAndLastNameById(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        return user.getFirstName() + " " + user.getLastName();
     }
 }

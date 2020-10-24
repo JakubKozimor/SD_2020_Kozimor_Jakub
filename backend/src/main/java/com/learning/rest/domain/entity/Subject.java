@@ -47,6 +47,14 @@ public class Subject {
     @JoinColumn(name = "teacher_id")
     @JsonBackReference
     private User teacher;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "subject_student",
+            joinColumns = {@JoinColumn(name = "subject_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    @JsonBackReference
+    private List<User> students;
 
     public void addFile(SubjectFile lessonFile) {
         if (files == null) {

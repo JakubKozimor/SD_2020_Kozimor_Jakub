@@ -1,0 +1,11 @@
+<div>
+    <span>Przedmiot</span>
+    <span>Godzina rozpoczęcia</span>
+</div>
+<div *ngFor="let tempLive of liveClasses">
+    <div>
+        <span>{{tempLive.subjectName}}</span>
+        <span>{{tempLive.startTime}}</span>
+        <button class="btn btn-primary" routerLink="/classes/{{ tempLive.lessonId }}">Dołącz</button>
+    </div>
+</div>

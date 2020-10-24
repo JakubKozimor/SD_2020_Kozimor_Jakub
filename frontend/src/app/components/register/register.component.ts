@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
       password: [null, [Validators.required]],
       passwordConfirmation: [null, [Validators.required]],
       roleName: [null, [Validators.required]],
+      twitchNick: [null],
     });
     return form;
   }
@@ -78,5 +79,9 @@ export class RegisterComponent implements OnInit {
 
   get roleName(): any {
     return this.validateForm.get('roleName');
+  }
+
+  get twitchNick(): any {
+    return this.validateForm.get('twitchNick');
   }
 }

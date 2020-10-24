@@ -32,7 +32,7 @@ export class MessageService {
   ): Observable<GetResponseMessage> {
 
     let params = this.getPageParams(pageIndex, pageSize);
-    const userId = this.getAcctualUserId();
+    const userId = Number(this.getAcctualUserId());
 
     return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-read`, { params });
   }
@@ -43,7 +43,7 @@ export class MessageService {
   ): Observable<GetResponseMessage> {
 
     let params = this.getPageParams(pageIndex, pageSize);
-    const userId = this.getAcctualUserId();
+    const userId = Number(this.getAcctualUserId());
 
     return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-unread`, { params });
   }
@@ -54,7 +54,7 @@ export class MessageService {
   ): Observable<GetResponseMessage> {
 
     let params = this.getPageParams(pageIndex, pageSize);
-    const userId = this.getAcctualUserId();
+    const userId = Number(this.getAcctualUserId());
 
     return this.httpClient.get<GetResponseMessage>(`${this.BASE_URL}/${userId}/all-sent`, { params });
   }

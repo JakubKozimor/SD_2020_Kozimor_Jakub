@@ -25,16 +25,16 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lesson_id")
     private Long lessonId;
-    @Column(name = "lesson_name")
-    private String name;
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+    @Column(name = "url")
+    private String url;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     @JsonBackReference
     private User teacher;
-    @Column(name = "lesson_date")
-    private Date lessonDate;
-    @Column(name = "start_time")
-    private String startTime;
     @Enumerated(EnumType.STRING)
     private LessonStatus status;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,11 +48,11 @@ public class Lesson {
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     @JsonBackReference
-    private Set<User> students;
+    private List<User> students;
 
     public void addStudent(User user) {
         if (this.students == null) {
-            this.students = new HashSet<>();
+            this.students = new ArrayList<>();
         }
         this.students.add(user);
     }

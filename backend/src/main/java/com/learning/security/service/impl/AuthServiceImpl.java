@@ -4,6 +4,7 @@ import com.learning.exception.role.RoleNotFoundException;
 import com.learning.exception.user.EmailAlreadyExistException;
 import com.learning.rest.domain.entity.Role;
 import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.entity.enums.RoleName;
 import com.learning.rest.domain.repository.RoleRepository;
 import com.learning.rest.domain.repository.UserRepository;
 import com.learning.security.jwt.JwtTokenProvider;
@@ -20,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 
@@ -56,6 +58,9 @@ public class AuthServiceImpl implements AuthService {
 
         Role userRole = roleRepository.findByName(registerRequest.getRoleName()).orElseThrow(RoleNotFoundException::new);
         user.setRoles(Collections.singleton(userRole));
+        if(!StringUtils.isEmpty(registerRequest.getTwitchNick()) && RoleName.ROLE_TEACHER == userRole.getName()){
+            user.setTwitchNick(registerRequest.getTwitchNick());
+        }
         userRepository.save(user);
 
         return new ApiResponse(true, "User registered");

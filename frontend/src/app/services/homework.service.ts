@@ -92,9 +92,6 @@ export class HomeworkService {
             resolve("Dodano");
           },
           (error) => {
-            // if (error.status === 409) {
-            //   reject("Użytkownik z takim adresem email istnieje");
-            // }
             reject("Dodawanie nie powiodło się");
           }
         );

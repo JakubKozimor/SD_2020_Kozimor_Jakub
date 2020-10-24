@@ -31,8 +31,9 @@
         <insert tableName="users">
             <column name="first_name" value="TeacherFirstName"/>
             <column name="last_name" value="TeacherLastName"/>
-            <column name="email" value="teacher@mail.com"/>
+            <column name="email" value="teacher@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+            <column name="twitch_nick" value="testStreamTeacher"/>
         </insert>
 
 
@@ -170,64 +171,6 @@
             <column name="subject_id" value="4"/>
             <column name="status" value="ACTIVE"/>
         </insert>
-
-
-
-
-        <insert tableName="lessons">
-            <column name="lesson_id" value="1"/>
-            <column name="lesson_name" value="Programowanie obiektowe"/>
-            <column name="teacher_id" value="3"/>
-            <column name="lesson_date" value="2020-09-21"/>
-            <column name="start_time" value="13:15"/>
-            <column name="status" value="PLANNED"/>
-        </insert>
-        <insert tableName="lessons">
-            <column name="lesson_id" value="2"/>
-            <column name="lesson_name" value="Aplikacje internetowe"/>
-            <column name="teacher_id" value="3"/>
-            <column name="lesson_date" value="2020-09-23"/>
-            <column name="start_time" value="10:30"/>
-            <column name="status" value="PLANNED"/>
-        </insert>
-        <insert tableName="lessons">
-            <column name="lesson_id" value="3"/>
-            <column name="lesson_name" value="Bazy danych"/>
-            <column name="teacher_id" value="3"/>
-            <column name="lesson_date" value="2020-09-25"/>
-            <column name="start_time" value="8:00"/>
-            <column name="status" value="PLANNED"/>
-        </insert>
-
-
-
-
-        <insert tableName="lessons_student">
-            <column name="lessons_student_id" value="1"/>
-            <column name="user_id" value="1"/>
-            <column name="lesson_id" value="1"/>
-        </insert>
-        <insert tableName="lessons_student">
-            <column name="lessons_student_id" value="2"/>
-            <column name="user_id" value="1"/>
-            <column name="lesson_id" value="2"/>
-        </insert>
-        <insert tableName="lessons_student">
-            <column name="lessons_student_id" value="3"/>
-            <column name="user_id" value="1"/>
-            <column name="lesson_id" value="3"/>
-        </insert>
-        <insert tableName="lessons_student">
-            <column name="lessons_student_id" value="4"/>
-            <column name="user_id" value="2"/>
-            <column name="lesson_id" value="2"/>
-        </insert>
-        <insert tableName="lessons_student">
-            <column name="lessons_student_id" value="5"/>
-            <column name="user_id" value="2"/>
-            <column name="lesson_id" value="3"/>
-        </insert>
-
 
 
 

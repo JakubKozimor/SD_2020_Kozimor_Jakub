@@ -1,21 +1,22 @@
 package com.learning.rest.domain.mapper;
 
-import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
-import com.learning.rest.domain.dto.homework.HomeworkDto;
-import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
-import com.learning.rest.domain.entity.Homework;
+import com.learning.rest.domain.dto.lesson.LessonDetailsDto;
+import com.learning.rest.domain.dto.lesson.LessonDto;
+import com.learning.rest.domain.entity.Lesson;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface HomeworkMapper {
-
-    @Mapping(target = "subject", source = "subject.name")
-    HomeworkDetailsDto toHomeworkDetailsDto(Homework homework);
+public interface LessonMapper {
 
     @Mapping(target = "files", ignore = true)
-    @Mapping(target = "status", constant = "ACTIVE")
-    Homework toHomework(HomeworkDto homeworkDto);
+    @Mapping(target = "url", ignore = true)
+    @Mapping(target = "status", constant = "LIVE")
+    Lesson toLesson(LessonDto lessonDto);
 
-    RatedHomeworkDto toRatedHomework(Homework homework);
+
+    @Mapping(target = "subjectId", source = "subject.subjectId")
+    @Mapping(target = "subjectName", source = "subject.name")
+    @Mapping(target = "startTime", source = "subject.startTime")
+    LessonDetailsDto toLessonDetailsDto(Lesson lesson);
 }

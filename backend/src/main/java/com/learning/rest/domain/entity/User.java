@@ -29,6 +29,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    @Column(name = "twitch_nick")
+    private String twitchNick;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
@@ -48,7 +50,7 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "lesson_id")}
     )
     @JsonManagedReference
-    private Set<Lesson> lessons;
+    private List<Lesson> lessons;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
@@ -68,7 +70,7 @@ public class User {
 
     public void addLesson(Lesson lesson) {
         if (lessons == null) {
-            lessons = new HashSet<>();
+            lessons = new ArrayList<>();
         }
         lessons.add(lesson);
     }

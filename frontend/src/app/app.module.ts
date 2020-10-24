@@ -27,6 +27,8 @@ import { DoneHomeworksComponent } from './components/done-homeworks/done-homewor
 import { HomeworkAnswerDetailsComponent } from './components/homework-answer-details/homework-answer-details.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
 import { HomeworksBySubjectComponent } from './components/homeworks-by-subject/homeworks-by-subject.component';
+import { AddClassesComponent } from './components/add-classes/add-classes.component';
+import { LiveComponent } from './components/live/live.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { HomeworksBySubjectComponent } from './components/homeworks-by-subject/h
     HomeworkAnswerDetailsComponent,
     AllSubjectsComponent,
     HomeworksBySubjectComponent,
+    AddClassesComponent,
+    LiveComponent,
   ],
   imports: [
     AppRoutingModule,

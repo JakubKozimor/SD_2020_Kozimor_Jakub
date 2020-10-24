@@ -1,7 +1,7 @@
-package com.learning.exception.homework;
+package com.learning.exception.lesson;
 
-public class HomeworkFileNotFoundException extends RuntimeException {
-    public HomeworkFileNotFoundException() {
+public class LessonFileNotFoundException extends RuntimeException {
+    public LessonFileNotFoundException() {
         super("File not found");
     }
 }

@@ -1,13 +1,13 @@
 package com.learning.rest.domain.mapper;
 
-import com.learning.rest.domain.dto.homework.HomeworkFileDto;
-import com.learning.rest.domain.entity.HomeworkFile;
+import com.learning.rest.domain.dto.lesson.LessonFileDto;
+import com.learning.rest.domain.entity.LessonFile;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface HomeworkFileMapper {
+public interface LessonFileMapper {
 
     @Mapping(target = "fileContent", ignore = true)
-    HomeworkFile toHomeworkFile(HomeworkFileDto homeworkFileDto);
+    LessonFile toLessonFile(LessonFileDto lessonFileDto);
 }

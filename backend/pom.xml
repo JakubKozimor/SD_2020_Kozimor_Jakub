@@ -133,6 +133,14 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
         <!-- END MAPSTRUCT -->
+
+        <!--Websocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>2.3.4.RELEASE</version>
+        </dependency>
+        <!--End websocket-->
     </dependencies>
 
     <build>
