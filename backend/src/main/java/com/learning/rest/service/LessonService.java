@@ -1,7 +1,8 @@
 package com.learning.rest.service;
 
-import com.learning.rest.domain.entity.Lesson;
+import com.learning.rest.domain.dto.lesson.LessonDto;
 
 public interface LessonService {
-    void addLesson(Long teacherId, Lesson lesson);
+
+    void addClasses(LessonDto lessonDto);
 }
