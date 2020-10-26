@@ -1,75 +1,45 @@
-<div class="calendar">
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="#">Kalendarz</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentCalendar"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div>
+  <div>
+    <p>Opcje</p>
+    <button class="btn btn-primary" (click)="changeWeek('ALL')">ALL</button>
+    <button class="btn btn-primary" (click)="changeWeek('A')">A</button>
+    <button class="btn btn-primary" (click)="changeWeek('B')">B</button>
+  </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContentCalendar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <div class="options">
-            <a>Opcje</a>
-            <hr>
-            <button class="btn btn-primary" (click)="changeWeek('ALL')">ALL</button>
-            <br>
-            <button class="btn btn-primary" (click)="changeWeek('A')">A</button>
-            <br>
-            <button class="btn btn-primary" (click)="changeWeek('B')">B</button>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="day">
-            <p>Poniedziałek</p>
-            <hr>
-            <div *ngFor="let tempSubject of subjectsList">
-              <p *ngIf="tempSubject.day == 'MONDAY'">
-                {{tempSubject.startTime}} {{tempSubject.name}}
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="day">
-            <p>Wtorek</p>
-            <hr>
-            <div *ngFor="let tempSubject of subjectsList">
-              <p *ngIf="tempSubject.day == 'TUESDAY'">
-                {{tempSubject.startTime}} {{tempSubject.name}}
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="day">
-            <p>Środa</p>
-            <hr>
-            <div *ngFor="let tempSubject of subjectsList">
-              <p *ngIf="tempSubject.day == 'WEDNESDAY'">
-                {{tempSubject.startTime}} {{tempSubject.name}}
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="day">
-            <p>Czwartek</p>
-            <hr>
-            <div *ngFor="let tempSubject of subjectsList">
-              <p *ngIf="tempSubject.day == 'THURSDAY'">
-                {{tempSubject.startTime}} {{tempSubject.name}}
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="day">
-            <p>Piątek</p>
-            <hr>
-            <div *ngFor="let tempSubject of subjectsList">
-              <p *ngIf="tempSubject.day == 'FRIDAY'">
-                {{tempSubject.startTime}} {{tempSubject.name}}
-            </div>
-          </div>
-        </li>
-      </ul>
+  <div>
+    <p>Poniedziałek</p>
+    <div *ngFor="let tempSubject of subjectsList">
+      <p *ngIf="tempSubject.day == 'MONDAY'">
+        {{tempSubject.startTime}} {{tempSubject.name}}
     </div>
-  </nav>
+  </div>
+
+  <div>
+    <p>Wtorek</p>
+    <div *ngFor="let tempSubject of subjectsList">
+      <p *ngIf="tempSubject.day == 'TUESDAY'">
+        {{tempSubject.startTime}} {{tempSubject.name}}
+    </div>
+  </div>
+  <div>
+    <p>Środa</p>
+    <div *ngFor="let tempSubject of subjectsList">
+      <p *ngIf="tempSubject.day == 'WEDNESDAY'">
+        {{tempSubject.startTime}} {{tempSubject.name}}
+    </div>
+  </div>
+  <div>
+    <p>Czwartek</p>
+    <div *ngFor="let tempSubject of subjectsList">
+      <p *ngIf="tempSubject.day == 'THURSDAY'">
+        {{tempSubject.startTime}} {{tempSubject.name}}
+    </div>
+  </div>
+  <div>
+    <p>Piątek</p>
+    <div *ngFor="let tempSubject of subjectsList">
+      <p *ngIf="tempSubject.day == 'FRIDAY'">
+        {{tempSubject.startTime}} {{tempSubject.name}}
+    </div>
+  </div>
 </div>

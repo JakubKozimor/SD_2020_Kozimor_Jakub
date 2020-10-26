@@ -60,7 +60,6 @@ export class AddStudentsComponent implements OnInit {
 
   submit() {
     let subjectId = Number(this.route.snapshot.paramMap.get("subjectId"));
-    
     let table = new Array;
     table = Array.from(this.tempUsers)
     this.userService.addStudents(table, subjectId);

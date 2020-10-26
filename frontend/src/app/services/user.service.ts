@@ -33,7 +33,6 @@ export class UserService {
   addStudents(users, subjectId) {
     let studentsList = new UsersList;
     studentsList.students = users;
-    console.log(studentsList)
     this.httpClient.post<number>(this.BASE_URL + `/users?subjectId=${subjectId}`, studentsList).subscribe();
   }
 }

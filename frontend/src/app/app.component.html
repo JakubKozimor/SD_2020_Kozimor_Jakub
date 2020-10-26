@@ -1,15 +1,6 @@
-<!doctype html>
-<html lang="en">
-
-<body>
-  <div class="con">
     <app-header *ngIf="isToken"></app-header>
     <div class="page-content">
-      <app-calendar *ngIf="actualRouter != '/classes' && isToken"></app-calendar>
+      <!-- <app-calendar *ngIf="actualRouter != '/classes' && isToken && actualRouter != '/callendar'"></app-calendar> -->
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
-  </div>
-</body>
-
-</html>

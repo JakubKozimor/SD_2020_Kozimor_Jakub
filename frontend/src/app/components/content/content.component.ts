@@ -3,7 +3,7 @@ import { Subject } from 'src/app/common/subject';
 import { SubjectService } from 'src/app/services/subject.service';
 import { HomeworkService } from 'src/app/services/homework.service';
 import { Homework } from 'src/app/common/homework';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Global } from 'src/app/global';
 
 @Component({
@@ -27,6 +27,7 @@ export class ContentComponent implements OnInit {
     private subjectService: SubjectService, 
     private homeworkService: HomeworkService,
     private route: ActivatedRoute,
+    private router: Router,
     private global: Global) { }
 
   ngOnInit(): void {
@@ -86,6 +87,17 @@ export class ContentComponent implements OnInit {
     }
     if (day == 'FRIDAY') {
       return "Piątek"
+    }
+  }
+
+  changeWeek(week: string) {
+    this.global.setWeek(week);
+    this.changeRoute(week);
+    this.ngOnInit();
+  }
+  changeRoute(week: string){
+    if(this.router.url.includes("menu")){
+      this.router.navigate(['menu/'+week]);
     }
   }
 }

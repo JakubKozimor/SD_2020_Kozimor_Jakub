@@ -1,41 +1,114 @@
 .content {
-    background-color: hsla(0, 0%, 55%, 0.158);
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 60px;
-    width: 100%;
-    display: inline-block;
+  text-align: center;
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  min-height: 80vh;
+}
 
+.main-schedule{
+  display: flex;
 }
 
 .info-div {
-    min-height: 300px;
-    border-radius: 20px;
-    margin: 10px;
-    display: inline-table;
-    width: 40%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;
-    background-color: rgba(216, 210, 243, 0.349);
-    position: relative;
-    text-align: center;
+  min-height: 300px;
+  margin: 10px 50px;
+  text-align: center;
+  position: relative;
+  text-align: center;
 }
 
-.big-column{
-    border-radius: 10px;
-    background-color: rgba(232, 227, 255, 0.349);
+.big-column {
+  width: 100%;
+  min-width: 300px;
+  border: 2px solid #001f54;
+  border-radius: 8px;
+}
+
+.subject-row {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  border-bottom: 2px solid #001f54;
+  padding: 0 8px;
+}
+
+.subject-row:first-child {
+  color: #1282a2;
+  font-size: 1.1rem;
+  padding: 3px 0;
+  font-weight: 600;
+  border-color: #1282a2;
+  border-width: 3px;
+}
+
+.subject-row:last-child {
+  border: none;
+}
+
+.subject-row span {
+  margin-left: 1rem;
+}
+.subject-row span:first-child {
+  width: 120px;
+}
+.subject-row span:last-child {
+  width: 200px;
+}
+
+.homework-row {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  align-items: center;
+  border-bottom: 2px solid #001f54;
+  padding: 8px 16px;
+}
+
+.homework-row span:nth-child(1) {
+  width: 180px;
+}
+
+.homework-row span:nth-child(2) {
+  width: 120px;
+}
+
+.homework-btn {
+  padding: 3px 12px;
+}
+.homework-row:last-child {
+  border: none;
+}
+
+.week-options {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.week-options button {
+  background-color: #eaebed;
+  color: #034078;
+  border-color: #034078;
+  margin: 0 1rem;
+  width: 60px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.week-options button:hover {
+  background-color: #034078;
+  color: #fefcfb;
+  border: 1px solid #fefcfb;
+}
+
+@media only screen and (max-width: 576px) {
+  .content {
     width: 100%;
-    min-width: 300px;
+    margin-top: auto;
+  }
 }
-
-
-
-@media only screen and (max-width:576px) {
-    .content {
-        width: 100%;
-        margin-top: auto;
-    }
-
-}
-
-

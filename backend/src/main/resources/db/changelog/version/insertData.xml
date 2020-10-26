@@ -143,7 +143,7 @@
             <column name="homework_id" value="2"/>
             <column name="title" value="Schemat bazy dancyh"/>
             <column name="description" value="Zrobić przykładowy schemat bazy danych MySQL"/>
-            <column name="deadline" value="2020-10-22"/>
+            <column name="deadline" value="2020-10-29"/>
             <column name="subject_id" value="3"/>
             <column name="status" value="ACTIVE"/>
         </insert>
@@ -151,7 +151,7 @@
             <column name="homework_id" value="3"/>
             <column name="title" value="Użycie bootstrapa"/>
             <column name="description" value="Poprawić wygląd strony używając bootstrapa"/>
-            <column name="deadline" value="2020-10-25"/>
+            <column name="deadline" value="2020-10-28"/>
             <column name="subject_id" value="2"/>
             <column name="status" value="ACTIVE"/>
         </insert>

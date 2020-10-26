@@ -1,22 +1,21 @@
+<div class="add-homework">
+  <h1>Dodaj zadanie domowe</h1>
 <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <div>
-    <div>Tytuł</div>
     <input type="text" formControlName="title" placeholder="Tytuł" />
     <label *ngIf="title.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
   </div>
   <div>
-    <div>Opis</div>
     <input type="text" formControlName="description" placeholder="Opis" />
     <label *ngIf="description.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
   </div>
 
   <div>
-    <div>Data</div>
     <div class="input-group" style="width: 300px;">
       <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="deadline" ngbDatepicker
         #d="ngbDatepicker">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+        <button class="btn btn-outline-secondary calendar-btn" (click)="d.toggle()" type="button">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -31,7 +30,6 @@
   </div>
 
   <div>
-    <div>Pliki</div>
     <div *ngFor="let tempFile of tempFiles">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-fill" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
@@ -50,11 +48,12 @@
       </button>
     </div>
 
-    <div class="custom-file" style="width: 200px;">
+    <div class="custom-file" style="width: 280px;">
       <input #inputFile type="file" class="custom-file-input" id="customFile" (change)="onUpload($event)">
       <label class="custom-file-label" for="customFile">Wybierz plik</label>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-secondary">Dodaj zadanie</button>
+  <button type="submit" class="btn add-homework-button">Dodaj zadanie</button>
 </form>
+</div>

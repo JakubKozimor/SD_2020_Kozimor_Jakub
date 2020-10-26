@@ -7,6 +7,7 @@ import { AddStudentsComponent } from './components/add-students/add-students.com
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { AllMessagesComponent } from './components/all-messages/all-messages.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { ContentComponent } from './components/content/content.component';
 import { DoneHomeworksComponent } from './components/done-homeworks/done-homeworks.component';
@@ -22,6 +23,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const appRoute: Routes = [
+  { path: 'callendar', component: CalendarComponent },
   { path: 'add-students/:subjectId', component: AddStudentsComponent },
   { path: 'live', component: LiveComponent },
   { path: 'add-subject', component: AddSubjectComponent },

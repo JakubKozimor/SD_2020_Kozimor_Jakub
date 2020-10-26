@@ -1,33 +1,47 @@
+
 <main class="content">
+
+  
+  <div class="week-options">
+    <button class="btn btn-primary" (click)="changeWeek('ALL')">ALL</button>
+    <button class="btn btn-primary" (click)="changeWeek('A')">A</button>
+    <button class="btn btn-primary" (click)="changeWeek('B')">B</button>
+  </div>
+
+  <div class="main-schedule">
   <div class="info-div">
+    
     <h2>Najbliższe zajęcia</h2>
-    <hr>
     <div class="big-column">
-      <div class="head-row">
-        Dzień Od Do Przedmiot
+      <div class="subject-row">
+        <span>Dzień</span>
+        <span>Od</span>
+        <span>Do</span>
+        <span>Przedmiot</span>
+           
       </div>
       <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-        {{getDay(tempSubject.day)}}
-        {{tempSubject.startTime}}
-        {{countTime(tempSubject.startTime, tempSubject.longOfTime)}}
-        {{tempSubject.name}}
+       <span> {{getDay(tempSubject.day)}}</span>
+       <span> {{tempSubject.startTime}} -
+        {{countTime(tempSubject.startTime, tempSubject.longOfTime)}}</span>
+       <span> {{tempSubject.name}}</span>
       </div>
     </div>
   </div>
   <div class="info-div">
     <h2>Zadania</h2>
-    <hr>
     <div class="big-column">
-      <div class="head-row">
-        Zadanie termin przycisk
-      </div>
+   
       <div class="homework-row" *ngFor="let tempHomework of homeworkList">
-        <div>
+        <span>
           {{tempHomework.title}}
-          {{tempHomework.deadline}}
-        </div>
-        <button class="btn btn-primary" routerLink="/viewHomework/{{ tempHomework.homeworkId }}">Szczegóły</button>
+        </span>
+        <span>
+        {{tempHomework.deadline}}
+      </span>
+      <button class="btn btn-outline-primary homework-btn" routerLink="/viewHomework/{{ tempHomework.homeworkId }}">Szczegóły</button>
       </div>
     </div>
   </div>
+</div>
 </main>

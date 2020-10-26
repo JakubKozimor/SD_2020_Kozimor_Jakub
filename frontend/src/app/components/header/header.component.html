@@ -1,40 +1,32 @@
 <header class="header">
   <div class="logo">
-    logo
   </div>
   <div class="menu">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Menu</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="menu" routerLinkActive="active">Strona główna</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="homework" routerLinkActive="active">Zadania</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="teachers" routerLinkActive="active">Prowadzący</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="allMessages" routerLinkActive="active">Wiadomości</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="allSubjects" routerLinkActive="active">Przedmioty</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="live" routerLinkActive="active">Live</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="login" (click)="logout()">Wyloguj</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <ul>
+      <li>
+        <a routerLink="menu"  routerLinkActive="active">Strona główna</a>
+      </li>
+      <li>
+        <a routerLink="callendar" routerLinkActive="active">Kalendarz</a>
+      </li>
+      <li>
+        <a routerLink="homework" routerLinkActive="active">Zadania</a>
+      </li>
+      <li>
+        <a routerLink="teachers" routerLinkActive="active">Prowadzący</a>
+      </li>
+      <li>
+        <a routerLink="allMessages" routerLinkActive="active">Wiadomości</a>
+      </li>
+      <li>
+        <a routerLink="allSubjects" routerLinkActive="active">Przedmioty</a>
+      </li>
+      <li>
+        <a routerLink="live" routerLinkActive="active">Live</a>
+      </li>
+      <li>
+        <a routerLink="login" (click)="logout()">Wyloguj</a>
+      </li>
+    </ul>
   </div>
 </header>
