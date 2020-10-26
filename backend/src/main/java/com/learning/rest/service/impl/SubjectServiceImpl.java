@@ -4,15 +4,19 @@ import com.learning.constants.CustomConstants;
 import com.learning.exception.homework.HomeworkNotFoundException;
 import com.learning.exception.subject.SubjectNotFoundException;
 import com.learning.exception.user.UserNotFoundException;
+import com.learning.rest.domain.dto.subject.SubjectDto;
+import com.learning.rest.domain.dto.subject.SubjectFileDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.entity.enums.Week;
+import com.learning.rest.domain.mapper.SubjectMapper;
 import com.learning.rest.domain.repository.HomeworkRepository;
 import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
 import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.SubjectService;
+import com.learning.rest.service.map.SubjectMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,14 +36,24 @@ public class SubjectServiceImpl implements SubjectService {
     private final SubjectRepository subjectRepository;
     private final HomeworkRepository homeworkRepository;
     private final UserRepository userRepository;
+    private final SubjectMapper subjectMapper;
+    private final SubjectMap subjectMap;
 
     @Override
     @Transactional
-    public void addSubject(Subject subject) {
-        //TODO to change
-        User user = userRepository.findById(3L).orElseThrow(UserNotFoundException::new);
+    public Long addSubject(Long teacherId, SubjectDto subjectDto) {
+        User user = userRepository.findById(teacherId).orElseThrow(UserNotFoundException::new);
+        Subject subject = subjectMapper.toSubject(subjectDto);
+        List<SubjectFileDto> subjectFileDto = subjectDto.getFiles();
+        if (subjectFileDto != null) {
+            subjectFileDto.stream()
+                    .map(subjectMap::mapToSubjectFile)
+                    .forEach(subject::addFile);
+        }
         subject.setTeacher(user);
-        subjectRepository.save(subject);
+        subject.setLongOfTime(Integer.valueOf(subjectDto.getLongOfTime()));
+        Subject saveDSubject = subjectRepository.save(subject);
+        return saveDSubject.getSubjectId();
     }
 
     @Override

@@ -29,6 +29,8 @@ import { AllSubjectsComponent } from './components/all-subjects/all-subjects.com
 import { HomeworksBySubjectComponent } from './components/homeworks-by-subject/homeworks-by-subject.component';
 import { AddClassesComponent } from './components/add-classes/add-classes.component';
 import { LiveComponent } from './components/live/live.component';
+import { AddSubjectComponent } from './components/add-subject/add-subject.component';
+import { AddStudentsComponent } from './components/add-students/add-students.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { LiveComponent } from './components/live/live.component';
     HomeworksBySubjectComponent,
     AddClassesComponent,
     LiveComponent,
+    AddSubjectComponent,
+    AddStudentsComponent,
   ],
   imports: [
     AppRoutingModule,

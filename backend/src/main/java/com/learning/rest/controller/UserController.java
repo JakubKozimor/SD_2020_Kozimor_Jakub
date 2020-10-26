@@ -1,26 +1,35 @@
 package com.learning.rest.controller;
 
-import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.dto.user.UserDto;
+import com.learning.rest.domain.dto.user.UsersList;
 import com.learning.rest.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
 
-    @PreAuthorize("#teacherId == principal.id")
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getTeacherById(@PathVariable("id") Long teacherId) {
-        return new ResponseEntity<>(userService.getTeacherById(teacherId), HttpStatus.OK);
+    @GetMapping("/search")
+    public ResponseEntity<Page<UserDto>> searchUsers(Pageable pageable,
+                                                     @RequestParam("search") String search) {
+        return new ResponseEntity<>(userService.getUsersBySearch(search, pageable), HttpStatus.OK);
+    }
+
+    @PostMapping("/users")
+    public ResponseEntity<Void> addUsersToSubject(@RequestBody UsersList usersList,
+                                                  @RequestParam("subjectId") Long subjectId) {
+        userService.addUsersToSubjects(subjectId, usersList.getStudents());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

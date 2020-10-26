@@ -1,5 +1,5 @@
 export class SubjectFile {
-    lessonFileId: number;
+    subjectFileId: number;
     fileName: string;
     fileContent: string;
 }

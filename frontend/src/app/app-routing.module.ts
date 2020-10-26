@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddClassesComponent } from './components/add-classes/add-classes.component';
 import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
 import { AddHomeworkComponent } from './components/add-homework/add-homework.component';
+import { AddStudentsComponent } from './components/add-students/add-students.component';
+import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { AllMessagesComponent } from './components/all-messages/all-messages.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
 import { ClassesComponent } from './components/classes/classes.component';
@@ -20,7 +22,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const appRoute: Routes = [
+  { path: 'add-students/:subjectId', component: AddStudentsComponent },
   { path: 'live', component: LiveComponent },
+  { path: 'add-subject', component: AddSubjectComponent },
   { path: 'classes/:classesId', component: ClassesComponent },
   { path: 'add-classes/:subjectId', component: AddClassesComponent },
   { path: 'subject-homework/:subjectId', component: HomeworksBySubjectComponent },

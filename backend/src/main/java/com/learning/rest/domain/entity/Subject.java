@@ -69,4 +69,11 @@ public class Subject {
         }
         homeworks.add(homework);
     }
+
+    public void addStudent(User user) {
+        if (students == null) {
+            students = new ArrayList<>();
+        }
+        students.add(user);
+    }
 }

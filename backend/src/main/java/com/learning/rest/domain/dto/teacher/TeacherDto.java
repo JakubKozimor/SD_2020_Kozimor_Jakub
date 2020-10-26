@@ -6,7 +6,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class TeacherDto {
     private Long teacherId;
     private String firstName;

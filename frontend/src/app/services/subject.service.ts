@@ -23,6 +23,11 @@ export class SubjectService {
     return this.httpClient.get<GetResponseSubject>(`${this.BASE_URL}/${userId}/all`, { params });
   }
 
+  addMessage(subject: Subject): Observable<number>{
+    let userId = Number(this.getAcctualUserId());
+    return this.httpClient.post<number>(this.BASE_URL + `/new?teacherId=${userId}`, subject).pipe();
+  }
+
   public getFiveFirstSubjectsByUser(week:string): Observable<Subject[]> {
     const userId = this.getAcctualUserId();
     return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first?week=${week}`);

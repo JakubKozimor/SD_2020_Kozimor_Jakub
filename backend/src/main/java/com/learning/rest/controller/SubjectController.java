@@ -1,5 +1,6 @@
 package com.learning.rest.controller;
 
+import com.learning.rest.domain.dto.subject.SubjectDto;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.enums.Week;
 import com.learning.rest.service.SubjectService;
@@ -33,6 +34,13 @@ public class SubjectController {
     @GetMapping("/{userId}/five-first")
     public ResponseEntity<List<Subject>> getFirstFiveSubjectsByUser(@PathVariable Long userId,
                                                                     @RequestParam("week") Week week) {
-        return new ResponseEntity<>(subjectService.getFirstFiveSubjectsByUserId(userId,week), HttpStatus.OK);
+        return new ResponseEntity<>(subjectService.getFirstFiveSubjectsByUserId(userId, week), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @PostMapping("/new")
+    public ResponseEntity<Long> createSubject(@RequestBody SubjectDto subjectDto,
+                                              @RequestParam("teacherId") Long teacherId) {
+        return new ResponseEntity<>(subjectService.addSubject(teacherId, subjectDto), HttpStatus.CREATED);
     }
 }
