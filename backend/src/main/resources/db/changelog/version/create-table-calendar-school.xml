@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="18" author="Jakub">
+        <createTable tableName="calendar_school">
+            <column autoIncrement="true" name="calendar_school_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="calendar_pkey"/>
+            </column>
+            <column name="calendar_id" type="BIGINT">
+            </column>
+            <column name="school_id" type="BIGINT">
+            </column>
+            <column name="week" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

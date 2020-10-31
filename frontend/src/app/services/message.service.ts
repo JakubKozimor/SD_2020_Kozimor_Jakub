@@ -18,7 +18,9 @@ export class MessageService {
 
   private BASE_URL = 'http://localhost:8080/messages';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+    ) { }
 
   addMessage(message: Message) {
     const userId = this.getAcctualUserId();

@@ -10,7 +10,7 @@ public interface UserService {
 
     String getUserFirstNameAndLastNameById(Long userId);
 
-    Page<UserDto> getUsersBySearch(String search, Pageable pageable);
+    Page<UserDto> getUsersBySearch(String search, Pageable pageable, Long userId);
 
     void addUsersToSubjects(Long subjectId, Set<UserDto> students);
 }

@@ -19,8 +19,10 @@ export class UserService {
     pageIndex: number,
     pageSize: number,
   ): Observable<GetResponseUser> {
+    const userId = Number(this.getAcctualUserId());
     let params = this.getPageParams(pageIndex, pageSize);
     params = params.append('search', `${search}`);
+    params = params.append('userId', `${userId}`);
     return this.httpClient.get<GetResponseUser>(`${this.BASE_URL}/search`, { params });
   }
 
@@ -34,6 +36,10 @@ export class UserService {
     let studentsList = new UsersList;
     studentsList.students = users;
     this.httpClient.post<number>(this.BASE_URL + `/users?subjectId=${subjectId}`, studentsList).subscribe();
+  }
+
+  getAcctualUserId() {
+    return localStorage.getItem('user_id');
   }
 }
 

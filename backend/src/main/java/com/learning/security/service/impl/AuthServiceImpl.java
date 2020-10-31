@@ -8,6 +8,7 @@ import com.learning.rest.domain.entity.enums.RoleName;
 import com.learning.rest.domain.repository.RoleRepository;
 import com.learning.rest.domain.repository.UserRepository;
 import com.learning.security.jwt.JwtTokenProvider;
+import com.learning.security.model.UserPrincipal;
 import com.learning.security.payload.ApiResponse;
 import com.learning.security.payload.JwtAuthenticationResponse;
 import com.learning.security.payload.mapper.UserMapper;
@@ -45,6 +46,8 @@ public class AuthServiceImpl implements AuthService {
         String jwt = jwtTokenProvider.generateToken(authentication);
         JwtAuthenticationResponse response = new JwtAuthenticationResponse();
         response.setAccessToken(jwt);
+        UserPrincipal userPrincipal = (UserPrincipal)authentication.getPrincipal();
+        response.setRole(userPrincipal.getAuthorities().stream().findAny().get().toString());
         return response;
     }
 

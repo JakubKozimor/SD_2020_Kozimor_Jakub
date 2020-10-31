@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddClassesComponent } from './components/add-classes/add-classes.component';
 import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
 import { AddHomeworkComponent } from './components/add-homework/add-homework.component';
+import { AddScheduleComponent } from './components/add-schedule/add-schedule.component';
 import { AddStudentsComponent } from './components/add-students/add-students.component';
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { AllMessagesComponent } from './components/all-messages/all-messages.component';
@@ -23,6 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const appRoute: Routes = [
+  { path: 'add-schedule/:schoolId', component: AddScheduleComponent },
   { path: 'callendar', component: CalendarComponent },
   { path: 'add-students/:subjectId', component: AddStudentsComponent },
   { path: 'live', component: LiveComponent },

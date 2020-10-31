@@ -63,6 +63,7 @@ export class AddStudentsComponent implements OnInit {
     let table = new Array;
     table = Array.from(this.tempUsers)
     this.userService.addStudents(table, subjectId);
+    this.tempUsers = new Set();
   }
 
 }

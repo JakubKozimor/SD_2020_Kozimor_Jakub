@@ -13,7 +13,9 @@ export class AuthServiceService {
   private url = 'http://localhost:8080/auth';
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.loggedIn);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
   login(credentials: Credentials): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -21,6 +23,7 @@ export class AuthServiceService {
         (data: LoginResponse) => {
           this.saveToken("Bearer " + data.accessToken);
           const tokenDecoded: TokenDecoded = JSON.parse(atob(data.accessToken.split('.')[1]));
+          localStorage.setItem('user_role', data.role);
           localStorage.setItem('user_id', (+tokenDecoded.sub).toString());
           this.isLoggedInSubject.next(this.loggedIn);
           window.location.reload();

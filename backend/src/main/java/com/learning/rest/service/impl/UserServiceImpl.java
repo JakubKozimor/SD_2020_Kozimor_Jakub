@@ -13,10 +13,12 @@ import com.learning.rest.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,9 +38,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserDto> getUsersBySearch(String search, Pageable pageable) {
+    public Page<UserDto> getUsersBySearch(String search, Pageable pageable, Long userId) {
         Page<User> users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, pageable);
+        Optional<User> isPrincipalInList = users.stream()
+                .filter(user -> user.getUserId().equals(userId))
+                .findAny();
+        if (isPrincipalInList.isPresent()) {
+            users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize() + 1));
+        }
         List<UserDto> collect = users.stream()
+                .filter(user -> !user.getUserId().equals(userId))
                 .map(user -> {
                     UserDto userDto = userMapper.toUserDto(user);
                     userDto.setRoleName(user.getRoles().stream().findAny().orElseThrow(RoleNotFoundException::new).getName());

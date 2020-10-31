@@ -19,9 +19,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { HomeworkDetailsComponent } from './components/homework-details/homework-details.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AddHomeworkComponent } from './components/add-homework/add-homework.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddHomeworkAnswerComponent } from './components/add-homework-answer/add-homework-answer.component';
 import { DoneHomeworksComponent } from './components/done-homeworks/done-homeworks.component';
 import { HomeworkAnswerDetailsComponent } from './components/homework-answer-details/homework-answer-details.component';
@@ -31,6 +31,11 @@ import { AddClassesComponent } from './components/add-classes/add-classes.compon
 import { LiveComponent } from './components/live/live.component';
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { AddStudentsComponent } from './components/add-students/add-students.component';
+import { AddScheduleComponent } from './components/add-schedule/add-schedule.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -59,14 +64,23 @@ import { AddStudentsComponent } from './components/add-students/add-students.com
     LiveComponent,
     AddSubjectComponent,
     AddStudentsComponent,
+    AddScheduleComponent,
   ],
   imports: [
+    CommonModule,
     AppRoutingModule,
     BrowserModule,
     NgbModule,
+    NgbModalModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   providers: [
     DatePipe,

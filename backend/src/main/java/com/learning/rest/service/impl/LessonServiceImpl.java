@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,7 +47,7 @@ public class LessonServiceImpl implements LessonService {
                     .map(lessonMap::mapToLessonFile)
                     .forEach(lesson::addFile);
         }
-        List<User> students = subject.getStudents();
+        Set<User> students = subject.getStudents();
         if (students != null) {
             students.forEach(lesson::addStudent);
         }

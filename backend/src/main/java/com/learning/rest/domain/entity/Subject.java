@@ -10,7 +10,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "subjects")
@@ -54,7 +56,7 @@ public class Subject {
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     @JsonBackReference
-    private List<User> students;
+    private Set<User> students;
 
     public void addFile(SubjectFile lessonFile) {
         if (files == null) {
@@ -72,7 +74,7 @@ public class Subject {
 
     public void addStudent(User user) {
         if (students == null) {
-            students = new ArrayList<>();
+            students = new HashSet<>();
         }
         students.add(user);
     }

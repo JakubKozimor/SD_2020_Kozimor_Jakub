@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet id="19" author="Jakub">
+    <changeSet id="22" author="Jakub">
         <insert tableName="roles">
             <column name="name" value="ROLE_STUDENT"/>
         </insert>
@@ -200,6 +200,26 @@
             <column name="to_user" value="1"/>
             <column name="date" value="2020-09-12 12:55:23"/>
             <column name="status" value="UNREAD"/>
+        </insert>
+
+
+        <insert tableName="schools">
+            <column name="school_id" value="1"/>
+            <column name="name" value="Uniwersytet Rzeszowski"/>
+        </insert>
+
+
+        <insert tableName="base_calendar">
+            <column name="calendar_id" value="1"/>
+            <column name="date" value="2020-10-30"/>
+        </insert>
+
+
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="1"/>
+            <column name="calendar_id" value="1"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

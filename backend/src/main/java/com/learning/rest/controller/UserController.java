@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
-
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -22,8 +20,9 @@ public class UserController {
 
     @GetMapping("/search")
     public ResponseEntity<Page<UserDto>> searchUsers(Pageable pageable,
-                                                     @RequestParam("search") String search) {
-        return new ResponseEntity<>(userService.getUsersBySearch(search, pageable), HttpStatus.OK);
+                                                     @RequestParam("search") String search,
+                                                     @RequestParam("userId") Long userId) {
+        return new ResponseEntity<>(userService.getUsersBySearch(search, pageable, userId), HttpStatus.OK);
     }
 
     @PostMapping("/users")
