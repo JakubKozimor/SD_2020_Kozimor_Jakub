@@ -21,5 +21,6 @@
         </div>
     </div>
     <br>
-    <button class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userFromId }}">Odpowiedz</button>
+    <button *ngIf="loggedUserId != messageDetails.userFromId" class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userFromId }}">Odpowiedz</button>
+    <button *ngIf="loggedUserId == messageDetails.userFromId" class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userToId }}">Odpowiedz</button>
 </div>

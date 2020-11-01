@@ -28,6 +28,7 @@ public class HomeworkAnswer {
     private Homework homework;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student")
+    @JsonBackReference
     private User student;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "homework_answer_id")

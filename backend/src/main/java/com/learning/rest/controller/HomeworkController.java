@@ -39,7 +39,7 @@ public class HomeworkController {
         return new ResponseEntity<>(homeworkService.getAllLateHomeworks(userId, pageable, subjectId), HttpStatus.OK);
     }
 
-    @PreAuthorize("#userId == principal.id")
+//    @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/done")
     public ResponseEntity<Page<Homework>> getAllDoneHomeworkByUser(@PathVariable Long userId,
                                                                    Pageable pageable,

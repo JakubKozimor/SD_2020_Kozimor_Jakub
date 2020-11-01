@@ -1,5 +1,6 @@
 package com.learning.rest.controller;
 
+import com.learning.rest.domain.dto.calendar.ActualWeekDto;
 import com.learning.rest.domain.dto.calendar.CalendarDto;
 import com.learning.rest.domain.dto.calendar.NewEventDto;
 import com.learning.rest.service.CalendarService;
@@ -26,8 +27,14 @@ public class CalendarController {
     @PostMapping("/{schoolId}")
     public ResponseEntity<Void> addNewEvent(@RequestBody NewEventDto newEvent,
                                             @PathVariable Long schoolId) {
-        calendarService.addNewEvent(newEvent,schoolId);
+        calendarService.addNewEvent(newEvent, schoolId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/actual-week")
+    public ResponseEntity<ActualWeekDto> getActualWeek(@RequestParam("userId") Long userId) {
+        return new ResponseEntity<>(calendarService.getActualWeek(userId), HttpStatus.OK);
+    }
+
 
 }

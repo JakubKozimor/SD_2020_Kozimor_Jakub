@@ -1,19 +1,15 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  DoCheck,
-  ChangeDetectorRef,
-  ApplicationRef,
   ElementRef,
 } from '@angular/core';
 import {
   startOfDay,
   subDays,
 } from 'date-fns';
-import { pipe, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -100,7 +96,6 @@ export class AddScheduleComponent implements OnInit {
     this.schooltId = Number(this.route.snapshot.paramMap.get("schoolId"));
     this.validateForm = this.createWeekForm();
     this.getAllEvents();
-    console.log(this.events)
   }
 
   getAllEvents(){

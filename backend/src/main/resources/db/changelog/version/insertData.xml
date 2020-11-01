@@ -21,12 +21,14 @@
             <column name="last_name" value="FirstStudentLastName"/>
             <column name="email" value="firstStudent@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+            <column name="school" value="1"/>
         </insert>
         <insert tableName="users">
             <column name="first_name" value="SecondStudentFirstName"/>
             <column name="last_name" value="SecondStudentLastName"/>
             <column name="email" value="secondStudent@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+            <column name="school" value="1"/>
         </insert>
         <insert tableName="users">
             <column name="first_name" value="TeacherFirstName"/>
@@ -34,6 +36,13 @@
             <column name="email" value="teacher@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
             <column name="twitch_nick" value="testStreamTeacher"/>
+            <column name="school" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="first_name" value="Admin"/>
+            <column name="last_name" value="Admin"/>
+            <column name="email" value="admin@gmail.com"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
         </insert>
 
 
@@ -50,6 +59,10 @@
         <insert tableName="users_roles">
             <column name="role_id" value="2"/>
             <column name="user_id" value="3"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="role_id" value="3"/>
+            <column name="user_id" value="4"/>
         </insert>
 
 
@@ -143,7 +156,7 @@
             <column name="homework_id" value="2"/>
             <column name="title" value="Schemat bazy dancyh"/>
             <column name="description" value="Zrobić przykładowy schemat bazy danych MySQL"/>
-            <column name="deadline" value="2020-10-29"/>
+            <column name="deadline" value="2020-11-29"/>
             <column name="subject_id" value="3"/>
             <column name="status" value="ACTIVE"/>
         </insert>
@@ -153,26 +166,44 @@
             <column name="description" value="Poprawić wygląd strony używając bootstrapa"/>
             <column name="deadline" value="2020-10-28"/>
             <column name="subject_id" value="2"/>
-            <column name="status" value="ACTIVE"/>
+            <column name="status" value="LATE"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="4"/>
             <column name="title" value="Java podstawy"/>
             <column name="description" value="Zrobić zadania"/>
-            <column name="deadline" value="2020-09-20"/>
+            <column name="deadline" value="2020-11-23"/>
             <column name="subject_id" value="1"/>
-            <column name="status" value="LATE"/>
+            <column name="status" value="ACTIVE"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="5"/>
             <column name="title" value="Spring"/>
             <column name="description" value="Zrobić połączenie z angularem"/>
-            <column name="deadline" value="2020-10-30"/>
+            <column name="deadline" value="2020-11-30"/>
             <column name="subject_id" value="4"/>
             <column name="status" value="ACTIVE"/>
         </insert>
 
-
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="1"/>
+            <column name="message" value="Poprawiona"/>
+            <column name="homework" value="3"/>
+            <column name="student" value="1"/>
+        </insert>
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="2"/>
+            <column name="message" value="Odp"/>
+            <column name="homework" value="2"/>
+            <column name="student" value="1"/>
+            <column name="grade" value="3"/>
+        </insert>
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="3"/>
+            <column name="message" value="Odpowiedź"/>
+            <column name="homework" value="4"/>
+            <column name="student" value="1"/>
+        </insert>
 
         <insert tableName="messages">
             <column name="message_id" value="1"/>

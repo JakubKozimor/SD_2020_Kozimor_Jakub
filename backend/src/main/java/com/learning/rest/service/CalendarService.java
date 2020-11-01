@@ -1,5 +1,6 @@
 package com.learning.rest.service;
 
+import com.learning.rest.domain.dto.calendar.ActualWeekDto;
 import com.learning.rest.domain.dto.calendar.CalendarDto;
 import com.learning.rest.domain.dto.calendar.NewEventDto;
 
@@ -10,4 +11,6 @@ public interface CalendarService {
     List<CalendarDto> getCalendarBySchool(Long schoolId);
 
     void addNewEvent(NewEventDto newEvent, Long schoolId);
+
+    ActualWeekDto getActualWeek(Long userId);
 }

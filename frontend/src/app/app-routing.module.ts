@@ -23,8 +23,26 @@ import { MessageComponent } from './components/message/message.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
-const appRoute: Routes = [
-  { path: 'add-schedule/:schoolId', component: AddScheduleComponent },
+const studentRoutes: Routes = [
+  { path: 'callendar', component: CalendarComponent },
+  { path: 'live', component: LiveComponent },
+  { path: 'classes/:classesId', component: ClassesComponent },
+  { path: 'subject-homework/:subjectId', component: HomeworksBySubjectComponent },
+  { path: 'allSubjects', component: AllSubjectsComponent },
+  { path: 'homework-answer-details/:homeworkId', component: HomeworkAnswerDetailsComponent },
+  { path: 'homeworks-done', component: DoneHomeworksComponent },
+  { path: 'createHomeworkAnswer/:homeworkId', component: AddHomeworkAnswerComponent },
+  { path: 'viewHomework/:homeworkId', component: HomeworkDetailsComponent },
+  { path: 'viewMessage/:messageId', component: MessageDetailsComponent },
+  { path: 'createMessage/:userToId', component: MessageComponent },
+  { path: 'allMessages', component: AllMessagesComponent },
+  { path: 'teachers', component: TeachersComponent },
+  { path: 'homework', component: HomeworkComponent },
+  { path: 'menu', component: ContentComponent },
+  { path: '', redirectTo: '/menu', pathMatch: 'full' },
+  { path: '**', redirectTo: '/menu', pathMatch: 'full' }
+];
+const teacherRoutes: Routes = [
   { path: 'callendar', component: CalendarComponent },
   { path: 'add-students/:subjectId', component: AddStudentsComponent },
   { path: 'live', component: LiveComponent },
@@ -43,9 +61,14 @@ const appRoute: Routes = [
   { path: 'allMessages', component: AllMessagesComponent },
   { path: 'teachers', component: TeachersComponent },
   { path: 'homework', component: HomeworkComponent },
-  { path: 'menu/:week', component: ContentComponent },
-  { path: '', redirectTo: '/menu/ALL', pathMatch: 'full' },
-  { path: '**', redirectTo: '/menu/ALL', pathMatch: 'full' }
+  { path: 'menu', component: ContentComponent },
+  { path: '', redirectTo: '/menu', pathMatch: 'full' },
+  { path: '**', redirectTo: '/menu', pathMatch: 'full' }
+];
+const adminRoutes: Routes = [
+  { path: 'add-schedule/:schoolId', component: AddScheduleComponent },
+  { path: '', redirectTo: '/add-schedule/1', pathMatch: 'full' },
+  { path: '**', redirectTo: '/add-schedule/1', pathMatch: 'full' }
 ];
 
 const loginRoute: Routes = [
@@ -59,8 +82,18 @@ let routes: Routes;
 
 let isToken = localStorage.getItem("access_token");
 
+let role = localStorage.getItem("user_role");
+
 if (isToken) {
-  routes = appRoute;
+  if(role == 'ROLE_STUDENT'){
+    routes = studentRoutes;
+  }
+  if(role == 'ROLE_TEACHER'){
+    routes = teacherRoutes;
+  }
+  if(role == 'ROLE_ADMIN'){
+    routes = adminRoutes;
+  }
 } else {
   routes = loginRoute;
 }

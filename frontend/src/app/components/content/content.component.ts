@@ -5,6 +5,7 @@ import { HomeworkService } from 'src/app/services/homework.service';
 import { Homework } from 'src/app/common/homework';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Global } from 'src/app/global';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-content',
@@ -27,8 +28,8 @@ export class ContentComponent implements OnInit {
     private subjectService: SubjectService, 
     private homeworkService: HomeworkService,
     private route: ActivatedRoute,
-    private router: Router,
-    private global: Global) { }
+    private calendarService: CalendarService
+    ) { }
 
   ngOnInit(): void {
     this.listOfFiveSubjects();
@@ -39,8 +40,9 @@ export class ContentComponent implements OnInit {
   }
   
   listOfFiveSubjects() {
-    let week = this.global.getWeek();
-    this.subjectService.getFiveFirstSubjectsByUser(week).subscribe(data => this.subjectsList = data);
+    this.calendarService.getActualWeek().subscribe(data => {
+            this.subjectService.getFiveFirstSubjectsByUser(data.week).subscribe(data => this.subjectsList = data);
+    });
   }
 
   listOfHomework() {
@@ -87,17 +89,6 @@ export class ContentComponent implements OnInit {
     }
     if (day == 'FRIDAY') {
       return "Piątek"
-    }
-  }
-
-  changeWeek(week: string) {
-    this.global.setWeek(week);
-    this.changeRoute(week);
-    this.ngOnInit();
-  }
-  changeRoute(week: string){
-    if(this.router.url.includes("menu")){
-      this.router.navigate(['menu/'+week]);
     }
   }
 }

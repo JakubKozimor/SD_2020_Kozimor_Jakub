@@ -2,20 +2,25 @@ package com.learning.rest.service.impl;
 
 import com.learning.exception.calendar.DayNotFoundException;
 import com.learning.exception.school.SchoolNotFoundException;
+import com.learning.exception.user.UserNotFoundException;
+import com.learning.rest.domain.dto.calendar.ActualWeekDto;
 import com.learning.rest.domain.dto.calendar.CalendarDto;
 import com.learning.rest.domain.dto.calendar.NewEventDto;
 import com.learning.rest.domain.entity.BaseCalendar;
 import com.learning.rest.domain.entity.CalendarSchool;
 import com.learning.rest.domain.entity.School;
+import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.entity.enums.Week;
 import com.learning.rest.domain.mapper.CalendarMapper;
 import com.learning.rest.domain.repository.BaseCalendarRepository;
 import com.learning.rest.domain.repository.CalendarSchoolRepository;
 import com.learning.rest.domain.repository.SchoolRepository;
+import com.learning.rest.domain.repository.UserRepository;
 import com.learning.rest.service.CalendarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -31,6 +36,7 @@ public class CalendarServiceImpl implements CalendarService {
     private final CalendarMapper calendarMapper;
     private final BaseCalendarRepository baseCalendarRepository;
     private final CalendarSchoolRepository calendarSchoolRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
@@ -63,6 +69,27 @@ public class CalendarServiceImpl implements CalendarService {
             calendarSchool.setWeek(Week.valueOf(newEvent.getTitle()));
             calendarSchoolRepository.save(calendarSchool);
         }
+    }
+
+    @Override
+    public ActualWeekDto getActualWeek(Long userId) {
+        ActualWeekDto actualWeekDto = new ActualWeekDto();
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        School school = user.getSchool();
+        Optional<BaseCalendar> baseCalendar = baseCalendarRepository.findByDate(Date.valueOf(LocalDate.now()));
+        if (baseCalendar.isEmpty()) {
+            actualWeekDto.setWeek(Week.ALL);
+            return actualWeekDto;
+        }
+        List<CalendarSchool> calendarSchool = baseCalendar.get().getCalendarSchool();
+        Optional<CalendarSchool> optionalCalendarSchool = calendarSchool.stream()
+                .filter(object -> object.getSchool().getSchoolId().equals(school.getSchoolId()))
+                .findAny();
+        if (optionalCalendarSchool.isPresent())
+            actualWeekDto.setWeek(optionalCalendarSchool.get().getWeek());
+        else
+            actualWeekDto.setWeek(Week.ALL);
+        return actualWeekDto;
     }
 
     private void insertAllDaysByYear(int year) {

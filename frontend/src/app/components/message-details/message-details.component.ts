@@ -14,6 +14,8 @@ export class MessageDetailsComponent implements OnInit {
 
   messageDetails: MessageDetails;
 
+  loggedUserId: number;
+
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class MessageDetailsComponent implements OnInit {
   ngOnInit(): void {
     let messageId = this.route.snapshot.paramMap.get('messageId');
     this.getMessageDetails(Number(messageId));
+    this.loggedUserId = Number(this.getAcctualUserId());
   }
 
   getMessageDetails(messageId: number) {
@@ -35,6 +38,10 @@ export class MessageDetailsComponent implements OnInit {
 
   transformDate(date) {
     return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
+
+  getAcctualUserId() {
+    return localStorage.getItem('user_id');
   }
 
 }

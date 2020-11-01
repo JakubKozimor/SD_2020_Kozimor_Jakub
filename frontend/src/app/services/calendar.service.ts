@@ -1,23 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
-import { CalendarDto } from '../common/calendar-dto';
-import {startOfDay,subDays} from 'date-fns';
 import { Observable } from 'rxjs';
 import { NewEvent } from '../common/new-event';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121'
-  },
-  blue: {
-    primary: '#1e90ff'
-  },
-  yellow: {
-    primary: '#e3bc08'
-  },
-};
-
+import { ActualWeekDto } from '../common/actual-week-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +22,11 @@ export class CalendarService {
     return this.httpClient.get<NewEvent[]>(`${this.BASE_URL}/all?schoolId=${schoolId}`).pipe();
   }
 
+  getActualWeek(): Observable<ActualWeekDto> {
+    let userId = Number(this.getAcctualUserId());
+    return this.httpClient.get<ActualWeekDto>(`${this.BASE_URL}/actual-week?userId=${userId}`).pipe();
+  }
+
   addEvent(newEvent: NewEvent, schoolId: number){
     return new Promise<any>((resolve, reject) => {
       this.httpClient.post(this.BASE_URL + `/${schoolId}`, newEvent)
@@ -49,5 +40,9 @@ export class CalendarService {
         );
     });
 
+  }
+
+  getAcctualUserId() {
+    return localStorage.getItem('user_id');
   }
 }
