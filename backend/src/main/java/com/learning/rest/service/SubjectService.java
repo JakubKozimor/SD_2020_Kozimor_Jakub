@@ -17,5 +17,7 @@ public interface SubjectService {
 
     List<Subject> getFirstFiveSubjectsByUserId(Long userId, Week week);
 
+    List<Subject> getFirstFiveSubjectsForTeacher(Long userId, Week week);
+
     Long addSubject(Long teacherId, SubjectDto subjectDto);
 }

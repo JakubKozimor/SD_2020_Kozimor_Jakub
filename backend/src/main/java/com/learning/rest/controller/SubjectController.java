@@ -30,6 +30,13 @@ public class SubjectController {
         return new ResponseEntity<>(subjectService.getAllSubjectsByUserId(userId, pageable, week), HttpStatus.OK);
     }
 
+    @PreAuthorize("#userId == principal.id && hasRole('ROLE_TEACHER')")
+    @GetMapping("/{userId}/five-first-teacher")
+    public ResponseEntity<List<Subject>> getFirstFiveSubjectsForTeacher(@PathVariable Long userId,
+                                                                        @RequestParam("week") Week week) {
+        return new ResponseEntity<>(subjectService.getFirstFiveSubjectsForTeacher(userId, week), HttpStatus.OK);
+    }
+
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/five-first")
     public ResponseEntity<List<Subject>> getFirstFiveSubjectsByUser(@PathVariable Long userId,

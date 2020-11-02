@@ -151,14 +151,16 @@
             <column name="deadline" value="2020-09-20"/>
             <column name="subject_id" value="2"/>
             <column name="status" value="LATE"/>
+            <column name="rated" value="NOT_RATED"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="2"/>
             <column name="title" value="Schemat bazy dancyh"/>
             <column name="description" value="Zrobić przykładowy schemat bazy danych MySQL"/>
-            <column name="deadline" value="2020-11-29"/>
+            <column name="deadline" value="2020-10-29"/>
             <column name="subject_id" value="3"/>
             <column name="status" value="ACTIVE"/>
+            <column name="rated" value="RATED"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="3"/>
@@ -167,6 +169,7 @@
             <column name="deadline" value="2020-10-28"/>
             <column name="subject_id" value="2"/>
             <column name="status" value="LATE"/>
+            <column name="rated" value="NOT_RATED"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="4"/>
@@ -175,6 +178,7 @@
             <column name="deadline" value="2020-11-23"/>
             <column name="subject_id" value="1"/>
             <column name="status" value="ACTIVE"/>
+            <column name="rated" value="NOT_RATED"/>
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="5"/>
@@ -183,7 +187,19 @@
             <column name="deadline" value="2020-11-30"/>
             <column name="subject_id" value="4"/>
             <column name="status" value="ACTIVE"/>
+            <column name="rated" value="NOT_RATED"/>
         </insert>
+        <insert tableName="homeworks">
+            <column name="homework_id" value="6"/>
+            <column name="title" value="Zadanie nieocenione"/>
+            <column name="description" value="Oceń zadania"/>
+            <column name="deadline" value="2020-10-29"/>
+            <column name="subject_id" value="3"/>
+            <column name="status" value="LATE"/>
+            <column name="rated" value="NOT_RATED"/>
+        </insert>
+
+
 
         <insert tableName="homework_answer">
             <column name="homework_answer_id" value="1"/>
@@ -204,6 +220,13 @@
             <column name="homework" value="4"/>
             <column name="student" value="1"/>
         </insert>
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="4"/>
+            <column name="message" value="Odpgfdgdfgd"/>
+            <column name="homework" value="6"/>
+            <column name="student" value="1"/>
+        </insert>
+
 
         <insert tableName="messages">
             <column name="message_id" value="1"/>

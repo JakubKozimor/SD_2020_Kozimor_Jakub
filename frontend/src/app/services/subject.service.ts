@@ -30,7 +30,13 @@ export class SubjectService {
 
   public getFiveFirstSubjectsByUser(week:string): Observable<Subject[]> {
     const userId = this.getAcctualUserId();
-    return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first?week=${week}`);
+    let role = this.getActualUserRole();
+    if(role == 'ROLE_TEACHER'){
+      return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first-teacher?week=${week}`);
+    }
+    if(role == 'ROLE_STUDENT'){
+      return this.httpClient.get<Subject[]>(`${this.BASE_URL}/${userId}/five-first?week=${week}`);
+    }
   }
 
   getPageParams(pageIndex: number, pageSize: number): HttpParams {
@@ -41,6 +47,10 @@ export class SubjectService {
 
   getAcctualUserId() {
     return localStorage.getItem('user_id');
+  }
+
+  getActualUserRole(){
+    return localStorage.getItem("user_role");
   }
 }
 

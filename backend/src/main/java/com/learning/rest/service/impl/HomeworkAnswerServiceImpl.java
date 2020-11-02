@@ -4,20 +4,24 @@ import com.learning.exception.homework.HomeworkNotFoundException;
 import com.learning.exception.homeworkAnswer.HomeworkAnswerNotFoundException;
 import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerDetailsDto;
 import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerDto;
+import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerUserDetailsDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.HomeworkAnswer;
 import com.learning.rest.domain.entity.HomeworkAnswerFile;
 import com.learning.rest.domain.mapper.HomeworkAnswerMapper;
-import com.learning.rest.domain.repository.HomeworkAnswerFileRepository;
 import com.learning.rest.domain.repository.HomeworkAnswerRepository;
 import com.learning.rest.domain.repository.HomeworkRepository;
 import com.learning.rest.service.HomeworkAnswerService;
 import com.learning.rest.service.map.HomeworkAnswerMap;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -56,4 +60,23 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
         homeworkAnswerRepository.save(homeworkAnswer);
     }
 
+    @Override
+    public Page<HomeworkAnswerUserDetailsDto> getAllHomeworkAnswersWithNoGrade(Long homeworkId, Pageable pageable) {
+        Homework homework = homeworkRepository.findById(homeworkId).orElseThrow(HomeworkAnswerNotFoundException::new);
+        Page<HomeworkAnswer> allAnswersByHomework = homeworkAnswerRepository.findAllByHomeworkAndGradeIsNull(homework , pageable);
+        List<HomeworkAnswerUserDetailsDto> homeworkAnswerUserDetailsDtoList = allAnswersByHomework.stream()
+                .map(homeworkAnswerMapper::toHomeworkAnswerUserDetailsDto)
+                .collect(Collectors.toList());
+        return new PageImpl<>(homeworkAnswerUserDetailsDtoList, pageable, allAnswersByHomework.getTotalElements());
+    }
+
+    @Override
+    public Page<HomeworkAnswerUserDetailsDto> getAllHomeworkAnswersWithGrade(Long homeworkId, Pageable pageable) {
+        Homework homework = homeworkRepository.findById(homeworkId).orElseThrow(HomeworkAnswerNotFoundException::new);
+        Page<HomeworkAnswer> allAnswersByHomework = homeworkAnswerRepository.findAllByHomeworkAndGradeIsNotNull(homework , pageable);
+        List<HomeworkAnswerUserDetailsDto> homeworkAnswerUserDetailsDtoList = allAnswersByHomework.stream()
+                .map(homeworkAnswerMapper::toHomeworkAnswerUserDetailsDto)
+                .collect(Collectors.toList());
+        return new PageImpl<>(homeworkAnswerUserDetailsDtoList, pageable, allAnswersByHomework.getTotalElements());
+    }
 }

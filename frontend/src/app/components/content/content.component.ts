@@ -22,6 +22,8 @@ export class ContentComponent implements OnInit {
   minute: number;
   subjectTime: number;
 
+  isTeacher: boolean;
+
   subjectsList: Subject[];
 
   constructor(
@@ -29,7 +31,16 @@ export class ContentComponent implements OnInit {
     private homeworkService: HomeworkService,
     private route: ActivatedRoute,
     private calendarService: CalendarService
-    ) { }
+    ) {
+
+    let role = this.getActualUserRole();
+    if(role == 'ROLE_TEACHER'){
+      this.isTeacher = true;
+    }
+    if(role == 'ROLE_STUDENT'){
+      this.isTeacher = false;
+    }
+     }
 
   ngOnInit(): void {
     this.listOfFiveSubjects();
@@ -90,5 +101,9 @@ export class ContentComponent implements OnInit {
     if (day == 'FRIDAY') {
       return "Piątek"
     }
+  }
+
+  getActualUserRole(){
+    return localStorage.getItem("user_role");
   }
 }

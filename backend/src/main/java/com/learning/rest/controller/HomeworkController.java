@@ -61,6 +61,12 @@ public class HomeworkController {
         return new ResponseEntity<>(homeworkService.getFiveActiveHomeworks(userId), HttpStatus.OK);
     }
 
+    @PreAuthorize("#userId == principal.id && hasRole('ROLE_TEACHER')")
+    @GetMapping("/{userId}/five-first-teacher")
+    public ResponseEntity<List<Homework>> getFiveActiveHomeworkForTeacher(@PathVariable Long userId) {
+        return new ResponseEntity<>(homeworkService.getFiveActiveHomeworksForTeacher(userId), HttpStatus.OK);
+    }
+
 
     @GetMapping("/homework-details/{homeworkId}")
     public ResponseEntity<HomeworkDetailsDto> getMessageDetails(@PathVariable("homeworkId") Long homeworkId) {

@@ -95,6 +95,22 @@ public class SubjectServiceImpl implements SubjectService {
             notFreeWeek = week;
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<Subject> allSubjects = user.getSubjects();
+        return this.getFivSubjects(allSubjects, notFreeWeek);
+    }
+
+    @Override
+    public List<Subject> getFirstFiveSubjectsForTeacher(Long userId, Week week) {
+        Week notFreeWeek;
+        if (week == Week.FREE)
+            notFreeWeek = this.findNotFreeWeek(userId);
+        else
+            notFreeWeek = week;
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        List<Subject> allSubjects = subjectRepository.findAllByTeacher(user);
+        return this.getFivSubjects(allSubjects, notFreeWeek);
+    }
+
+    private List<Subject> getFivSubjects(List<Subject> allSubjects, Week notFreeWeek) {
         List<Subject> fiveSubjects = allSubjects
                 .stream()
                 .filter(subject -> this.filterByWeek(subject, notFreeWeek))
@@ -103,7 +119,7 @@ public class SubjectServiceImpl implements SubjectService {
                 .limit(CustomConstants.FIVE_SUBJECTS)
                 .collect(Collectors.toList());
         if (fiveSubjects.size() < CustomConstants.FIVE_SUBJECTS)
-            return this.addFromNextWeek(allSubjects, fiveSubjects, week);
+            return this.addFromNextWeek(allSubjects, fiveSubjects, notFreeWeek);
         else
             return fiveSubjects;
     }

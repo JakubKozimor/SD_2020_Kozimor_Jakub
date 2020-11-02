@@ -29,7 +29,8 @@
     </div>
   </div>
   <div class="info-div">
-    <h2>Zadania</h2>
+    <h2 *ngIf="!isTeacher">Zadania</h2>
+    <h2 *ngIf="isTeacher">Zadania do oceny</h2>
     <div class="big-column">
    
       <div class="homework-row" *ngFor="let tempHomework of homeworkList">

@@ -41,6 +41,20 @@ export class UserService {
   getAcctualUserId() {
     return localStorage.getItem('user_id');
   }
+
+  getActualUserRole(){
+    return localStorage.getItem("user_role");
+  }
+
+    // let role = this.getActualUserRole();
+    // if(role == 'ROLE_TEACHER'){
+
+    // }
+    // if(role == 'ROLE_STUDENT'){
+      
+    // }
+  
+  
 }
 
 export interface GetResponseUser {

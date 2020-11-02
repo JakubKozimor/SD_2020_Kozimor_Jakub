@@ -1,6 +1,7 @@
 package com.learning.rest.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.learning.rest.domain.entity.enums.HomeworkRatedStatus;
 import com.learning.rest.domain.entity.enums.HomeworkStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,9 @@ public class Homework {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private HomeworkStatus status;
+    @Column(name = "rated")
+    @Enumerated(EnumType.STRING)
+    private HomeworkRatedStatus rated;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "homework")
     private List<HomeworkAnswer> homeworkAnswers;

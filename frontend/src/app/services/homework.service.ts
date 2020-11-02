@@ -67,7 +67,13 @@ export class HomeworkService {
 
   getFiveFirstHomeworksByUser(): Observable<Homework[]> {
     const userId = this.getAcctualUserId();
-    return this.httpClient.get<Homework[]>(`${this.BASE_URL}/${userId}/five-first`);
+        let role = this.getActualUserRole();
+    if(role == 'ROLE_TEACHER'){
+      return this.httpClient.get<Homework[]>(`${this.BASE_URL}/${userId}/five-first-teacher`);
+    }
+    if(role == 'ROLE_STUDENT'){
+      return this.httpClient.get<Homework[]>(`${this.BASE_URL}/${userId}/five-first`);
+    }
   }
 
   getPageParams(pageIndex: number, pageSize: number): HttpParams {
@@ -78,6 +84,10 @@ export class HomeworkService {
 
   getAcctualUserId() {
     return localStorage.getItem('user_id');
+  }
+
+  getActualUserRole(){
+    return localStorage.getItem("user_role");
   }
 
   getHomeworkDetails(homeworkId: number): Observable<HomeworkDetails> {

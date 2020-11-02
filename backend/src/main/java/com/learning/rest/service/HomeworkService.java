@@ -20,6 +20,8 @@ public interface HomeworkService {
 
     List<Homework> getFiveActiveHomeworks(Long userId);
 
+    List<Homework> getFiveActiveHomeworksForTeacher(Long userId);
+
     HomeworkDetailsDto getHomeworkDetails(Long homeworkId);
 
     void createHomework(HomeworkDto homeworkDto, Long subjectId);

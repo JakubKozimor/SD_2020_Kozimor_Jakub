@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HomeworkAnswer } from '../common/homework-answer';
 import { HomeworkAnswerDetails } from '../common/homework-answer-details';
+import { HomeworkAnswerDto } from '../common/homework-answer-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,43 @@ export class HomeworkAnswerService {
     });
   }
 
+  getAllHomeworkAnswers(
+    pageIndex: number,
+    pageSize: number,
+    homeworkId: number
+  ): Observable<GetResponseHomreworkAnswer> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('homeworkId', `${homeworkId}`);
+    return this.httpClient.get<GetResponseHomreworkAnswer>(`${this.BASE_URL}/all-no-grade`, { params });
+  }
+
+
+  getAllHomeworkAnswersWithGrade(
+    pageIndex: number,
+    pageSize: number,
+    homeworkId: number
+  ): Observable<GetResponseHomreworkAnswer> {
+
+    let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('homeworkId', `${homeworkId}`);
+    return this.httpClient.get<GetResponseHomreworkAnswer>(`${this.BASE_URL}/all-grade`, { params });
+  }
+
+  getPageParams(pageIndex: number, pageSize: number): HttpParams {
+    return new HttpParams()
+      .append('page', `${pageIndex}`)
+      .append('size', `${pageSize}`);
+  }
+
   getAcctualUserId() {
     return localStorage.getItem('user_id');
   }
+}
+export interface GetResponseHomreworkAnswer {
+  content: HomeworkAnswerDto[];
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  number: number;
 }

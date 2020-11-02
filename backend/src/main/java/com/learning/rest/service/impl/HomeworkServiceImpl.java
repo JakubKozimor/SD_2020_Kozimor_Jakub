@@ -11,6 +11,7 @@ import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.entity.enums.HomeworkRatedStatus;
 import com.learning.rest.domain.entity.enums.HomeworkStatus;
 import com.learning.rest.domain.mapper.HomeworkMapper;
 import com.learning.rest.domain.repository.HomeworkRepository;
@@ -116,7 +117,21 @@ public class HomeworkServiceImpl implements HomeworkService {
                 .sorted(Comparator.comparing(Homework::getDeadline))
                 .limit(CustomConstants.FIVE_HOMEWORKS)
                 .collect(Collectors.toList());
+    }
 
+    @Override
+    public List<Homework> getFiveActiveHomeworksForTeacher(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        List<Subject> allSubjectsByTeacher = subjectRepository.findAllByTeacher(user);
+        List<Homework> allHomeworks = new ArrayList<>();
+        allSubjectsByTeacher
+                .forEach(subject -> allHomeworks.addAll(subject.getHomeworks()));
+        return allHomeworks.stream()
+                .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
+                .filter(homework -> homework.getRated() == HomeworkRatedStatus.NOT_RATED)
+                .sorted(Comparator.comparing(Homework::getDeadline))
+                .limit(CustomConstants.FIVE_HOMEWORKS)
+                .collect(Collectors.toList());
     }
 
     @Override
