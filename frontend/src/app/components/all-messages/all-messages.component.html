@@ -92,3 +92,37 @@
       </select>
   </div>
 </div>
+
+<input type="text" (change)="search($event.target.value)" placeholder="Szukaj" />
+<button class="btn btn-primary" (click)="search(searchValue)">Szukaj</button>
+<main>
+    <div>
+        <span>Imie</span>
+        <span>Nazwisko</span>
+        <span>Email</span>
+        <span>Rola</span>
+        <span></span>
+    </div>
+    <div *ngFor="let tempStudent of studentsList">
+        <div>
+            <span>{{tempStudent.firstName}}</span>
+            <span>{{tempStudent.lastName}}</span>
+            <span>{{tempStudent.email}}</span>
+            <span>{{tempStudent.roleName}}</span>
+            <button class="btn btn-primary" routerLink="/createMessage/{{ tempStudent.userId }}">Nowa wiadomość</button>
+        </div>
+    </div>
+    <div class="pagination">
+        <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize" [collectionSize]="theElements" [maxSize]="4"
+            [boundaryLinks]="true" (pageChange)="listOfStudents()">
+        </ngb-pagination>
+        <div>
+            <select class="form-control" (change)="updateQuantity($event.target.value)">
+                <option selected="true">5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+            </select>
+        </div>
+    </div>
+</main>

@@ -36,6 +36,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/rate-homework-answer.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddSubjectComponent,
     AddStudentsComponent,
     AddScheduleComponent,
+    RateHomeworkAnswerComponent,
   ],
   imports: [
     CommonModule,

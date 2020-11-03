@@ -44,6 +44,12 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
     }
 
     @Override
+    public HomeworkAnswerDetailsDto getHomeworkAnswerDetailsByAnswerId(Long answerId) {
+        HomeworkAnswer homeworkAnswer = homeworkAnswerRepository.findById(answerId).orElseThrow(HomeworkAnswerNotFoundException::new);
+        return homeworkAnswerMapper.toHomeworkAnswerDetailsDto(homeworkAnswer);
+    }
+
+    @Override
     public void addHomeworkAnswer(HomeworkAnswerDto homeworkAnswerDto) {
         HomeworkAnswer homeworkAnswer = homeworkAnswerMap.mapFromHomeworkAnswerDtoToHomeworkAnswer(homeworkAnswerDto);
         homeworkAnswerRepository.save(homeworkAnswer);
@@ -78,5 +84,12 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
                 .map(homeworkAnswerMapper::toHomeworkAnswerUserDetailsDto)
                 .collect(Collectors.toList());
         return new PageImpl<>(homeworkAnswerUserDetailsDtoList, pageable, allAnswersByHomework.getTotalElements());
+    }
+
+    @Override
+    public void addGrade(Long homeworkAnswerId, String grade) {
+        HomeworkAnswer homeworkAnswer = homeworkAnswerRepository.findById(homeworkAnswerId).orElseThrow(HomeworkAnswerNotFoundException::new);
+        homeworkAnswer.setGrade(grade);
+        homeworkAnswerRepository.save(homeworkAnswer);
     }
 }

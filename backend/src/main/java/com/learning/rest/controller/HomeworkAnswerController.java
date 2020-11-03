@@ -3,7 +3,6 @@ package com.learning.rest.controller;
 import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerDetailsDto;
 import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerDto;
 import com.learning.rest.domain.dto.homeworkAnswer.HomeworkAnswerUserDetailsDto;
-import com.learning.rest.domain.entity.HomeworkAnswer;
 import com.learning.rest.service.HomeworkAnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +25,12 @@ public class HomeworkAnswerController {
         return new ResponseEntity<>(homeworkAnswerService.getHomeworkAnswerDetails(homeworkId, userId), HttpStatus.OK);
     }
 
+    @GetMapping("/homework-answer-details")
+    public ResponseEntity<HomeworkAnswerDetailsDto> getHomeworkAnswerDetailsByAnswerId(@RequestParam("answerId") Long answerId) {
+        return new ResponseEntity<>(homeworkAnswerService.getHomeworkAnswerDetailsByAnswerId(answerId), HttpStatus.OK);
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity<Void> addHomeworkAnswer(@RequestBody HomeworkAnswerDto homework) {
         homeworkAnswerService.addHomeworkAnswer(homework);
@@ -40,13 +45,21 @@ public class HomeworkAnswerController {
 
     @GetMapping("/all-no-grade")
     public ResponseEntity<Page<HomeworkAnswerUserDetailsDto>> getAllHomeworkAnswerWithNoGrade(@RequestParam("homeworkId") Long homeworkId,
-                                                                                   Pageable pageable) {
+                                                                                              Pageable pageable) {
         return new ResponseEntity<>(homeworkAnswerService.getAllHomeworkAnswersWithNoGrade(homeworkId, pageable), HttpStatus.OK);
     }
 
     @GetMapping("/all-grade")
     public ResponseEntity<Page<HomeworkAnswerUserDetailsDto>> getAllHomeworkAnswerWithGrade(@RequestParam("homeworkId") Long homeworkId,
-                                                                                              Pageable pageable) {
+                                                                                            Pageable pageable) {
         return new ResponseEntity<>(homeworkAnswerService.getAllHomeworkAnswersWithGrade(homeworkId, pageable), HttpStatus.OK);
     }
+
+    @PatchMapping("/grade/{homeworkAnswerId}")
+    public ResponseEntity<Void> updateStatusMessage(@PathVariable Long homeworkAnswerId,
+                                                    @RequestParam("grade") String grade) {
+        homeworkAnswerService.addGrade(homeworkAnswerId, grade);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomeworkAnswerDto } from 'src/app/common/homework-answer-dto';
 import { HomeworkDetails } from 'src/app/common/homework-details';
+import { Global } from 'src/app/global';
 import { FileServiceService } from 'src/app/services/file-service.service';
 import { HomeworkAnswerService } from 'src/app/services/homework-answer.service';
 import { HomeworkService } from 'src/app/services/homework.service';
@@ -20,6 +21,8 @@ export class HomeworkDetailsComponent implements OnInit {
 
   homeworkAnswerListWithGrade: HomeworkAnswerDto[];
 
+  isTeacher:boolean;
+
   homeworkId: number;
   thePageNumber: number = 1;
   thePageSize: number = 5;
@@ -35,10 +38,12 @@ export class HomeworkDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private fileService: FileServiceService,
     private homeworkAnswerService: HomeworkAnswerService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private global: Global
   ) { }
 
   ngOnInit(): void {
+    this.isTeacher = this.global.isTeacher();
     let homeworkId = this.route.snapshot.paramMap.get('homeworkId');
     this.getHomeworkDetails(Number(homeworkId));
     this.getHomeworkAnswers(Number(homeworkId));

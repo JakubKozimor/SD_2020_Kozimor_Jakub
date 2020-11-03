@@ -1,73 +1,102 @@
 <div *ngIf="homeworkDetails != undefined">
-    <p>Tytuł: {{homeworkDetails.title}}</p>
-    <p>Opis: {{homeworkDetails.description}}</p>
-    <p>Termin: {{transformDate(homeworkDetails.deadline)}}</p>
-    <p>Przedmiot: {{homeworkDetails.subject}}</p>
-    <p>Status: {{homeworkDetails.status}}</p>
-    <div>
-        <div *ngFor="let tempFile of homeworkDetails.files">
-            <p>{{tempFile.fileName}}</p>
-            <button class="btn btn-primary"
-                (click)="downloadFile(tempFile.homeworkFileId, tempFile.fileName)">Pobierz</button>
-        </div>
+  <p>Tytuł: {{ homeworkDetails.title }}</p>
+  <p>Opis: {{ homeworkDetails.description }}</p>
+  <p>Termin: {{ transformDate(homeworkDetails.deadline) }}</p>
+  <p>Przedmiot: {{ homeworkDetails.subject }}</p>
+  <p>Status: {{ homeworkDetails.status }}</p>
+  <div>
+    <div *ngFor="let tempFile of homeworkDetails.files">
+      <p>{{ tempFile.fileName }}</p>
+      <button
+        class="btn btn-primary"
+        (click)="downloadFile(tempFile.homeworkFileId, tempFile.fileName)"
+      >
+        Pobierz
+      </button>
     </div>
-    <button *ngIf="homeworkDetails.status == 'ACTIVE'" class="btn btn-success" routerLink="/createHomeworkAnswer/{{homeworkDetails.homeworkId}}">Dodaj odpowiedź</button>
+  </div>
+  <button
+    *ngIf="homeworkDetails.status == 'ACTIVE'"
+    class="btn btn-success"
+    routerLink="/createHomeworkAnswer/{{ homeworkDetails.homeworkId }}"
+  >
+    Dodaj odpowiedź
+  </button>
 </div>
 
-<div>
+<div *ngIf="isTeacher">
     <div>
-        <span>Imie</span>
-        <span>Nazwisko</span>
-    </div>
-    <div *ngFor="let tempHomework of homeworkAnswerList">
         <div>
-            <span>{{tempHomework.userFirstName}}</span>
-            <span>{{tempHomework.userLastName}}</span>
-            <button class="btn btn-primary">Oceń</button>
+          <span>Imie</span>
+          <span>Nazwisko</span>
         </div>
-    </div>
-    <div class="pagination">
-        <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize"
-            [collectionSize]="theElements" [maxSize]="4" [boundaryLinks]="true"
-            (pageChange)="getHomeworkAnswers(homeworkDetails.homeworkId)">
-        </ngb-pagination>
-        <div>
-            <select class="form-control" (change)="updateQuantity($event.target.value)">
-                <option selected="true">5</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
+        <div *ngFor="let tempHomework of homeworkAnswerList">
+          <div>
+            <span>{{ tempHomework.userFirstName }}</span>
+            <span>{{ tempHomework.userLastName }}</span>
+            <button class="btn btn-primary" routerLink="/rate/{{ tempHomework.homeworkAnswerId }}">Oceń</button>
+          </div>
+        </div>
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="getHomeworkAnswers(homeworkDetails.homeworkId)"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
             </select>
+          </div>
         </div>
       </div>
-</div>
-
-<div>
-    <div>
-        <span>Imie</span>
-        <span>Nazwisko</span>
-        <span>Ocena</span>
-    </div>
-    <div *ngFor="let tempHomework of homeworkAnswerListWithGrade">
+      
+      <div>
         <div>
-            <span>{{tempHomework.userFirstName}}</span>
-            <span>{{tempHomework.userLastName}}</span>
-            <span>{{tempHomework.grade}}</span>
+          <span>Imie</span>
+          <span>Nazwisko</span>
+          <span>Ocena</span>
+        </div>
+        <div *ngFor="let tempHomework of homeworkAnswerListWithGrade">
+          <div>
+            <span>{{ tempHomework.userFirstName }}</span>
+            <span>{{ tempHomework.userLastName }}</span>
+            <span>{{ tempHomework.grade }}</span>
             <button class="btn btn-warning">Zmień ocene</button>
+          </div>
         </div>
-    </div>
-    <div class="pagination">
-        <ngb-pagination [(page)]="thePageNumberWithGrade" [pageSize]="thePageSizeWithGrade"
-            [collectionSize]="theElementsWithGrade" [maxSize]="4" [boundaryLinks]="true"
-            (pageChange)="getHomeworkAnswersWithGrade(homeworkDetails.homeworkId)">
-        </ngb-pagination>
-        <div>
-            <select class="form-control" (change)="updateQuantityWithGrade($event.target.value)">
-                <option selected="true">5</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumberWithGrade"
+            [pageSize]="thePageSizeWithGrade"
+            [collectionSize]="theElementsWithGrade"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="getHomeworkAnswersWithGrade(homeworkDetails.homeworkId)"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantityWithGrade($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
             </select>
+          </div>
         </div>
       </div>
+      
 </div>

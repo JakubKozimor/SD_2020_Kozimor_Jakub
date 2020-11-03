@@ -33,7 +33,7 @@ public class HomeworkAnswer {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "homework_answer_id")
     private List<HomeworkAnswerFile> files;
-        private String grade;
+    private String grade;
 
 
     public void addFile(HomeworkAnswerFile homeworkAnswerFile) {

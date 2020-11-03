@@ -20,6 +20,7 @@ import { LiveComponent } from './components/live/live.component';
 import { LoginComponent } from './components/login/login.component';
 import { MessageDetailsComponent } from './components/message-details/message-details.component';
 import { MessageComponent } from './components/message/message.component';
+import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/rate-homework-answer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
@@ -43,6 +44,7 @@ const studentRoutes: Routes = [
   { path: '**', redirectTo: '/menu', pathMatch: 'full' }
 ];
 const teacherRoutes: Routes = [
+  { path: 'rate/:homeworkAnswer', component: RateHomeworkAnswerComponent },
   { path: 'callendar', component: CalendarComponent },
   { path: 'add-students/:subjectId', component: AddStudentsComponent },
   { path: 'live', component: LiveComponent },

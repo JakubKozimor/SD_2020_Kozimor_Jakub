@@ -1,0 +1,34 @@
+<h1>Odpowiedź</h1>
+<div *ngIf="homeworkAnswerDetails != undefined">
+  <p>Wiadomość: {{ homeworkAnswerDetails.message }}</p>
+  <div>
+    <div *ngFor="let tempFile of homeworkAnswerDetails.files">
+      <p>{{ tempFile.fileName }}</p>
+      <button
+        class="btn btn-primary"
+        (click)="
+          downloadHomeworkAnswerFile(
+            tempFile.homeworkAnswerFileId,
+            tempFile.fileName
+          )
+        "
+      >
+        Pobierz
+      </button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div>Ocena</div>
+      <select #grade>
+        <option value="6">6</option>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+      </select>
+      <button class="btn btn-success" (click) = addGrade(homeworkAnswerDetails.homeworkAnswerId,grade.value)>Oceń</button>
+    </div>
+  </div>
+</div>

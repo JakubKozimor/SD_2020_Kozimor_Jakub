@@ -10,4 +10,5 @@ public interface CustomConstants {
     int FIVE_SUBJECTS = 5;
     int FIVE_HOMEWORKS = 5;
     Long EMPTY_SUBJECT_ID = 0L;
+    int ZERO_HOMEWORKS_ANSWERS_TO_RATE = 0;
 }

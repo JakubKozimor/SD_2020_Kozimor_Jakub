@@ -1,16 +1,16 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { Subject } from 'src/app/common/subject';
-import { SubjectService } from 'src/app/services/subject.service';
-import { HomeworkService } from 'src/app/services/homework.service';
-import { Homework } from 'src/app/common/homework';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Global } from 'src/app/global';
-import { CalendarService } from 'src/app/services/calendar.service';
+import { Component, Injectable, OnInit } from "@angular/core";
+import { Subject } from "src/app/common/subject";
+import { SubjectService } from "src/app/services/subject.service";
+import { HomeworkService } from "src/app/services/homework.service";
+import { Homework } from "src/app/common/homework";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Global } from "src/app/global";
+import { CalendarService } from "src/app/services/calendar.service";
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  selector: "app-content",
+  templateUrl: "./content.component.html",
+  styleUrls: ["./content.component.css"],
 })
 export class ContentComponent implements OnInit {
   pageIndex: number;
@@ -27,39 +27,37 @@ export class ContentComponent implements OnInit {
   subjectsList: Subject[];
 
   constructor(
-    private subjectService: SubjectService, 
+    private subjectService: SubjectService,
     private homeworkService: HomeworkService,
     private route: ActivatedRoute,
-    private calendarService: CalendarService
-    ) {
-
-    let role = this.getActualUserRole();
-    if(role == 'ROLE_TEACHER'){
-      this.isTeacher = true;
-    }
-    if(role == 'ROLE_STUDENT'){
-      this.isTeacher = false;
-    }
-     }
+    private calendarService: CalendarService,
+    private global: Global
+  ) {}
 
   ngOnInit(): void {
+    this.isTeacher = this.global.isTeacher();
+    console.log(this.isTeacher)
     this.listOfFiveSubjects();
-    this.listOfHomework(); 
-    this.route.params.subscribe(routeParams => {
+    this.listOfHomework();
+    this.route.params.subscribe((routeParams) => {
       this.listOfFiveSubjects();
     });
   }
-  
+
   listOfFiveSubjects() {
-    this.calendarService.getActualWeek().subscribe(data => {
-            this.subjectService.getFiveFirstSubjectsByUser(data.week).subscribe(data => this.subjectsList = data);
+    this.calendarService.getActualWeek().subscribe((data) => {
+      this.subjectService
+        .getFiveFirstSubjectsByUser(data.week)
+        .subscribe((data) => (this.subjectsList = data));
     });
   }
 
   listOfHomework() {
     this.pageIndex = 0;
     this.pageSize = 100;
-    this.homeworkService.getFiveFirstHomeworksByUser().subscribe(data => this.homeworkList = data)
+    this.homeworkService
+      .getFiveFirstHomeworksByUser()
+      .subscribe((data) => (this.homeworkList = data));
   }
 
   countTime(startTime: string, longOfTime: string) {
@@ -86,24 +84,24 @@ export class ContentComponent implements OnInit {
   }
 
   getDay(day: string) {
-    if (day == 'MONDAY') {
-      return "Poniedziałek"
+    if (day == "MONDAY") {
+      return "Poniedziałek";
     }
-    if (day == 'TUESDAY') {
-      return "Wtorek"
+    if (day == "TUESDAY") {
+      return "Wtorek";
     }
-    if (day == 'WEDNESDAY') {
-      return "Środa"
+    if (day == "WEDNESDAY") {
+      return "Środa";
     }
-    if (day == 'THURSDAY') {
-      return "Czwartek"
+    if (day == "THURSDAY") {
+      return "Czwartek";
     }
-    if (day == 'FRIDAY') {
-      return "Piątek"
+    if (day == "FRIDAY") {
+      return "Piątek";
     }
   }
 
-  getActualUserRole(){
+  getActualUserRole() {
     return localStorage.getItem("user_role");
   }
 }
