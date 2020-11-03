@@ -12,7 +12,7 @@
       <li>
         <a routerLink="homework" routerLinkActive="active">Zadania</a>
       </li>
-      <li>
+      <li *ngIf="!isTeacher">
         <a routerLink="teachers" routerLinkActive="active">Prowadzący</a>
       </li>
       <li>

@@ -23,6 +23,17 @@ export class SubjectService {
     return this.httpClient.get<GetResponseSubject>(`${this.BASE_URL}/${userId}/all`, { params });
   }
 
+  public getAllSubjectsForTeacher(
+    pageIndex: number,
+    pageSize: number,
+    week: string
+  ): Observable<GetResponseSubject> {
+    let params = this.getPageParams(pageIndex, pageSize);
+    params = params.append('week', `${week}`);
+    const userId = Number(this.getAcctualUserId());
+    return this.httpClient.get<GetResponseSubject>(`${this.BASE_URL}/${userId}/all-teacher`, { params });
+  }
+
   addMessage(subject: Subject): Observable<number>{
     let userId = Number(this.getAcctualUserId());
     return this.httpClient.post<number>(this.BASE_URL + `/new?teacherId=${userId}`, subject).pipe();

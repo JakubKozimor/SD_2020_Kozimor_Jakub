@@ -23,6 +23,27 @@ public class HomeworkController {
 
     private final HomeworkService homeworkService;
 
+    @PreAuthorize("#teacherId == principal.id && hasRole('ROLE_TEACHER')")
+    @GetMapping("/not-rated/{teacherId}")
+    public ResponseEntity<Page<Homework>> getAllNotRatedHomeworks(@PathVariable Long teacherId,
+                                                                  Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getNotRatedHomeworksForTeacher(teacherId, pageable), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#teacherId == principal.id && hasRole('ROLE_TEACHER')")
+    @GetMapping("/rated/{teacherId}")
+    public ResponseEntity<Page<Homework>> getAllRatedHomeworks(@PathVariable Long teacherId,
+                                                               Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getRatedHomeworksForTeacher(teacherId, pageable), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#teacherId == principal.id && hasRole('ROLE_TEACHER')")
+    @GetMapping("/active/{teacherId}")
+    public ResponseEntity<Page<Homework>> getAllActiveHomeworks(@PathVariable Long teacherId,
+                                                                Pageable pageable) {
+        return new ResponseEntity<>(homeworkService.getAllActiveForTeacher(teacherId, pageable), HttpStatus.OK);
+    }
+
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/active")
     public ResponseEntity<Page<Homework>> getAllActiveHomeworkByUser(@PathVariable Long userId,
@@ -39,7 +60,7 @@ public class HomeworkController {
         return new ResponseEntity<>(homeworkService.getAllLateHomeworks(userId, pageable, subjectId), HttpStatus.OK);
     }
 
-//    @PreAuthorize("#userId == principal.id")
+    @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/done")
     public ResponseEntity<Page<Homework>> getAllDoneHomeworkByUser(@PathVariable Long userId,
                                                                    Pageable pageable,

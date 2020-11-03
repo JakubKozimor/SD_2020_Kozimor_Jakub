@@ -36,7 +36,6 @@ export class ContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.isTeacher = this.global.isTeacher();
-    console.log(this.isTeacher)
     this.listOfFiveSubjects();
     this.listOfHomework();
     this.route.params.subscribe((routeParams) => {

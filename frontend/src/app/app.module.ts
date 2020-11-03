@@ -37,6 +37,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/rate-homework-answer.component';
+import { TeacherHomeworkComponent } from './components/teacher-homework/teacher-homework.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/r
     AddStudentsComponent,
     AddScheduleComponent,
     RateHomeworkAnswerComponent,
+    TeacherHomeworkComponent,
   ],
   imports: [
     CommonModule,

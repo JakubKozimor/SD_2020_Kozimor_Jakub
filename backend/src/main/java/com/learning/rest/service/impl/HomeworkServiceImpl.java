@@ -121,11 +121,7 @@ public class HomeworkServiceImpl implements HomeworkService {
 
     @Override
     public List<Homework> getFiveActiveHomeworksForTeacher(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        List<Subject> allSubjectsByTeacher = subjectRepository.findAllByTeacher(user);
-        List<Homework> allHomeworks = new ArrayList<>();
-        allSubjectsByTeacher
-                .forEach(subject -> allHomeworks.addAll(subject.getHomeworks()));
+        List<Homework> allHomeworks = this.getAllHomeworksByTeacher(userId);
         return allHomeworks.stream()
                 .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
                 .filter(homework -> homework.getRated() == HomeworkRatedStatus.NOT_RATED)
@@ -153,5 +149,43 @@ public class HomeworkServiceImpl implements HomeworkService {
         }
         homework.setSubject(subject);
         homeworkRepository.save(homework);
+    }
+
+    @Override
+    public Page<Homework> getNotRatedHomeworksForTeacher(Long teacherId, Pageable pageable) {
+        List<Homework> allHomeworks = this.getAllHomeworksByTeacher(teacherId);
+        List<Homework> allNotRatedHomeworks = allHomeworks.stream()
+                .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
+                .filter(homework -> homework.getRated() == HomeworkRatedStatus.NOT_RATED)
+                .collect(Collectors.toList());
+        return (Page<Homework>) PageHelper.preparePageFromList(allNotRatedHomeworks, pageable);
+    }
+
+    @Override
+    public Page<Homework> getRatedHomeworksForTeacher(Long teacherId, Pageable pageable) {
+        List<Homework> allHomeworks = this.getAllHomeworksByTeacher(teacherId);
+        List<Homework> allNotRatedHomeworks = allHomeworks.stream()
+                .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
+                .filter(homework -> homework.getRated() == HomeworkRatedStatus.RATED)
+                .collect(Collectors.toList());
+        return (Page<Homework>) PageHelper.preparePageFromList(allNotRatedHomeworks, pageable);
+    }
+
+    @Override
+    public Page<Homework> getAllActiveForTeacher(Long teacherId, Pageable pageable) {
+        List<Homework> allHomeworks = this.getAllHomeworksByTeacher(teacherId);
+        List<Homework> allActiveHomeworks = allHomeworks.stream()
+                .filter(homework -> homework.getStatus() == HomeworkStatus.ACTIVE)
+                .collect(Collectors.toList());
+        return (Page<Homework>) PageHelper.preparePageFromList(allActiveHomeworks, pageable);
+    }
+
+    private List<Homework> getAllHomeworksByTeacher(Long teacherId) {
+        User user = userRepository.findById(teacherId).orElseThrow(UserNotFoundException::new);
+        List<Subject> allSubjectsByTeacher = subjectRepository.findAllByTeacher(user);
+        List<Homework> allHomeworks = new ArrayList<>();
+        allSubjectsByTeacher
+                .forEach(subject -> allHomeworks.addAll(subject.getHomeworks()));
+        return allHomeworks;
     }
 }

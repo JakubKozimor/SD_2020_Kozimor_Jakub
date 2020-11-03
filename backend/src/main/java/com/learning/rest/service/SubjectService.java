@@ -20,4 +20,6 @@ public interface SubjectService {
     List<Subject> getFirstFiveSubjectsForTeacher(Long userId, Week week);
 
     Long addSubject(Long teacherId, SubjectDto subjectDto);
+
+    Page<Subject> getAllSubjectsForTeacher(Long userId, Pageable pageable, Week week);
 }

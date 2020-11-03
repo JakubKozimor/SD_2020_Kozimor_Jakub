@@ -77,8 +77,6 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
-  // refresh: Subject<any> = new Subject();
-
   events: CalendarEvent[] = [];
   newevents: CalendarEvent[] = [];
 
@@ -88,7 +86,6 @@ export class CalendarComponent implements OnInit {
   constructor(
     private subjectService: SubjectService,
     private global: Global,
-    private route: ActivatedRoute,
     private calendarService: CalendarService) { }
 
   ngOnInit(): void {
@@ -140,7 +137,11 @@ export class CalendarComponent implements OnInit {
   listOfSubjects() {
     this.pageIndex = 0;
     this.pageSize = 100;
-    this.subjectService.getAllSubjectsByUser(this.pageIndex, this.pageSize, this.week).subscribe(data => this.subjectsList = data.content)
+    if(this.global.isTeacher()){
+      this.subjectService.getAllSubjectsForTeacher(this.pageIndex, this.pageSize, this.week).subscribe(data => this.subjectsList = data.content)
+    }else{
+      this.subjectService.getAllSubjectsByUser(this.pageIndex, this.pageSize, this.week).subscribe(data => this.subjectsList = data.content)  
+    }
   }
 
   changeWeek(week: string) {

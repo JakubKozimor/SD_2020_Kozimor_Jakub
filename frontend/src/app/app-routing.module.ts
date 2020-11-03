@@ -22,6 +22,7 @@ import { MessageDetailsComponent } from './components/message-details/message-de
 import { MessageComponent } from './components/message/message.component';
 import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/rate-homework-answer.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TeacherHomeworkComponent } from './components/teacher-homework/teacher-homework.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
 const studentRoutes: Routes = [
@@ -44,6 +45,7 @@ const studentRoutes: Routes = [
   { path: '**', redirectTo: '/menu', pathMatch: 'full' }
 ];
 const teacherRoutes: Routes = [
+  { path: 'homework', component: TeacherHomeworkComponent },
   { path: 'rate/:homeworkAnswer', component: RateHomeworkAnswerComponent },
   { path: 'callendar', component: CalendarComponent },
   { path: 'add-students/:subjectId', component: AddStudentsComponent },
@@ -54,15 +56,12 @@ const teacherRoutes: Routes = [
   { path: 'subject-homework/:subjectId', component: HomeworksBySubjectComponent },
   { path: 'allSubjects', component: AllSubjectsComponent },
   { path: 'homework-answer-details/:homeworkId', component: HomeworkAnswerDetailsComponent },
-  { path: 'homeworks-done', component: DoneHomeworksComponent },
   { path: 'createHomeworkAnswer/:homeworkId', component: AddHomeworkAnswerComponent },
   { path: 'addHomework/:subjectId', component: AddHomeworkComponent },
   { path: 'viewHomework/:homeworkId', component: HomeworkDetailsComponent },
   { path: 'viewMessage/:messageId', component: MessageDetailsComponent },
   { path: 'createMessage/:userToId', component: MessageComponent },
   { path: 'allMessages', component: AllMessagesComponent },
-  { path: 'teachers', component: TeachersComponent },
-  { path: 'homework', component: HomeworkComponent },
   { path: 'menu', component: ContentComponent },
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
   { path: '**', redirectTo: '/menu', pathMatch: 'full' }

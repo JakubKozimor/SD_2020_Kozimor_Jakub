@@ -12,6 +12,34 @@ export class HomeworkService {
   private BASE_URL = 'http://localhost:8080/homeworks';
   constructor(private httpClient: HttpClient) { }
 
+
+  getAllActiveHomeworksForTeacher(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseHomework> {
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/active/${userId}`, { params });
+  }
+
+  getAllNotRatedHomeworks(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseHomework> {
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/not-rated/${userId}`, { params });
+  }
+
+  getAllRatedHomeworks(
+    pageIndex: number,
+    pageSize: number,
+  ): Observable<GetResponseHomework> {
+    let params = this.getPageParams(pageIndex, pageSize);
+    const userId = this.getAcctualUserId();
+    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/rated/${userId}`, { params });
+  }
+
   getAllActiveHomeworkByUser(
     pageIndex: number,
     pageSize: number,

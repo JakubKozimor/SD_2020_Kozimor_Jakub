@@ -79,6 +79,17 @@ public class SubjectServiceImpl implements SubjectService {
         return (Page<Subject>) PageHelper.preparePageFromList(subjectList, pageable);
     }
 
+    @Override
+    public Page<Subject> getAllSubjectsForTeacher(Long userId, Pageable pageable, Week week) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        List<Subject> allSubjects = subjectRepository.findAllByTeacher(user);
+        List<Subject> subjectList = allSubjects.stream()
+                .filter(subject -> this.filterByWeek(subject, week))
+                .sorted(this::sortByTime)
+                .collect(Collectors.toList());
+        return (Page<Subject>) PageHelper.preparePageFromList(subjectList, pageable);
+    }
+
     private boolean filterByWeek(Subject subject, Week week) {
         if (week == Week.ALL || subject.getWeek() == Week.ALL)
             return true;

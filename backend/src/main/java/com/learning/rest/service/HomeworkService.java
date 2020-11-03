@@ -22,6 +22,12 @@ public interface HomeworkService {
 
     List<Homework> getFiveActiveHomeworksForTeacher(Long userId);
 
+    Page<Homework> getNotRatedHomeworksForTeacher(Long teacherId, Pageable pageable);
+
+    Page<Homework> getRatedHomeworksForTeacher(Long teacherId, Pageable pageable);
+
+    Page<Homework> getAllActiveForTeacher(Long teacherId, Pageable pageable);
+
     HomeworkDetailsDto getHomeworkDetails(Long homeworkId);
 
     void createHomework(HomeworkDto homeworkDto, Long subjectId);
