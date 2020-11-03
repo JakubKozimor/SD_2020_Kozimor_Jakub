@@ -12,4 +12,8 @@ public interface LessonService {
     LessonDetailsDto geLessonDetails(Long lessonId);
 
     List<LessonDetailsDto> getLiveLesson(Long userId);
+
+    List<LessonDetailsDto> getLiveLessonForTeacher(Long userId);
+
+    void finishLive(Long lessonId);
 }

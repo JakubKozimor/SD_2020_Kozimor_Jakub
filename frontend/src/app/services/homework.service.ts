@@ -1,43 +1,51 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Homework } from '../common/homework';
-import { HomeworkDetails } from '../common/homework-details';
-import { RatedHomework } from '../common/rated-homework';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Homework } from "../common/homework";
+import { HomeworkDetails } from "../common/homework-details";
+import { RatedHomework } from "../common/rated-homework";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class HomeworkService {
-  private BASE_URL = 'http://localhost:8080/homeworks';
-  constructor(private httpClient: HttpClient) { }
-
+  private BASE_URL = "http://localhost:8080/homeworks";
+  constructor(private httpClient: HttpClient) {}
 
   getAllActiveHomeworksForTeacher(
     pageIndex: number,
-    pageSize: number,
+    pageSize: number
   ): Observable<GetResponseHomework> {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/active/${userId}`, { params });
+    return this.httpClient.get<GetResponseHomework>(
+      `${this.BASE_URL}/active/${userId}`,
+      { params }
+    );
   }
 
   getAllNotRatedHomeworks(
     pageIndex: number,
-    pageSize: number,
+    pageSize: number
   ): Observable<GetResponseHomework> {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/not-rated/${userId}`, { params });
+    return this.httpClient.get<GetResponseHomework>(
+      `${this.BASE_URL}/not-rated/${userId}`,
+      { params }
+    );
   }
 
   getAllRatedHomeworks(
     pageIndex: number,
-    pageSize: number,
+    pageSize: number
   ): Observable<GetResponseHomework> {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/rated/${userId}`, { params });
+    return this.httpClient.get<GetResponseHomework>(
+      `${this.BASE_URL}/rated/${userId}`,
+      { params }
+    );
   }
 
   getAllActiveHomeworkByUser(
@@ -45,13 +53,14 @@ export class HomeworkService {
     pageSize: number,
     subjectId: number
   ): Observable<GetResponseHomework> {
-
     let params = this.getPageParams(pageIndex, pageSize);
-    params = params.append('subjectId', `${subjectId}`);
+    params = params.append("subjectId", `${subjectId}`);
     const userId = this.getAcctualUserId();
-    
 
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/active`, { params });
+    return this.httpClient.get<GetResponseHomework>(
+      `${this.BASE_URL}/${userId}/active`,
+      { params }
+    );
   }
 
   getAllDoneHomeworkByUser(
@@ -59,12 +68,14 @@ export class HomeworkService {
     pageSize: number,
     subjectId: number
   ): Observable<GetResponseHomework> {
-
     let params = this.getPageParams(pageIndex, pageSize);
-    params = params.append('subjectId', `${subjectId}`);
+    params = params.append("subjectId", `${subjectId}`);
     const userId = this.getAcctualUserId();
 
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/done`, { params });
+    return this.httpClient.get<GetResponseHomework>(
+      `${this.BASE_URL}/${userId}/done`,
+      { params }
+    );
   }
 
   getAllLateHomeworkByUser(
@@ -72,12 +83,14 @@ export class HomeworkService {
     pageSize: number,
     subjectId: number
   ): Observable<GetResponseHomework> {
-
     let params = this.getPageParams(pageIndex, pageSize);
-    params = params.append('subjectId', `${subjectId}`);
+    params = params.append("subjectId", `${subjectId}`);
     const userId = this.getAcctualUserId();
 
-    return this.httpClient.get<GetResponseHomework>(`${this.BASE_URL}/${userId}/late`, { params });
+    return this.httpClient.get<GetResponseHomework>(
+      `${this.BASE_URL}/${userId}/late`,
+      { params }
+    );
   }
 
   getAllRatedHomeworkByUser(
@@ -85,46 +98,55 @@ export class HomeworkService {
     pageSize: number,
     subjectId: number
   ): Observable<GetResponseRatedHomework> {
-
     let params = this.getPageParams(pageIndex, pageSize);
-    params = params.append('subjectId', `${subjectId}`);
+    params = params.append("subjectId", `${subjectId}`);
     const userId = this.getAcctualUserId();
 
-    return this.httpClient.get<GetResponseRatedHomework>(`${this.BASE_URL}/${userId}/rated`, { params });
+    return this.httpClient.get<GetResponseRatedHomework>(
+      `${this.BASE_URL}/${userId}/rated`,
+      { params }
+    );
   }
 
   getFiveFirstHomeworksByUser(): Observable<Homework[]> {
     const userId = this.getAcctualUserId();
-        let role = this.getActualUserRole();
-    if(role == 'ROLE_TEACHER'){
-      return this.httpClient.get<Homework[]>(`${this.BASE_URL}/${userId}/five-first-teacher`);
+    let role = this.getActualUserRole();
+    if (role == "ROLE_TEACHER") {
+      return this.httpClient.get<Homework[]>(
+        `${this.BASE_URL}/${userId}/five-first-teacher`
+      );
     }
-    if(role == 'ROLE_STUDENT'){
-      return this.httpClient.get<Homework[]>(`${this.BASE_URL}/${userId}/five-first`);
+    if (role == "ROLE_STUDENT") {
+      return this.httpClient.get<Homework[]>(
+        `${this.BASE_URL}/${userId}/five-first`
+      );
     }
   }
 
   getPageParams(pageIndex: number, pageSize: number): HttpParams {
     return new HttpParams()
-      .append('page', `${pageIndex}`)
-      .append('size', `${pageSize}`);
+      .append("page", `${pageIndex}`)
+      .append("size", `${pageSize}`);
   }
 
   getAcctualUserId() {
-    return localStorage.getItem('user_id');
+    return localStorage.getItem("user_id");
   }
 
-  getActualUserRole(){
+  getActualUserRole() {
     return localStorage.getItem("user_role");
   }
 
   getHomeworkDetails(homeworkId: number): Observable<HomeworkDetails> {
-    return this.httpClient.get<HomeworkDetails>(`${this.BASE_URL}/homework-details/${homeworkId}`);
+    return this.httpClient.get<HomeworkDetails>(
+      `${this.BASE_URL}/homework-details/${homeworkId}`
+    );
   }
 
   createHomework(homework: Homework, subjectId: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.httpClient.post(this.BASE_URL + `/${subjectId}/add`, homework)
+      this.httpClient
+        .post(this.BASE_URL + `/${subjectId}/add`, homework)
         .subscribe(
           (data) => {
             resolve("Dodano");
@@ -134,7 +156,21 @@ export class HomeworkService {
           }
         );
     });
+  }
 
+  updateHomework(homework: Homework, homeworkId: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient
+        .put(this.BASE_URL + `/${homeworkId}`, homework)
+        .subscribe(
+          (data) => {
+            resolve("Zaktualizowano");
+          },
+          (error) => {
+            reject("Aktualizacja nie powiodło się");
+          }
+        );
+    });
   }
 }
 

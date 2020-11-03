@@ -9,7 +9,7 @@
       <span>{{ tempHomework.title }}</span>
       <span>{{ tempHomework.deadline }}</span>
       <a
-        class="btn btn-primary data"
+        class="btn btn-primary"
         routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
         >Przejdź</a
       >
@@ -50,7 +50,7 @@
       <span>{{ tempHomework.title }}</span>
       <span>{{ tempHomework.deadline }}</span>
       <a
-        class="btn btn-primary data"
+        class="btn btn-primary"
         routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
         >Przejdź</a
       >
@@ -80,36 +80,40 @@
   </div>
 </div>
 
-
 <div>
-    <h1>Zadania aktywne</h1>
+  <h1>Zadania aktywne</h1>
+  <div>
+    <span>Zadanie</span>
+    <span>Termin</span>
+  </div>
+  <div *ngFor="let tempHomework of activeHomeworkList">
     <div>
-      <span>Zadanie</span>
-      <span>Termin</span>
-    </div>
-    <div *ngFor="let tempHomework of activeHomeworkList">
-      <div>
-        <span>{{ tempHomework.title }}</span>
-        <span>{{ tempHomework.deadline }}</span>
-        <a
-        class="btn btn-primary data"
+      <span>{{ tempHomework.title }}</span>
+      <span>{{ tempHomework.deadline }}</span>
+      <a
+        class="btn btn-primary"
         routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
         >Przejdź</a
       >
-      </div>
-    </div>
-    <div class="pagination">
-        <ngb-pagination
-        [(page)]="theActiveHomeworkPageNumber"
-        [pageSize]="theActiveHomeworkPageSize"
-        [collectionSize]="theActiveHomeworkTotalElements"
-        [maxSize]="4"
-        [boundaryLinks]="true"
-        (pageChange)="listOfActiveHomework()"
+      <a
+        class="btn btn-warning"
+        routerLink="/update-homework/{{ tempHomework.homeworkId }}"
+        >Edytuj</a
       >
-      </ngb-pagination>
-      <div>
-        <select
+    </div>
+  </div>
+  <div class="pagination">
+    <ngb-pagination
+      [(page)]="theActiveHomeworkPageNumber"
+      [pageSize]="theActiveHomeworkPageSize"
+      [collectionSize]="theActiveHomeworkTotalElements"
+      [maxSize]="4"
+      [boundaryLinks]="true"
+      (pageChange)="listOfActiveHomework()"
+    >
+    </ngb-pagination>
+    <div>
+      <select
         class="form-control"
         (change)="updateActiveHomeworksQuantity($event.target.value)"
       >
@@ -118,6 +122,6 @@
         <option>15</option>
         <option>20</option>
       </select>
-      </div>
     </div>
   </div>
+</div>

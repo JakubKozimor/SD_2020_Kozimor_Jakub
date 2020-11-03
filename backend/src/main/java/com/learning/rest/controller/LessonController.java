@@ -26,19 +26,32 @@ public class LessonController {
 
     @PreAuthorize("#userId == principal.id && hasRole('ROLE_TEACHER')")
     @PostMapping("/new")
-    public ResponseEntity<Long> createHomework(@RequestParam("userId") Long userId,
+    public ResponseEntity<Long> createLesson(@RequestParam("userId") Long userId,
                                                @RequestBody LessonDto classesDto) {
         return new ResponseEntity<>(lessonService.addLesson(userId, classesDto),HttpStatus.CREATED);
     }
 
     @GetMapping("/lesson-details/{lessonId}")
-    public ResponseEntity<LessonDetailsDto> getMessageDetails(@PathVariable("lessonId") Long lessonId) {
+    public ResponseEntity<LessonDetailsDto> getLessonDetails(@PathVariable("lessonId") Long lessonId) {
         return new ResponseEntity<>(lessonService.geLessonDetails(lessonId), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}")
-    public ResponseEntity<List<LessonDetailsDto>> getAllSubjectsByUser(@PathVariable Long userId) {
+    public ResponseEntity<List<LessonDetailsDto>> getLivesByUser(@PathVariable Long userId) {
         return new ResponseEntity<>(lessonService.getLiveLesson(userId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#userId == principal.id && hasRole('ROLE_TEACHER')")
+    @GetMapping("/teacher/{userId}")
+    public ResponseEntity<List<LessonDetailsDto>> getLivesForTeacher(@PathVariable Long userId) {
+        return new ResponseEntity<>(lessonService.getLiveLessonForTeacher(userId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @PatchMapping("/finish/{classesId}")
+    public ResponseEntity<Void> finishLesson(@PathVariable("classesId") Long lessonId) {
+        lessonService.finishLive(lessonId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

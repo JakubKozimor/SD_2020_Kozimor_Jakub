@@ -8,9 +8,7 @@ import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
 import com.learning.rest.domain.dto.homework.HomeworkDto;
 import com.learning.rest.domain.dto.homework.HomeworkFileDto;
 import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
-import com.learning.rest.domain.entity.Homework;
-import com.learning.rest.domain.entity.Subject;
-import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.entity.*;
 import com.learning.rest.domain.entity.enums.HomeworkRatedStatus;
 import com.learning.rest.domain.entity.enums.HomeworkStatus;
 import com.learning.rest.domain.mapper.HomeworkMapper;
@@ -148,6 +146,30 @@ public class HomeworkServiceImpl implements HomeworkService {
                     .forEach(homework::addFile);
         }
         homework.setSubject(subject);
+        homework.setRated(HomeworkRatedStatus.NOT_RATED);
+        homeworkRepository.save(homework);
+    }
+
+    @Override
+    public void updateHomework(HomeworkDto homeworkDto, Long homeworkId) {
+        Homework oldHomework = homeworkRepository.findById(homeworkId).orElseThrow(HomeworkNotFoundException::new);
+        Homework homework = homeworkMapper.toHomework(homeworkDto);
+        List<HomeworkFileDto> homeworkFilesDto = homeworkDto.getFiles();
+        homework.setFiles(new ArrayList<>());
+        if (homeworkFilesDto != null) {
+            homeworkFilesDto
+                    .stream()
+                    .map(homeworkMap::mapToHomeworkFile)
+                    .forEach(homework::addFile);
+        }
+        homework.setHomeworkId(homeworkId);
+        homework.setRated(HomeworkRatedStatus.NOT_RATED);
+        homework.setSubject(oldHomework.getSubject());
+        homework.setHomeworkAnswers(oldHomework.getHomeworkAnswers());
+        List<HomeworkFile> homeworkFiles = homework.getFiles();
+        if (homeworkFiles != null && !homeworkFiles.isEmpty()) {
+            homeworkFiles.forEach(homeworkAnswerFile -> homeworkAnswerFile.setHomeworkFileId(null));
+        }
         homeworkRepository.save(homework);
     }
 

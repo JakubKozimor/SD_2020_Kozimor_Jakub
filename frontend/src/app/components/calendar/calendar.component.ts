@@ -2,7 +2,6 @@ import {
   Component,
    OnInit,
    ViewChild,
-  TemplateRef,
   ElementRef,
   } 
    from '@angular/core';
@@ -20,7 +19,6 @@ import { SubjectService } from 'src/app/services/subject.service';
 import { Subject } from 'src/app/common/subject';
 import { Global } from 'src/app/global';
 import { CalendarService } from 'src/app/services/calendar.service';
-import { ActivatedRoute } from '@angular/router';
 
 const colors: any = {
   red: {
@@ -81,7 +79,6 @@ export class CalendarComponent implements OnInit {
   newevents: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
-
   
   constructor(
     private subjectService: SubjectService,

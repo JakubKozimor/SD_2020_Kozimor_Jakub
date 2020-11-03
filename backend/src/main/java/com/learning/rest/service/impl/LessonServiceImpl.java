@@ -73,4 +73,21 @@ public class LessonServiceImpl implements LessonService {
                 .map(lessonMapper::toLessonDetailsDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<LessonDetailsDto> getLiveLessonForTeacher(Long userId) {
+        User teacher = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        List<Lesson> allTeacherLessons =lessonRepository.findAllByTeacher(teacher);
+        return allTeacherLessons.stream()
+                .filter(lesson -> lesson.getStatus() == LessonStatus.LIVE)
+                .map(lessonMapper::toLessonDetailsDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void finishLive(Long lessonId) {
+        Lesson lesson = lessonRepository.findById(lessonId).orElseThrow(LessonNotFoundException::new);
+        lesson.setStatus(LessonStatus.ENDED);
+        lessonRepository.save(lesson);
+    }
 }

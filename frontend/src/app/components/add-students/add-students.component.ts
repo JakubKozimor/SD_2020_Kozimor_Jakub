@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/common/user';
 import { UserDto } from 'src/app/common/user-dto';
 import { UserService } from 'src/app/services/user.service';
@@ -23,7 +23,8 @@ export class AddStudentsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +64,12 @@ export class AddStudentsComponent implements OnInit {
     let table = new Array;
     table = Array.from(this.tempUsers)
     this.userService.addStudents(table, subjectId);
+    this.changePage()
     this.tempUsers = new Set();
+  }
+
+  changePage() {
+    this.router.navigate(['allSubjects']);
   }
 
 }

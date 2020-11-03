@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'src/app/common/subject';
-import { SubjectFile } from 'src/app/common/subject-file';
-import { FileServiceService } from 'src/app/services/file-service.service';
-import { SubjectService } from 'src/app/services/subject.service';
-
+import { Component, OnInit } from "@angular/core";
+import { Subject } from "src/app/common/subject";
+import { SubjectFile } from "src/app/common/subject-file";
+import { Global } from "src/app/global";
+import { FileServiceService } from "src/app/services/file-service.service";
+import { SubjectService } from "src/app/services/subject.service";
 
 @Component({
-  selector: 'app-all-subjects',
-  templateUrl: './all-subjects.component.html',
-  styleUrls: ['./all-subjects.component.css']
+  selector: "app-all-subjects",
+  templateUrl: "./all-subjects.component.html",
+  styleUrls: ["./all-subjects.component.css"],
 })
 export class AllSubjectsComponent implements OnInit {
-
   subjectsList: Subject[];
   tempSubjectsFiles: SubjectFile[];
 
   showFilesBoolean = false;
   lastFileId: number;
+  isTeacher: boolean;
 
   thePageNumber: number = 1;
   thePageSize: number = 5;
@@ -24,12 +24,13 @@ export class AllSubjectsComponent implements OnInit {
 
   constructor(
     private subjectService: SubjectService,
-    private fileService: FileServiceService
-  ) { }
+    private fileService: FileServiceService,
+    private global: Global
+  ) {}
 
   ngOnInit(): void {
+    this.isTeacher = this.global.isTeacher();
     this.listOfSubjects();
-    console.log(this.subjectsList)
   }
 
   showFiles(subjectId: number) {
@@ -37,24 +38,41 @@ export class AllSubjectsComponent implements OnInit {
       this.showFilesBoolean = false;
     } else {
       this.lastFileId = subjectId;
-      let subject = this.subjectsList.find(i => i.subjectId === subjectId);
+      let subject = this.subjectsList.find((i) => i.subjectId === subjectId);
       this.tempSubjectsFiles = subject.files;
-      console.log(this.tempSubjectsFiles.length)
+      console.log(this.tempSubjectsFiles.length);
       this.showFilesBoolean = true;
     }
   }
 
-  filesPresent(): boolean{
+  filesPresent(): boolean {
     return this.tempSubjectsFiles.length < 1;
   }
 
   listOfSubjects() {
-    this.subjectService.getAllSubjectsByUser(this.thePageNumber - 1, this.thePageSize, 'ALL').subscribe(data => {
-      this.subjectsList = data.content;
-      this.thePageNumber = data.number + 1;
-      this.thePageSize = data.size;
-      this.theElements = data.totalElements;
-    })
+    if (this.global.isTeacher()) {
+      this.subjectService
+        .getAllSubjectsForTeacher(
+          this.thePageNumber - 1,
+          this.thePageSize,
+          "ALL"
+        )
+        .subscribe((data) => {
+          this.subjectsList = data.content;
+          this.thePageNumber = data.number + 1;
+          this.thePageSize = data.size;
+          this.theElements = data.totalElements;
+        });
+    } else {
+      this.subjectService
+        .getAllSubjectsByUser(this.thePageNumber - 1, this.thePageSize, "ALL")
+        .subscribe((data) => {
+          this.subjectsList = data.content;
+          this.thePageNumber = data.number + 1;
+          this.thePageSize = data.size;
+          this.theElements = data.totalElements;
+        });
+    }
   }
 
   updateQuantity(pageSize: number) {
@@ -64,7 +82,6 @@ export class AllSubjectsComponent implements OnInit {
   }
 
   downloadSubjectFile(fileId: number, fileName: string) {
-    console.log(fileId)
     this.fileService.downloadSubjectFile(fileId, fileName);
   }
 }

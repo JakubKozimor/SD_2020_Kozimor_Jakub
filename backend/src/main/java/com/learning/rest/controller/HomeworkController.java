@@ -101,4 +101,12 @@ public class HomeworkController {
         homeworkService.createHomework(homework, subjectId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @PutMapping("/{homeworkId}")
+    public ResponseEntity<Void> updateHomework(@PathVariable("homeworkId") Long homeworkId,
+                                               @RequestBody HomeworkDto homework) {
+        homeworkService.updateHomework(homework, homeworkId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

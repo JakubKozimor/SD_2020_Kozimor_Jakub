@@ -31,4 +31,6 @@ public interface HomeworkService {
     HomeworkDetailsDto getHomeworkDetails(Long homeworkId);
 
     void createHomework(HomeworkDto homeworkDto, Long subjectId);
+
+    void updateHomework(HomeworkDto homework, Long homeworkId);
 }
