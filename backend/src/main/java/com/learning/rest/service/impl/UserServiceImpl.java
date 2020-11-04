@@ -9,6 +9,7 @@ import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.mapper.UserDtoMapper;
 import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
+import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -58,6 +59,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Page<UserDto> getAllUsersBySubject(Long subjectId, Pageable pageable) {
+        Subject subject = subjectRepository.findById(subjectId).orElseThrow(SubjectNotFoundException::new);
+        List<UserDto> allUsers = subject.getStudents().stream()
+                .map(user -> {
+                    UserDto userDto = userMapper.toUserDto(user);
+                    userDto.setRoleName(user.getRoles().stream().findAny().orElseThrow(RoleNotFoundException::new).getName());
+                    return userDto;
+                })
+                .collect(Collectors.toList());
+        return (Page<UserDto>) PageHelper.preparePageFromList(allUsers, pageable);
+    }
+
+    @Override
     public void addUsersToSubjects(Long subjectId, Set<UserDto> students) {
         if (students != null) {
             List<User> usersToAdd = students.stream()
@@ -65,6 +79,19 @@ public class UserServiceImpl implements UserService {
                     .collect(Collectors.toList());
             Subject subject = subjectRepository.findById(subjectId).orElseThrow(SubjectNotFoundException::new);
             usersToAdd.forEach(subject::addStudent);
+            subjectRepository.save(subject);
+        }
+    }
+
+    @Override
+    public void deleteUserFromSubject(Long userId, Long subjectId) {
+        Subject subject = subjectRepository.findById(subjectId).orElseThrow(SubjectNotFoundException::new);
+        Set<User> allStudentsBySubject = subject.getStudents();
+        if (!allStudentsBySubject.isEmpty()) {
+            Set<User> newUsers = allStudentsBySubject.stream()
+                    .filter(user -> !user.getUserId().equals(userId))
+                    .collect(Collectors.toSet());
+            subject.setStudents(newUsers);
             subjectRepository.save(subject);
         }
     }

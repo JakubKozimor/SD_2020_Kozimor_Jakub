@@ -1,7 +1,7 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
 import { HomeworkDetails } from "src/app/common/homework-details";
 import { HomeworkFile } from "src/app/common/homework-file";
@@ -27,7 +27,8 @@ export class UpdateHomeworkComponent implements OnInit {
     private homeworkService: HomeworkService,
     private route: ActivatedRoute,
     private datePipe: DatePipe,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,9 +50,14 @@ export class UpdateHomeworkComponent implements OnInit {
       );
       this.validateForm.reset();
       this.tempFiles = new Array();
+      this.changePage();
     } else {
       this.formSubmitted = false;
     }
+  }
+
+  changePage() {
+    this.router.navigate(["homework"]);
   }
 
   parseDate(date): string {

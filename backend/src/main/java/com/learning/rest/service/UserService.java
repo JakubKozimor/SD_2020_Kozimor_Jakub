@@ -13,4 +13,8 @@ public interface UserService {
     Page<UserDto> getUsersBySearch(String search, Pageable pageable, Long userId);
 
     void addUsersToSubjects(Long subjectId, Set<UserDto> students);
+
+    Page<UserDto> getAllUsersBySubject(Long subjectId, Pageable pageable);
+
+    void deleteUserFromSubject(Long userId, Long subjectId);
 }

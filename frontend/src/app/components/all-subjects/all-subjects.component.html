@@ -28,7 +28,7 @@
   >
     Zadania
   </button>
-  <button *ngIf="isTeacher" class="btn btn-secondary">Edytuj przedmiot</button>
+  <button *ngIf="isTeacher" routerLink="/update-subject/{{ tempSubject.subjectId }}" class="btn btn-secondary">Edytuj przedmiot</button>
   <button *ngIf="isTeacher" routerLink="/addHomework/{{ tempSubject.subjectId }}" class="btn btn-success">Dodaj zadanie</button>
   <button *ngIf="isTeacher" routerLink="/add-classes/{{ tempSubject.subjectId }}" class="btn btn-primary">Rozpocznij live</button>
 </div>

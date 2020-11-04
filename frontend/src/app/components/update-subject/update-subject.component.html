@@ -1,0 +1,120 @@
+<form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <div>
+    <div>Nazwa</div>
+    <input type="text" formControlName="name" placeholder="Nazwa" />
+    <label *ngIf="name.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
+
+  <div>
+    <div>Dzień</div>
+    <select formControlName="day">
+      <option value="MONDAY">Poniedziałek</option>
+      <option value="TUESDAY">Wtorek</option>
+      <option value="WEDNESDAY">Środa</option>
+      <option value="THURSDAY">Czwartek</option>
+      <option value="FRIDAY">Piątek</option>
+    </select>
+    <label *ngIf="day.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
+
+  <div>
+    <div>Tydzień</div>
+    <select formControlName="week">
+      <option value="ALL">A i B</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
+  </div>
+
+  <div>
+    <div>Godzina rozpoczęcia</div>
+    <input
+      type="time"
+      id="appt"
+      name="appt"
+      min="07:00"
+      max="20:00"
+      formControlName="startTime"
+    />
+    <label *ngIf="startTime.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
+
+  <div>
+    <div>Czas trwania</div>
+    <select formControlName="longOfTime">
+      <option value="30">30 minut</option>
+      <option value="45">45 minut</option>
+      <option value="60">60 minut</option>
+      <option value="90">90 minut</option>
+    </select>
+  </div>
+
+  <div>
+    <div>Pliki</div>
+    <div *ngFor="let tempFile of tempFiles">
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        class="bi bi-file-earmark-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+        />
+      </svg>
+      {{ tempFile.fileName }}
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-secondary"
+        (click)="reset(tempFile)"
+      >
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          class="bi bi-file-minus"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"
+          ></path>
+          <path
+            fill-rule="evenodd"
+            d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="custom-file" style="width: 200px">
+      <input
+        #inputFile
+        type="file"
+        class="custom-file-input"
+        id="customFile"
+        (change)="onUpload($event)"
+      />
+      <label class="custom-file-label" for="customFile">Wybierz plik</label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-secondary">Aktualizuj</button>
+</form>
+
+<button
+  class="btn btn-primary"
+  routerLink="/add-students/{{ subjectId }}"
+>
+  Użytkownicy
+</button>

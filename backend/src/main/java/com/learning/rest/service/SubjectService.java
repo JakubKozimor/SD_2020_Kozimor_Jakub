@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface SubjectService {
 
-
     void addHomeworkToSubject(Long subjectId, Long homeworkId);
 
     Page<Subject> getAllSubjectsByUserId(Long userId, Pageable pageable, Week week);
@@ -22,4 +21,8 @@ public interface SubjectService {
     Long addSubject(Long teacherId, SubjectDto subjectDto);
 
     Page<Subject> getAllSubjectsForTeacher(Long userId, Pageable pageable, Week week);
+
+    Subject getSubjectDetails(Long subjectId);
+
+    void updateSubject(SubjectDto subjectDto, Long subjectId);
 }

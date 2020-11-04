@@ -24,7 +24,8 @@ import { RateHomeworkAnswerComponent } from "./components/rate-homework-answer/r
 import { RegisterComponent } from "./components/register/register.component";
 import { TeacherHomeworkComponent } from "./components/teacher-homework/teacher-homework.component";
 import { TeachersComponent } from "./components/teachers/teachers.component";
-import { UpdateHomeworkComponent } from './components/update-homework/update-homework.component';
+import { UpdateHomeworkComponent } from "./components/update-homework/update-homework.component";
+import { UpdateSubjectComponent } from "./components/update-subject/update-subject.component";
 
 const studentRoutes: Routes = [
   { path: "callendar", component: CalendarComponent },
@@ -55,6 +56,7 @@ const studentRoutes: Routes = [
   { path: "**", redirectTo: "/menu", pathMatch: "full" },
 ];
 const teacherRoutes: Routes = [
+  { path: "update-subject/:subjectId", component: UpdateSubjectComponent },
   { path: "update-homework/:homeworkId", component: UpdateHomeworkComponent },
   { path: "homework", component: TeacherHomeworkComponent },
   { path: "rate/:homeworkAnswer", component: RateHomeworkAnswerComponent },

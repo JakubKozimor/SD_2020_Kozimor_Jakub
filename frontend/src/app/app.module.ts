@@ -39,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/rate-homework-answer.component';
 import { TeacherHomeworkComponent } from './components/teacher-homework/teacher-homework.component';
 import { UpdateHomeworkComponent } from './components/update-homework/update-homework.component';
+import { UpdateSubjectComponent } from './components/update-subject/update-subject.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { UpdateHomeworkComponent } from './components/update-homework/update-hom
     RateHomeworkAnswerComponent,
     TeacherHomeworkComponent,
     UpdateHomeworkComponent,
+    UpdateSubjectComponent,
   ],
   imports: [
     CommonModule,

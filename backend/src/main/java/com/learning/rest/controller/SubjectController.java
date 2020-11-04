@@ -33,8 +33,8 @@ public class SubjectController {
     @PreAuthorize("#userId == principal.id && hasRole('ROLE_TEACHER')")
     @GetMapping("/{userId}/all-teacher")
     public ResponseEntity<Page<Subject>> getAllSubjectsForTeacher(@PathVariable Long userId,
-                                                              Pageable pageable,
-                                                              @RequestParam("week") Week week) {
+                                                                  Pageable pageable,
+                                                                  @RequestParam("week") Week week) {
         return new ResponseEntity<>(subjectService.getAllSubjectsForTeacher(userId, pageable, week), HttpStatus.OK);
     }
 
@@ -58,4 +58,18 @@ public class SubjectController {
                                               @RequestParam("teacherId") Long teacherId) {
         return new ResponseEntity<>(subjectService.addSubject(teacherId, subjectDto), HttpStatus.CREATED);
     }
+
+    @GetMapping("/subject-details/{subjectId}")
+    public ResponseEntity<Subject> getMessageDetails(@PathVariable("subjectId") Long subjectId) {
+        return new ResponseEntity<>(subjectService.getSubjectDetails(subjectId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @PutMapping("/{subjectId}")
+    public ResponseEntity<Void> updateSubject(@PathVariable("subjectId") Long subjectId,
+                                              @RequestBody SubjectDto subjectDto) {
+        subjectService.updateSubject(subjectDto, subjectId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

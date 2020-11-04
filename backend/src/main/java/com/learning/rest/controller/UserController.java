@@ -25,10 +25,23 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsersBySearch(search, pageable, userId), HttpStatus.OK);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable,
+                                                     @RequestParam("subjectId") Long subjectId) {
+        return new ResponseEntity<>(userService.getAllUsersBySubject(subjectId, pageable), HttpStatus.OK);
+    }
+
     @PostMapping("/users")
     public ResponseEntity<Void> addUsersToSubject(@RequestBody UsersList usersList,
                                                   @RequestParam("subjectId") Long subjectId) {
         userService.addUsersToSubjects(subjectId, usersList.getStudents());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUserFromSubject(@PathVariable Long userId,
+                                                      @RequestParam("subjectId") Long subjectId) {
+        userService.deleteUserFromSubject(userId, subjectId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

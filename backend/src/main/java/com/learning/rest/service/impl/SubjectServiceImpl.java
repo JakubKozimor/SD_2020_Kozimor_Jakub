@@ -26,9 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,6 +57,29 @@ public class SubjectServiceImpl implements SubjectService {
         subject.setLongOfTime(Integer.valueOf(subjectDto.getLongOfTime()));
         Subject saveDSubject = subjectRepository.save(subject);
         return saveDSubject.getSubjectId();
+    }
+
+    @Override
+    public void updateSubject(SubjectDto subjectDto, Long subjectId) {
+        Subject oldSubject = subjectRepository.findById(subjectId).orElseThrow(SubjectNotFoundException::new);
+        Subject subject = subjectMapper.toSubject(subjectDto);
+        List<SubjectFileDto> subjectFileDto = subjectDto.getFiles();
+        subject.setFiles(new ArrayList<>());
+        if (subjectFileDto != null) {
+            subjectFileDto.stream()
+                    .map(subjectMap::mapToSubjectFile)
+                    .forEach(subject::addFile);
+        }
+        subject.setSubjectId(subjectId);
+        subject.setLongOfTime(Integer.valueOf(subjectDto.getLongOfTime()));
+        subject.setHomeworks(oldSubject.getHomeworks());
+        subject.setTeacher(oldSubject.getTeacher());
+        subject.setStudents(oldSubject.getStudents());
+        List<SubjectFile> subjectFiles = subject.getFiles();
+        if (subjectFiles != null && !subjectFiles.isEmpty()) {
+            subjectFiles.forEach(homeworkAnswerFile -> homeworkAnswerFile.setLessonFileId(null));
+        }
+        subjectRepository.save(subject);
     }
 
     @Override
@@ -119,6 +142,11 @@ public class SubjectServiceImpl implements SubjectService {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<Subject> allSubjects = subjectRepository.findAllByTeacher(user);
         return this.getFivSubjects(allSubjects, notFreeWeek);
+    }
+
+    @Override
+    public Subject getSubjectDetails(Long subjectId) {
+        return subjectRepository.findById(subjectId).orElseThrow(SubjectNotFoundException::new);
     }
 
     private List<Subject> getFivSubjects(List<Subject> allSubjects, Week notFreeWeek) {

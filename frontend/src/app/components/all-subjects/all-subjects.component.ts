@@ -40,7 +40,6 @@ export class AllSubjectsComponent implements OnInit {
       this.lastFileId = subjectId;
       let subject = this.subjectsList.find((i) => i.subjectId === subjectId);
       this.tempSubjectsFiles = subject.files;
-      console.log(this.tempSubjectsFiles.length);
       this.showFilesBoolean = true;
     }
   }
