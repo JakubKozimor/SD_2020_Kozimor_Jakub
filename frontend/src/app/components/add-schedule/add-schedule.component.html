@@ -66,6 +66,8 @@
         <option value="B">B</option>
         <option value="FREE">Wolne</option>
     </select>
+
+    <label *ngIf="week.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
   <div>
     <div class="input-group" style="width: 300px;">
       <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="start" ngbDatepicker

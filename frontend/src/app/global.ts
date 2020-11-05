@@ -31,6 +31,15 @@ export class Global {
     }
   }
 
+
+  isAdmin(): boolean {
+    if (String(this.getActualUserRoleFromLocalStorage()) == "ROLE_ADMIN") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getActualUserRoleFromLocalStorage() {
     return localStorage.getItem("user_role");
   }

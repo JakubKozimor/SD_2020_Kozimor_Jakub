@@ -6,6 +6,7 @@ import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.domain.dto.user.UserDto;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.entity.enums.RoleName;
 import com.learning.rest.domain.mapper.UserDtoMapper;
 import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
@@ -44,11 +45,20 @@ public class UserServiceImpl implements UserService {
         Optional<User> isPrincipalInList = users.stream()
                 .filter(user -> user.getUserId().equals(userId))
                 .findAny();
-        if (isPrincipalInList.isPresent()) {
-            users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize() + 1));
+        Optional<User> isAdmin = users.stream()
+                .filter(user -> user.getRoles().stream().findAny().get().getName() == RoleName.ROLE_ADMIN)
+                .findAny();
+        if (isPrincipalInList.isPresent() || isAdmin.isPresent()) {
+            if (isPrincipalInList.isPresent() && isAdmin.isPresent()) {
+                users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize() + 2));
+            } else {
+                users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize() + 1));
+            }
+
         }
         List<UserDto> collect = users.stream()
                 .filter(user -> !user.getUserId().equals(userId))
+                .filter(user -> user.getRoles().stream().findAny().get().getName() != RoleName.ROLE_ADMIN)
                 .map(user -> {
                     UserDto userDto = userMapper.toUserDto(user);
                     userDto.setRoleName(user.getRoles().stream().findAny().orElseThrow(RoleNotFoundException::new).getName());

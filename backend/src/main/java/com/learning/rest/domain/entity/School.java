@@ -1,5 +1,6 @@
 package com.learning.rest.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,8 @@ public class School {
     @Column(name = "school_id")
     private Long schoolId;
     private String name;
+    private String city;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "school_id")
     private List<CalendarSchool> calendarSchool;

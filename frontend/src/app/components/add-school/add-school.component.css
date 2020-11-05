@@ -1,0 +1,51 @@
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+    content: "Przeglądaj";
+  }
+  
+  .add-homework {
+    display: flex;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .add-homework input {
+    outline: none;
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    border-style: solid;
+    margin: 1rem 0;
+    height: 40px;
+  }
+  
+  .calendar-btn {
+    height: 40px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-homework input:focus {
+    border-color: #034078;
+  }
+  
+  .add-homework-button {
+    background-color: #034078;
+    color: #fefcfb;
+    border: 1px solid #fefcfb;
+  }
+  
+  .add-homework-button:hover {
+    background-color: #eaebed;
+    color: #034078;
+    border-color: #034078;
+  }
+  
+  label.error {
+    color: red;
+  }
+  

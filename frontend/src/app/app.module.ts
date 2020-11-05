@@ -40,6 +40,9 @@ import { RateHomeworkAnswerComponent } from './components/rate-homework-answer/r
 import { TeacherHomeworkComponent } from './components/teacher-homework/teacher-homework.component';
 import { UpdateHomeworkComponent } from './components/update-homework/update-homework.component';
 import { UpdateSubjectComponent } from './components/update-subject/update-subject.component';
+import { AllSchoolsComponent } from './components/all-schools/all-schools.component';
+import { AddSchoolComponent } from './components/add-school/add-school.component';
+import { UpdateSchoolComponent } from './components/update-school/update-school.component';
 
 
 @NgModule({
@@ -73,6 +76,9 @@ import { UpdateSubjectComponent } from './components/update-subject/update-subje
     TeacherHomeworkComponent,
     UpdateHomeworkComponent,
     UpdateSubjectComponent,
+    AllSchoolsComponent,
+    AddSchoolComponent,
+    UpdateSchoolComponent,
   ],
   imports: [
     CommonModule,

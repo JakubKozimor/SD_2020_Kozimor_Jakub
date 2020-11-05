@@ -2,7 +2,7 @@
   <div class="logo">
   </div>
   <div class="menu">
-    <ul>
+    <ul *ngIf="!isAdmin">
       <li>
         <a routerLink="menu"  routerLinkActive="active">Strona główna</a>
       </li>
@@ -23,6 +23,15 @@
       </li>
       <li>
         <a routerLink="live" routerLinkActive="active">Live</a>
+      </li>
+      <li>
+        <a routerLink="login" (click)="logout()">Wyloguj</a>
+      </li>
+    </ul>
+
+    <ul *ngIf="isAdmin">
+      <li>
+        <a routerLink="school/all"  routerLinkActive="active">Strona główna</a>
       </li>
       <li>
         <a routerLink="login" (click)="logout()">Wyloguj</a>

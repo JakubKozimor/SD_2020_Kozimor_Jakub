@@ -1,0 +1,18 @@
+<div class="add-homework">
+  <h1>Dodaj szkołę</h1>
+  <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div>
+      <input type="text" formControlName="name" placeholder="Nazwa" />
+      <label *ngIf="name.invalid" [ngClass]="'error'">
+        Pole nie może być puste
+      </label>
+    </div>
+    <div>
+      <input type="text" formControlName="city" placeholder="Miejscowość" />
+      <label *ngIf="city.invalid" [ngClass]="'error'">
+        Pole nie może być puste
+      </label>
+    </div>
+    <button type="submit" class="btn add-homework-button">Dodaj szkołę</button>
+  </form>
+</div>

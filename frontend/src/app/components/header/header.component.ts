@@ -8,11 +8,13 @@ import { Global } from "src/app/global";
 })
 export class HeaderComponent implements OnInit {
   isTeacher: boolean;
+  isAdmin: boolean;
 
   constructor(private global: Global) {}
 
   ngOnInit(): void {
     this.isTeacher = this.global.isTeacher();
+    this.isAdmin = this.global.isAdmin();
   }
 
   logout() {
