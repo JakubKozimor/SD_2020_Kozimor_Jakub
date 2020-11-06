@@ -1,29 +1,100 @@
 .content {
-    text-align: center;
-    margin-bottom: 60px;
-    width: 100%;
-    display: inline-block;
+  text-align: center;
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  min-height: 80vh;
+}
+
+.main-schedule {
+  display: flex;
 }
 
 .info-div {
-    margin: 10px;
-    display: inline-table;
-    width: 90%;
-    text-align: center;
-    position: relative;
-    text-align: center;
+  min-height: 300px;
+  margin: 10px 50px;
+  text-align: center;
+  position: relative;
 }
 
-.data {
-    display: inline-block;
-    width: 20%;
+.info-div h2 {
+  margin: 40px;
 }
 
-.head-info{
-    margin-left: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: large;
-    height: 50px;
+.big-column {
+  width: 100%;
+  min-width: 400px;
+  border: 2px solid #001f54;
+  border-radius: 8px;
+}
+
+.subject-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #001f54;
+}
+
+.subject-row:first-child {
+  color: #1282a2;
+  font-size: 1.1rem;
+  padding: 3px 0;
+  font-weight: 600;
+  border-color: #1282a2;
+  border-width: 3px;
+}
+
+.subject-row:last-child {
+  border: none;
+}
+
+.subject-row:first-child span {
+  margin-left: 1rem;
+  width: 160px;
+}
+
+
+.subject-row span {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  margin: 10px;
+  width: 160px;
+}
+
+.pagin {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+ngb-pagination /deep/ .page-item.active .page-link {
+  z-index: 3;
+  background-color: #034078 !important;
+  color: #eaebed !important;
+  border-color: #034078 !important;
+}
+
+.subject-row button {
+  background-color: #eaebed;
+  color: #034078;
+  border-color: #034078;
+  min-width: 160px;
+  margin-left: 1rem;
+}
+
+.subject-row button:hover {
+  background-color: #034078;
+  color: #fefcfb;
+  border: 1px solid #fefcfb;
+}
+
+@media only screen and (max-width: 576px) {
+  .content {
+    width: 100%;
+    margin-top: auto;
+  }
 }

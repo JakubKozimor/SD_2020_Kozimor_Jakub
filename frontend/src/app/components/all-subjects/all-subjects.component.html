@@ -4,69 +4,119 @@
     Dodaj przedmiot
   </button>
 </div>
+<!-- list start -->
+<div class="content">
+  <div class="main-schedule">
+    <div class="info-div">
+      <h2>Przedmioty</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Nazwa</span>
+          <span>Dzień</span>
+          <span>Tydzień</span>
+          <span>Godzina</span>
+          <span>Długość</span>
+          <span *ngIf="!isTeacher">Pliki</span>
+          <span *ngIf="!isTeacher">Zadania</span>
+          <span *ngIf="isTeacher">Edytuj</span>
+          <span *ngIf="isTeacher">Dodaj</span>
+          <span *ngIf="isTeacher">Rozpocznij</span>
+        </div>
 
-<div>
-  Nazwa | dzień | tydzień | godzina rozpoczecia | długość | Pliki | Zadania
-</div>
-<div *ngFor="let tempSubject of subjectsList">
-  <span>{{ tempSubject.name }} |</span>
-  <span>{{ tempSubject.day }} |</span>
-  <span>{{ tempSubject.week }} |</span>
-  <span>{{ tempSubject.startTime }} |</span>
-  <span>{{ tempSubject.longOfTime }} |</span>
-  <button
-    *ngIf="!isTeacher"
-    class="btn btn-secondary"
-    (click)="showFiles(tempSubject.subjectId)"
-  >
-    Pliki
-  </button>
-  <button
-    *ngIf="!isTeacher"
-    class="btn btn-primary"
-    routerLink="/subject-homework/{{ tempSubject.subjectId }}"
-  >
-    Zadania
-  </button>
-  <button *ngIf="isTeacher" routerLink="/update-subject/{{ tempSubject.subjectId }}" class="btn btn-secondary">Edytuj przedmiot</button>
-  <button *ngIf="isTeacher" routerLink="/addHomework/{{ tempSubject.subjectId }}" class="btn btn-success">Dodaj zadanie</button>
-  <button *ngIf="isTeacher" routerLink="/add-classes/{{ tempSubject.subjectId }}" class="btn btn-primary">Rozpocznij live</button>
-</div>
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span>{{ tempSubject.name }}</span>
+          <span>{{ getDay(tempSubject.day) }}</span>
+          <span>{{ tempSubject.week }}</span>
+          <span>{{ tempSubject.startTime }}</span>
+          <span>{{ tempSubject.longOfTime }} minut</span>
+          <button
+            id="{{tempSubject.subjectId}}"
+            *ngIf="!isTeacher"
+            class="btn"
+            (click)="showFiles(tempSubject.subjectId)"
+          >
+            Pliki
+          </button>
+          <button
+            *ngIf="!isTeacher"
+            class="btn btn-primary"
+            routerLink="/subject-homework/{{ tempSubject.subjectId }}"
+          >
+            Zadania
+          </button>
+          <button
+            *ngIf="isTeacher"
+            routerLink="/update-subject/{{ tempSubject.subjectId }}"
+            class="btn btn-secondary"
+          >
+            Edytuj przedmiot
+          </button>
+          <button
+            *ngIf="isTeacher"
+            routerLink="/addHomework/{{ tempSubject.subjectId }}"
+            class="btn btn-success"
+          >
+            Dodaj zadanie
+          </button>
+          <button
+            *ngIf="isTeacher"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+            class="btn btn-primary"
+          >
+            Rozpocznij live
+          </button>
+        </div>
+      </div>
+      <div class="subject-row pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfSubjects()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-div">
+      <h2>Pliki</h2>
+      <h5 *ngIf="actualSubject != undefined">{{ actualSubject.name }}</h5>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Nazwa pliku</span>
+          <span>Pobierz</span>
+        </div>
 
-<div class="pagination">
-  <ngb-pagination
-    [(page)]="thePageNumber"
-    [pageSize]="thePageSize"
-    [collectionSize]="theElements"
-    [maxSize]="4"
-    [boundaryLinks]="true"
-    (pageChange)="listOfSubjects()"
-  >
-  </ngb-pagination>
-  <div>
-    <select class="form-control" (change)="updateQuantity($event.target.value)">
-      <option selected="true">5</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
-    </select>
-  </div>
-</div>
-
-<div *ngIf="showFilesBoolean">
-  <h1>Pliki</h1>
-
-  <div *ngIf="filesPresent()">Brak plików</div>
-  <div *ngIf="!filesPresent()">
-    <div *ngFor="let tempFile of tempSubjectsFiles">
-      <p>{{ tempFile.fileName }}</p>
-      <p>File ID: {{ tempFile.lessonFileId }}</p>
-      <button
-        class="btn btn-primary"
-        (click)="downloadSubjectFile(tempFile.lessonFileId, tempFile.fileName)"
-      >
-        Pobierz
-      </button>
+        <div class="subject-row" *ngFor="let tempFile of tempSubjectsFiles">
+          <span *ngIf="!filesPresent()">{{ tempFile.fileName }}</span>
+          <button
+            *ngIf="!filesPresent()"
+            class="btn"
+            (click)="
+              downloadSubjectFile(tempFile.lessonFileId, tempFile.fileName)
+            "
+          >
+            Pobierz
+          </button>
+        </div>
+        <div *ngIf="actualSubject != undefined">
+          <span *ngIf="this.actualSubject.files.length == 0">Brak plików</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ import { FileServiceService } from 'src/app/services/file-service.service';
 })
 export class ClassesComponent implements OnInit {
   @Input()
-  url: string = "";
+  url: string = "https://www.youtube.com/embed/36YnV9STBqc";
   urlSafe: SafeResourceUrl;
 
   private serverUrl = 'http://localhost:8080/socket'
@@ -61,10 +61,8 @@ export class ClassesComponent implements OnInit {
   getLessonDetails(classesId: number){
     this.classesService.getClassesDetails(classesId).subscribe(data => {
       this.classes = data;
-      this.url = this.classes.url;
+      // this.url = this.classes.url;
       this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-      console.log(this.classes);
-      console.log(this.url)
     });
   }
 

@@ -22,6 +22,9 @@ export class AllSubjectsComponent implements OnInit {
   thePageSize: number = 5;
   theElements: number = 0;
 
+  actualSubject: Subject;
+  lastButtonId: string;
+
   constructor(
     private subjectService: SubjectService,
     private fileService: FileServiceService,
@@ -39,9 +42,18 @@ export class AllSubjectsComponent implements OnInit {
     } else {
       this.lastFileId = subjectId;
       let subject = this.subjectsList.find((i) => i.subjectId === subjectId);
+      this.actualSubject = subject;
       this.tempSubjectsFiles = subject.files;
       this.showFilesBoolean = true;
     }
+
+    if(this.lastButtonId != undefined){
+      var lastElement = document.getElementById(this.lastButtonId);
+      lastElement.classList.remove("active-button");
+    }
+    var someElement = document.getElementById(String(subjectId));
+    someElement.classList.add("active-button");
+    this.lastButtonId = String(subjectId);
   }
 
   filesPresent(): boolean {
@@ -82,5 +94,23 @@ export class AllSubjectsComponent implements OnInit {
 
   downloadSubjectFile(fileId: number, fileName: string) {
     this.fileService.downloadSubjectFile(fileId, fileName);
+  }
+
+  getDay(day: string) {
+    if (day == "MONDAY") {
+      return "Poniedziałek";
+    }
+    if (day == "TUESDAY") {
+      return "Wtorek";
+    }
+    if (day == "WEDNESDAY") {
+      return "Środa";
+    }
+    if (day == "THURSDAY") {
+      return "Czwartek";
+    }
+    if (day == "FRIDAY") {
+      return "Piątek";
+    }
   }
 }

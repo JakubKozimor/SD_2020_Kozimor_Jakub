@@ -1,48 +1,46 @@
+<div class="content">
 
-<main class="content">
-
-  
-  <!-- <div class="week-options">
-    <button class="btn btn-primary" (click)="changeWeek('ALL')">ALL</button>
-    <button class="btn btn-primary" (click)="changeWeek('A')">A</button>
-    <button class="btn btn-primary" (click)="changeWeek('B')">B</button>
-  </div> -->
 
   <div class="main-schedule">
-  <div class="info-div">
-    
-    <h2>Najbliższe zajęcia</h2>
-    <div class="big-column">
-      <div class="subject-row">
-        <span>Dzień</span>
-        <span>Od</span>
-        <span>Do</span>
-        <span>Przedmiot</span>
-           
-      </div>
-      <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-       <span> {{getDay(tempSubject.day)}}</span>
-       <span> {{tempSubject.startTime}} -
-        {{countTime(tempSubject.startTime, tempSubject.longOfTime)}}</span>
-       <span> {{tempSubject.name}}</span>
+    <div class="info-div">
+      <h2>Najbliższe zajęcia</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Dzień</span>
+          <span>Od</span>
+          <span>Do</span>
+          <span>Przedmiot</span>
+        </div>
+
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span> {{ getDay(tempSubject.day) }}</span>
+          <span>
+            {{ tempSubject.startTime }} -
+            {{ countTime(tempSubject.startTime, tempSubject.longOfTime) }}</span
+          >
+          <span> {{ tempSubject.name }}</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="info-div">
-    <h2 *ngIf="!isTeacher">Zadania</h2>
-    <h2 *ngIf="isTeacher">Zadania do oceny</h2>
-    <div class="big-column">
-   
-      <div class="homework-row" *ngFor="let tempHomework of homeworkList">
-        <span>
-          {{tempHomework.title}}
-        </span>
-        <span>
-        {{tempHomework.deadline}}
-      </span>
-      <button class="btn btn-outline-primary homework-btn" routerLink="/viewHomework/{{ tempHomework.homeworkId }}">Szczegóły</button>
+    <div class="info-div">
+      <h2 *ngIf="!isTeacher">Zadania</h2>
+      <h2 *ngIf="isTeacher">Zadania do oceny</h2>
+      <div class="big-column">
+        <div class="homework-row" *ngFor="let tempHomework of homeworkList">
+          <span>
+            {{ tempHomework.title }}
+          </span>
+          <span>
+            {{ tempHomework.deadline }}
+          </span>
+          <button
+            class="btn homework-btn"
+            routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
+          >
+            Szczegóły
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</main>

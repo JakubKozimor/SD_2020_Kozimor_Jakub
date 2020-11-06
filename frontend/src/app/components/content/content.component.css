@@ -10,7 +10,7 @@
   min-height: 80vh;
 }
 
-.main-schedule{
+.main-schedule {
   display: flex;
 }
 
@@ -80,6 +80,19 @@
 .homework-btn {
   padding: 3px 12px;
 }
+
+.homework-row button {
+  background-color: #eaebed;
+  color: #034078;
+  border-color: #034078;
+}
+
+.homework-row button:hover {
+  background-color: #034078;
+  color: #fefcfb;
+  border: 1px solid #fefcfb;
+}
+
 .homework-row:last-child {
   border: none;
 }

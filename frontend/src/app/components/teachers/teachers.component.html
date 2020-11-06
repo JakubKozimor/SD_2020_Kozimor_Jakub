@@ -1,33 +1,53 @@
-<main class="content">
-    <div class="info-div head-info">
-        <span class="data">Imie</span>
-        <span class="data">Nazwisko</span>
-        <span class="data">Przedmiot</span>
-        <span class="data">Email</span>
-        <span class="data">Kontakt</span>
-    </div>
-    <div *ngFor="let tempTeacher of teacherList">
-        <div class="info-div">
-            <span class="data">{{tempTeacher.firstName}}</span>
-            <span class="data">{{tempTeacher.lastName}}</span>
-            <span class="data">{{tempTeacher.subject}}</span>
-            <span class="data">{{tempTeacher.email}}</span>
-            <button class="btn btn-primary data" routerLink="/createMessage/{{ tempTeacher.teacherId }}">Skontaktuj
-                sie</button>
+<div class="content">
+  <div class="main-schedule">
+    <div class="info-div">
+      <h2>Nauczyciele</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Imie</span>
+          <span>Nazwisko</span>
+          <span>Przedmiot</span>
+          <span>Email</span>
+          <span>Kontakt</span>
         </div>
-    </div>
-    <div class="pagination">
-        <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize"
-            [collectionSize]="theElements" [maxSize]="4" [boundaryLinks]="true"
-            (pageChange)="listOfTeachers()">
-        </ngb-pagination>
-        <div>
-            <select class="form-control" (change)="updateQuantity($event.target.value)">
-                <option selected="true">5</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
-            </select>
+
+        <div class="subject-row" *ngFor="let tempTeacher of teacherList">
+          <span>{{ tempTeacher.firstName }}</span>
+          <span>{{ tempTeacher.lastName }}</span>
+          <span>{{ tempTeacher.subject }}</span>
+          <span>{{ tempTeacher.email }}</span>
+          <button
+            class="btn"
+            routerLink="/createMessage/{{ tempTeacher.teacherId }}"
+          >
+            Skontaktuj sie
+          </button>
         </div>
       </div>
-</main>
+      <div class="subject-row pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfTeachers()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
