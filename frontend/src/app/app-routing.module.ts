@@ -29,8 +29,10 @@ import { TeachersComponent } from "./components/teachers/teachers.component";
 import { UpdateHomeworkComponent } from "./components/update-homework/update-homework.component";
 import { UpdateSchoolComponent } from './components/update-school/update-school.component';
 import { UpdateSubjectComponent } from "./components/update-subject/update-subject.component";
+import { UsersComponent } from './components/users/users.component';
 
 const studentRoutes: Routes = [
+  { path: "users", component: UsersComponent },
   { path: "callendar", component: CalendarComponent },
   { path: "live", component: LiveComponent },
   { path: "classes/:classesId", component: ClassesComponent },
@@ -59,6 +61,7 @@ const studentRoutes: Routes = [
   { path: "**", redirectTo: "/menu", pathMatch: "full" },
 ];
 const teacherRoutes: Routes = [
+  { path: "users", component: UsersComponent },
   { path: "update-subject/:subjectId", component: UpdateSubjectComponent },
   { path: "update-homework/:homeworkId", component: UpdateHomeworkComponent },
   { path: "homework", component: TeacherHomeworkComponent },

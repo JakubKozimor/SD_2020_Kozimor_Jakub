@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="logo"></div>
+  <div [routerLink]="['/menu']" class="logo"></div>
   <div class="menu">
     <ul *ngIf="!isAdmin">
       <li>
@@ -16,6 +16,9 @@
       </li>
       <li>
         <a routerLink="allMessages" routerLinkActive="active">Wiadomości</a>
+      </li>
+      <li>
+        <a routerLink="users" routerLinkActive="active">Użytkownicy</a>
       </li>
       <li>
         <a routerLink="allSubjects" routerLinkActive="active">Przedmioty</a>

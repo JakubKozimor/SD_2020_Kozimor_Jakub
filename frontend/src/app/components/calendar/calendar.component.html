@@ -1,88 +1,142 @@
-<div>
-  <div>
-    <p>Opcje</p>
-    <button class="btn btn-primary" (click)="changeWeek('A')">A</button>
-    <button class="btn btn-primary" (click)="changeWeek('B')">B</button>
-  </div>
-
-  <div>
-    <p>Poniedziałek</p>
-    <div *ngFor="let tempSubject of subjectsList">
-      <p *ngIf="tempSubject.day == 'MONDAY'">
-        {{tempSubject.startTime}} {{tempSubject.name}}
+<div class="content">
+  <div class="week-options">
+    <div class="week-options">
+      <button id="A" class="btn" (click)="changeWeek('A')">A</button>
+      <button id="B" class="btn" (click)="changeWeek('B')">B</button>
     </div>
   </div>
 
-  <div>
-    <p>Wtorek</p>
-    <div *ngFor="let tempSubject of subjectsList">
-      <p *ngIf="tempSubject.day == 'TUESDAY'">
-        {{tempSubject.startTime}} {{tempSubject.name}}
+  <div class="main-schedule">
+    <div class="info-div">
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Poniedziałek</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span *ngIf="tempSubject.day == 'MONDAY'"
+            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
+          >
+        </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <p>Środa</p>
-    <div *ngFor="let tempSubject of subjectsList">
-      <p *ngIf="tempSubject.day == 'WEDNESDAY'">
-        {{tempSubject.startTime}} {{tempSubject.name}}
+    <div class="info-div">
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Wtorek</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span *ngIf="tempSubject.day == 'TUESDAY'"
+            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
+          >
+        </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <p>Czwartek</p>
-    <div *ngFor="let tempSubject of subjectsList">
-      <p *ngIf="tempSubject.day == 'THURSDAY'">
-        {{tempSubject.startTime}} {{tempSubject.name}}
-    </div>
-  </div>
-  <div>
-    <p>Piątek</p>
-    <div *ngFor="let tempSubject of subjectsList">
-      <p *ngIf="tempSubject.day == 'FRIDAY'">
-        {{tempSubject.startTime}} {{tempSubject.name}}
-    </div>
-  </div>
-</div>
 
-<div class="row text-center">
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        mwlCalendarPreviousView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-      >
-        Previous
+    <div class="info-div">
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Środa</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span *ngIf="tempSubject.day == 'WEDNESDAY'"
+            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
+          >
+        </div>
       </div>
-      <div #myDiv
-        class="btn btn-outline-secondary"
-        mwlCalendarToday
-        [(viewDate)]="viewDate"
-      >
-        Today
+    </div>
+
+    <div class="info-div">
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Czwartek</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span *ngIf="tempSubject.day == 'THURSDAY'"
+            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
+          >
+        </div>
       </div>
-      <div
-        class="btn btn-primary"
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-      >
-        Next
+    </div>
+
+    <div class="info-div">
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Piątek</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
+          <span *ngIf="tempSubject.day == 'FRIDAY'"
+            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
+          >
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+
+  <div class="main-schedule">
+    <div class="info-div">
+      <div class="big-column-calendar">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <div class="btn-group">
+              <div
+                class="btn btn-calendar-color"
+                mwlCalendarPreviousView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()"
+              >
+                Poprzedni
+              </div>
+              <div
+                #myDiv
+                class="btn btn-calendar-color-today"
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+              >
+                Dzisiaj
+              </div>
+              <div
+                class="btn btn-calendar-color"
+                mwlCalendarNextView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()"
+              >
+                Następny
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3 class="month-class">
+              {{ viewDate | calendarDate: view + "ViewTitle":"Pl" }}
+            </h3>
+          </div>
+
+          <div class="col-md-4">
+            <div class="weeks-map">
+              <div class="week-a"></div>
+              <span>- A</span>
+              <div class="week-b"></div>
+              <span>- B</span>
+              <div class="week-free"></div>
+              <span>- Dzień wolny</span>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="month-view" [ngSwitch]="view">
+          <mwl-calendar-month-view
+            class="week-days-class"
+            [viewDate]="viewDate"
+            [events]="events"
+            [locale]="locale"
+            [weekStartsOn]="weekStartsOn"
+            [weekendDays]="weekendDays"
+            (eventTimesChanged)="eventTimesChanged($event)"
+          >
+          </mwl-calendar-month-view>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<br />
-<div [ngSwitch]="view">
-  <mwl-calendar-month-view
-    [viewDate]="viewDate"
-    [events]="events"
-    (eventTimesChanged)="eventTimesChanged($event)"
-  >
-  </mwl-calendar-month-view>
 </div>

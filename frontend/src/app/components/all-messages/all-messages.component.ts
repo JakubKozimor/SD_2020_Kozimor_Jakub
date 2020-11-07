@@ -1,14 +1,14 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Message } from 'src/app/common/message';
-import { UserDto } from 'src/app/common/user-dto';
-import { MessageService } from 'src/app/services/message.service';
-import { UserService } from 'src/app/services/user.service';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { Message } from "src/app/common/message";
+import { UserDto } from "src/app/common/user-dto";
+import { MessageService } from "src/app/services/message.service";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
-  selector: 'app-all-messages',
-  templateUrl: './all-messages.component.html',
-  styleUrls: ['./all-messages.component.css']
+  selector: "app-all-messages",
+  templateUrl: "./all-messages.component.html",
+  styleUrls: ["./all-messages.component.css"],
 })
 export class AllMessagesComponent implements OnInit {
   messageReadList: Message[];
@@ -27,53 +27,37 @@ export class AllMessagesComponent implements OnInit {
   theReadMessagesPageSize: number = 5;
   theReadMessagesElements: number = 0;
 
-  studentsList: UserDto[];
+  value = 1;
 
-  thePageNumber: number = 1;
-  thePageSize: number = 5;
-  theElements: number = 0;
-
-  searchValue = "";
+  lastButtonId: string;
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.listOfReadMessages();
     this.listOfUnreadMessages();
     this.listOfSentMessages();
-    this.listOfStudents();
-  }
 
-  listOfStudents() {
-    this.userService.searchStudents(this.searchValue, this.thePageNumber - 1, this.thePageSize).subscribe(data => {
-      this.studentsList = data.content;
-      this.thePageNumber = data.number + 1;
-      this.thePageSize = data.size;
-      this.theElements = data.totalElements;
-    })
-  }
-
-  search(search: string) {
-    this.searchValue = search;
-    this.listOfStudents();
-  }
-
-  updateQuantity(pageSize: number) {
-    this.thePageSize = pageSize;
-    this.thePageNumber = 1;
-    this.listOfStudents();
+    this.lastButtonId = String(1);
+    var someElement = document.getElementById(String(1));
+    someElement.classList.add("active-button");
   }
 
   listOfReadMessages() {
-    this.messageService.getAllReadMessagesByUser(this.theReadMessagesPageNumber - 1, this.theReadMessagesPageSize).subscribe(data => {
-      this.messageReadList = data.content;
-      this.theReadMessagesPageNumber = data.number + 1;
-      this.theReadMessagesPageSize = data.size;
-      this.theReadMessagesElements = data.totalElements;
-    })
+    this.messageService
+      .getAllReadMessagesByUser(
+        this.theReadMessagesPageNumber - 1,
+        this.theReadMessagesPageSize
+      )
+      .subscribe((data) => {
+        this.messageReadList = data.content;
+        this.theReadMessagesPageNumber = data.number + 1;
+        this.theReadMessagesPageSize = data.size;
+        this.theReadMessagesElements = data.totalElements;
+      });
   }
 
   updateReadMessagesQuantity(pageSize: number) {
@@ -81,14 +65,19 @@ export class AllMessagesComponent implements OnInit {
     this.theReadMessagesPageNumber = 1;
     this.listOfReadMessages();
   }
-  
+
   listOfUnreadMessages() {
-    this.messageService.getAllUnreadMessagesByUser(this.theUnreadMessagesPageNumber - 1, this.theUnreadMessagesPageSize).subscribe(data => {
-      this.messageUnreadList = data.content;
-      this.theUnreadMessagesPageNumber = data.number + 1;
-      this.theUnreadMessagesPageSize = data.size;
-      this.theUnreadMessagesElements = data.totalElements;
-    })
+    this.messageService
+      .getAllUnreadMessagesByUser(
+        this.theUnreadMessagesPageNumber - 1,
+        this.theUnreadMessagesPageSize
+      )
+      .subscribe((data) => {
+        this.messageUnreadList = data.content;
+        this.theUnreadMessagesPageNumber = data.number + 1;
+        this.theUnreadMessagesPageSize = data.size;
+        this.theUnreadMessagesElements = data.totalElements;
+      });
   }
 
   updateUnreadMessagesQuantity(pageSize: number) {
@@ -98,12 +87,17 @@ export class AllMessagesComponent implements OnInit {
   }
 
   listOfSentMessages() {
-    this.messageService.getAllSentMessagesByUser(this.theSentMessagesPageNumber - 1, this.theSentMessagesPageSize).subscribe(data => {
-      this.messageSentList = data.content;
-      this.theSentMessagesPageNumber = data.number + 1;
-      this.theSentMessagesPageSize = data.size;
-      this.theSentMessagesElements = data.totalElements;
-    })
+    this.messageService
+      .getAllSentMessagesByUser(
+        this.theSentMessagesPageNumber - 1,
+        this.theSentMessagesPageSize
+      )
+      .subscribe((data) => {
+        this.messageSentList = data.content;
+        this.theSentMessagesPageNumber = data.number + 1;
+        this.theSentMessagesPageSize = data.size;
+        this.theSentMessagesElements = data.totalElements;
+      });
   }
 
   updateSentMessagesQuantity(pageSize: number) {
@@ -117,7 +111,18 @@ export class AllMessagesComponent implements OnInit {
   }
 
   transformDate(date) {
-    return this.datePipe.transform(date, 'yyyy-MM-dd');
+    return this.datePipe.transform(date, "yyyy-MM-dd");
   }
 
+  changeMessages(value: number) {
+    this.value = value;
+
+    if (this.lastButtonId != undefined) {
+      var lastElement = document.getElementById(this.lastButtonId);
+      lastElement.classList.remove("active-button");
+    }
+    var someElement = document.getElementById(String(value));
+    someElement.classList.add("active-button");
+    this.lastButtonId = String(value);
+  }
 }

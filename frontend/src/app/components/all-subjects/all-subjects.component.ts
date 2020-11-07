@@ -23,7 +23,7 @@ export class AllSubjectsComponent implements OnInit {
   theElements: number = 0;
 
   actualSubject: Subject;
-  lastButtonId: string;
+  lastButtonId = "1";
 
   constructor(
     private subjectService: SubjectService,
@@ -47,10 +47,9 @@ export class AllSubjectsComponent implements OnInit {
       this.showFilesBoolean = true;
     }
 
-    if(this.lastButtonId != undefined){
-      var lastElement = document.getElementById(this.lastButtonId);
-      lastElement.classList.remove("active-button");
-    }
+    var lastElement = document.getElementById(this.lastButtonId);
+    lastElement.classList.remove("active-button");
+
     var someElement = document.getElementById(String(subjectId));
     someElement.classList.add("active-button");
     this.lastButtonId = String(subjectId);

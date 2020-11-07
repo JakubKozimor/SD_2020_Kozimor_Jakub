@@ -1,128 +1,170 @@
-<div>
-  <h1>Wiadomości przeczytane</h1>
-  <div>
-    <span>Tytuł</span>
-    <span>Data</span>
-    <span>Więcej</span>
-  </div>
-  <div *ngFor="let tempMessage of messageReadList">
-    <div>
-      <span>{{tempMessage.title}}</span>
-      <span>{{transformDate(tempMessage.date)}}</span>
-      <button class="btn btn-primary" routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
+<div class="content">
+  <div class="week-options">
+    <div class="week-options">
+      <button id="1" class="btn" (click)="changeMessages(1)">
+        Wiadomości nieprzeczytane
+      </button>
+      <button id="2" class="btn" (click)="changeMessages(2)">
+        Wiadomości przeczytane
+      </button>
+      <button id="3" class="btn" (click)="changeMessages(3)">
+        Wiadomości wysłane
+      </button>
     </div>
   </div>
-</div>
 
-<div class="pagination">
-  <ngb-pagination [(page)]="theReadMessagesPageNumber" [pageSize]="theReadMessagesPageSize"
-      [collectionSize]="theReadMessagesElements" [maxSize]="4" [boundaryLinks]="true"
-      (pageChange)="listOfReadMessages()">
-  </ngb-pagination>
-  <div>
-      <select class="form-control" (change)="updateReadMessagesQuantity($event.target.value)">
-          <option selected="true">5</option>
-          <option>10</option>
-          <option>15</option>
-          <option>20</option>
-      </select>
-  </div>
-</div>
-
-<div>
-  <h1>Wiadomości nieprzeczytane</h1>
-  <div>
-    <span>Tytuł</span>
-    <span>Data</span>
-    <span>Więcej</span>
-  </div>
-  <div *ngFor="let tempMessage of messageUnreadList">
-    <div>
-      <span>{{tempMessage.title}}</span>
-      <span>{{transformDate(tempMessage.date)}}</span>
-      <button class="btn btn-primary" (click)="changeStatus(tempMessage.messageId)"
-        routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
-    </div>
-  </div>
-</div>
-
-<div class="pagination">
-  <ngb-pagination [(page)]="theUnreadMessagesPageNumber" [pageSize]="theUnreadMessagesPageSize"
-      [collectionSize]="theUnreadMessagesElements" [maxSize]="4" [boundaryLinks]="true"
-      (pageChange)="listOfUnreadMessages()">
-  </ngb-pagination>
-  <div>
-      <select class="form-control" (change)="updateUnreadMessagesQuantity($event.target.value)">
-          <option selected="true">5</option>
-          <option>10</option>
-          <option>15</option>
-          <option>20</option>
-      </select>
-  </div>
-</div>
-
-<div>
-  <h1>Wiadomości wysłane</h1>
-  <div>
-    <span>Tytuł</span>
-    <span>Data</span>
-    <span>Więcej</span>
-  </div>
-  <div *ngFor="let tempMessage of messageSentList">
-    <div>
-      <span>{{tempMessage.title}}</span>
-      <span>{{transformDate(tempMessage.date)}}</span>
-      <button class="btn btn-primary" (click)="changeStatus(tempMessage.messageId)"
-        routerLink="/viewMessage/{{ tempMessage.messageId }}">Otwórz</button>
-    </div>
-  </div>
-</div>
-
-<div class="pagination">
-  <ngb-pagination [(page)]="theSentMessagesPageNumber" [pageSize]="theSentMessagesPageSize"
-      [collectionSize]="theSentMessagesElements" [maxSize]="4" [boundaryLinks]="true"
-      (pageChange)="listOfSentMessages()">
-  </ngb-pagination>
-  <div>
-      <select class="form-control" (change)="updateSentMessagesQuantity($event.target.value)">
-          <option selected="true">5</option>
-          <option>10</option>
-          <option>15</option>
-          <option>20</option>
-      </select>
-  </div>
-</div>
-
-<input type="text" (change)="search($event.target.value)" placeholder="Szukaj" />
-<button class="btn btn-primary" (click)="search(searchValue)">Szukaj</button>
-<main>
-    <div>
-        <span>Imie</span>
-        <span>Nazwisko</span>
-        <span>Email</span>
-        <span>Rola</span>
-        <span></span>
-    </div>
-    <div *ngFor="let tempStudent of studentsList">
-        <div>
-            <span>{{tempStudent.firstName}}</span>
-            <span>{{tempStudent.lastName}}</span>
-            <span>{{tempStudent.email}}</span>
-            <span>{{tempStudent.roleName}}</span>
-            <button class="btn btn-primary" routerLink="/createMessage/{{ tempStudent.userId }}">Nowa wiadomość</button>
+  <div *ngIf="value == 1" class="main-schedule">
+    <div class="info-div">
+      <h2>Wiadomości nieprzeczytane</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Tytuł</span>
+          <span>Data</span>
+          <span>Więcej</span>
         </div>
-    </div>
-    <div class="pagination">
-        <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize" [collectionSize]="theElements" [maxSize]="4"
-            [boundaryLinks]="true" (pageChange)="listOfStudents()">
-        </ngb-pagination>
-        <div>
-            <select class="form-control" (change)="updateQuantity($event.target.value)">
-                <option selected="true">5</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
+
+        <div class="subject-row" *ngFor="let tempMessage of messageUnreadList">
+          <span>{{ tempMessage.title }}</span>
+          <span>{{ transformDate(tempMessage.date) }}</span>
+          <button
+            class="btn"
+            (click)="changeStatus(tempMessage.messageId)"
+            routerLink="/viewMessage/{{ tempMessage.messageId }}"
+          >
+            Otwórz
+          </button>
+        </div>
+        <div *ngIf="this.messageUnreadList.length == 0">
+          <span>Brak wiadomości</span>
+        </div>
+      </div>
+      <div *ngIf="this.messageUnreadList.length != 0" class="subject-row pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="theUnreadMessagesPageNumber"
+            [pageSize]="theUnreadMessagesPageSize"
+            [collectionSize]="theUnreadMessagesElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfUnreadMessages()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateUnreadMessagesQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
             </select>
+          </div>
         </div>
+      </div>
     </div>
-</main>
+  </div>
+
+  <div *ngIf="value == 2" class="main-schedule">
+    <div class="info-div">
+      <h2>Wiadomości przeczytane</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Tytuł</span>
+          <span>Data</span>
+          <span>Więcej</span>
+        </div>
+
+        <div class="subject-row" *ngFor="let tempMessage of messageReadList">
+          <span>{{ tempMessage.title }}</span>
+          <span>{{ transformDate(tempMessage.date) }}</span>
+          <button
+            class="btn btn-primary"
+            routerLink="/viewMessage/{{ tempMessage.messageId }}"
+          >
+            Otwórz
+          </button>
+        </div>
+        <div *ngIf="this.messageReadList.length == 0">
+          <span>Brak wiadomości</span>
+        </div>
+      </div>
+      <div *ngIf="this.messageReadList.length != 0" class="subject-row pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="theReadMessagesPageNumber"
+            [pageSize]="theReadMessagesPageSize"
+            [collectionSize]="theReadMessagesElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfReadMessages()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateReadMessagesQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="value == 3" class="main-schedule">
+    <div class="info-div">
+      <h2>Wiadomości wysłane</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Tytuł</span>
+          <span>Data</span>
+          <span>Więcej</span>
+        </div>
+
+        <div class="subject-row" *ngFor="let tempMessage of messageSentList">
+          <span>{{ tempMessage.title }}</span>
+          <span>{{ transformDate(tempMessage.date) }}</span>
+          <button
+            class="btn btn-primary"
+            (click)="changeStatus(tempMessage.messageId)"
+            routerLink="/viewMessage/{{ tempMessage.messageId }}"
+          >
+            Otwórz
+          </button>
+        </div>
+        <div *ngIf="this.messageSentList.length == 0">
+          <span>Brak wiadomości</span>
+        </div>
+      </div>
+      <div *ngIf="this.messageSentList.length != 0" class="subject-row pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="theSentMessagesPageNumber"
+            [pageSize]="theSentMessagesPageSize"
+            [collectionSize]="theSentMessagesElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfSentMessages()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateSentMessagesQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

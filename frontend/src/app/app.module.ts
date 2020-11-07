@@ -43,6 +43,7 @@ import { UpdateSubjectComponent } from './components/update-subject/update-subje
 import { AllSchoolsComponent } from './components/all-schools/all-schools.component';
 import { AddSchoolComponent } from './components/add-school/add-school.component';
 import { UpdateSchoolComponent } from './components/update-school/update-school.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { UpdateSchoolComponent } from './components/update-school/update-school.
     AllSchoolsComponent,
     AddSchoolComponent,
     UpdateSchoolComponent,
+    UsersComponent,
   ],
   imports: [
     CommonModule,

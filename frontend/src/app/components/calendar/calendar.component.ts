@@ -14,11 +14,16 @@ import {
     CalendarEventAction,
     CalendarEventTimesChangedEvent,
     CalendarView,
+    DAYS_OF_WEEK,
   } from 'angular-calendar';
 import { SubjectService } from 'src/app/services/subject.service';
 import { Subject } from 'src/app/common/subject';
 import { Global } from 'src/app/global';
 import { CalendarService } from 'src/app/services/calendar.service';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+
+registerLocaleData(localePl);
 
 const colors: any = {
   red: {
@@ -75,20 +80,30 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
+
+  locale='pl';
+  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
   events: CalendarEvent[] = [];
   newevents: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
-  
+  lastButtonId: string;
+
   constructor(
     private subjectService: SubjectService,
     private global: Global,
-    private calendarService: CalendarService) { }
+    private calendarService: CalendarService,
+    ) { }
 
   ngOnInit(): void {
     this.calendarService.getActualWeek().subscribe(data => {
       this.week = data.week;
       this.listOfSubjects();
+      this.lastButtonId = data.week;
+      var someElement = document.getElementById(data.week);
+      someElement.classList.add("active-button");
     });
     this.getAllEvents();
   }
@@ -145,6 +160,14 @@ export class CalendarComponent implements OnInit {
     this.week = week;
     this.global.setWeek(week);
     this.listOfSubjects();
+
+    if (this.lastButtonId != undefined) {
+      var lastElement = document.getElementById(this.lastButtonId);
+      lastElement.classList.remove("active-button");
+    }
+    var someElement = document.getElementById(week);
+    someElement.classList.add("active-button");
+    this.lastButtonId = week;
   }
 
 

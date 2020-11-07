@@ -28,7 +28,7 @@
 
 .big-column {
   width: 100%;
-  min-width: 500px;
+  min-width: 300px;
   border: 2px solid #001f54;
   border-radius: 8px;
 }
@@ -39,12 +39,40 @@
   border-bottom: 2px solid #001f54;
 }
 
+.info-div input:focus {
+  border-color: #034078;
+}
+
+.info-div input {
+  outline: none;
+  font-size: 1.1rem;
+  padding: 0px 8px;
+  border-style: solid;
+  margin: 1rem 0;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.info-div button {
+  background-color: #eaebed;
+  color: #034078;
+  border-color: #034078;
+  min-width: 180px;
+  margin-left: 1rem;
+}
+
+.info-div button:hover {
+  background-color: #034078;
+  color: #fefcfb;
+  border: 1px solid #fefcfb;
+}
+
 .subject-row span {
   display: flex;
   justify-content: center;
   align-items: Center;
   margin: 10px;
-  width: 100px;
+  width: 180px;
 }
 
 .subject-row:first-child {
@@ -85,18 +113,20 @@ ngb-pagination /deep/ .page-item.active .page-link {
   border-color: #034078 !important;
 }
 
-.subject-row button {
-  background-color: #eaebed;
-  color: #034078;
-  border-color: #034078;
-  min-width: 100px;
+.search-button {
+  background-color: #034078 !important;
+  color: #fefcfb !important;
+  border: 1px solid #fefcfb !important;
+  min-width: 180px;
   margin-left: 1rem;
+  margin-bottom: 7px;
+  border-radius: 10px;
 }
 
-.subject-row button:hover {
-  background-color: #034078;
-  color: #fefcfb;
-  border: 1px solid #fefcfb;
+.search-button:hover {
+  background-color: #eaebed !important;
+  color: #034078 !important;
+  border-color: #034078 !important;
 }
 
 .week-options {
