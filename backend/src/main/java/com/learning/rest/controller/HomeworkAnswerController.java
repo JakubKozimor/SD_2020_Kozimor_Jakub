@@ -57,8 +57,9 @@ public class HomeworkAnswerController {
 
     @PatchMapping("/grade/{homeworkAnswerId}")
     public ResponseEntity<Void> updateStatusMessage(@PathVariable Long homeworkAnswerId,
-                                                    @RequestParam("grade") String grade) {
-        homeworkAnswerService.addGrade(homeworkAnswerId, grade);
+                                                    @RequestParam("grade") String grade,
+                                                    @RequestParam("comment") String comment) {
+        homeworkAnswerService.addGrade(homeworkAnswerId, grade, comment);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

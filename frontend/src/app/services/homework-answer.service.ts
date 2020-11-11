@@ -35,10 +35,10 @@ export class HomeworkAnswerService {
     );
   }
 
-  addGrade(homeworkAnswerId: number, grade: string) {
+  addGrade(homeworkAnswerId: number, grade: string, comment: string) {
     this.httpClient
       .patch(
-        `${this.BASE_URL}/grade/${homeworkAnswerId}?grade=${grade}`,
+        `${this.BASE_URL}/grade/${homeworkAnswerId}?grade=${grade}&comment=${comment}`,
         httpOptions
       )
       .subscribe();

@@ -34,6 +34,7 @@ public class HomeworkAnswer {
     @JoinColumn(name = "homework_answer_id")
     private List<HomeworkAnswerFile> files;
     private String grade;
+    private String comment;
 
 
     public void addFile(HomeworkAnswerFile homeworkAnswerFile) {

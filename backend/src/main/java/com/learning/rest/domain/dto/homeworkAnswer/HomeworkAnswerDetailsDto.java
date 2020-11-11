@@ -12,5 +12,6 @@ public class HomeworkAnswerDetailsDto {
     private Long homeworkAnswerId;
     private String message;
     private String grade;
+    private String comment;
     private List<HomeworkAnswerFile> files;
 }

@@ -4,4 +4,5 @@ export class HomeworkAnswerDto {
     userLastName: string;
     message: string;
     grade: number;
+    comment: string;
 }

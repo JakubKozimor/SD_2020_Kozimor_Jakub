@@ -5,6 +5,7 @@ import com.learning.exception.homework.HomeworkFileNotFoundException;
 import com.learning.exception.homework.HomeworkNotFoundException;
 import com.learning.exception.homeworkAnswer.HomeworkAnswerNotFoundException;
 import com.learning.exception.lesson.LessonNotFoundException;
+import com.learning.exception.live.LiveHomeworkNotFoundException;
 import com.learning.exception.message.MessageFileNotFoundException;
 import com.learning.exception.message.MessageNotFoundException;
 import com.learning.exception.role.RoleNotFoundException;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @ControllerAdvice
 public class Handler {
 
-    @ExceptionHandler(value = {DayNotFoundException.class, SchoolNotFoundException.class, SubjectFileNotFoundException.class, HomeworkAnswerNotFoundException.class, UserNotFoundException.class, SubjectNotFoundException.class, LessonNotFoundException.class, HomeworkNotFoundException.class, MessageNotFoundException.class, MessageFileNotFoundException.class, EmailNotFoundException.class, RoleNotFoundException.class, HomeworkFileNotFoundException.class})
+    @ExceptionHandler(value = {LiveHomeworkNotFoundException.class, DayNotFoundException.class, SchoolNotFoundException.class, SubjectFileNotFoundException.class, HomeworkAnswerNotFoundException.class, UserNotFoundException.class, SubjectNotFoundException.class, LessonNotFoundException.class, HomeworkNotFoundException.class, MessageNotFoundException.class, MessageFileNotFoundException.class, EmailNotFoundException.class, RoleNotFoundException.class, HomeworkFileNotFoundException.class})
     public ResponseEntity<ApiError> handleNotFound(RuntimeException exception) {
         final HttpStatus httpStatus = HttpStatus.NOT_FOUND;
         ApiError apiError = new ApiError("NOT_FOUND", exception.getMessage(), httpStatus.value());

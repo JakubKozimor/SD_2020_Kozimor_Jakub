@@ -33,7 +33,7 @@ export class RateHomeworkAnswerComponent implements OnInit {
     this.fileService.downloadHomeworkAnswerFile(fileId, fileName);
   }
 
-  addGrade(homeworkAnswerId: number, grade: string) {
-    this.homeworkAnswerService.addGrade(homeworkAnswerId, grade);
+  addGrade(homeworkAnswerId: number, grade: string, comment: string) {
+    this.homeworkAnswerService.addGrade(homeworkAnswerId, grade, comment);
   }
 }

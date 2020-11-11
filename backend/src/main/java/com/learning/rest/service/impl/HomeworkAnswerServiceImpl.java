@@ -69,7 +69,7 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
     @Override
     public Page<HomeworkAnswerUserDetailsDto> getAllHomeworkAnswersWithNoGrade(Long homeworkId, Pageable pageable) {
         Homework homework = homeworkRepository.findById(homeworkId).orElseThrow(HomeworkAnswerNotFoundException::new);
-        Page<HomeworkAnswer> allAnswersByHomework = homeworkAnswerRepository.findAllByHomeworkAndGradeIsNull(homework , pageable);
+        Page<HomeworkAnswer> allAnswersByHomework = homeworkAnswerRepository.findAllByHomeworkAndGradeIsNull(homework, pageable);
         List<HomeworkAnswerUserDetailsDto> homeworkAnswerUserDetailsDtoList = allAnswersByHomework.stream()
                 .map(homeworkAnswerMapper::toHomeworkAnswerUserDetailsDto)
                 .collect(Collectors.toList());
@@ -79,7 +79,7 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
     @Override
     public Page<HomeworkAnswerUserDetailsDto> getAllHomeworkAnswersWithGrade(Long homeworkId, Pageable pageable) {
         Homework homework = homeworkRepository.findById(homeworkId).orElseThrow(HomeworkAnswerNotFoundException::new);
-        Page<HomeworkAnswer> allAnswersByHomework = homeworkAnswerRepository.findAllByHomeworkAndGradeIsNotNull(homework , pageable);
+        Page<HomeworkAnswer> allAnswersByHomework = homeworkAnswerRepository.findAllByHomeworkAndGradeIsNotNull(homework, pageable);
         List<HomeworkAnswerUserDetailsDto> homeworkAnswerUserDetailsDtoList = allAnswersByHomework.stream()
                 .map(homeworkAnswerMapper::toHomeworkAnswerUserDetailsDto)
                 .collect(Collectors.toList());
@@ -87,9 +87,10 @@ public class HomeworkAnswerServiceImpl implements HomeworkAnswerService {
     }
 
     @Override
-    public void addGrade(Long homeworkAnswerId, String grade) {
+    public void addGrade(Long homeworkAnswerId, String grade, String comment) {
         HomeworkAnswer homeworkAnswer = homeworkAnswerRepository.findById(homeworkAnswerId).orElseThrow(HomeworkAnswerNotFoundException::new);
         homeworkAnswer.setGrade(grade);
+        homeworkAnswer.setComment(comment);
         homeworkAnswerRepository.save(homeworkAnswer);
     }
 }

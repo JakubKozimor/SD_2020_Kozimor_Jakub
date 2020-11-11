@@ -8,11 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "lessons")
@@ -35,6 +32,10 @@ public class Lesson {
     @JoinColumn(name = "teacher_id")
     @JsonBackReference
     private User teacher;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lesson_id")
+    @JsonManagedReference
+    private List<LiveHomework> homeworks;
     @Enumerated(EnumType.STRING)
     private LessonStatus status;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

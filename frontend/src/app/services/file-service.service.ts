@@ -55,6 +55,32 @@ export class FileServiceService {
     });
   }
 
+  downloadLiveHomeworkile(fileId: number, fileName: string) {
+    this.httpClient.get(`${this.BASE_URL}/live-homework/download/${fileId}`, {
+      responseType: 'blob'
+    }).subscribe(blob => {
+      const a = document.createElement('a')
+      const objectUrl = URL.createObjectURL(blob)
+      a.href = objectUrl;
+      a.download = `${fileName}`;
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
+  }
+
+  downloadLiveHomeworkAnswerFile(fileId: number, fileName: string) {
+    this.httpClient.get(`${this.BASE_URL}/live-homework-answer/download/${fileId}`, {
+      responseType: 'blob'
+    }).subscribe(blob => {
+      const a = document.createElement('a')
+      const objectUrl = URL.createObjectURL(blob)
+      a.href = objectUrl;
+      a.download = `${fileName}`;
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
+  }
+
   downloadHomeworkAnswerFile(fileId: number, fileName: string) {
     this.httpClient.get(`${this.BASE_URL}/homework-answer/download/${fileId}`, {
       responseType: 'blob'

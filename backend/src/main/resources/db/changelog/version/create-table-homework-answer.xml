@@ -18,6 +18,8 @@
             </column>
             <column name="grade" type="VARCHAR(255)">
             </column>
+            <column name="comment" type="VARCHAR(255)">
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

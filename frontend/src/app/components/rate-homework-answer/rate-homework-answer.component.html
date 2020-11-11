@@ -28,7 +28,19 @@
         <option value="2">2</option>
         <option value="1">1</option>
       </select>
-      <button class="btn btn-success" (click) = addGrade(homeworkAnswerDetails.homeworkAnswerId,grade.value)>Oceń</button>
+      <input #comment type="text" placeholder="Komentarz" />
+      <button
+        class="btn btn-success"
+        (click)="
+          addGrade(
+            homeworkAnswerDetails.homeworkAnswerId,
+            grade.value,
+            comment.value
+          )
+        "
+      >
+        Oceń
+      </button>
     </div>
   </div>
 </div>

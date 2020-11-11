@@ -13,4 +13,5 @@ public class HomeworkAnswerUserDetailsDto {
     private String userLastName;
     private String message;
     private String grade;
+    private String comment;
 }

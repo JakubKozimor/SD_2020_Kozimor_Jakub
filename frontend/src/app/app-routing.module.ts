@@ -3,12 +3,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { AddClassesComponent } from "./components/add-classes/add-classes.component";
 import { AddHomeworkAnswerComponent } from "./components/add-homework-answer/add-homework-answer.component";
 import { AddHomeworkComponent } from "./components/add-homework/add-homework.component";
+import { AddLiveHomeworkComponent } from "./components/add-live-homework/add-live-homework.component";
 import { AddScheduleComponent } from "./components/add-schedule/add-schedule.component";
-import { AddSchoolComponent } from './components/add-school/add-school.component';
+import { AddSchoolComponent } from "./components/add-school/add-school.component";
 import { AddStudentsComponent } from "./components/add-students/add-students.component";
 import { AddSubjectComponent } from "./components/add-subject/add-subject.component";
 import { AllMessagesComponent } from "./components/all-messages/all-messages.component";
-import { AllSchoolsComponent } from './components/all-schools/all-schools.component';
+import { AllSchoolsComponent } from "./components/all-schools/all-schools.component";
 import { AllSubjectsComponent } from "./components/all-subjects/all-subjects.component";
 import { CalendarComponent } from "./components/calendar/calendar.component";
 import { ClassesComponent } from "./components/classes/classes.component";
@@ -27,9 +28,9 @@ import { RegisterComponent } from "./components/register/register.component";
 import { TeacherHomeworkComponent } from "./components/teacher-homework/teacher-homework.component";
 import { TeachersComponent } from "./components/teachers/teachers.component";
 import { UpdateHomeworkComponent } from "./components/update-homework/update-homework.component";
-import { UpdateSchoolComponent } from './components/update-school/update-school.component';
+import { UpdateSchoolComponent } from "./components/update-school/update-school.component";
 import { UpdateSubjectComponent } from "./components/update-subject/update-subject.component";
-import { UsersComponent } from './components/users/users.component';
+import { UsersComponent } from "./components/users/users.component";
 
 const studentRoutes: Routes = [
   { path: "users", component: UsersComponent },
@@ -61,6 +62,7 @@ const studentRoutes: Routes = [
   { path: "**", redirectTo: "/menu", pathMatch: "full" },
 ];
 const teacherRoutes: Routes = [
+  { path: "add-live-homework/:classesId", component: AddLiveHomeworkComponent },
   { path: "users", component: UsersComponent },
   { path: "update-subject/:subjectId", component: UpdateSubjectComponent },
   { path: "update-homework/:homeworkId", component: UpdateHomeworkComponent },

@@ -19,5 +19,5 @@ public interface HomeworkAnswerService {
 
     HomeworkAnswerDetailsDto getHomeworkAnswerDetailsByAnswerId(Long answerId);
 
-    void addGrade(Long homeworkAnswerId, String grade);
+    void addGrade(Long homeworkAnswerId, String grade, String comment);
 }

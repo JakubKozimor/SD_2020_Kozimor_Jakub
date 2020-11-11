@@ -23,6 +23,10 @@
     <include file="version/create-table-schools.xml" relativeToChangelogFile="true"/>
     <include file="version/create-table-base-calendar.xml" relativeToChangelogFile="true"/>
     <include file="version/create-table-calendar-school.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-live-homeworks.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-live-homeworks-files.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-live-homework-answer.xml" relativeToChangelogFile="true"/>
+    <include file="version/create-table-live-homeworks-answer-files.xml" relativeToChangelogFile="true"/>
     <include file="version/const.xml" relativeToChangelogFile="true"/>
     <include file="version/insertData.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

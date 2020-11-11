@@ -1,0 +1,67 @@
+<div class="add-homework">
+    <h1>Dodaj zadanie</h1>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div>
+        <input type="text" formControlName="description" placeholder="Opis" />
+        <label *ngIf="description.invalid" [ngClass]="'error'">
+          Pole nie może być puste
+        </label>
+      </div>
+
+      <div>
+        <div *ngFor="let tempFile of tempFiles">
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            class="bi bi-file-earmark-fill"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+            />
+          </svg>
+          {{ tempFile.fileName }}
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary"
+            (click)="reset(tempFile)"
+          >
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              class="bi bi-file-minus"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"
+              ></path>
+              <path
+                fill-rule="evenodd"
+                d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+  
+        <div class="custom-file" style="width: 280px">
+          <input
+            #inputFile
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            (change)="onUpload($event)"
+          />
+          <label class="custom-file-label" for="customFile">Wybierz plik</label>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn add-homework-button">Dodaj zadanie</button>
+    </form>
+  </div>
+  
