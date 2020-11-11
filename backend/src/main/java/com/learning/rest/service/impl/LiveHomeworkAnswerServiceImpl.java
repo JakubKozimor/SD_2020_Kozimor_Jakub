@@ -4,9 +4,13 @@ import com.learning.exception.homeworkAnswer.HomeworkAnswerNotFoundException;
 import com.learning.exception.live.LiveHomeworkNotFoundException;
 import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.base64.Base64Helper;
+import com.learning.rest.domain.dto.live.homework.LiveHomeworkAnswerDetailsDto;
 import com.learning.rest.domain.dto.live.homework.LiveHomeworkAnswerDto;
 import com.learning.rest.domain.dto.live.homework.LiveHomeworkAnswerFileDto;
-import com.learning.rest.domain.entity.*;
+import com.learning.rest.domain.entity.LiveHomework;
+import com.learning.rest.domain.entity.LiveHomeworkAnswer;
+import com.learning.rest.domain.entity.LiveHomeworkAnswerFile;
+import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.mapper.LiveHomeworkAnswerFileMapper;
 import com.learning.rest.domain.mapper.LiveHomeworkAnswerMapper;
 import com.learning.rest.domain.repository.LiveHomeworkAnswerRepository;
@@ -16,6 +20,7 @@ import com.learning.rest.service.LiveHomeworkAnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,6 +34,28 @@ public class LiveHomeworkAnswerServiceImpl implements LiveHomeworkAnswerService 
     private final LiveHomeworkRepository liveHomeworkRepository;
     private final LiveHomeworkAnswerMapper liveHomeworkAnswerMapper;
     private final LiveHomeworkAnswerFileMapper liveHomeworkAnswerFileMapper;
+
+    @Override
+    public List<LiveHomeworkAnswerDetailsDto> getAllAnswersByLiveHomeworkId(Long liveHomeworkId) {
+        LiveHomework liveHomework = liveHomeworkRepository.findById(liveHomeworkId).orElseThrow(LiveHomeworkNotFoundException::new);
+        List<LiveHomeworkAnswer> allLiveHomeworkAnswers = liveHomework.getLiveHomeworkAnswer();
+        List<LiveHomeworkAnswerDetailsDto> liveHomeworkAnswerDetailsDto = new ArrayList<>();
+        if (allLiveHomeworkAnswers != null && !allLiveHomeworkAnswers.isEmpty()) {
+            allLiveHomeworkAnswers
+                    .stream()
+                    .map(liveHomeworkAnswer -> {
+                        LiveHomeworkAnswerDetailsDto tempLiveHomeworkAnswerDetailsDto = liveHomeworkAnswerMapper.toLiveHomeworkAnswerDetailsDto(liveHomeworkAnswer);
+                        List<LiveHomeworkAnswerFileDto> tempFiles = liveHomeworkAnswer.getFiles()
+                                .stream()
+                                .map(liveHomeworkAnswerFileMapper::toLiveHomeworkAnswerFileDto)
+                                .collect(Collectors.toList());
+                        tempLiveHomeworkAnswerDetailsDto.setFiles(tempFiles);
+                        return tempLiveHomeworkAnswerDetailsDto;
+                    })
+                    .forEach(liveHomeworkAnswerDetailsDto::add);
+        }
+        return liveHomeworkAnswerDetailsDto;
+    }
 
     @Override
     public LiveHomeworkAnswerDto getLiveHomeworkAnswerDetails(Long liveHomeworkId, Long userId) {

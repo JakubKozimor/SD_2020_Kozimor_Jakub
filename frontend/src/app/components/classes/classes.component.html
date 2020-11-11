@@ -46,6 +46,18 @@
   >
     Zobacz
   </button>
+  <button
+    class="btn btn-warning"
+    routerLink="/update-live-homework/{{ tempHomework.liveHomeworkId }}"
+  >
+    Edytuj zadanie
+  </button>
+  <button
+    class="btn btn-success"
+    routerLink="/all-live-homework/{{ tempHomework.liveHomeworkId }}"
+  >
+    Odpowiedzi
+  </button>
 </div>
 
 <div *ngIf="showDetailsBoolean">

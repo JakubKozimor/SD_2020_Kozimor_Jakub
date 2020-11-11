@@ -45,6 +45,8 @@ import { AddSchoolComponent } from './components/add-school/add-school.component
 import { UpdateSchoolComponent } from './components/update-school/update-school.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddLiveHomeworkComponent } from './components/add-live-homework/add-live-homework.component';
+import { AllLiveHomeworkAnswersForTeacherComponent } from './components/all-live-homework-answers-for-teacher/all-live-homework-answers-for-teacher.component';
+import { UpdateLiveHomeworkComponent } from './components/update-live-homework/update-live-homework.component';
 
 
 @NgModule({
@@ -83,6 +85,8 @@ import { AddLiveHomeworkComponent } from './components/add-live-homework/add-liv
     UpdateSchoolComponent,
     UsersComponent,
     AddLiveHomeworkComponent,
+    AllLiveHomeworkAnswersForTeacherComponent,
+    UpdateLiveHomeworkComponent,
   ],
   imports: [
     CommonModule,

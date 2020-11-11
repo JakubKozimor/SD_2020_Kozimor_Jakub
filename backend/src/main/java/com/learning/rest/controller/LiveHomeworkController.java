@@ -21,7 +21,7 @@ public class LiveHomeworkController {
     private final LiveHomeworkService liveHomeworkService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<LiveHomework>> getAllLiveHomeworks(@RequestParam("lessonId")Long lessonId){
+    public ResponseEntity<List<LiveHomework>> getAllLiveHomeworks(@RequestParam("lessonId") Long lessonId) {
         return new ResponseEntity<>(liveHomeworkService.getAllLiveHomeworks(lessonId), HttpStatus.OK);
     }
 
@@ -39,5 +39,11 @@ public class LiveHomeworkController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @PutMapping("/update")
+    public ResponseEntity<Void> updateLiveHomework(@RequestBody LiveHomeworkDto liveHomework) {
+        liveHomeworkService.updateLiveHomework(liveHomework);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
 }

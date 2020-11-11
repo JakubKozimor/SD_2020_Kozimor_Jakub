@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 import { LiveHomeworkAnswer } from "../common/live-homework-answer";
+import { LiveHomeworkAnswerDetailsDto } from "../common/live-homework-answer-details-dto";
 
 @Injectable({
   providedIn: "root",
@@ -9,6 +10,14 @@ import { LiveHomeworkAnswer } from "../common/live-homework-answer";
 export class LiveHomeworksAnswerService {
   private BASE_URL = "http://localhost:8080/live-homework-answer";
   constructor(private httpClient: HttpClient) {}
+
+  getAllLiveHomeworkAnswers(
+    liveHomeworkId: number
+  ): Observable<LiveHomeworkAnswerDetailsDto[]> {
+    return this.httpClient.get<LiveHomeworkAnswerDetailsDto[]>(
+      `${this.BASE_URL}/all/${liveHomeworkId}`
+    );
+  }
 
   getActualUserAnswerDetails(
     liveHomeworkId: number
@@ -19,9 +28,7 @@ export class LiveHomeworksAnswerService {
     );
   }
 
-  addAnswer(
-    liveHomeworkAnswer: LiveHomeworkAnswer
-  ): Promise<any> {
+  addAnswer(liveHomeworkAnswer: LiveHomeworkAnswer): Promise<any> {
     const userId = this.getAcctualUserId();
     liveHomeworkAnswer.studentId = Number(userId);
     return new Promise<any>((resolve, reject) => {

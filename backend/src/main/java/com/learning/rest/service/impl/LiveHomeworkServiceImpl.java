@@ -17,6 +17,7 @@ import com.learning.rest.service.LiveHomeworkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,6 +53,28 @@ public class LiveHomeworkServiceImpl implements LiveHomeworkService {
                     .forEach(liveHomework::addFile);
         }
         liveHomework.setLesson(lesson);
+        liveHomeworkRepository.save(liveHomework);
+    }
+
+    @Override
+    public void updateLiveHomework(LiveHomeworkDto liveHomeworkDto) {
+        LiveHomework oldLiveHomework = liveHomeworkRepository.findById(liveHomeworkDto.getLiveHomeworkId()).orElseThrow(LiveHomeworkNotFoundException::new);
+        LiveHomework liveHomework = liveHomeworkMapper.toLiveHomework(liveHomeworkDto);
+        liveHomework.setFiles(new ArrayList<>());
+        List<LiveHomeworkFileDto> liveHomeworkFileDto = liveHomeworkDto.getFiles();
+        if (liveHomeworkFileDto != null) {
+            liveHomeworkFileDto
+                    .stream()
+                    .map(this::mapToLiveHomeworkFile)
+                    .forEach(liveHomework::addFile);
+        }
+        liveHomework.setLiveHomeworkId(liveHomeworkDto.getLiveHomeworkId());
+        liveHomework.setLesson(oldLiveHomework.getLesson());
+        liveHomework.setLiveHomeworkAnswer(oldLiveHomework.getLiveHomeworkAnswer());
+        List<LiveHomeworkFile> liveHomeworkFiles = liveHomework.getFiles();
+        if (liveHomeworkFiles != null && !liveHomeworkFiles.isEmpty()) {
+            liveHomeworkFiles.forEach(liveHomeworkFile -> liveHomeworkFile.setLiveHomeworkFileId(null));
+        }
         liveHomeworkRepository.save(liveHomework);
     }
 

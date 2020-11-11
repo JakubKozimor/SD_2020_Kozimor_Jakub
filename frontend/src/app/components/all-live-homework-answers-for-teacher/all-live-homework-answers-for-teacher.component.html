@@ -1,0 +1,24 @@
+<div>
+  <h1>Wszystkie odpowiedzi</h1>
+
+  <div *ngFor="let tempAnswer of allAnsers">
+    <div>
+      <h3>{{ tempAnswer.userFirstName }} {{ tempAnswer.userLastName }}</h3>
+      <span>{{ tempAnswer.message }}</span>
+      <div *ngFor="let tempFile of tempAnswer.files">
+        <p>{{ tempFile.fileName }}</p>
+        <button
+          class="btn btn-primary"
+          (click)="
+            downloadLiveHomeworkFile(
+              tempFile.liveHomeworkAnswerFileId,
+              tempFile.fileName
+            )
+          "
+        >
+          Pobierz
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

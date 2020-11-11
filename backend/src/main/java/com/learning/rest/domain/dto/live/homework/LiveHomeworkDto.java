@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class LiveHomeworkDto {
+    private Long liveHomeworkId;
     private String description;
     private List<LiveHomeworkFileDto> files;
 }

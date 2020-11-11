@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { LiveHomework } from "../common/live-homework";
-import { LiveHomeworkAnswer } from '../common/live-homework-answer';
+import { LiveHomeworkAnswer } from "../common/live-homework-answer";
 import { LiveHomeworkFile } from "../common/live-homework-file";
 import { LiveHomeworksDetails } from "../common/live-homeworks-details";
 
@@ -17,6 +17,23 @@ export class LiveHomeworkService {
     return this.httpClient.get<LiveHomeworksDetails>(
       `${this.BASE_URL}/live-homework-details/${classesid}`
     );
+  }
+
+  updateLiveHomework(
+    liveHomework: LiveHomework,
+    liveHomeworkId: number
+  ): Promise<any> {
+    liveHomework.liveHomeworkId = liveHomeworkId;
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.put(this.BASE_URL + `/update`, liveHomework).subscribe(
+        (data) => {
+          resolve("Dodano");
+        },
+        (error) => {
+          reject("Dodawanie nie powiodło się");
+        }
+      );
+    });
   }
 
   createLiveHomework(

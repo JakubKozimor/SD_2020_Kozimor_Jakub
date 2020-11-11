@@ -12,4 +12,6 @@ public interface LiveHomeworkService {
     List<LiveHomework> getAllLiveHomeworks(Long lessonId);
 
     LiveHomeworkDetailsDto getLiveHomeworkDetails(Long lessonId);
+
+    void updateLiveHomework(LiveHomeworkDto liveHomework);
 }
