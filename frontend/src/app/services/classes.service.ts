@@ -25,6 +25,12 @@ export class ClassesService {
       .pipe();
   }
 
+  updateClasses(classes: Classes): Observable<number> {
+    return this.httpClient
+      .put<number>(this.BASE_URL + `/update`, classes)
+      .pipe();
+  }
+
   getClassesDetails(classesId: number): Observable<Classes> {
     return this.httpClient.get<Classes>(
       `${this.BASE_URL}/lesson-details/${classesId}`

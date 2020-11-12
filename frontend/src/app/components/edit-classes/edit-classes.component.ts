@@ -6,18 +6,15 @@ import { ClassesFile } from "src/app/common/classes-file";
 import { ClassesService } from "src/app/services/classes.service";
 
 @Component({
-  selector: "app-add-classes",
-  templateUrl: "./add-classes.component.html",
-  styleUrls: ["./add-classes.component.css"],
+  selector: "app-edit-classes",
+  templateUrl: "./edit-classes.component.html",
+  styleUrls: ["./edit-classes.component.css"],
 })
-export class AddClassesComponent implements OnInit {
+export class EditClassesComponent implements OnInit {
   validateForm!: FormGroup;
   formSubmitted = false;
 
   classesFile: ClassesFile;
-
-  showInstruction = false;
-  firstTime = false;
 
   classes: Classes;
 
@@ -31,18 +28,30 @@ export class AddClassesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getLessonDetails();
     this.validateForm = this.createClassesForm();
+  }
+
+  getLessonDetails() {
+    let lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+    this.classesService.getClassesDetails(lessonId).subscribe((data) => {
+      this.classes = data;
+      this.mapForm();
+    });
+  }
+
+  mapForm() {
+    this.validateForm.controls["files"].setValue(this.classes.files);
+    this.validateForm.controls["url"].setValue(this.classes.url);
+    this.tempFiles = this.classes.files;
   }
 
   submitForm() {
     this.formSubmitted = true;
     if (this.validateForm.valid) {
-      let subjectId = Number(this.route.snapshot.paramMap.get("subjectId"));
-      let classes = new Classes();
-      classes = this.validateForm.value;
-      classes.subjectId = subjectId;
-      console.log(classes);
-      this.classesService.createClasses(this.validateForm.value).subscribe(data => {
+      this.classes.url = this.validateForm.value.url;
+      this.classes.files = this.validateForm.value.files;
+      this.classesService.updateClasses(this.classes).subscribe((data) => {
         this.changePage(data);
       });
       this.validateForm.reset();
@@ -53,7 +62,7 @@ export class AddClassesComponent implements OnInit {
   }
 
   changePage(classesId: number) {
-    this.router.navigate(["classes/" + classesId]);
+    // this.router.navigate(["classes/" + classesId]);
   }
 
   createClassesForm(): FormGroup {
@@ -96,21 +105,5 @@ export class AddClassesComponent implements OnInit {
       this.tempFiles.splice(index, 1);
     }
     this.validateForm.controls["files"].setValue(this.tempFiles);
-  }
-
-  checkShowInstuction() {
-    if (this.showInstruction) {
-      this.showInstruction = false;
-    } else {
-      this.showInstruction = true;
-    }
-  }
-
-  checkFirstTime() {
-    if (this.firstTime) {
-      this.firstTime = false;
-    } else {
-      this.firstTime = true;
-    }
   }
 }

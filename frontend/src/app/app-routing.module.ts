@@ -16,6 +16,7 @@ import { CalendarComponent } from "./components/calendar/calendar.component";
 import { ClassesComponent } from "./components/classes/classes.component";
 import { ContentComponent } from "./components/content/content.component";
 import { DoneHomeworksComponent } from "./components/done-homeworks/done-homeworks.component";
+import { EditClassesComponent } from './components/edit-classes/edit-classes.component';
 import { HomeworkAnswerDetailsComponent } from "./components/homework-answer-details/homework-answer-details.component";
 import { HomeworkDetailsComponent } from "./components/homework-details/homework-details.component";
 import { HomeworkComponent } from "./components/homework/homework.component";
@@ -64,6 +65,7 @@ const studentRoutes: Routes = [
   { path: "**", redirectTo: "/menu", pathMatch: "full" },
 ];
 const teacherRoutes: Routes = [
+  { path: "edit-classes/:lessonId", component: EditClassesComponent },
   { path: "update-live-homework/:liveHomeworkId", component: UpdateLiveHomeworkComponent },
   { path: "all-live-homework/:liveHomeworkId", component: AllLiveHomeworkAnswersForTeacherComponent },
   { path: "add-live-homework/:classesId", component: AddLiveHomeworkComponent },

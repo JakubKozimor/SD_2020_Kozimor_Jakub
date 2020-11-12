@@ -61,9 +61,6 @@ public class AuthServiceImpl implements AuthService {
 
         Role userRole = roleRepository.findByName(registerRequest.getRoleName()).orElseThrow(RoleNotFoundException::new);
         user.setRoles(Collections.singleton(userRole));
-        if(!StringUtils.isEmpty(registerRequest.getTwitchNick()) && RoleName.ROLE_TEACHER == userRole.getName()){
-            user.setTwitchNick(registerRequest.getTwitchNick());
-        }
         userRepository.save(user);
 
         return new ApiResponse(true, "User registered");

@@ -45,7 +45,6 @@ export class RegisterComponent implements OnInit {
       password: [null, [Validators.required]],
       passwordConfirmation: [null, [Validators.required]],
       roleName: [null, [Validators.required]],
-      twitchNick: [null],
     });
     return form;
   }

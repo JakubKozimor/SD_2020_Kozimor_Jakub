@@ -1,3 +1,10 @@
+<button
+  class="btn btn-warning"
+  routerLink="/edit-classes/{{ classes.lessonId }}"
+>
+  Edytuj live
+</button>
+
 <div *ngIf="url != ''">
   <!-- <iframe [src]="urlSafe" allowfullscreen></iframe> -->
 
@@ -38,6 +45,15 @@
 </div>
 
 <h1>Zadania live</h1>
+<div>
+  <button
+    class="btn btn-success"
+    routerLink="/add-live-homework//{{ classes.lessonId }}"
+  >
+    Dodaj zadanie
+  </button>
+</div>
+
 <div *ngFor="let tempHomework of liveHomeworks">
   <span>{{ tempHomework.description }}</span>
   <button

@@ -14,6 +14,9 @@ public interface LessonMapper {
     @Mapping(target = "status", constant = "LIVE")
     Lesson toLesson(LessonDto lessonDto);
 
+    @Mapping(target = "files", ignore = true)
+    Lesson toEditLesson(LessonDto lessonDto);
+
 
     @Mapping(target = "subjectId", source = "subject.subjectId")
     @Mapping(target = "subjectName", source = "subject.name")

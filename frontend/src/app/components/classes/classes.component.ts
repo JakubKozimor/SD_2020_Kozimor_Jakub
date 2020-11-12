@@ -60,7 +60,7 @@ export class ClassesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let playableUrl = "https://www.youtube.com/embed/oeGw32aQwX0";
+    let playableUrl = "https://www.youtube.com/embed/WzWBQwf7YEg";
     this.videoUrl = playableUrl;
     (<HTMLIFrameElement>(
       document.getElementById("videoIframe")
@@ -154,7 +154,6 @@ export class ClassesComponent implements OnInit {
       .getAllLiveHomeworks(Number(classesId))
       .subscribe((data) => {
         this.liveHomeworks = data;
-        console.log(this.liveHomeworks);
       });
   }
 

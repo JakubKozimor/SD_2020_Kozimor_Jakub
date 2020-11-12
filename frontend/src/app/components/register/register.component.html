@@ -37,11 +37,6 @@
           <label *ngIf="roleName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
     </div>
 
-    <div>
-        <div>Twitch nick</div>
-        <input type="text" formControlName="twitchNick" placeholder="Twitch nick" />
-        <label *ngIf="twitchNick.invalid" [ngClass]="'error'"> Niepoprawy nick </label>
-    </div>
     <button>Rejestracja</button>
 
     <label *ngIf="message != undefined"> {{message}} </label>

@@ -7,9 +7,7 @@ import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.domain.dto.lesson.LessonDetailsDto;
 import com.learning.rest.domain.dto.lesson.LessonDto;
 import com.learning.rest.domain.dto.lesson.LessonFileDto;
-import com.learning.rest.domain.entity.Lesson;
-import com.learning.rest.domain.entity.Subject;
-import com.learning.rest.domain.entity.User;
+import com.learning.rest.domain.entity.*;
 import com.learning.rest.domain.entity.enums.LessonStatus;
 import com.learning.rest.domain.mapper.LessonMapper;
 import com.learning.rest.domain.repository.LessonRepository;
@@ -21,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,7 +41,7 @@ public class LessonServiceImpl implements LessonService {
         Subject subject = subjectRepository.findById(lessonDto.getSubjectId()).orElseThrow(SubjectNotFoundException::new);
         Lesson lesson = lessonMapper.toLesson(lessonDto);
         List<LessonFileDto> lessonFileDto = lessonDto.getFiles();
-        if (lessonFileDto != null) {
+        if (lessonFileDto != null && !lessonFileDto.isEmpty()) {
             lessonFileDto.stream()
                     .map(lessonMap::mapToLessonFile)
                     .forEach(lesson::addFile);
@@ -51,11 +50,33 @@ public class LessonServiceImpl implements LessonService {
         if (students != null) {
             students.forEach(lesson::addStudent);
         }
-        lesson.setUrl("https://player.twitch.tv/?channel=" + teacher.getTwitchNick() + "&parent=localhost");
+        lesson.setUrl("");
         lesson.setSubject(subject);
         lesson.setTeacher(teacher);
         Lesson savedLesson = lessonRepository.save(lesson);
         return savedLesson.getLessonId();
+    }
+
+    @Override
+    public void updateLesson(LessonDto lessonDto) {
+        Lesson oldLesson = lessonRepository.findById(lessonDto.getLessonId()).orElseThrow(LessonNotFoundException::new);
+        Lesson lesson = lessonMapper.toEditLesson(lessonDto);
+        List<LessonFileDto> lessonFileDto = lessonDto.getFiles();
+        lesson.setFiles(new ArrayList<>());
+        if (lessonFileDto != null && !lessonFileDto.isEmpty()) {
+            lessonFileDto.stream()
+                    .map(lessonMap::mapToLessonFile)
+                    .forEach(lesson::addFile);
+        }
+        lesson.setSubject(oldLesson.getSubject());
+        lesson.setTeacher(oldLesson.getTeacher());
+        lesson.setHomeworks(oldLesson.getHomeworks());
+        lesson.setStudents(oldLesson.getStudents());
+        List<LessonFile> lessonFiles = lesson.getFiles();
+        if (lessonFiles != null && !lessonFiles.isEmpty()) {
+            lessonFiles.forEach(lessonFile -> lessonFile.setLessonFileId(null));
+        }
+        lessonRepository.save(lesson);
     }
 
     @Override
@@ -77,7 +98,7 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public List<LessonDetailsDto> getLiveLessonForTeacher(Long userId) {
         User teacher = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        List<Lesson> allTeacherLessons =lessonRepository.findAllByTeacher(teacher);
+        List<Lesson> allTeacherLessons = lessonRepository.findAllByTeacher(teacher);
         return allTeacherLessons.stream()
                 .filter(lesson -> lesson.getStatus() == LessonStatus.LIVE)
                 .map(lessonMapper::toLessonDetailsDto)

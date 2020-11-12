@@ -35,7 +35,6 @@
             <column name="last_name" value="TeacherLastName"/>
             <column name="email" value="teacher@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
-            <column name="twitch_nick" value="testStreamTeacher"/>
             <column name="school" value="1"/>
         </insert>
         <insert tableName="users">

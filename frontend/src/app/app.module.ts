@@ -47,6 +47,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AddLiveHomeworkComponent } from './components/add-live-homework/add-live-homework.component';
 import { AllLiveHomeworkAnswersForTeacherComponent } from './components/all-live-homework-answers-for-teacher/all-live-homework-answers-for-teacher.component';
 import { UpdateLiveHomeworkComponent } from './components/update-live-homework/update-live-homework.component';
+import { EditClassesComponent } from './components/edit-classes/edit-classes.component';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { UpdateLiveHomeworkComponent } from './components/update-live-homework/u
     AddLiveHomeworkComponent,
     AllLiveHomeworkAnswersForTeacherComponent,
     UpdateLiveHomeworkComponent,
+    EditClassesComponent,
   ],
   imports: [
     CommonModule,

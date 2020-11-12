@@ -16,4 +16,6 @@ public interface LessonService {
     List<LessonDetailsDto> getLiveLessonForTeacher(Long userId);
 
     void finishLive(Long lessonId);
+
+    void updateLesson(LessonDto classesDto);
 }

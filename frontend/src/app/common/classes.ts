@@ -6,6 +6,6 @@ export class Classes {
     subjectName: string;
     url: string;
     startTime: String;
-    files: ClassesFile;
+    files: ClassesFile[];
     status: string;
 }

@@ -29,8 +29,6 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @Column(name = "twitch_nick")
-    private String twitchNick;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "school")
     private School school;
