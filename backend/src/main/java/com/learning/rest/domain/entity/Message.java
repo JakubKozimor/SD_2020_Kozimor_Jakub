@@ -34,7 +34,7 @@ public class Message {
     private LocalDateTime date;
     @Enumerated(EnumType.STRING)
     private MessageStatus status;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "message_id")
     @JsonManagedReference
     private List<MessageFile> files;

@@ -41,7 +41,6 @@ export class AddClassesComponent implements OnInit {
       let classes = new Classes();
       classes = this.validateForm.value;
       classes.subjectId = subjectId;
-      console.log(classes);
       this.classesService.createClasses(this.validateForm.value).subscribe(data => {
         this.changePage(data);
       });
@@ -58,7 +57,6 @@ export class AddClassesComponent implements OnInit {
 
   createClassesForm(): FormGroup {
     const form = this.fb.group({
-      url: [null, Validators.required],
       files: [null],
     });
     return form;
@@ -68,9 +66,6 @@ export class AddClassesComponent implements OnInit {
     return this.validateForm.get("files");
   }
 
-  get url(): any {
-    return this.validateForm.get("url");
-  }
 
   onUpload(event) {
     let me = this;

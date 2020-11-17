@@ -1,11 +1,14 @@
 package com.learning.security.service.impl;
 
 import com.learning.exception.role.RoleNotFoundException;
+import com.learning.exception.school.SchoolNotFoundException;
 import com.learning.exception.user.EmailAlreadyExistException;
 import com.learning.rest.domain.entity.Role;
+import com.learning.rest.domain.entity.School;
 import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.entity.enums.RoleName;
 import com.learning.rest.domain.repository.RoleRepository;
+import com.learning.rest.domain.repository.SchoolRepository;
 import com.learning.rest.domain.repository.UserRepository;
 import com.learning.security.jwt.JwtTokenProvider;
 import com.learning.security.model.UserPrincipal;
@@ -36,6 +39,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final SchoolRepository schoolRepository;
 
     @Override
     public JwtAuthenticationResponse login(LoginRequest loginRequest) {
@@ -61,6 +65,11 @@ public class AuthServiceImpl implements AuthService {
 
         Role userRole = roleRepository.findByName(registerRequest.getRoleName()).orElseThrow(RoleNotFoundException::new);
         user.setRoles(Collections.singleton(userRole));
+        if(!StringUtils.isEmpty(registerRequest.getTwitchNick()) && RoleName.ROLE_TEACHER == userRole.getName()){
+            user.setTwitchNick(registerRequest.getTwitchNick());
+        }
+        School school = schoolRepository.findByName(registerRequest.getSchoolName()).orElseThrow(SchoolNotFoundException::new);
+        user.setSchool(school);
         userRepository.save(user);
 
         return new ApiResponse(true, "User registered");

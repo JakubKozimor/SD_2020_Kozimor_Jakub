@@ -1,8 +1,12 @@
 <div class="content">
   <div class="week-options">
     <div class="week-options">
-      <button id="A" class="btn" (click)="changeWeek('A')">A</button>
-      <button id="B" class="btn" (click)="changeWeek('B')">B</button>
+      <button id="A" class="btn week-button" (click)="changeWeek('A')">
+        A
+      </button>
+      <button id="B" class="btn week-button" (click)="changeWeek('B')">
+        B
+      </button>
     </div>
   </div>
 
@@ -12,10 +16,9 @@
         <div class="subject-row">
           <span>Poniedziałek</span>
         </div>
-        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-          <span *ngIf="tempSubject.day == 'MONDAY'"
-            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
-          >
+        <div class="subject-row" *ngFor="let tempSubject of subjectsListMonday">
+          <span class="first-column">{{ tempSubject.startTime }}</span>
+          <span class="second-column">{{ tempSubject.name }}</span>
         </div>
       </div>
     </div>
@@ -24,10 +27,12 @@
         <div class="subject-row">
           <span>Wtorek</span>
         </div>
-        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-          <span *ngIf="tempSubject.day == 'TUESDAY'"
-            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
-          >
+        <div
+          class="subject-row"
+          *ngFor="let tempSubject of subjectsListTuesday"
+        >
+          <span class="first-column">{{ tempSubject.startTime }}</span>
+          <span class="second-column">{{ tempSubject.name }}</span>
         </div>
       </div>
     </div>
@@ -37,10 +42,12 @@
         <div class="subject-row">
           <span>Środa</span>
         </div>
-        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-          <span *ngIf="tempSubject.day == 'WEDNESDAY'"
-            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
-          >
+        <div
+          class="subject-row"
+          *ngFor="let tempSubject of subjectsListWednesday"
+        >
+          <span class="first-column">{{ tempSubject.startTime }}</span>
+          <span class="second-column">{{ tempSubject.name }}</span>
         </div>
       </div>
     </div>
@@ -50,10 +57,12 @@
         <div class="subject-row">
           <span>Czwartek</span>
         </div>
-        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-          <span *ngIf="tempSubject.day == 'THURSDAY'"
-            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
-          >
+        <div
+          class="subject-row"
+          *ngFor="let tempSubject of subjectsListThursday"
+        >
+          <span class="first-column">{{ tempSubject.startTime }}</span>
+          <span class="second-column">{{ tempSubject.name }}</span>
         </div>
       </div>
     </div>
@@ -63,10 +72,9 @@
         <div class="subject-row">
           <span>Piątek</span>
         </div>
-        <div class="subject-row" *ngFor="let tempSubject of subjectsList">
-          <span *ngIf="tempSubject.day == 'FRIDAY'"
-            >{{ tempSubject.startTime }} {{ tempSubject.name }}</span
-          >
+        <div class="subject-row" *ngFor="let tempSubject of subjectsListFriday">
+          <span class="first-column">{{ tempSubject.startTime }}</span>
+          <span class="second-column">{{ tempSubject.name }}</span>
         </div>
       </div>
     </div>

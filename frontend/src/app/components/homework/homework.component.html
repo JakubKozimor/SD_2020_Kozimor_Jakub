@@ -1,10 +1,6 @@
 <div class="content">
   <div class="week-options">
-    <div class="week-options">
-      <button class="btn" routerLink="/homeworks-done">
-        Ukończone zadania
-      </button>
-    </div>
+    <button class="btn" routerLink="/homeworks-done">Ukończone zadania</button>
   </div>
 
   <div class="main-schedule">
@@ -31,14 +27,14 @@
             Szczegóły
           </button>
         </div>
-        <div *ngIf="this.activeHomeworkList.length == 0">
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.activeHomeworkList.length == 0"
+        >
           <span>Brak zadań</span>
         </div>
       </div>
-      <div
-        *ngIf="this.activeHomeworkList.length != 0"
-        class="subject-row pagin"
-      >
+      <div *ngIf="this.activeHomeworkList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theActiveHomeworkPageNumber"
@@ -81,11 +77,14 @@
             Szczegóły
           </button>
         </div>
-        <div *ngIf="this.lateHomeworkList.length == 0">
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.lateHomeworkList.length == 0"
+        >
           <span>Brak zadań</span>
         </div>
       </div>
-      <div *ngIf="this.lateHomeworkList.length != 0" class="subject-row pagin">
+      <div *ngIf="this.lateHomeworkList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theLateHomeworkPageNumber"

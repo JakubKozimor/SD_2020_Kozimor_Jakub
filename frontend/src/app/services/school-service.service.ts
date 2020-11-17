@@ -20,6 +20,10 @@ export class SchoolServiceService {
     });
   }
 
+  public getAllSchoolsForSelect(): Observable<School[]> {
+    return this.httpClient.get<School[]>(`${this.BASE_URL}/all-select`);
+  }
+
   addSchool(school: School): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.httpClient.post(this.BASE_URL + `/new`, school).subscribe(

@@ -28,40 +28,68 @@
 .big-column {
   width: 100%;
   min-width: 300px;
-  border: 2px solid #001f54;
+  border: 2px solid #dce8ea;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .subject-row {
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid #001f54;
+  text-align: left;
+  border-bottom: 1px solid #dce8ea;
+  background-color: #dce8ea;
+  padding: 8px 16px;
+  height: 60px;
+  color: black;
 }
 
 .subject-row span {
+  text-align: center;
   display: flex;
   justify-content: center;
-  align-items: Center;
-  margin: 10px;
-  width: 100px;
+  align-items: center;
+  min-width: 110px;
+  max-width: 110px;
 }
 
 .subject-row:first-child {
-  color: #1282a2;
+  background-color: #dce8ea;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: black;
   font-size: 1.1rem;
-  padding: 3px 0;
   font-weight: 600;
-  border-color: #1282a2;
+  border-color: #cbd7db;
   border-width: 3px;
+  height: 50px;
+  text-align: center;
+}
+
+.last-column {
+  margin-left: 5px;
+}
+
+.files-button {
+  background-color: #dce8ea !important;
+  color: black !important;
+  border-color: #14213d !important;
+}
+
+.files-button:hover {
+  border: none;
+  background-color: #7464a0 !important;
+  color: black !important;
+}
+
+.no-files {
+  justify-content: center;
 }
 
 .subject-row:last-child {
   border: none;
-}
-
-.subject-row:first-child span {
-  margin-left: 1rem;
-  width: 100px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .pagin {
@@ -70,37 +98,29 @@
   margin: 1rem 0;
 }
 
-.week-options {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
 .active-button {
-  background-color: #034078 !important;
-  color: #fefcfb !important;
-  border: 1px solid #fefcfb !important;
+  background-color: #7464a0 !important;
+  color: black !important;
+  border: none;
 }
 
 ngb-pagination /deep/ .page-item.active .page-link {
   z-index: 3;
-  background-color: #034078 !important;
-  color: #eaebed !important;
-  border-color: #034078 !important;
+  background-color: #14213d !important;
+  color: white !important;
+  border-color: #14213d !important;
 }
 
 .subject-row button {
-  background-color: #eaebed;
-  color: #034078;
-  border-color: #034078;
-  min-width: 100px;
-  margin-left: 1rem;
+  background-color: #14213d;
+  color: white;
+  min-width: 110px;
+  max-width: 110px;
 }
 
 .subject-row button:hover {
-  background-color: #034078;
-  color: #fefcfb;
-  border: 1px solid #fefcfb;
+  background-color: #7464a0;
+  color: black;
 }
 
 @media only screen and (max-width: 576px) {

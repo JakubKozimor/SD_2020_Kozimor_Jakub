@@ -12,5 +12,7 @@ public interface CalendarService {
 
     void addNewEvent(NewEventDto newEvent, Long schoolId);
 
+    void removeEvent(NewEventDto newEvent, Long schoolId);
+
     ActualWeekDto getActualWeek(Long userId);
 }

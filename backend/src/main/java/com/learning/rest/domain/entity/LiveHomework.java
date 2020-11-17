@@ -22,7 +22,7 @@ public class LiveHomework {
     private Long liveHomeworkId;
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "live_homework_id")
     private List<LiveHomeworkFile> files;
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -32,6 +32,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "school")
     private School school;
+    @Column(name = "twitch_nick")
+    private String twitchNick;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(

@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SchoolServiceImpl implements SchoolService {
@@ -21,6 +23,11 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public Page<School> getAllSchools(Pageable pageable) {
         return schoolRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<School> getAllSchoolsForSelect() {
+        return schoolRepository.findAll();
     }
 
     @Override

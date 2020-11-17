@@ -34,11 +34,14 @@
             Otwórz
           </button>
         </div>
-        <div *ngIf="this.messageUnreadList.length == 0">
+        <div
+          class="subject-row no-messages"
+          *ngIf="this.messageUnreadList.length == 0"
+        >
           <span>Brak wiadomości</span>
         </div>
       </div>
-      <div *ngIf="this.messageUnreadList.length != 0" class="subject-row pagin">
+      <div *ngIf="this.messageUnreadList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theUnreadMessagesPageNumber"
@@ -79,7 +82,7 @@
           <span>{{ tempMessage.title }}</span>
           <span>{{ transformDate(tempMessage.date) }}</span>
           <button
-            class="btn btn-primary"
+            class="btn"
             routerLink="/viewMessage/{{ tempMessage.messageId }}"
           >
             Otwórz
@@ -89,7 +92,7 @@
           <span>Brak wiadomości</span>
         </div>
       </div>
-      <div *ngIf="this.messageReadList.length != 0" class="subject-row pagin">
+      <div *ngIf="this.messageReadList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theReadMessagesPageNumber"
@@ -130,7 +133,7 @@
           <span>{{ tempMessage.title }}</span>
           <span>{{ transformDate(tempMessage.date) }}</span>
           <button
-            class="btn btn-primary"
+            class="btn"
             (click)="changeStatus(tempMessage.messageId)"
             routerLink="/viewMessage/{{ tempMessage.messageId }}"
           >
@@ -141,7 +144,7 @@
           <span>Brak wiadomości</span>
         </div>
       </div>
-      <div *ngIf="this.messageSentList.length != 0" class="subject-row pagin">
+      <div *ngIf="this.messageSentList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theSentMessagesPageNumber"

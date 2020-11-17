@@ -22,6 +22,8 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="twitch_nick" type="VARCHAR(255)">
+            </column>
             <column name="school" type="BIGINT">
             </column>
         </createTable>

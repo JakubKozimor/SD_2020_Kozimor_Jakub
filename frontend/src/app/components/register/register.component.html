@@ -37,6 +37,20 @@
           <label *ngIf="roleName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
     </div>
 
+    <div>
+        <div>Szkoła</div>
+        <select formControlName="schoolName" *ngFor="let tempSchool of schoolList">
+            <option value="{{ tempSchool.name }}">{{ tempSchool.name }}</option>
+          </select>
+          <label *ngIf="schoolName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
+    </div>
+
+    <div>
+        <div>Twitch nick</div>
+        <input type="text" formControlName="twitchNick" placeholder="Twitch nick" />
+        <label *ngIf="twitchNick.invalid" [ngClass]="'error'"> Niepoprawy nick </label>
+    </div>
+
     <button>Rejestracja</button>
 
     <label *ngIf="message != undefined"> {{message}} </label>

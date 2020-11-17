@@ -33,7 +33,7 @@ public class Subject {
     @Enumerated(EnumType.STRING)
     @Column(name = "week")
     private Week week;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "subject_id")
     @JsonManagedReference
     private List<SubjectFile> files;

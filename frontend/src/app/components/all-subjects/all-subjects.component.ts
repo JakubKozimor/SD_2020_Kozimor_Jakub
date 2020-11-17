@@ -112,4 +112,12 @@ export class AllSubjectsComponent implements OnInit {
       return "Piątek";
     }
   }
+
+  getWeek(week: string) {
+    if (week == "ALL") {
+      return "A i B";
+    } else {
+      return week;
+    }
+  }
 }

@@ -38,7 +38,7 @@ export class ClassesComponent implements OnInit {
   showAnswerForm = false;
 
   @Input()
-  url: string = "https://www.youtube.com/embed/3lmA4WHYco4";
+  url: string = "";
   urlSafe: SafeResourceUrl;
 
   private serverUrl = "http://localhost:8080/socket";
@@ -60,12 +60,6 @@ export class ClassesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let playableUrl = "https://www.youtube.com/embed/WzWBQwf7YEg";
-    this.videoUrl = playableUrl;
-    (<HTMLIFrameElement>(
-      document.getElementById("videoIframe")
-    )).src = this.videoUrl;
-
     let classesId = this.route.snapshot.paramMap.get("classesId");
     this.getLessonDetails(Number(classesId));
     this.initializeWebSocketConnection();
@@ -210,7 +204,7 @@ export class ClassesComponent implements OnInit {
   getLessonDetails(classesId: number) {
     this.classesService.getClassesDetails(classesId).subscribe((data) => {
       this.classes = data;
-      // this.url = this.classes.url;
+      this.url = this.classes.url;
       this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
     });
   }

@@ -23,7 +23,7 @@ public class BaseCalendar {
     private Date date;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "calendar_id")
-    private List<CalendarSchool> calendarSchool;
+    private List<CalendarSchool> calendarSchool = new ArrayList<>();
 
     public void addCalendarSchool(CalendarSchool calendarSchool) {
         if (calendarSchool == null) {

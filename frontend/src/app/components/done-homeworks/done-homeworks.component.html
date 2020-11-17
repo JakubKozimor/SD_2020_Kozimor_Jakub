@@ -23,14 +23,17 @@
             class="btn"
             routerLink="/homework-answer-details/{{ tempHomework.homeworkId }}"
           >
-            Zobacz odpoiwedź
+            Zobacz
           </button>
         </div>
-        <div *ngIf="this.ratedHomeworkList.length == 0">
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.ratedHomeworkList.length == 0"
+        >
           <span>Brak zadań</span>
         </div>
       </div>
-      <div *ngIf="this.ratedHomeworkList.length != 0" class="subject-row pagin">
+      <div *ngIf="this.ratedHomeworkList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theRatedHomeworkPageNumber"
@@ -71,7 +74,7 @@
             class="btn active"
             routerLink="/homework-answer-details/{{ tempHomework.homeworkId }}"
           >
-            Edytuj odpoiwedź
+            Edytuj
           </button>
 
           <button
@@ -79,14 +82,17 @@
             class="btn"
             routerLink="/homework-answer-details/{{ tempHomework.homeworkId }}"
           >
-            Zobacz odpoiwedź
+            Zobacz
           </button>
         </div>
-        <div *ngIf="this.doneHomeworkList.length == 0">
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.doneHomeworkList.length == 0"
+        >
           <span>Brak zadań</span>
         </div>
       </div>
-      <div *ngIf="this.doneHomeworkList.length != 0" class="subject-row pagin">
+      <div *ngIf="this.doneHomeworkList.length != 0" class="pagin">
         <div class="pagination">
           <ngb-pagination
             [(page)]="theDoneHomeworkPageNumber"

@@ -23,15 +23,12 @@ public class School {
     private String name;
     private String city;
     @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "school_id")
     private List<CalendarSchool> calendarSchool;
 
-    public void addCalendarSchool(CalendarSchool calendarSchool) {
-        if (calendarSchool == null) {
-            this.calendarSchool = new ArrayList<>();
-        }
-        this.calendarSchool.add(calendarSchool);
+    public void removeCalendarSchool(CalendarSchool calendarSchool) {
+        this.calendarSchool.remove(calendarSchool);
     }
 }
 

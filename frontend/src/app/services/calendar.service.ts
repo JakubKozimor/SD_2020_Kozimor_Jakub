@@ -42,6 +42,21 @@ export class CalendarService {
 
   }
 
+  removeEvent(newEvent: NewEvent, schoolId: number){
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(this.BASE_URL + `/delete/${schoolId}`, newEvent)
+        .subscribe(
+          (data) => {
+            resolve("Dodano");
+          },
+          (error) => {
+            reject("Dodawanie nie powiodło się");
+          }
+        );
+    });
+
+  }
+
   getAcctualUserId() {
     return localStorage.getItem('user_id');
   }

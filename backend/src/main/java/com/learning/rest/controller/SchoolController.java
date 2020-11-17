@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/school")
 @RequiredArgsConstructor
@@ -23,6 +25,11 @@ public class SchoolController {
     @GetMapping("/all")
     public ResponseEntity<Page<School>> getAllSchools(Pageable pageable) {
         return new ResponseEntity<>(schoolService.getAllSchools(pageable), HttpStatus.OK);
+    }
+
+    @GetMapping("/all-select")
+    public ResponseEntity<List<School>> getAllSchoolsForSelect() {
+        return new ResponseEntity<>(schoolService.getAllSchoolsForSelect(), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

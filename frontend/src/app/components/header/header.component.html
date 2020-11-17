@@ -2,41 +2,41 @@
   <div [routerLink]="['/menu']" class="logo"></div>
   <div class="menu">
     <ul *ngIf="!isAdmin">
-      <li>
-        <a routerLink="menu" routerLinkActive="active">Strona główna</a>
+      <li  routerLink="menu" routerLinkActive="active">
+        <a>Strona główna</a>
       </li>
-      <li>
-        <a routerLink="callendar" routerLinkActive="active">Kalendarz</a>
+      <li routerLink="callendar" routerLinkActive="active">
+        <a>Kalendarz</a>
       </li>
-      <li>
-        <a routerLink="homework" routerLinkActive="active">Zadania</a>
+      <li routerLink="homework" routerLinkActive="active">
+        <a>Zadania</a>
       </li>
-      <li *ngIf="!isTeacher">
-        <a routerLink="teachers" routerLinkActive="active">Nauczyciele</a>
+      <li *ngIf="!isTeacher" routerLink="teachers" routerLinkActive="active">
+        <a>Nauczyciele</a>
       </li>
-      <li>
-        <a routerLink="allMessages" routerLinkActive="active">Wiadomości</a>
+      <li routerLink="allMessages" routerLinkActive="active">
+        <a>Wiadomości</a>
       </li>
-      <li>
-        <a routerLink="users" routerLinkActive="active">Użytkownicy</a>
+      <li routerLink="users" routerLinkActive="active">
+        <a>Użytkownicy</a>
       </li>
-      <li>
-        <a routerLink="allSubjects" routerLinkActive="active">Przedmioty</a>
+      <li routerLink="allSubjects" routerLinkActive="active">
+        <a>Przedmioty</a>
       </li>
-      <li>
-        <a routerLink="live" routerLinkActive="active">Live</a>
+      <li routerLink="live" routerLinkActive="active">
+        <a>Live</a>
       </li>
-      <li>
-        <a routerLink="login" (click)="logout()">Wyloguj</a>
+      <li routerLink="login" (click)="logout()">
+        <a>Wyloguj</a>
       </li>
     </ul>
 
-    <ul *ngIf="isAdmin">
+    <ul *ngIf="isAdmin" routerLink="school/all" routerLinkActive="active">
       <li>
-        <a routerLink="school/all" routerLinkActive="active">Strona główna</a>
+        <a>Strona główna</a>
       </li>
-      <li>
-        <a routerLink="login" (click)="logout()">Wyloguj</a>
+      <li routerLink="login" (click)="logout()">
+        <a>Wyloguj</a>
       </li>
     </ul>
   </div>

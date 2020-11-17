@@ -14,6 +14,10 @@
   display: flex;
 }
 
+.info-div h2 {
+  margin-bottom: 25px;
+}
+
 .info-div {
   min-height: 300px;
   margin: 10px 50px;
@@ -25,39 +29,69 @@
 .big-column {
   width: 100%;
   min-width: 300px;
-  border: 2px solid #001f54;
+  border: 2px solid #dce8ea;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .subject-row {
   display: flex;
   justify-content: space-between;
   text-align: left;
-  border-bottom: 2px solid #001f54;
+  border-bottom: 1px solid #dce8ea;
+  background-color: #dce8ea;
   padding: 0 8px;
+  height: 60px;
+  color: black;
+}
+
+.subject-row span {
+  min-width: 120px;
+  max-width: 120px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .subject-row:first-child {
-  color: #1282a2;
+  background-color: #dce8ea;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: black;
   font-size: 1.1rem;
-  padding: 3px 0;
   font-weight: 600;
-  border-color: #1282a2;
+  border-color: #cbd7db;
   border-width: 3px;
+  height: 50px;
+  text-align: center;
 }
 
 .subject-row:last-child {
   border: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-.subject-row span {
-  margin-left: 1rem;
+.od {
+  text-align: center;
+  padding-right: 0px;
+  padding-left: 70px;
 }
+
+.do {
+  text-align: center;
+  padding-left: 0px;
+  padding-right: 70px;
+}
+
 .subject-row span:first-child {
   width: 120px;
+  text-align: center;
 }
 .subject-row span:last-child {
-  width: 200px;
+  width: 120px;
+  text-align: center;
 }
 
 .homework-row {
@@ -67,6 +101,7 @@
   align-items: center;
   border-bottom: 2px solid #001f54;
   padding: 8px 16px;
+  background-color: #dce8ea;
 }
 
 .homework-row span:nth-child(1) {
@@ -82,15 +117,13 @@
 }
 
 .homework-row button {
-  background-color: #eaebed;
-  color: #034078;
-  border-color: #034078;
+  background-color: #14213d;
+  color: white;
 }
 
 .homework-row button:hover {
-  background-color: #034078;
-  color: #fefcfb;
-  border: 1px solid #fefcfb;
+  background-color: #7464a0;
+  color: black;
 }
 
 .homework-row:last-child {

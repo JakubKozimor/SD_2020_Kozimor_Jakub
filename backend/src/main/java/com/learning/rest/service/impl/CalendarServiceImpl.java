@@ -56,17 +56,42 @@ public class CalendarServiceImpl implements CalendarService {
     public void addNewEvent(NewEventDto newEvent, Long schoolId) {
         School school = schoolRepository.findById(schoolId).orElseThrow(SchoolNotFoundException::new);
         LocalDate startDate = newEvent.getStart();
-        Optional<BaseCalendar> endDay = baseCalendarRepository.findByDate(Date.valueOf(newEvent.getEnd()));
-        if (endDay.isEmpty()) {
-            this.insertAllDaysByYear(newEvent.getEnd().getYear());
-        }
+        this.checkDays(newEvent);
         for (LocalDate date = startDate; date.isBefore(newEvent.getEnd().plusDays(1)); date = date.plusDays(1)) {
             BaseCalendar baseCalendar = baseCalendarRepository.findByDate(Date.valueOf(date)).orElseThrow(DayNotFoundException::new);
-            CalendarSchool calendarSchool = new CalendarSchool();
-            calendarSchool.setSchool(school);
-            calendarSchool.setDay(baseCalendar);
-            calendarSchool.setWeek(Week.valueOf(newEvent.getTitle()));
-            calendarSchoolRepository.save(calendarSchool);
+            Optional<CalendarSchool> optionalSchoolWeek = baseCalendar.getCalendarSchool()
+                    .stream()
+                    .filter(calendarSchool -> calendarSchool.getSchool().getSchoolId().equals(schoolId))
+                    .findAny();
+            if (optionalSchoolWeek.isEmpty()) {
+                CalendarSchool calendarSchool = new CalendarSchool();
+                calendarSchool.setSchool(school);
+                calendarSchool.setDay(baseCalendar);
+                calendarSchool.setWeek(Week.valueOf(newEvent.getTitle()));
+                calendarSchoolRepository.save(calendarSchool);
+            }
+        }
+    }
+
+    @Override
+    public void removeEvent(NewEventDto newEvent, Long schoolId) {
+        School school = schoolRepository.findById(schoolId).orElseThrow(SchoolNotFoundException::new);
+        LocalDate startDate = newEvent.getStart();
+        this.checkDays(newEvent);
+        for (LocalDate date = startDate; date.isBefore(newEvent.getEnd().plusDays(1)); date = date.plusDays(1)) {
+            BaseCalendar baseCalendar = baseCalendarRepository.findByDate(Date.valueOf(date)).orElseThrow(DayNotFoundException::new);
+            Optional<CalendarSchool> optionalSchoolWeek = baseCalendar.getCalendarSchool()
+                    .stream()
+                    .filter(calendarSchool -> calendarSchool.getSchool().getSchoolId().equals(schoolId))
+                    .findAny();
+            if (optionalSchoolWeek.isPresent()) {
+                Optional<CalendarSchool> weekToRemove = school.getCalendarSchool()
+                        .stream()
+                        .filter(calendarSchool -> calendarSchool.getCalendarSchoolId().equals(optionalSchoolWeek.get().getCalendarSchoolId()))
+                        .findAny();
+                weekToRemove.ifPresent(school::removeCalendarSchool);
+                calendarSchoolRepository.delete(optionalSchoolWeek.get());
+            }
         }
     }
 
@@ -89,6 +114,14 @@ public class CalendarServiceImpl implements CalendarService {
         else
             actualWeekDto.setWeek(Week.ALL);
         return actualWeekDto;
+    }
+
+    private void checkDays(NewEventDto newEvent) {
+        Optional<BaseCalendar> endDay = baseCalendarRepository.findByDate(Date.valueOf(newEvent.getEnd()));
+        Optional<BaseCalendar> startDay = baseCalendarRepository.findByDate(Date.valueOf(newEvent.getStart()));
+        if (endDay.isEmpty() || startDay.isEmpty()) {
+            this.insertAllDaysByYear(newEvent.getEnd().getYear());
+        }
     }
 
     private void insertAllDaysByYear(int year) {

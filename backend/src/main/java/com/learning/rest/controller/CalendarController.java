@@ -31,6 +31,13 @@ public class CalendarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/delete/{schoolId}")
+    public ResponseEntity<Void> removeEvent(@RequestBody NewEventDto newEvent,
+                                            @PathVariable Long schoolId) {
+        calendarService.removeEvent(newEvent, schoolId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/actual-week")
     public ResponseEntity<ActualWeekDto> getActualWeek(@RequestParam("userId") Long userId) {
         return new ResponseEntity<>(calendarService.getActualWeek(userId), HttpStatus.OK);

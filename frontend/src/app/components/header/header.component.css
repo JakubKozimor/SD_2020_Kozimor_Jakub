@@ -2,24 +2,29 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 70px;
+  height: 75px;
   position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: #003459;
+  background-color: #14213d;
 }
 
 .logo {
+  cursor: pointer;
   text-align: center;
   background-color: rgba(201, 200, 200, 1);
-  width: 15%;
-  min-width: 15%;
+  width: 10%;
+  min-width: 12%;
   height: 100%;
-  background: url("../../../assets/book-1157658_640.png");
+  background: url("../../../assets/Sowka.png");
   background-repeat: no-repeat;
-  background-size: 70px;
+  background-size: 47px;
   background-position: 50% 0;
+}
+
+.logo:focus {
+  outline: none;
 }
 
 .menu {
@@ -35,17 +40,33 @@
   height: 70px;
   font-size: 1.1rem;
 }
-
-.menu ul li a {
-  color: #179fc5;
-
-  text-decoration: none;
-}
-
-.menu ul li a:hover {
-  color: #34c7f0;
+.menu ul li {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .active {
-  color: #fff !important;
+  background-color: #7464a0;
+}
+
+.active a {
+  color: black !important;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu ul li:hover {
+  background-color: #7464a0 !important;
+}
+
+.menu ul li:hover a {
+  color: black !important;
+}
+
+.menu ul li:focus {
+  outline: none;
 }

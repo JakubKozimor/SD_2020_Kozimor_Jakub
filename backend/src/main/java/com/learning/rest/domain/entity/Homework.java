@@ -29,7 +29,7 @@ public class Homework {
     private String description;
     @Column(name = "deadline")
     private Date deadline;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "homework_id")
     private List<HomeworkFile> files;
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserDto> getUsersBySearch(String search, Pageable pageable, Long userId) {
+        int minusFromTotalElements = 0;
         Page<User> users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, pageable);
         Optional<User> isPrincipalInList = users.stream()
                 .filter(user -> user.getUserId().equals(userId))
@@ -51,8 +52,10 @@ public class UserServiceImpl implements UserService {
         if (isPrincipalInList.isPresent() || isAdmin.isPresent()) {
             if (isPrincipalInList.isPresent() && isAdmin.isPresent()) {
                 users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize() + 2));
+                minusFromTotalElements = 2;
             } else {
                 users = userRepository.findByFirstNameContainsOrLastNameContainsOrEmailContains(search, search, search, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize() + 1));
+                minusFromTotalElements = 1;
             }
 
         }
@@ -65,7 +68,7 @@ public class UserServiceImpl implements UserService {
                     return userDto;
                 })
                 .collect(Collectors.toList());
-        return new PageImpl<>(collect, pageable, users.getTotalElements());
+        return new PageImpl<>(collect, pageable, users.getTotalElements() - minusFromTotalElements);
     }
 
     @Override

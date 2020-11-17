@@ -15,7 +15,7 @@
 }
 
 .info-div h2 {
-  margin: 40px;
+  margin-bottom: 25px;
 }
 
 .info-div {
@@ -29,41 +29,58 @@
 .big-column {
   width: 100%;
   min-width: 500px;
-  border: 2px solid #001f54;
+  border: 2px solid #dce8ea;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .subject-row {
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid #001f54;
+  text-align: left;
+  border-bottom: 1px solid #dce8ea;
+  background-color: #dce8ea;
+  padding: 8px 16px;
+  height: 60px;
+  color: black;
 }
 
 .subject-row span {
+  min-width: 140px;
+  max-width: 140px;
+  text-align: center;
   display: flex;
   justify-content: center;
-  align-items: Center;
-  margin: 10px;
-  width: 100px;
+  align-items: center;
 }
 
 .subject-row:first-child {
-  color: #1282a2;
+  background-color: #dce8ea;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: black;
   font-size: 1.1rem;
-  padding: 3px 0;
   font-weight: 600;
-  border-color: #1282a2;
+  border-color: #cbd7db;
   border-width: 3px;
+  height: 50px;
+  text-align: center;
 }
 
 .subject-row:last-child {
   border: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .pagin {
   display: flex;
   justify-content: center;
   margin: 1rem 0;
+}
+
+.no-messages {
+  justify-content: center;
 }
 
 .week-options {
@@ -73,52 +90,41 @@
 }
 
 .active-button {
-  background-color: #034078 !important;
+  background-color: #14213d !important;
   color: #fefcfb !important;
-  border: 1px solid #fefcfb !important;
 }
 
 ngb-pagination /deep/ .page-item.active .page-link {
   z-index: 3;
-  background-color: #034078 !important;
-  color: #eaebed !important;
-  border-color: #034078 !important;
+  background-color: #14213d !important;
+  color: white !important;
+  border-color: #14213d !important;
 }
 
 .subject-row button {
-  background-color: #eaebed;
-  color: #034078;
-  border-color: #034078;
-  min-width: 100px;
-  margin-left: 1rem;
+  background-color: #14213d;
+  color: white;
+  min-width: 140px;
+  max-width: 140px;
 }
 
 .subject-row button:hover {
-  background-color: #034078;
-  color: #fefcfb;
-  border: 1px solid #fefcfb;
-}
-
-.week-options {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
+  background-color: #7464a0;
+  color: black;
 }
 
 .week-options button {
-  background-color: #eaebed;
-  color: #034078;
-  border-color: #034078;
+  background-color: #dce8ea;
+  color: black;
   margin: 0 1rem;
-  width: 300px;
+  width: 250px;
   text-align: center;
   font-weight: 600;
 }
 
 .week-options button:hover {
-  background-color: #034078;
+  background-color: #14213d;
   color: #fefcfb;
-  border: 1px solid #fefcfb;
 }
 
 @media only screen and (max-width: 576px) {
