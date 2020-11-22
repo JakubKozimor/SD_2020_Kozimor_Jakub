@@ -1,16 +1,14 @@
 <div class="content">
   <div class="week-options">
-    <div class="week-options">
-      <button id="1" class="btn" (click)="changeMessages(1)">
-        Wiadomości nieprzeczytane
-      </button>
-      <button id="2" class="btn" (click)="changeMessages(2)">
-        Wiadomości przeczytane
-      </button>
-      <button id="3" class="btn" (click)="changeMessages(3)">
-        Wiadomości wysłane
-      </button>
-    </div>
+    <button id="1" class="btn" (click)="changeMessages(1)">
+      Wiadomości nieprzeczytane
+    </button>
+    <button id="2" class="btn" (click)="changeMessages(2)">
+      Wiadomości przeczytane
+    </button>
+    <button id="3" class="btn" (click)="changeMessages(3)">
+      Wiadomości wysłane
+    </button>
   </div>
 
   <div *ngIf="value == 1" class="main-schedule">
@@ -88,7 +86,10 @@
             Otwórz
           </button>
         </div>
-        <div *ngIf="this.messageReadList.length == 0">
+        <div
+          class="subject-row no-messages"
+          *ngIf="this.messageReadList.length == 0"
+        >
           <span>Brak wiadomości</span>
         </div>
       </div>
@@ -140,7 +141,10 @@
             Otwórz
           </button>
         </div>
-        <div *ngIf="this.messageSentList.length == 0">
+        <div
+          class="subject-row no-messages"
+          *ngIf="this.messageSentList.length == 0"
+        >
           <span>Brak wiadomości</span>
         </div>
       </div>

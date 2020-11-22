@@ -14,6 +14,13 @@ export class RegisterComponent implements OnInit {
   formSubmitted = false;
   theSamePassword = false;
   message: string;
+  failedMessage: string;
+
+  warningForCheckbox = false;
+
+  teacherForm = false;
+
+  twitchNickEmpty = true;
 
   schoolList: School[];
 
@@ -35,18 +42,56 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
+    let element = <HTMLInputElement>document.getElementById("checkbox");
+    this.failedMessage = undefined;
+    this.message = undefined;
     this.formSubmitted = true;
-    if (this.validateForm.valid && this.theSamePassword) {
+    if (
+      this.validateForm.valid &&
+      this.theSamePassword &&
+      this.warningForCheckbox
+    ) {
       this.authService
         .register(this.validateForm.value)
         .then((data) => {
           this.message = data;
           this.validateForm.reset();
         })
-        .catch((error) => (this.message = error));
+        .catch((error) => (this.failedMessage = error));
       this.validateForm.reset();
-    } else {
       this.formSubmitted = false;
+      let element = <HTMLInputElement>document.getElementById("checkbox");
+      element.checked = false;
+      this.warningForCheckbox = false;
+    }
+  }
+
+  chancheRegulations() {
+    let element = <HTMLInputElement>document.getElementById("checkbox");
+    if (element.checked) {
+      element.checked = false;
+    } else {
+      element.checked = true;
+    }
+    this.changeWarningForCheckbox();
+  }
+
+  changeWarningForCheckbox() {
+    if (this.warningForCheckbox) {
+      this.warningForCheckbox = false;
+    } else {
+      this.warningForCheckbox = true;
+    }
+  }
+
+  twitchNickIsEmpty() {
+    if (
+      this.teacherForm &&
+      (this.twitchNick.value == null || this.twitchNick.value == "")
+    ) {
+      this.twitchNickEmpty = true;
+    } else {
+      this.twitchNickEmpty = false;
     }
   }
 
@@ -62,6 +107,17 @@ export class RegisterComponent implements OnInit {
       schoolName: [null, [Validators.required]],
     });
     return form;
+  }
+
+  teacherRegisterForm() {
+    if (this.roleName.value == "ROLE_STUDENT") {
+      this.teacherForm = false;
+    }
+
+    if (this.roleName.value == "ROLE_TEACHER") {
+      this.teacherForm = true;
+    }
+    this.twitchNick.value = null;
   }
 
   checkPasswordConfirmation() {

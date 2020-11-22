@@ -1,3 +1,310 @@
+<div class="homework-details">
+  <div class="homework-frame">
+    <h1>Dodaj</h1>
+
+    <div class="frame-test">
+      <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div class="one-section">
+          <h3>Od:</h3>
+          <div class="input-value-div">
+            <div class="input-group" style="width: 220px">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                formControlName="start"
+                ngbDatepicker
+                #d="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar-btn"
+                  (click)="d.toggle()"
+                  type="button"
+                >
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-calendar3"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <label
+              *ngIf="start.invalid && formSubmitted"
+              [ngClass]="'error'"
+              class="alert alert-danger input-row"
+            >
+              Pole nie może być puste
+            </label>
+          </div>
+        </div>
+
+        <div class="one-section">
+          <h3>Do:</h3>
+          <div class="input-value-div">
+            <div class="input-group" style="width: 220px">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                formControlName="end"
+                ngbDatepicker
+                #d1="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar-btn"
+                  (click)="d1.toggle()"
+                  type="button"
+                >
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-calendar3"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <label
+              *ngIf="end.invalid && formSubmitted"
+              [ngClass]="'error'"
+              class="alert alert-danger input-row"
+            >
+              Pole nie może być puste
+            </label>
+          </div>
+        </div>
+
+        <div class="one-section">
+          <h3>Tydzień:</h3>
+          <div class="input-value-div">
+            <select
+              formControlName="week"
+              style="width: 220px"
+              class="form-control"
+            >
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="FREE">Wolne</option>
+            </select>
+            <label
+              *ngIf="week.invalid && formSubmitted"
+              class="alert alert-danger input-row"
+              [ngClass]="'error'"
+            >
+              Pole nie może być puste
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn add-homework-answer-button">
+          Dodaj
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="homework-frame">
+    <h1>Usuń</h1>
+    <div class="frame-test">
+      <form [formGroup]="validateFormDelete" (ngSubmit)="submitFormDelete()">
+        <div class="one-section">
+          <h3>Od:</h3>
+          <div class="input-value-div">
+            <div class="input-group" style="width: 220px">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                formControlName="start"
+                ngbDatepicker
+                #dd="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar-btn"
+                  (click)="dd.toggle()"
+                  type="button"
+                >
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-calendar3"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <label
+              *ngIf="startDelete.invalid && formSubmittedDelete"
+              class="alert alert-danger input-row"
+              [ngClass]="'error'"
+            >
+              Pole nie może być puste
+            </label>
+          </div>
+        </div>
+
+        <div class="one-section">
+          <h3>Do:</h3>
+          <div class="input-value-div">
+            <div class="input-group" style="width: 220px">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                formControlName="end"
+                ngbDatepicker
+                #dd1="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar-btn"
+                  (click)="dd1.toggle()"
+                  type="button"
+                >
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-calendar3"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <label
+              *ngIf="endDelete.invalid && formSubmittedDelete"
+              [ngClass]="'error'"
+              class="alert alert-danger input-row"
+            >
+              Pole nie może być puste
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn edit-homework-answer-button">
+          Usuń
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="main-schedule">
+    <div class="info-div">
+      <div class="big-column-calendar">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <div class="btn-group">
+              <div
+                class="btn btn-calendar-color"
+                mwlCalendarPreviousView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()"
+              >
+                Poprzedni
+              </div>
+              <div
+                #myDiv
+                class="btn btn-calendar-color-today"
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+              >
+                Dzisiaj
+              </div>
+              <div
+                class="btn btn-calendar-color"
+                mwlCalendarNextView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()"
+              >
+                Następny
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3 class="month-class">
+              {{ viewDate | calendarDate: view + "ViewTitle":"Pl" }}
+            </h3>
+          </div>
+
+          <div class="col-md-4">
+            <div class="weeks-map">
+              <div class="week-a"></div>
+              <span>- A</span>
+              <div class="week-b"></div>
+              <span>- B</span>
+              <div class="week-free"></div>
+              <span>- Dzień wolny</span>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="month-view" [ngSwitch]="view">
+          <mwl-calendar-month-view
+            class="week-days-class"
+            [viewDate]="viewDate"
+            [events]="events"
+            [locale]="locale"
+            [weekStartsOn]="weekStartsOn"
+            [weekendDays]="weekendDays"
+            (eventTimesChanged)="eventTimesChanged($event)"
+          >
+          </mwl-calendar-month-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -42,11 +349,7 @@
     (eventTimesChanged)="eventTimesChanged($event)"
   >
   </mwl-calendar-month-view>
-</div>
-
-<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
-
-<br /><br /><br />
+</div> 
 
 <h3>Edit events</h3>
 
@@ -56,6 +359,7 @@
   <span>Start date</span>
   <span>End date</span>
 </div>
+
 <div>
   <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <div>Tydzień</div>
@@ -129,7 +433,7 @@
               height="1em"
               viewBox="0 0 16 16"
               class="bi bi-calendar3"
-              fill="currentColor" `
+              fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -241,4 +545,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Usuń tydzień</button>
   </form>
-</div>
+</div> -->

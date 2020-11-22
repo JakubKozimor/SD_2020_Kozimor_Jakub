@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { LiveHomeworkAnswerFile } from "src/app/common/live-homework-answer-file";
 import { LiveHomeworkAnswer } from "src/app/common/live-homework-answer";
 import { LiveHomeworksAnswerService } from "src/app/services/live-homeworks-answer.service";
+import { Global } from "src/app/global";
 
 @Component({
   selector: "app-classes",
@@ -46,7 +47,7 @@ export class ClassesComponent implements OnInit {
   private stompClient;
 
   actualUserId: number;
-
+  isTeacher: boolean;
   classes: Classes;
   videoUrl;
   constructor(
@@ -56,10 +57,12 @@ export class ClassesComponent implements OnInit {
     private classesService: ClassesService,
     private fb: FormBuilder,
     private liveHomeworkService: LiveHomeworkService,
-    private liveHomeworksAnswerService: LiveHomeworksAnswerService
+    private liveHomeworksAnswerService: LiveHomeworksAnswerService,
+    private global: Global
   ) {}
 
   ngOnInit() {
+    this.isTeacher = this.global.isTeacher();
     let classesId = this.route.snapshot.paramMap.get("classesId");
     this.getLessonDetails(Number(classesId));
     this.initializeWebSocketConnection();

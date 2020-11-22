@@ -1,16 +1,33 @@
-<h3> Logowanie </h3>
-<form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <div>
-        <div>Email</div>
-        <input type="text" formControlName="email" placeholder="Login" />
-        <label *ngIf="email.invalid" [ngClass]="'error'"> Niepoprawy email </label>
-    </div>
-    <div>
-        <div>Hasło</div>
-        <input type="password" formControlName="password" placeholder="Hasło" />
-        <label *ngIf="password.invalid" [ngClass]="'error'"> Niepoprawne hasło </label>
-    </div>
-
-    <button>Zaloguj</button>
-</form>
-<button routerLink="/register">Rejestracja</button>
+<div class="login-page">
+  <div class="login-frame">
+    <h2>Logowanie</h2>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div class="input-row">
+        <input type="text" required formControlName="email" />
+        <label for="" placeholder="Email" alt="Email"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="email.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawy email
+      </label>
+      <div class="input-row">
+        <input type="password" required formControlName="password" />
+        <label for="" placeholder="Hasło" alt="Hasło"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="password.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawne hasło
+      </label>
+      <button class="btn login-button input-row">Zaloguj</button>
+    </form>
+    <button class="btn register-button input-row" routerLink="/register">
+      Rejestracja
+    </button>
+  </div>
+</div>

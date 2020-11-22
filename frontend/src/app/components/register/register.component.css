@@ -1,0 +1,234 @@
+.login-page {
+  display: flex;
+  min-height: 70vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-frame {
+  position: relative;
+  display: flex;
+  min-height: 480px;
+  min-width: 450px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input-row {
+  width: 16em;
+}
+
+.input-row:first-child {
+  margin-top: 80px;
+}
+
+.regulations-label {
+  margin-left: 5px;
+}
+
+.info-label {
+  display: block;
+}
+
+.select-input {
+  margin-bottom: 20px;
+}
+
+.register-button {
+  margin-top: 25px;
+  margin-bottom: 20px;
+
+  background-color: #14213d;
+  color: white;
+  display: block;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+.checkbox-div {
+  margin-bottom: 10px;
+}
+
+.register-button:hover {
+  background-color: #7464a0;
+  color: black;
+}
+
+.login-button {
+  background-color: #3bb598 !important;
+  color: white !important;
+  border: 3px solid #3bb598 !important;
+  display: block;
+}
+
+.login-button:hover {
+  background-color: #3bb598 !important;
+  color: black !important;
+  border: 3px solid black !important;
+}
+
+.alert {
+  border-radius: 8px !important;
+  text-align: center !important;
+}
+
+.login-frame h2 {
+  position: absolute;
+  top: 20px;
+}
+
+input {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+  box-sizing: border-box;
+}
+
+label {
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  width: 16em;
+  background-color: white;
+  height: calc(3em + 2px);
+  padding: 1em;
+  font-size: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 1.5em;
+  transition: all 0.2s ease-out;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+}
+input[type="text"]:hover {
+  border: 1px solid #cccccc;
+}
+
+input[type="text"]:focus + label:before,
+input[type="text"]:active + label:before {
+  color: #ee7633;
+}
+
+input[type="text"] + label {
+  display: block;
+  font-size: 1em;
+  height: 3em;
+  line-height: 3em;
+  margin-top: calc(-3em - 1px);
+  margin-bottom: 1em;
+  pointer-events: none;
+}
+
+input[type="text"] + label:before {
+  content: attr(placeholder);
+  display: inline-block;
+  color: #999999;
+  margin: 0 calc(1em + 2px);
+  white-space: nowrap;
+  transition-property: color, -webkit-transform;
+  transition-property: transform, color;
+  transition-property: transform, color, -webkit-transform;
+  transition-duration: 0.2s;
+  transition-delay: 0;
+  transition-timing-function: ease-out;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+}
+
+input[type="text"]:focus + label:before,
+input[type="text"].active + label:before,
+input[type="text"]:valid + label:before {
+  background: white;
+  line-height: 1;
+  padding: 0 1.5px;
+  -webkit-transform: translateY(calc(-3em / 2 - 1px / 2)) scale(0.8, 0.8);
+  transform: translateY(calc(-3em / 2 - 1px / 2)) scale(0.8, 0.8);
+}
+
+input[type="text"]:valid {
+  border: 1px solid #23a045;
+}
+
+input[type="text"]:valid + label:before {
+  content: attr(alt);
+  color: #23a045;
+}
+
+input[type="password"] {
+  width: 16em;
+  background-color: white;
+  height: calc(3em + 2px);
+  padding: 1em;
+  font-size: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 1.5em;
+  transition: all 0.2s ease-out;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+}
+input[type="password"]:hover {
+  border: 1px solid #cccccc;
+}
+
+input[type="password"]:focus + label:before,
+input[type="password"]:active + label:before {
+  color: #ee7633;
+}
+
+input[type="password"] + label {
+  display: block;
+  font-size: 1em;
+  height: 3em;
+  line-height: 3em;
+  margin-top: calc(-3em - 1px);
+  margin-bottom: 1em;
+  pointer-events: none;
+}
+
+input[type="password"] + label:before {
+  content: attr(placeholder);
+  display: inline-block;
+  color: #999999;
+  margin: 0 calc(1em + 2px);
+  white-space: nowrap;
+  transition-property: color, -webkit-transform;
+  transition-property: transform, color;
+  transition-property: transform, color, -webkit-transform;
+  transition-duration: 0.2s;
+  transition-delay: 0;
+  transition-timing-function: ease-out;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+}
+
+input[type="password"]:focus + label:before,
+input[type="password"].active + label:before,
+input[type="password"]:valid + label:before {
+  background: white;
+  line-height: 1;
+  padding: 0 1.5px;
+  -webkit-transform: translateY(calc(-3em / 2 - 1px / 2)) scale(0.8, 0.8);
+  transform: translateY(calc(-3em / 2 - 1px / 2)) scale(0.8, 0.8);
+}
+
+input[type="password"]:valid {
+  border: 1px solid #23a045;
+}
+
+input[type="password"]:valid + label:before {
+  content: attr(alt);
+  color: #23a045;
+}

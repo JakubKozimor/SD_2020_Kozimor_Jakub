@@ -1,26 +1,63 @@
-<div *ngIf="messageDetails != undefined">
-    <p>Tytuł: {{messageDetails.title}}</p>
-    <p>Treść: {{messageDetails.content}}</p>
-    <p>Data: {{transformDate(messageDetails.date)}}</p>
-    <h3>Nadawca</h3>
-    <p>Id: {{messageDetails.userFromId}}</p>
-    <p>Imie: {{messageDetails.userFromFirstName}}</p>
-    <p>Nazwisko: {{messageDetails.userFromLastName}}</p>
-    <p>Email: {{messageDetails.userFromEmail}}</p>
-    <h3>Odbiorca</h3>
-    <p>Id: {{messageDetails.userToId}}</p>
-    <p>Imie: {{messageDetails.userToFirstName}}</p>
-    <p>Nazwisko: {{messageDetails.userToLastName}}</p>
-    <p>Email: {{messageDetails.userToEmail}}</p>
-    <h3>Pliki</h3>
-    <div>
-        <div *ngFor="let tempFile of messageDetails.files">
-            <p>{{tempFile.fileName}}</p>
-            <button class="btn btn-primary"
-                (click)="downloadFile(tempFile.messageFileId, tempFile.fileName)">Pobierz</button>
-        </div>
+<div class="homework-details">
+  <div class="homework-frame" *ngIf="messageDetails != undefined">
+    <h5>{{ transformDate(messageDetails.date) }}</h5>
+    <span class="user-name"
+      >{{ messageDetails.userFromFirstName }}
+      {{ messageDetails.userFromLastName }}</span
+    >
+    <span class="user-email"> {{ messageDetails.userFromEmail }}</span>
+    <div class="one-section first-secrion">
+      <h3>Tytuł wiadomości:</h3>
+      <span>{{ messageDetails.title }}</span>
     </div>
-    <br>
-    <button *ngIf="loggedUserId != messageDetails.userFromId" class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userFromId }}">Odpowiedz</button>
-    <button *ngIf="loggedUserId == messageDetails.userFromId" class="btn btn-success" routerLink="/createMessage/{{ messageDetails.userToId }}">Odpowiedz</button>
+
+    <div class="one-section">
+      <h3>Treść:</h3>
+      <span>{{ messageDetails.content }}</span>
+    </div>
+    <div class="one-section">
+      <h3>Pliki:</h3>
+      <div class="files-div" *ngFor="let tempFile of messageDetails.files">
+        <div>
+          <svg
+            width="30px"
+            height="30px"
+            viewBox="0 0 16 16"
+            class="bi bi-file-earmark-fill file-icon"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+            />
+          </svg>
+          <span>{{ tempFile.fileName }}</span>
+        </div>
+        <button
+          class="btn download-button"
+          (click)="downloadFile(tempFile.messageFileId, tempFile.fileName)"
+        >
+          <i class="fa fa-download"></i> Pobierz
+        </button>
+      </div>
+      <div *ngIf="messageDetails.files.length == 0">
+        <span>Brak plików</span>
+      </div>
+    </div>
+    <button
+      *ngIf="loggedUserId != messageDetails.userFromId"
+      class="btn add-homework-answer-button"
+      routerLink="/createMessage/{{ messageDetails.userFromId }}"
+    >
+      Odpowiedz
+    </button>
+    <button
+      *ngIf="loggedUserId == messageDetails.userFromId"
+      class="btn add-homework-answer-button"
+      routerLink="/createMessage/{{ messageDetails.userToId }}"
+    >
+      Odpowiedz
+    </button>
+  </div>
 </div>

@@ -1,7 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeworkFile } from 'src/app/common/homework-file';
 import { HomeworkService } from 'src/app/services/homework.service';
 
@@ -21,6 +20,7 @@ export class AddHomeworkComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
+    private router: Router,
     private homeworkService: HomeworkService
   ) { }
 
@@ -36,9 +36,12 @@ export class AddHomeworkComponent implements OnInit {
       this.homeworkService.createHomework(this.validateForm.value, subjectId);
       this.validateForm.reset();
       this.tempFiles = new Array;
-    } else {
-      this.formSubmitted = false;
+      this.changePage();
     }
+  }
+
+  changePage() {
+    this.router.navigate(["allSubjects"]);
   }
 
   parseDate(date): string {

@@ -1,58 +1,256 @@
-<h3> Rejsetracja </h3>
+<div class="login-page">
+  <div class="login-frame">
+    <h2>Rejestracja</h2>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div class="input-row">
+        <input type="text" required formControlName="firstName" />
+        <label for="" placeholder="Imie" alt="Imie"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="firstName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row">
+        <input type="text" required formControlName="lastName" />
+        <label for="" placeholder="Nazwisko" alt="Nazwisko"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="lastName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row">
+        <input type="text" required formControlName="email" />
+        <label for="" placeholder="Email" alt="Email"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="email.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawy email
+      </label>
+      <div class="input-row">
+        <input
+          type="password"
+          required
+          formControlName="password"
+          (input)="checkPasswordConfirmation()"
+        />
+        <label for="" placeholder="Hasło" alt="Hasło"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="password.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawne hasło
+      </label>
+
+      <div class="input-row">
+        <input
+          type="password"
+          required
+          formControlName="passwordConfirmation"
+          (input)="checkPasswordConfirmation()"
+        />
+        <label for="" placeholder="Powtórz hasło" alt="Powtórz hasło"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="passwordConfirmation.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawne hasło
+      </label>
+
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="
+          theSamePassword == false &&
+          passwordConfirmation.valid &&
+          formSubmitted
+        "
+        [ngClass]="'error'"
+      >
+        Hasła muszą być takie same
+      </label>
+
+      <label class="info-label">Status: </label>
+      <div class="input-row select-input">
+        <select
+          (change)="teacherRegisterForm()"
+          class="form-control"
+          formControlName="roleName"
+        >
+          <option value="ROLE_STUDENT">Student</option>
+          <option value="ROLE_TEACHER">Nauczyciel</option>
+        </select>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="roleName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div *ngIf="teacherForm" class="input-row">
+        <input
+          (input)="twitchNickIsEmpty()"
+          type="text"
+          required
+          formControlName="twitchNick"
+        />
+        <label for="" placeholder="Twitch nick" alt="Twitch nick"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="teacherForm && formSubmitted && twitchNickEmpty"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <label class="info-label">Szkoła:</label>
+      <div class="input-row select-input">
+        <select
+          class="form-control"
+          formControlName="schoolName"
+          *ngFor="let tempSchool of schoolList"
+        >
+          <option value="{{ tempSchool.name }}">{{ tempSchool.name }}</option>
+        </select>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="schoolName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row checkbox-div">
+        <input
+          class="form-check-input position-static"
+          type="checkbox"
+          id="checkbox"
+          (click)="changeWarningForCheckbox()"
+        />
+        <label (click)="chancheRegulations()">Rozumiem i akceptuję</label>
+        <label class="regulations-label">regulamin</label>
+      </div>
+
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="!warningForCheckbox && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Akceptuj regulamin
+      </label>
+
+      <button class="btn login-button input-row">Rejestracja</button>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="failedMessage != undefined"
+      >
+        {{ failedMessage }}
+      </label>
+      <label class="alert alert-success input-row" *ngIf="message != undefined">
+        {{ message }}
+      </label>
+    </form>
+
+    <button class="btn register-button input-row" routerLink="/login">
+      Wróć
+    </button>
+  </div>
+</div>
+<!-- 
+<h3>Rejsetracja</h3>
 <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <div>
-        <div>Imie</div>
-        <input type="text" formControlName="firstName" placeholder="Imie" />
-        <label *ngIf="firstName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
-    </div>
-    <div>
-        <div>Nazwisko</div>
-        <input type="text" formControlName="lastName" placeholder="Nazwisko" />
-        <label *ngIf="lastName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
-    </div>
-    <div>
-        <div>Email</div>
-        <input type="text" formControlName="email" placeholder="Email" />
-        <label *ngIf="email.invalid" [ngClass]="'error'"> Niepoprawy email </label>
-    </div>
-    <div>
-        <div>Hasło</div>
-        <input type="password" formControlName="password" placeholder="Hasło" />
-        <label *ngIf="password.invalid" [ngClass]="'error'"> Niepoprawne hasło </label>
-    </div>
-    <div>
-        <div>Powtórz hasło</div>
-        <input type="password" formControlName="passwordConfirmation" placeholder="Powtórz hasło"
-            (change)="checkPasswordConfirmation()" />
-        <label *ngIf="passwordConfirmation.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
-        <label *ngIf="theSamePassword == false && passwordConfirmation.valid" [ngClass]="'error'"> Hasła muszą być takie
-            same </label>
-    </div>
-    <div>
-        <div>Rola</div>
-        <select formControlName="roleName">
-            <option value="ROLE_STUDENT">Student</option>
-            <option value="ROLE_TEACHER">Nauczyciel</option>
-          </select>
-          <label *ngIf="roleName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
-    </div>
+  <div>
+    <div>Imie</div>
+    <input type="text" formControlName="firstName" placeholder="Imie" />
+    <label *ngIf="firstName.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
+  <div>
+    <div>Nazwisko</div>
+    <input type="text" formControlName="lastName" placeholder="Nazwisko" />
+    <label *ngIf="lastName.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
+  <div>
+    <div>Email</div>
+    <input type="text" formControlName="email" placeholder="Email" />
+    <label *ngIf="email.invalid" [ngClass]="'error'"> Niepoprawy email </label>
+  </div>
+  <div>
+    <div>Hasło</div>
+    <input type="password" formControlName="password" placeholder="Hasło" />
+    <label *ngIf="password.invalid" [ngClass]="'error'">
+      Niepoprawne hasło
+    </label>
+  </div>
+  <div>
+    <div>Powtórz hasło</div>
+    <input
+      type="password"
+      formControlName="passwordConfirmation"
+      placeholder="Powtórz hasło"
+      (change)="checkPasswordConfirmation()"
+    />
+    <label *ngIf="passwordConfirmation.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+    <label
+      *ngIf="theSamePassword == false && passwordConfirmation.valid"
+      [ngClass]="'error'"
+    >
+      Hasła muszą być takie same
+    </label>
+  </div>
+  <div>
+    <div>Rola</div>
+    <select formControlName="roleName">
+      <option value="ROLE_STUDENT">Student</option>
+      <option value="ROLE_TEACHER">Nauczyciel</option>
+    </select>
+    <label *ngIf="roleName.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
 
-    <div>
-        <div>Szkoła</div>
-        <select formControlName="schoolName" *ngFor="let tempSchool of schoolList">
-            <option value="{{ tempSchool.name }}">{{ tempSchool.name }}</option>
-          </select>
-          <label *ngIf="schoolName.invalid" [ngClass]="'error'"> Pole nie może być puste </label>
-    </div>
+  <div>
+    <div>Szkoła</div>
+    <select formControlName="schoolName" *ngFor="let tempSchool of schoolList">
+      <option value="{{ tempSchool.name }}">{{ tempSchool.name }}</option>
+    </select>
+    <label *ngIf="schoolName.invalid" [ngClass]="'error'">
+      Pole nie może być puste
+    </label>
+  </div>
 
-    <div>
-        <div>Twitch nick</div>
-        <input type="text" formControlName="twitchNick" placeholder="Twitch nick" />
-        <label *ngIf="twitchNick.invalid" [ngClass]="'error'"> Niepoprawy nick </label>
-    </div>
+  <div>
+    <div>Twitch nick</div>
+    <input type="text" formControlName="twitchNick" placeholder="Twitch nick" />
+    <label *ngIf="twitchNick.invalid" [ngClass]="'error'">
+      Niepoprawy nick
+    </label>
+  </div>
 
-    <button>Rejestracja</button>
+  <button>Rejestracja</button>
 
-    <label *ngIf="message != undefined"> {{message}} </label>
+  <label *ngIf="message != undefined"> {{ message }} </label>
 </form>
-<button routerLink="/login">Wróć</button>
+<button routerLink="/login">Wróć</button> -->

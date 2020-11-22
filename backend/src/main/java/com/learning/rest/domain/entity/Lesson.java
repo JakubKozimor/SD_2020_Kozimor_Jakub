@@ -38,7 +38,7 @@ public class Lesson {
     private List<LiveHomework> homeworks;
     @Enumerated(EnumType.STRING)
     private LessonStatus status;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "lesson_id")
     @JsonManagedReference
     private List<LessonFile> files;

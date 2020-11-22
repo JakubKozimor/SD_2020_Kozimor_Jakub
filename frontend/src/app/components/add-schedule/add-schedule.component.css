@@ -1,12 +1,198 @@
-
-h3 {
-  margin: 0 0 10px;
+.homework-details {
+  display: flex;
+  min-height: 50vh;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-pre {
-  background-color: #f5f5f5;
-  padding: 15px;
+.homework-frame {
+  margin: 40px 0px;
+  position: relative;
+  display: flex;
+  min-height: 400px;
+  width: 550px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  flex-direction: column;
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.cal-month-view .cal-day-badge{
+
+.one-section {
+  margin: 20px;
+}
+
+.input-row {
+  margin-top: 15px;
+  width: 220px;
+}
+
+.one-section:first-child {
+  margin-top: 60px;
+}
+
+.frame-test {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.homework-frame h1 {
+  padding-right: 60px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 10px;
+}
+
+.one-section span {
+  font-size: 20px;
+}
+
+.input-value-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-homework-answer-button {
+  display: block;
+  margin: auto;
+  background-color: #2bb39c;
+  color: black;
+  padding: 10px 30px;
+}
+
+.add-homework-answer-button:hover {
+  background-color: #33d476;
+  color: black;
+}
+
+.edit-homework-answer-button {
+  display: block;
+  margin: auto;
+  background-color: #db3232;
+  color: black;
+  padding: 10px 30px;
+}
+
+.edit-homework-answer-button:hover {
+  background-color: #ff2e2e;
+  color: black;
+}
+
+.content {
+  text-align: center;
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+  min-height: 80vh;
+  font-family: "Lato", sans-serif;
+}
+
+.main-schedule {
+  display: flex;
+}
+
+.info-div {
+  min-height: 300px;
+  margin: 10px 10px;
+  text-align: center;
+  position: relative;
+  text-align: center;
+}
+
+.info-div-calendar {
+  min-width: 100px;
+}
+
+.month-view {
+  border: 1px solid #001f54;
+}
+
+.big-column-calendar {
+  width: 100%;
+  min-width: 1000px;
+  border-radius: 8px;
+}
+
+.btn-calendar-color {
+  background-color: #14213d !important;
+  color: #fefcfb !important;
+  border: 1px solid #fefcfb !important;
+}
+
+.btn-calendar-color-today {
+  background-color: #eaebed;
+  color: black;
+  border-color: #dce8ea;
+}
+
+.btn-calendar-color-today:hover {
+  background-color: #7464a0;
+  color: black;
+  border: 1px solid #fefcfb;
+}
+
+.month-class {
+  text-transform: capitalize;
+}
+
+mwl-calendar-month-view /deep/ .cal-day-badge {
   display: none !important;
+}
+
+.week-days-class {
+  text-transform: capitalize;
+}
+
+.weeks-map {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+}
+
+.weeks-map span {
+  margin: 0 30px 0 5px;
+}
+
+mwl-calendar-month-view /deep/ .cal-event {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 10px !important;
+}
+
+.week-a {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #e62e47;
+}
+
+.week-b {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #3bb598;
+}
+
+.week-free {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #f7af28;
+}
+
+@media only screen and (max-width: 576px) {
+  .content {
+    width: 100%;
+    margin-top: auto;
+  }
 }

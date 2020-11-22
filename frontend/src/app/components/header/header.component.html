@@ -2,7 +2,7 @@
   <div [routerLink]="['/menu']" class="logo"></div>
   <div class="menu">
     <ul *ngIf="!isAdmin">
-      <li  routerLink="menu" routerLinkActive="active">
+      <li routerLink="menu" routerLinkActive="active">
         <a>Strona główna</a>
       </li>
       <li routerLink="callendar" routerLinkActive="active">
@@ -31,9 +31,9 @@
       </li>
     </ul>
 
-    <ul *ngIf="isAdmin" routerLink="school/all" routerLinkActive="active">
-      <li>
-        <a>Strona główna</a>
+    <ul *ngIf="isAdmin">
+      <li routerLink="school/all" routerLinkActive="active">
+        <a>Szkoły</a>
       </li>
       <li routerLink="login" (click)="logout()">
         <a>Wyloguj</a>

@@ -30,7 +30,7 @@ public class HomeworkAnswer {
     @JoinColumn(name = "student")
     @JsonBackReference
     private User student;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "homework_answer_id")
     private List<HomeworkAnswerFile> files;
     private String grade;

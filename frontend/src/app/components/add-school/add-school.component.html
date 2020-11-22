@@ -1,18 +1,34 @@
 <div class="add-homework">
-  <h1>Dodaj szkołę</h1>
-  <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <div>
-      <input type="text" formControlName="name" placeholder="Nazwa" />
-      <label *ngIf="name.invalid" [ngClass]="'error'">
+  <div class="login-frame">
+    <h1>Dodaj szkołę</h1>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div>
+        <input type="text" formControlName="name" required />
+        <label for="" placeholder="Nazwa" alt="Nazwa"></label>
+      </div>
+      <label
+        class="alert alert-danger"
+        *ngIf="name.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
         Pole nie może być puste
       </label>
-    </div>
-    <div>
-      <input type="text" formControlName="city" placeholder="Miejscowość" />
-      <label *ngIf="city.invalid" [ngClass]="'error'">
+      <div>
+        <input type="text" formControlName="city" required />
+        <label for="" placeholder="Miasto" alt="Miasto"></label>
+      </div>
+      <label
+        class="alert alert-danger"
+        *ngIf="city.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
         Pole nie może być puste
       </label>
-    </div>
-    <button type="submit" class="btn add-homework-button">Dodaj szkołę</button>
-  </form>
+      <button type="submit" class="btn add-homework-button input-row">
+        Dodaj szkołę
+      </button>
+    </form>
+  </div>
 </div>
+
+

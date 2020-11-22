@@ -4,6 +4,7 @@ import {
   ViewChild,
   TemplateRef,
   ElementRef,
+  Injectable,
 } from "@angular/core";
 import { startOfDay, subDays } from "date-fns";
 import { Subject } from "rxjs";
@@ -12,33 +13,88 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView,
+  DAYS_OF_WEEK,
 } from "angular-calendar";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CalendarService } from "src/app/services/calendar.service";
 import { NewEvent } from "src/app/common/new-event";
 import { ActivatedRoute } from "@angular/router";
+import { NgbDatepickerI18n, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
 const colors: any = {
   red: {
-    primary: "#ad2121",
+    primary: "#e62e47",
     secondary: "#FAE3E3",
   },
   blue: {
-    primary: "#1e90ff",
+    primary: "#3bb598",
     secondary: "#D1E8FF",
   },
   yellow: {
-    primary: "#e3bc08",
+    primary: "#f7af28",
     secondary: "#FDF1BA",
   },
 };
+
+const I18N_VALUES = {
+  pl: {
+    weekdays: ["Pon", "Wt", "śr", "Czw", "Pt", "Sob", "Niedz"],
+    months: [
+      "Sty",
+      "Lut",
+      "Mar",
+      "Kwi",
+      "Maj",
+      "Cze",
+      "Lip",
+      "Sie",
+      "Wrz",
+      "Paz",
+      "Lis",
+      "Gru",
+    ],
+  },
+
+};
+
+@Injectable()
+export class I18n {
+  language = "pl";
+}
+
+@Injectable()
+export class CustomDatepickerI18n extends NgbDatepickerI18n {
+  constructor(private _i18n: I18n) {
+    super();
+  }
+
+  getWeekdayShortName(weekday: number): string {
+    return I18N_VALUES[this._i18n.language].weekdays[weekday - 1];
+  }
+  getMonthShortName(month: number): string {
+    return I18N_VALUES[this._i18n.language].months[month - 1];
+  }
+  getMonthFullName(month: number): string {
+    return this.getMonthShortName(month);
+  }
+
+  getDayAriaLabel(date: NgbDateStruct): string {
+    return `${date.day}-${date.month}-${date.year}`;
+  }
+}
 
 @Component({
   selector: "app-add-schedule",
   templateUrl: "./add-schedule.component.html",
   styleUrls: ["./add-schedule.component.css"],
+  providers: [
+    I18n,
+    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
+  ],
 })
 export class AddScheduleComponent implements OnInit {
+  model: NgbDateStruct;
+
   validateForm!: FormGroup;
   formSubmitted = false;
 
@@ -53,6 +109,11 @@ export class AddScheduleComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+
+  locale = "pl";
+  language = "zh-tw";
+  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
 
   modalData: {
     action: string;
@@ -142,7 +203,7 @@ export class AddScheduleComponent implements OnInit {
   createWeekFormDelete(): FormGroup {
     const form = this.fb.group({
       start: [null, [Validators.required]],
-      end: [null, [Validators.required]]
+      end: [null, [Validators.required]],
     });
     return form;
   }
@@ -159,7 +220,7 @@ export class AddScheduleComponent implements OnInit {
       this.validateForm.reset();
       this.events = [];
       window.location.reload();
-    } else {
+      this.formSubmittedDelete = false;
       this.formSubmitted = false;
     }
   }
@@ -174,7 +235,7 @@ export class AddScheduleComponent implements OnInit {
       this.validateForm.reset();
       this.events = [];
       window.location.reload();
-    } else {
+      this.formSubmittedDelete = false;
       this.formSubmitted = false;
     }
   }
@@ -211,7 +272,6 @@ export class AddScheduleComponent implements OnInit {
   get endDelete(): any {
     return this.validateFormDelete.get("end");
   }
-
 
   eventTimesChanged({
     event,

@@ -201,10 +201,6 @@ mwl-calendar-month-view /deep/ .cal-event {
   color: #fefcfb;
 }
 
-/* .week-button {
-  background-color: #dce8ea !important;
-} */
-
 @media only screen and (max-width: 576px) {
   .content {
     width: 100%;

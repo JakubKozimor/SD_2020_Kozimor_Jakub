@@ -1,51 +1,91 @@
-.custom-file-input:lang(en) ~ .custom-file-label::after {
-    content: "Przeglądaj";
-  }
-  
-  .add-homework {
-    display: flex;
-    min-height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .add-homework input {
-    outline: none;
-    font-size: 1.1rem;
-    padding: 4px 8px;
-    border-style: solid;
-    margin: 1rem 0;
-    height: 40px;
-  }
-  
-  .calendar-btn {
-    height: 40px;
-  }
-  
-  .input-group {
-    display: flex;
-    align-items: center;
-  }
-  
-  .add-homework input:focus {
-    border-color: #034078;
-  }
-  
-  .add-homework-button {
-    background-color: #034078;
-    color: #fefcfb;
-    border: 1px solid #fefcfb;
-  }
-  
-  .add-homework-button:hover {
-    background-color: #eaebed;
-    color: #034078;
-    border-color: #034078;
-  }
-  
-  label.error {
-    color: red;
-  }
-  
+.homework-details {
+  display: flex;
+  min-height: 50vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homework-frame {
+  margin: 40px 0px;
+  position: relative;
+  display: flex;
+  min-height: 400px;
+  min-width: 550px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  flex-direction: column;
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.one-section {
+  margin: 20px;
+}
+
+.one-section:first-child {
+  margin-top: 60px;
+}
+
+.frame-test {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.one-section span {
+  font-size: 20px;
+}
+
+.files-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.homework-frame h1 {
+  padding-right: 60px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 10px;
+}
+
+.custom-file {
+  margin-top: 10px !important;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.download-button {
+  background-color: #14213d !important;
+  color: white !important;
+}
+
+.download-button:hover {
+  background-color: #3bb598 !important;
+  color: white !important;
+}
+
+.add-homework-answer-button {
+  display: block;
+  margin: auto;
+  background-color: #14213d;
+  color: white;
+  padding: 10px;
+}
+
+.add-homework-answer-button:hover {
+  background-color: #7464a0;
+  color: black;
+}
+
+.file-icon {
+  margin-right: 10px;
+}

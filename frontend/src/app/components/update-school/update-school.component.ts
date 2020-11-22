@@ -35,10 +35,14 @@ export class UpdateSchoolComponent implements OnInit {
         this.validateForm.value,
         this.school.schoolId
       );
-      this.validateForm.reset();
-    } else {
       this.formSubmitted = false;
+      this.validateForm.reset();
+      this.changePage();
     }
+  }
+
+  changePage() {
+    this.router.navigate(["school/all"]);
   }
 
   mapForm() {

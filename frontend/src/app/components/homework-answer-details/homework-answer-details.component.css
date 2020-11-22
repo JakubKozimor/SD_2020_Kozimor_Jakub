@@ -1,0 +1,255 @@
+.homework-details {
+  display: flex;
+  min-height: 50vh;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+
+.homework-frame {
+  margin: 40px 0px;
+  position: relative;
+  display: flex;
+  min-height: 400px;
+  width: 550px;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 30px;
+  flex-direction: column;
+
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.one-section {
+  margin: 20px;
+}
+
+.one-section:first-child {
+  margin-top: 60px;
+}
+
+.frame-test {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.one-section span {
+  font-size: 20px;
+}
+
+.files-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.homework-frame h1 {
+  padding-right: 60px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 10px;
+}
+
+.custom-file {
+  margin-top: 10px !important;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.download-button {
+  background-color: #14213d !important;
+  color: white !important;
+}
+
+.download-button:hover {
+  background-color: #3bb598 !important;
+  color: white !important;
+}
+
+.edit-homework-answer-button {
+  display: block;
+  margin: auto;
+  background-color: #f9af28;
+  color: black;
+  padding: 10px 30px;
+}
+
+.edit-homework-answer-button:hover {
+  background-color: #ed7633;
+  color: black;
+}
+
+.file-icon {
+  margin-right: 10px;
+}
+
+.login-frame {
+  margin: 40px 0px;
+  position: relative;
+  display: flex;
+  min-height: 300px;
+  min-width: 550px;
+  justify-content: flex-start;
+  padding: 30px 0;
+  align-items: center;
+  flex-direction: column;
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.login-frame h1 {
+  margin-bottom: 3rem;
+}
+
+.input-row {
+  width: 16em !important;
+  margin-top: 15px;
+}
+
+.input-row:first-child {
+  margin-top: 40px;
+}
+
+
+.calendar-group {
+  margin-bottom: 5px;
+}
+
+.files-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.file-icon {
+  margin-right: 10px;
+}
+
+.alert {
+  width: 16em !important;
+  margin-top: 10px;
+  border-radius: 8px !important;
+  text-align: center !important;
+}
+
+.calendar-btn {
+  height: 40px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  border-radius: 20px;
+  height: 40px;
+}
+
+.custom-file-label {
+  border-radius: 15px;
+}
+
+.add-homework-button {
+  background-color: #14213d;
+  color: white;
+}
+
+.add-homework-button:hover {
+  background-color: #7464a0;
+  color: black;
+}
+
+input {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+  box-sizing: border-box;
+}
+
+label {
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  width: 16em;
+  background-color: white;
+  height: 3em;
+  padding: 1em;
+  font-size: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 1.5em;
+  transition: all 0.2s ease-out;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+}
+input[type="text"]:hover {
+  border: 1px solid #cccccc;
+}
+
+input[type="text"]:focus + label:before,
+input[type="text"]:active + label:before {
+  color: #ee7633;
+}
+
+input[type="text"] + label {
+  display: block;
+  font-size: 1em;
+  height: 3em;
+  line-height: 3em;
+  margin-top: calc(-3em - 1px);
+  /* margin-bottom: 1em; */
+  pointer-events: none;
+}
+
+input[type="text"] + label:before {
+  content: attr(placeholder);
+  display: inline-block;
+  color: #999999;
+  margin: 0 calc(1em + 2px);
+  white-space: nowrap;
+  transition-property: color, -webkit-transform;
+  transition-property: transform, color;
+  transition-property: transform, color, -webkit-transform;
+  transition-duration: 0.2s;
+  transition-delay: 0;
+  transition-timing-function: ease-out;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+}
+
+input[type="text"]:focus + label:before,
+input[type="text"].active + label:before,
+input[type="text"]:valid + label:before {
+  background: white;
+  line-height: 1;
+  padding: 0 1.5px;
+  -webkit-transform: translateY(calc(-3em / 2 - 1px / 2)) scale(0.8, 0.8);
+  transform: translateY(calc(-3em / 2 - 1px / 2)) scale(0.8, 0.8);
+}
+
+input[type="text"]:valid {
+  border: 1px solid #23a045;
+}
+
+input[type="text"]:valid + label:before {
+  content: attr(alt);
+  color: #23a045;
+}
+

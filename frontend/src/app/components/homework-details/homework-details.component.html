@@ -1,50 +1,56 @@
-<div class="add-homework">
-  <h1>Dodaj zadanie domowe</h1>
-  <div>
-    <div>
-      <input type="text" placeholder="Tytuł" />
+<div class="homework-details">
+  <div class="homework-frame" *ngIf="homeworkDetails != undefined">
+    <h1>{{ homeworkDetails.subject }}</h1>
+    <div class="frame-test">
+      <div class="one-section">
+        <h3>Tytuł zadania:</h3>
+        <span>{{ homeworkDetails.title }}</span>
+      </div>
+      <div class="one-section">
+        <h3>Opis:</h3>
+        <span>{{ homeworkDetails.description }}</span>
+      </div>
+      <div class="one-section">
+        <h3>Pliki:</h3>
+        <div class="files-div" *ngFor="let tempFile of homeworkDetails.files">
+          <div>
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 16 16"
+              class="bi bi-file-earmark-fill file-icon"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+              />
+            </svg>
+            <span>{{ tempFile.fileName }}</span>
+          </div>
+          <button
+            class="btn download-button"
+            (click)="downloadFile(tempFile.homeworkFileId, tempFile.fileName)"
+          >
+            <i class="fa fa-download"></i> Pobierz
+          </button>
+        </div>
+        <div *ngIf="homeworkDetails.files.length == 0">
+          <span>Brak plików</span>
+        </div>
+      </div>
+      <button
+        *ngIf="homeworkDetails.status == 'ACTIVE' && !isTeacher"
+        class="btn add-homework-answer-button"
+        routerLink="/createHomeworkAnswer/{{ homeworkDetails.homeworkId }}"
+      >
+        Dodaj odpowiedź
+      </button>
     </div>
-    <div>
-      <input type="text"  placeholder="Opis" />
-    </div>
-
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 
 <div *ngIf="homeworkDetails != undefined">
   <p>Tytuł: {{ homeworkDetails.title }}</p>
   <p>Opis: {{ homeworkDetails.description }}</p>
@@ -69,7 +75,7 @@
   >
     Dodaj odpowiedź
   </button>
-</div>
+</div> -->
 
 <div *ngIf="isTeacher">
   <div>

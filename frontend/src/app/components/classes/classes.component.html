@@ -1,4 +1,13 @@
+<div>
+  <div>Video</div>
+  <div>Czat</div>
+  <div>plki</div>
+  <div>Zadanie</div>
+  <div>Zadanie</div>
+</div>
+
 <button
+  *ngIf="isTeacher"
   class="btn btn-warning"
   routerLink="/edit-classes/{{ classes.lessonId }}"
 >
@@ -6,8 +15,6 @@
 </button>
 
 <div *ngIf="url != ''">
-  <!-- <iframe [src]="urlSafe" allowfullscreen></iframe> -->
-
   <h1>Pliki</h1>
   <div>
     <div *ngFor="let tempFile of classes.files">
@@ -31,16 +38,6 @@
   width="620"
 ></iframe>
 
-<!-- <iframe
-  id="videoIframe"
-  width="424"
-  height="240"
-  [src]="videoUrl"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe> -->
-
 <div>
   <div>
     <div class="chat">
@@ -56,6 +53,7 @@
 <h1>Zadania live</h1>
 <div>
   <button
+    *ngIf="isTeacher"
     class="btn btn-success"
     routerLink="/add-live-homework//{{ classes.lessonId }}"
   >
@@ -72,12 +70,14 @@
     Zobacz
   </button>
   <button
+    *ngIf="isTeacher"
     class="btn btn-warning"
     routerLink="/update-live-homework/{{ tempHomework.liveHomeworkId }}"
   >
     Edytuj zadanie
   </button>
   <button
+    *ngIf="isTeacher"
     class="btn btn-success"
     routerLink="/all-live-homework/{{ tempHomework.liveHomeworkId }}"
   >

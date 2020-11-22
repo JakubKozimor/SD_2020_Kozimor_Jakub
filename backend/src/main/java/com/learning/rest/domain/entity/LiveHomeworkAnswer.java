@@ -30,7 +30,7 @@ public class LiveHomeworkAnswer {
     @JoinColumn(name = "student")
     @JsonBackReference
     private User student;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "live_homework_answer_id")
     private List<LiveHomeworkAnswerFile> files;
 

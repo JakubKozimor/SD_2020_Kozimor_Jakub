@@ -1,0 +1,106 @@
+.homework-details {
+  display: flex;
+  min-height: 50vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homework-frame {
+  font-size: 20px;
+  margin: 40px 0px;
+  position: relative;
+  display: flex;
+  min-height: 400px;
+  min-width: 600px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  flex-direction: column;
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.one-section {
+  width: 100%;
+  margin: 20px;
+  padding-right: 30px;
+}
+
+.first-secrion {
+  margin-top: 50px;
+}
+
+.frame-test {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.one-section span {
+  font-size: 20px;
+}
+
+.files-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.homework-frame h5 {
+  padding-right: 60px;
+  position: absolute;
+  text-align: right;
+  width: 100%;
+  top: 10px;
+}
+.user-email {
+  padding-right: 60px;
+  position: absolute;
+  text-align: left;
+  top: 30px;
+}
+
+.user-name {
+  position: absolute;
+  text-align: left;
+  top: 10px;
+}
+
+.custom-file {
+  margin-top: 10px !important;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.download-button {
+  background-color: #14213d !important;
+  color: white !important;
+}
+
+.download-button:hover {
+  background-color: #3bb598 !important;
+  color: white !important;
+}
+
+.add-homework-answer-button {
+  display: block;
+  margin: auto;
+  background-color: #14213d;
+  color: white;
+  padding: 10px;
+}
+
+.add-homework-answer-button:hover {
+  background-color: #7464a0;
+  color: black;
+}
+
+.file-icon {
+  margin-right: 10px;
+}

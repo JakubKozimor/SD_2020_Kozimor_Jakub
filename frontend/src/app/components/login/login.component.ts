@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthServiceService } from "src/app/services/auth-service.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-
   validateForm!: FormGroup;
   formSubmitted = false;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthServiceService) { }
+    private authService: AuthServiceService
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.createLoginForm();
@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.valid) {
       this.authService.login(this.validateForm.value);
       this.validateForm.reset();
-    } else {
-      this.formSubmitted = false;
     }
   }
 
@@ -39,10 +37,10 @@ export class LoginComponent implements OnInit {
   }
 
   get email(): any {
-    return this.validateForm.get('email');
+    return this.validateForm.get("email");
   }
 
   get password(): any {
-    return this.validateForm.get('password');
+    return this.validateForm.get("password");
   }
 }

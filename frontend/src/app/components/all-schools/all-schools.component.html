@@ -1,41 +1,59 @@
-<button class="btn btn-success" routerLink="/add-school">Dodaj szkołe</button>
-<div>
-  <span>Szkoła</span>
-</div>
-<div *ngFor="let tempSchool of schoolList">
-  <div>
-    <span>{{ tempSchool.name }}</span>
-    <span>{{ tempSchool.city }}</span>
-    <button
-      class="btn btn-primary"
-      routerLink="/add-schedule/{{ tempSchool.schoolId }}"
-    >
-      Dodaj siatkę studiów
-    </button>
-    <button
-      class="btn btn-warning"
-      routerLink="/update-school/{{ tempSchool.schoolId }}"
-    >
-      Edytuj
-    </button>
+<div class="content">
+  <div class="week-options">
+    <button class="btn" routerLink="/add-school">Dodaj szkołe</button>
+  </div>
+  <div class="main-schedule">
+    <div class="info-div">
+      <h2>Szkoły</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Szkoła</span>
+          <span>Miasto</span>
+          <span>Siatka studiów</span>
+          <span>Edytuj</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempSchool of schoolList">
+          <span>{{ tempSchool.name }}</span>
+          <span>{{ tempSchool.city }}</span>
+          <button
+            class="btn"
+            routerLink="/add-schedule/{{ tempSchool.schoolId }}"
+          >
+            Dodaj siatkę studiów
+          </button>
+          <button
+            class="btn button-edit"
+            routerLink="/update-school/{{ tempSchool.schoolId }}"
+          >
+            Edytuj
+          </button>
+        </div>
+      </div>
+      <div class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfSchools()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="pagination">
-  <ngb-pagination
-    [(page)]="thePageNumber"
-    [pageSize]="thePageSize"
-    [collectionSize]="theElements"
-    [maxSize]="4"
-    [boundaryLinks]="true"
-    (pageChange)="listOfSchools()"
-  >
-  </ngb-pagination>
-  <div>
-    <select class="form-control" (change)="updateQuantity($event.target.value)">
-      <option selected="true">5</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
-    </select>
-  </div>
-</div>
+
