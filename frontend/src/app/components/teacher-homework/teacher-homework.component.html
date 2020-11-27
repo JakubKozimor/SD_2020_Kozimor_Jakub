@@ -1,127 +1,167 @@
-<div>
-  <h1>Zadania do oceny</h1>
-  <div>
-    <span>Zadanie</span>
-    <span>Termin</span>
-  </div>
-  <div *ngFor="let tempHomework of notRatedHomeworkList">
-    <div>
-      <span>{{ tempHomework.title }}</span>
-      <span>{{ tempHomework.deadline }}</span>
-      <a
-        class="btn btn-primary"
-        routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
-        >Przejdź</a
-      >
+<div class="content">
+  <div class="main-schedule">
+    <div class="info-div">
+      <h2>Zadania do oceny</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Zadanie</span>
+          <span>Termin</span>
+          <span>Oceń</span>
+        </div>
+        <div
+          class="subject-row"
+          *ngFor="let tempHomework of notRatedHomeworkList"
+        >
+          <span>{{ tempHomework.title }}</span>
+          <span>{{ tempHomework.deadline }}</span>
+          <button
+            class="btn active"
+            routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
+          >
+            Oceń
+          </button>
+        </div>
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.notRatedHomeworkList.length == 0"
+        >
+          <span>Brak zadań</span>
+        </div>
+      </div>
+      <a *ngIf="this.notRatedHomeworkList.length != 0" class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="notRatedHomeworkPageNumber"
+            [pageSize]="notRatedHomeworkPageSize"
+            [collectionSize]="notRatedHomeworkTotalElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfNotRatedHomeworks()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateNotRatedHomeworksQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </a>
     </div>
-  </div>
-  <div class="pagination">
-    <ngb-pagination
-      [(page)]="notRatedHomeworkPageNumber"
-      [pageSize]="notRatedHomeworkPageSize"
-      [collectionSize]="notRatedHomeworkTotalElements"
-      [maxSize]="4"
-      [boundaryLinks]="true"
-      (pageChange)="listOfNotRatedHomeworks()"
-    >
-    </ngb-pagination>
-    <div>
-      <select
-        class="form-control"
-        (change)="updateNotRatedHomeworksQuantity($event.target.value)"
-      >
-        <option selected="true">5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
+    <div class="info-div">
+      <h2>Zadania aktywne</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Zadanie</span>
+          <span>Termin</span>
+          <span>Szczegóły</span>
+          <span>Edytuj</span>
+        </div>
+        <div
+          class="subject-row"
+          *ngFor="let tempHomework of activeHomeworkList"
+        >
+          <span>{{ tempHomework.title }}</span>
+          <span>{{ tempHomework.deadline }}</span>
+          <button
+            class="btn"
+            routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
+          >
+            Przejdź
+          </button>
+          <button
+            class="btn edit"
+            routerLink="/update-homework/{{ tempHomework.homeworkId }}"
+          >
+            Edytuj
+          </button>
+        </div>
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.activeHomeworkList.length == 0"
+        >
+          <span>Brak zadań</span>
+        </div>
+      </div>
+      <a *ngIf="this.activeHomeworkList.length != 0" class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="theActiveHomeworkPageNumber"
+            [pageSize]="theActiveHomeworkPageSize"
+            [collectionSize]="theActiveHomeworkTotalElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfActiveHomework()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateActiveHomeworksQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </a>
     </div>
-  </div>
-</div>
-
-<div>
-  <h1>Zadania ocenione</h1>
-  <div>
-    <span>Zadanie</span>
-    <span>Termin</span>
-  </div>
-  <div *ngFor="let tempHomework of ratedHomeworkList">
-    <div>
-      <span>{{ tempHomework.title }}</span>
-      <span>{{ tempHomework.deadline }}</span>
-      <a
-        class="btn btn-primary"
-        routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
-        >Przejdź</a
-      >
-    </div>
-  </div>
-  <div class="pagination">
-    <ngb-pagination
-      [(page)]="ratedHomeworkPageNumber"
-      [pageSize]="ratedHomeworkPageSize"
-      [collectionSize]="ratedHomeworkTotalElements"
-      [maxSize]="4"
-      [boundaryLinks]="true"
-      (pageChange)="listRatedHomeworks()"
-    >
-    </ngb-pagination>
-    <div>
-      <select
-        class="form-control"
-        (change)="updateRatedHomeworksQuantity($event.target.value)"
-      >
-        <option selected="true">5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
-    </div>
-  </div>
-</div>
-
-<div>
-  <h1>Zadania aktywne</h1>
-  <div>
-    <span>Zadanie</span>
-    <span>Termin</span>
-  </div>
-  <div *ngFor="let tempHomework of activeHomeworkList">
-    <div>
-      <span>{{ tempHomework.title }}</span>
-      <span>{{ tempHomework.deadline }}</span>
-      <a
-        class="btn btn-primary"
-        routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
-        >Przejdź</a
-      >
-      <a
-        class="btn btn-warning"
-        routerLink="/update-homework/{{ tempHomework.homeworkId }}"
-        >Edytuj</a
-      >
-    </div>
-  </div>
-  <div class="pagination">
-    <ngb-pagination
-      [(page)]="theActiveHomeworkPageNumber"
-      [pageSize]="theActiveHomeworkPageSize"
-      [collectionSize]="theActiveHomeworkTotalElements"
-      [maxSize]="4"
-      [boundaryLinks]="true"
-      (pageChange)="listOfActiveHomework()"
-    >
-    </ngb-pagination>
-    <div>
-      <select
-        class="form-control"
-        (change)="updateActiveHomeworksQuantity($event.target.value)"
-      >
-        <option selected="true">5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
+    <div class="info-div">
+      <h2>Zadania ocenione</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Zadanie</span>
+          <span>Termin</span>
+          <span>Szczegóły</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempHomework of ratedHomeworkList">
+          <span>{{ tempHomework.title }}</span>
+          <span>{{ tempHomework.deadline }}</span>
+          <button
+            class="btn"
+            routerLink="/viewHomework/{{ tempHomework.homeworkId }}"
+          >
+            Przejdź
+          </button>
+        </div>
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.ratedHomeworkList.length == 0"
+        >
+          <span>Brak zadań</span>
+        </div>
+      </div>
+      <a *ngIf="this.ratedHomeworkList.length != 0" class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="ratedHomeworkPageNumber"
+            [pageSize]="ratedHomeworkPageSize"
+            [collectionSize]="ratedHomeworkTotalElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listRatedHomeworks()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateRatedHomeworksQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>

@@ -70,8 +70,7 @@ export class UpdateLiveHomeworkComponent implements OnInit {
       );
       this.validateForm.reset();
       this.tempFiles = new Array();
-    } else {
-      this.formSubmitted = false;
+      window.close();
     }
   }
 

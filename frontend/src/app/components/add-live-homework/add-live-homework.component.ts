@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { Homework } from 'src/app/common/homework';
-import { LiveHomework } from 'src/app/common/live-homework';
+import { Homework } from "src/app/common/homework";
+import { LiveHomework } from "src/app/common/live-homework";
 import { LiveHomeworkFile } from "src/app/common/live-homework-file";
-import { LiveHomeworkService } from 'src/app/services/live-homework.service';
+import { LiveHomeworkService } from "src/app/services/live-homework.service";
 
 @Component({
   selector: "app-add-live-homework",
@@ -12,7 +12,6 @@ import { LiveHomeworkService } from 'src/app/services/live-homework.service';
   styleUrls: ["./add-live-homework.component.css"],
 })
 export class AddLiveHomeworkComponent implements OnInit {
-
   liveHomeworks: LiveHomework[];
   validateForm!: FormGroup;
   formSubmitted = false;
@@ -20,21 +19,27 @@ export class AddLiveHomeworkComponent implements OnInit {
   homeworkFile: LiveHomeworkFile;
   tempFiles: LiveHomeworkFile[] = new Array();
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private liveHomeworkService: LiveHomeworkService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private liveHomeworkService: LiveHomeworkService
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.createHomeworkForm();
   }
-  
+
   submitForm() {
     this.formSubmitted = true;
     if (this.validateForm.valid) {
       let classesId = Number(this.route.snapshot.paramMap.get("classesId"));
-      this.liveHomeworkService.createLiveHomework(this.validateForm.value, classesId);
+      this.liveHomeworkService.createLiveHomework(
+        this.validateForm.value,
+        classesId
+      );
       this.validateForm.reset();
       this.tempFiles = new Array();
-    } else {
-      this.formSubmitted = false;
+      window.close();
     }
   }
 

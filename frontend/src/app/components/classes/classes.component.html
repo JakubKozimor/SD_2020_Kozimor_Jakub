@@ -1,194 +1,266 @@
-<div>
-  <div>Video</div>
-  <div>Czat</div>
-  <div>plki</div>
-  <div>Zadanie</div>
-  <div>Zadanie</div>
+<div class="content">
+  <div class="main-schedule">
+    <div class="live-div">
+      <iframe
+        [src]="urlSafe"
+        frameborder="0"
+        allowfullscreen="true"
+        scrolling="no"
+        height="378"
+        width="620"
+        allow="autoplay"
+      ></iframe>
+    </div>
+    <div class="chat-div">
+      <div class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div class="message"></div>
+      </div>
+      <div class="chat-input">
+        <input
+          class="form-control"
+          id="input"
+          type="text"
+          (keyup.enter)="sendMessage(input.value)"
+          #input
+        />
+        <button class="btn send-button" (click)="sendMessage(input.value)">
+          Wyslij
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-options edit-live-options" *ngIf="isTeacher">
+    <a
+      class="btn"
+      routerLink="/edit-classes/{{ classes.lessonId }}"
+      target="_blank"
+    >
+      Edytuj live
+    </a>
+  </div>
 </div>
-
-<button
-  *ngIf="isTeacher"
-  class="btn btn-warning"
-  routerLink="/edit-classes/{{ classes.lessonId }}"
->
-  Edytuj live
-</button>
-
-<div *ngIf="url != ''">
-  <h1>Pliki</h1>
-  <div>
-    <div *ngFor="let tempFile of classes.files">
-      <p>{{ tempFile.fileName }}</p>
+<div class="content-files">
+  <div class="add-homework-options edit-live-options" *ngIf="isTeacher">
+    <a
+      class="btn"
+      routerLink="/add-live-homework//{{ classes.lessonId }}"
+      target="_blank"
+    >
+      Dodaj zadanie
+    </a>
+  </div>
+  <div class="main-schedule-files">
+    <div class="info-div">
+      <h2>Zadania</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Tytuł</span>
+          <span>Zobacz</span>
+          <span *ngIf="isTeacher">Edytuj zadanie</span>
+          <span *ngIf="isTeacher">Odpowiedzi</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempHomework of liveHomeworks">
+          <span>{{ tempHomework.description }}</span>
+          <button
+            class="btn send-button files-button"
+            (click)="homeworkDetails(tempHomework.liveHomeworkId)"
+          >
+            Zobacz
+          </button>
+          <a
+            *ngIf="isTeacher"
+            class="btn edit-homework-button"
+            routerLink="/update-live-homework/{{ tempHomework.liveHomeworkId }}"
+            target="_blank"
+          >
+            Edytuj
+          </a>
+          <a
+            *ngIf="isTeacher"
+            class="btn answers-homework-button"
+            routerLink="/all-live-homework/{{ tempHomework.liveHomeworkId }}"
+            target="_blank"
+          >
+            Odpowiedzi
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="info-div">
+      <h2>Pliki</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Nazwa pliku</span>
+          <span>Pobierz</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempFile of classes.files">
+          <span>{{ tempFile.fileName }}</span>
+          <button
+            class="btn send-button files-button"
+            (click)="downloadFile(tempFile.lessonFileId, tempFile.fileName)"
+          >
+            Pobierz
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showDetailsBoolean" class="homework-details">
+  <div class="homework-frame">
+    <h1>Szczegóły</h1>
+    <div class="frame-test">
+      <div class="one-section">
+        <h3>Opis:</h3>
+        <span>{{ homeworksDetails.description }}</span>
+      </div>
+      <div class="one-section">
+        <h3>Pliki:</h3>
+        <div class="files-div" *ngFor="let tempFile of homeworksDetails.files">
+          <div>
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 16 16"
+              class="bi bi-file-earmark-fill file-icon"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+              />
+            </svg>
+            <span>{{ tempFile.fileName }}</span>
+          </div>
+          <button
+            class="btn download-button"
+            (click)="
+              downloadLiveFile(tempFile.liveHomeworkFileId, tempFile.fileName)
+            "
+          >
+            <i class="fa fa-download"></i> Pobierz
+          </button>
+        </div>
+        <div *ngIf="homeworksDetails.files.length == 0">
+          <span>Brak plików</span>
+        </div>
+      </div>
       <button
-        class="btn btn-primary"
-        (click)="downloadFile(tempFile.lessonFileId, tempFile.fileName)"
+        *ngIf="!isTeacher"
+        class="btn add-homework-button"
+        (click)="addAnswerBoolean()"
       >
-        Pobierz
+        Dodaj odpowiedź
       </button>
     </div>
   </div>
-</div>
-
-<iframe
-  [src]="urlSafe"
-  frameborder="0"
-  allowfullscreen="true"
-  scrolling="no"
-  height="378"
-  width="620"
-></iframe>
-
-<div>
-  <div>
-    <div class="chat">
-      <div class="message"></div>
-    </div>
-  </div>
-</div>
-<div>
-  <div class="btn btn-primary" (click)="sendMessage(input.value)">Wyslij</div>
-  <input id="input" type="text" #input />
-</div>
-
-<h1>Zadania live</h1>
-<div>
-  <button
-    *ngIf="isTeacher"
-    class="btn btn-success"
-    routerLink="/add-live-homework//{{ classes.lessonId }}"
+  <div
+    *ngIf="showDetailsBoolean && actualUserAnswerDetails != undefined"
+    class="homework-frame"
   >
-    Dodaj zadanie
-  </button>
-</div>
-
-<div *ngFor="let tempHomework of liveHomeworks">
-  <span>{{ tempHomework.description }}</span>
-  <button
-    class="btn btn-primary"
-    (click)="homeworkDetails(tempHomework.liveHomeworkId)"
-  >
-    Zobacz
-  </button>
-  <button
-    *ngIf="isTeacher"
-    class="btn btn-warning"
-    routerLink="/update-live-homework/{{ tempHomework.liveHomeworkId }}"
-  >
-    Edytuj zadanie
-  </button>
-  <button
-    *ngIf="isTeacher"
-    class="btn btn-success"
-    routerLink="/all-live-homework/{{ tempHomework.liveHomeworkId }}"
-  >
-    Odpowiedzi
-  </button>
-</div>
-
-<div *ngIf="showDetailsBoolean">
-  <h1>Szczegóły</h1>
-  <div>
-    <p>Opis: {{ homeworksDetails.description }}</p>
-    <div>
-      <div *ngFor="let tempFile of homeworksDetails.files">
-        <p>{{ tempFile.fileName }}</p>
-        <button
-          class="btn btn-primary"
-          (click)="
-            downloadLiveFile(tempFile.liveHomeworkFileId, tempFile.fileName)
-          "
-        >
-          Pobierz
-        </button>
+    <h1>Twoja odpowiedź</h1>
+    <div class="frame-test">
+      <div class="one-section">
+        <h3>Wiadomość:</h3>
+        <span>{{ actualUserAnswerDetails.message }}</span>
       </div>
-    </div>
-  </div>
-  <button class="btn btn-success" (click)="addAnswerBoolean()">
-    Dodaj odpowiedź
-  </button>
-</div>
-
-<div *ngIf="showDetailsBoolean && actualUserAnswerDetails != undefined">
-  <h1>Twoja odpowiedź</h1>
-  <span>Wiadomość: {{ actualUserAnswerDetails.message }}</span>
-  <div *ngFor="let tempFile of actualUserAnswerDetails.files">
-    <p>{{ tempFile.fileName }}</p>
-    <button
-      class="btn btn-primary"
-      (click)="
-        downloadLiveAnswerFile(
-          tempFile.liveHomeworkAnswerFileId,
-          tempFile.fileName
-        )
-      "
-    >
-      Pobierz
-    </button>
-  </div>
-</div>
-
-<div *ngIf="showAnswerForm">
-  <h1>Dodaj odpowiedź</h1>
-  <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <div>
-      <div>Opis</div>
-      <input type="text" formControlName="message" placeholder="Wiadomość" />
-    </div>
-
-    <div>
-      <div>Pliki</div>
-      <div *ngFor="let tempFile of tempFiles">
-        <svg
-          width="1em"
-          height="1em"
-          viewBox="0 0 16 16"
-          class="bi bi-file-earmark-fill"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
+      <div *ngIf="actualUserAnswerDetails.files != null" class="one-section">
+        <h3>Pliki:</h3>
+        <div
+          class="files-div"
+          *ngFor="let tempFile of actualUserAnswerDetails.files"
         >
-          <path
-            fill-rule="evenodd"
-            d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
-          />
-        </svg>
-        {{ tempFile.fileName }}
-        <button
-          type="button"
-          class="btn btn-sm btn-outline-secondary"
-          (click)="reset(tempFile)"
-        >
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            class="bi bi-file-minus"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
+          <div>
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 16 16"
+              class="bi bi-file-earmark-fill file-icon"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+              />
+            </svg>
+            <span>{{ tempFile.fileName }}</span>
+          </div>
+          <button
+            class="btn download-button"
+            (click)="
+              downloadLiveAnswerFile(
+                tempFile.liveHomeworkAnswerFileId,
+                tempFile.fileName
+              )
+            "
           >
-            <path
-              fill-rule="evenodd"
-              d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"
-            ></path>
-            <path
-              fill-rule="evenodd"
-              d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="custom-file" style="width: 200px">
-        <input
-          #inputFile
-          type="file"
-          class="custom-file-input"
-          id="customFile"
-          (change)="onUpload($event)"
-        />
-        <label class="custom-file-label" for="customFile">Wybierz plik</label>
+            <i class="fa fa-download"></i> Pobierz
+          </button>
+        </div>
+        <div *ngIf="actualUserAnswerDetails.files.length == 0">
+          <span>Brak plików</span>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+<div *ngIf="showAnswerForm" class="add-homework">
+  <div class="login-frame">
+    <h1>Dodaj odpowiedź</h1>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div>
+        <input type="text" formControlName="message" required />
+        <label for="" placeholder="Opis" alt="Opis"></label>
+      </div>
+      <div class="input-row calendar-group">
+        <div class="files-div" *ngFor="let tempFile of tempFiles">
+          <div>
+            <svg
+              width="25px"
+              height="25px"
+              viewBox="0 0 16 16"
+              class="bi bi-file-earmark-fill file-icon"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+              />
+            </svg>
+            <span>{{ tempFile.fileName }}</span>
+          </div>
 
-    <button type="submit" class="btn btn-secondary">Dodaj odpowiedź</button>
-  </form>
+          <button
+            class="btn btn-danger btn-sm rounded-0"
+            (click)="reset(tempFile)"
+            type="button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Usuń"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+
+        <div class="custom-file">
+          <input
+            #inputFile
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            (change)="onUpload($event)"
+          />
+          <label class="custom-file-label" for="customFile">Wybierz plik</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn add-homework-answer-button input-row">
+        Dodaj odpowiedź
+      </button>
+    </form>
+  </div>
 </div>

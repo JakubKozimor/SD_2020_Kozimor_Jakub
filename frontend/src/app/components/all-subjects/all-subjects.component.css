@@ -123,6 +123,64 @@ ngb-pagination /deep/ .page-item.active .page-link {
   color: black;
 }
 
+.edit-subject-button {
+  background-color: #f9af28 !important;
+  color: black !important;
+  min-width: 100px !important;
+  max-width: 100px !important;
+  margin: 0px 5px !important;
+}
+
+.edit-subject-button:hover {
+  background-color: #ed7633 !important;
+  color: black !important;
+}
+
+.add-homework-button {
+  min-width: 100px !important;
+  max-width: 100px !important;
+  margin: 0px 5px !important;
+  background-color: #2bb39c !important;
+  color: black !important;
+}
+
+.add-homework-button:hover {
+  background-color: #33d476 !important;
+  color: black !important;
+}
+
+.start-live-button {
+  min-width: 100px !important;
+  max-width: 100px !important;
+  margin: 0px 5px !important;
+  background-color: #db3232 !important;
+  color: black !important;
+}
+
+.start-live-button:hover {
+  background-color: #ff2e2e !important;
+  color: black !important;
+}
+
+.week-options {
+  margin-top: 40px;
+}
+
+.week-options button {
+  background-color: #dce8ea;
+  color: black;
+  border-color: black;
+  margin: 0 1rem;
+  width: 250px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.week-options button:hover {
+  background-color: #14213d;
+  color: #fefcfb;
+}
+
 @media only screen and (max-width: 576px) {
   .content {
     width: 100%;

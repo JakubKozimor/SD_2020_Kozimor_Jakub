@@ -98,12 +98,12 @@ ngb-pagination /deep/ .page-item.active .page-link {
 }
 
 .button-edit {
-  background-color: #f5cc45 !important;
+  background-color: #f9af28 !important;
   color: black !important;
 }
 
 .button-edit:hover {
-  background-color: #ee7434 !important;
+  background-color: #ed7633 !important;
   color: black !important;
 }
 

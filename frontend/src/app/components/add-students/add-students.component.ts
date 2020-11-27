@@ -107,4 +107,12 @@ export class AddStudentsComponent implements OnInit {
     this.tempUsers = new Set();
     window.location.reload();
   }
+
+  getRole(role) {
+    if (role == "ROLE_TEACHER") {
+      return "Nauczyciel";
+    } else {
+      return "Uczeń";
+    }
+  }
 }

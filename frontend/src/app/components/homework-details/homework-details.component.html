@@ -50,33 +50,122 @@
     </div>
   </div>
 </div>
-<!-- 
-<div *ngIf="homeworkDetails != undefined">
-  <p>Tytuł: {{ homeworkDetails.title }}</p>
-  <p>Opis: {{ homeworkDetails.description }}</p>
-  <p>Termin: {{ transformDate(homeworkDetails.deadline) }}</p>
-  <p>Przedmiot: {{ homeworkDetails.subject }}</p>
-  <p>Status: {{ homeworkDetails.status }}</p>
-  <div>
-    <div *ngFor="let tempFile of homeworkDetails.files">
-      <p>{{ tempFile.fileName }}</p>
-      <button
-        class="btn btn-primary"
-        (click)="downloadFile(tempFile.homeworkFileId, tempFile.fileName)"
-      >
-        Pobierz
-      </button>
+
+<div *ngIf="isTeacher" class="content">
+  <div class="main-schedule">
+    <div class="info-div">
+      <h2>Nieocenione prace</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Imie</span>
+          <span>Nazwisko</span>
+          <span>Oceń</span>
+        </div>
+        <div
+          class="subject-row"
+          *ngFor="let tempHomework of homeworkAnswerList"
+        >
+          <span>{{ tempHomework.userFirstName }}</span>
+          <span>{{ tempHomework.userLastName }}</span>
+          <button
+            class="btn"
+            routerLink="/rate/{{ tempHomework.homeworkAnswerId }}"
+          >
+            Oceń
+          </button>
+        </div>
+        <a
+          class="subject-row no-homeworks"
+          *ngIf="this.homeworkAnswerList.length == 0"
+        >
+          <span>Brak</span>
+        </a>
+      </div>
+      <div *ngIf="this.homeworkAnswerList.length != 0" class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="getHomeworkAnswers(homeworkDetails.homeworkId)"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-div">
+      <h2>Ocenione prace</h2>
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Imie</span>
+          <span>Nazwisko</span>
+          <span>Ocena</span>
+          <span>Edytuj</span>
+        </div>
+        <div
+          class="subject-row"
+          *ngFor="let tempHomework of homeworkAnswerListWithGrade"
+        >
+          <span>{{ tempHomework.userFirstName }}</span>
+          <span>{{ tempHomework.userLastName }}</span>
+          <span>{{ tempHomework.grade }}</span>
+          <button
+            class="btn"
+            routerLink="/rate/{{ tempHomework.homeworkAnswerId }}"
+          >
+            Zmień ocene
+          </button>
+        </div>
+        <div
+          class="subject-row no-homeworks"
+          *ngIf="this.homeworkAnswerListWithGrade.length == 0"
+        >
+          <span>Brak</span>
+        </div>
+      </div>
+      <a *ngIf="this.homeworkAnswerListWithGrade.length != 0" class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumberWithGrade"
+            [pageSize]="thePageSizeWithGrade"
+            [collectionSize]="theElementsWithGrade"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="
+              getHomeworkAnswersWithGrade(homeworkDetails.homeworkId)
+            "
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantityWithGrade($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
-  <button
-    *ngIf="homeworkDetails.status == 'ACTIVE' && !isTeacher"
-    class="btn btn-success"
-    routerLink="/createHomeworkAnswer/{{ homeworkDetails.homeworkId }}"
-  >
-    Dodaj odpowiedź
-  </button>
-</div> -->
-
+</div>
+<!-- 
 <div *ngIf="isTeacher">
   <div>
     <div>
@@ -161,4 +250,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

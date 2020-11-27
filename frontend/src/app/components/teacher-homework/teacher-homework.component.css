@@ -1,0 +1,133 @@
+.content {
+  text-align: center;
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  min-height: 80vh;
+}
+
+.main-schedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-div h2 {
+  margin-bottom: 25px;
+}
+
+.info-div {
+  min-height: 200px;
+  margin: 50px;
+  text-align: center;
+  position: relative;
+  text-align: center;
+}
+
+.big-column {
+  width: 100%;
+  min-width: 500px;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.subject-row {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  border-bottom: 1px solid #dce8ea;
+  background-color: #dce8ea;
+  padding: 8px 16px;
+  height: 60px;
+  color: black;
+}
+
+.subject-row span {
+  min-width: 120px;
+  max-width: 120px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subject-row:first-child {
+  background-color: #dce8ea;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-color: #cbd7db;
+  border-width: 3px;
+  height: 50px;
+  text-align: center;
+}
+
+.subject-row:last-child {
+  border: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.pagin {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.no-homeworks {
+  justify-content: center;
+}
+
+ngb-pagination /deep/ .page-item.active .page-link {
+  z-index: 3;
+  background-color: #14213d !important;
+  color: white !important;
+  border-color: #14213d !important;
+}
+
+.subject-row button {
+  background-color: #14213d;
+  color: white;
+  width: 110px;
+  margin: 0px 5px;
+}
+
+.subject-row button:hover {
+  background-color: #7464a0;
+  color: black;
+}
+
+.edit {
+  background-color: #f9af28 !important;
+  color: black !important;
+}
+
+.edit:hover {
+  background-color: #ed7633 !important;
+  color: black !important;
+}
+
+.active {
+  background-color: #14213d !important;
+  color: white !important;
+  border: 3px solid #3bb598 !important;
+}
+
+.active:hover {
+  background-color: #3bb598 !important;
+  color: white !important;
+  border: 1px solid #fefcfb !important;
+}
+
+@media only screen and (max-width: 576px) {
+  .content {
+    width: 100%;
+    margin-top: auto;
+  }
+}

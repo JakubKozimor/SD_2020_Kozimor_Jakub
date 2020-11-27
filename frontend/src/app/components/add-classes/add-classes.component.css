@@ -1,0 +1,105 @@
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: "Przeglądaj";
+}
+
+.add-homework {
+  display: flex;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-frame {
+  margin: 40px 0px;
+  position: relative;
+  display: flex;
+  min-height: 400px;
+  min-width: 550px;
+  justify-content: flex-start;
+  padding: 30px 0;
+  align-items: center;
+  flex-direction: column;
+  background-color: #dce8ea;
+  border: 2px solid #dce8ea;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-frame h1 {
+  margin-bottom: 3rem;
+}
+
+.input-row {
+  width: 16em !important;
+  margin-top: 15px;
+}
+
+.input-row:first-child {
+  text-align: center;
+}
+
+.calendar-group {
+  margin-bottom: 5px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+}
+
+.instuction-button {
+  background-color: #dce8ea;
+  color: black;
+  border-color: black;
+}
+
+.instuction-button:hover {
+  background-color: #14213d;
+  color: #fefcfb;
+}
+
+.files-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.file-icon {
+  margin-right: 10px;
+}
+
+.alert {
+  width: 16em !important;
+  margin-top: 10px;
+  border-radius: 8px !important;
+  text-align: center !important;
+}
+
+.calendar-btn {
+  height: 40px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  border-radius: 20px;
+  height: 40px;
+}
+
+.custom-file-label {
+  border-radius: 15px;
+}
+
+.add-homework-button {
+  background-color: #14213d;
+  color: white;
+}
+
+.add-homework-button:hover {
+  background-color: #7464a0;
+  color: black;
+}

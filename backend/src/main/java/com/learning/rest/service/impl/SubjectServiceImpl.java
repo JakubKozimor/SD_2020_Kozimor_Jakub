@@ -114,7 +114,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     private boolean filterByWeek(Subject subject, Week week) {
-        if (week == Week.ALL || subject.getWeek() == Week.ALL)
+        if (week == Week.ALL || subject.getWeek() == Week.ALL || week == Week.FREE)
             return true;
         else
             return subject.getWeek() == week;

@@ -157,6 +157,7 @@ export class ClassesComponent implements OnInit {
   homeworkDetails(homeworkId: number) {
     if (this.showDetailsBoolean && this.lastLiveHomeworkId == homeworkId) {
       this.showDetailsBoolean = false;
+      this.showAnswerForm = false;
     } else {
       this.lastLiveHomeworkId = homeworkId;
       this.liveHomeworkService
@@ -180,22 +181,26 @@ export class ClassesComponent implements OnInit {
           let obj: ChatMessage = JSON.parse(message.body);
           if (obj.userId == Number(localStorage.getItem("user_id"))) {
             $(".chat").append(
-              "<div style='font-weight: bold;' class='message'>" +
-                obj.date +
-                " - " +
+              "<div style='text-align: right; margin:15px; 20px 0px 0px' class='message'>" +
+                "<div style='font-weight: bold;'>" +
                 obj.userName +
-                "<br>" +
+                " - " +
+                obj.date +
+                "</div><div style='display: inline-block; background-color: #6ac5dd; padding: 5px 10px; margin: 10px 0px 0px 0px; border-radius: 30px;' class='message-content'>" +
                 obj.message +
+                "</div>" +
                 "</div>"
             );
           } else {
             $(".chat").append(
-              "<div class='message'>" +
+              "<div style='text-align: left; margin:15px; 20px 0px 0px' class='message'>" +
+                "<div>" +
                 obj.date +
                 " - " +
                 obj.userName +
-                "<br>" +
+                "</div><div style='display: inline-block; background-color: #dfdfdf; padding: 5px 10px; margin: 10px 0px 0px 0px; border-radius: 30px;' class='message-content'>" +
                 obj.message +
+                "</div>" +
                 "</div>"
             );
           }

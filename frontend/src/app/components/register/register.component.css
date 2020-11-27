@@ -57,6 +57,11 @@
   margin-bottom: 10px;
 }
 
+.twitch-text {
+  color: red;
+  text-align: center;
+}
+
 .register-button:hover {
   background-color: #7464a0;
   color: black;

@@ -7,6 +7,7 @@
           <span>Przedmiot</span>
           <span>Godzina rozpoczęcia</span>
           <span>Dołącz</span>
+          <span *ngIf="isTeacher">Zakończ</span>
         </div>
         <div class="subject-row" *ngFor="let tempLive of liveClasses">
           <span>{{ tempLive.subjectName }}</span>
@@ -16,7 +17,7 @@
           </button>
           <button
             *ngIf="isTeacher"
-            class="btn btn-danger"
+            class="btn finish-button"
             (click)="closeLive(tempLive.lessonId)"
           >
             Zakończ

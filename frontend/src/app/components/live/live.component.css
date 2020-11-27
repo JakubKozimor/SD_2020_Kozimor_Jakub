@@ -74,13 +74,24 @@
 .subject-row button {
   background-color: #14213d;
   color: white;
-  min-width: 180px;
-  max-width: 180px;
+  min-width: 170px;
+  max-width: 170px;
+  margin: 0px 5px;
 }
 
 .subject-row button:hover {
   background-color: #7464a0;
   color: black;
+}
+
+.finish-button {
+  background-color: #db3232 !important;
+  color: black !important;
+}
+
+.finish-button:hover {
+  background-color: #ff2e2e !important;
+  color: black !important;
 }
 
 @media only screen and (max-width: 576px) {

@@ -48,6 +48,8 @@ import { AddLiveHomeworkComponent } from "./components/add-live-homework/add-liv
 import { AllLiveHomeworkAnswersForTeacherComponent } from "./components/all-live-homework-answers-for-teacher/all-live-homework-answers-for-teacher.component";
 import { UpdateLiveHomeworkComponent } from "./components/update-live-homework/update-live-homework.component";
 import { EditClassesComponent } from "./components/edit-classes/edit-classes.component";
+import { LiveInstructionComponent } from './components/live-instruction/live-instruction.component';
+import { RegulationsComponent } from './components/regulations/regulations.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { EditClassesComponent } from "./components/edit-classes/edit-classes.com
     AllLiveHomeworkAnswersForTeacherComponent,
     UpdateLiveHomeworkComponent,
     EditClassesComponent,
+    LiveInstructionComponent,
+    RegulationsComponent,
   ],
   imports: [
     CommonModule,

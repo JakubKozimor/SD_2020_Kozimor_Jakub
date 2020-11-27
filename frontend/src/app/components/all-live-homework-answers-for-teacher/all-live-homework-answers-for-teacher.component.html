@@ -1,24 +1,47 @@
-<div>
-  <h1>Wszystkie odpowiedzi</h1>
-
-  <div *ngFor="let tempAnswer of allAnsers">
-    <div>
-      <h3>{{ tempAnswer.userFirstName }} {{ tempAnswer.userLastName }}</h3>
-      <span>{{ tempAnswer.message }}</span>
-      <div *ngFor="let tempFile of tempAnswer.files">
-        <p>{{ tempFile.fileName }}</p>
-        <button
-          class="btn btn-primary"
-          (click)="
-            downloadLiveHomeworkFile(
-              tempFile.liveHomeworkAnswerFileId,
-              tempFile.fileName
-            )
-          "
-        >
-          Pobierz
-        </button>
+<div class="homework-details">
+  <div class="homework-frame" *ngFor="let tempAnswer of allAnsers">
+    <h1>{{ tempAnswer.userFirstName }} {{ tempAnswer.userLastName }}</h1>
+    <div class="frame-test">
+      <div class="one-section">
+        <h3>Treść:</h3>
+        <span>{{ tempAnswer.message }}</span>
+      </div>
+      <div class="one-section">
+        <h3>Pliki:</h3>
+        <div class="files-div" *ngFor="let tempFile of tempAnswer.files">
+          <div>
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 16 16"
+              class="bi bi-file-earmark-fill file-icon"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+              />
+            </svg>
+            <span>{{ tempFile.fileName }}</span>
+          </div>
+          <button
+            class="btn download-button"
+            (click)="
+              downloadLiveHomeworkFile(
+                tempFile.liveHomeworkAnswerFileId,
+                tempFile.fileName
+              )
+            "
+          >
+            <i class="fa fa-download"></i> Pobierz
+          </button>
+        </div>
+        <div *ngIf="tempAnswer.files.length == 0">
+          <span>Brak plików</span>
+        </div>
       </div>
     </div>
   </div>
+  <h1 *ngIf="allAnsers.length == 0">Brak odpowiedzi</h1>
 </div>

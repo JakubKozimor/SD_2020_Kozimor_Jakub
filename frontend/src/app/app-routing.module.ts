@@ -8,7 +8,7 @@ import { AddScheduleComponent } from "./components/add-schedule/add-schedule.com
 import { AddSchoolComponent } from "./components/add-school/add-school.component";
 import { AddStudentsComponent } from "./components/add-students/add-students.component";
 import { AddSubjectComponent } from "./components/add-subject/add-subject.component";
-import { AllLiveHomeworkAnswersForTeacherComponent } from './components/all-live-homework-answers-for-teacher/all-live-homework-answers-for-teacher.component';
+import { AllLiveHomeworkAnswersForTeacherComponent } from "./components/all-live-homework-answers-for-teacher/all-live-homework-answers-for-teacher.component";
 import { AllMessagesComponent } from "./components/all-messages/all-messages.component";
 import { AllSchoolsComponent } from "./components/all-schools/all-schools.component";
 import { AllSubjectsComponent } from "./components/all-subjects/all-subjects.component";
@@ -16,21 +16,23 @@ import { CalendarComponent } from "./components/calendar/calendar.component";
 import { ClassesComponent } from "./components/classes/classes.component";
 import { ContentComponent } from "./components/content/content.component";
 import { DoneHomeworksComponent } from "./components/done-homeworks/done-homeworks.component";
-import { EditClassesComponent } from './components/edit-classes/edit-classes.component';
+import { EditClassesComponent } from "./components/edit-classes/edit-classes.component";
 import { HomeworkAnswerDetailsComponent } from "./components/homework-answer-details/homework-answer-details.component";
 import { HomeworkDetailsComponent } from "./components/homework-details/homework-details.component";
 import { HomeworkComponent } from "./components/homework/homework.component";
 import { HomeworksBySubjectComponent } from "./components/homeworks-by-subject/homeworks-by-subject.component";
+import { LiveInstructionComponent } from "./components/live-instruction/live-instruction.component";
 import { LiveComponent } from "./components/live/live.component";
 import { LoginComponent } from "./components/login/login.component";
 import { MessageDetailsComponent } from "./components/message-details/message-details.component";
 import { MessageComponent } from "./components/message/message.component";
 import { RateHomeworkAnswerComponent } from "./components/rate-homework-answer/rate-homework-answer.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { RegulationsComponent } from "./components/regulations/regulations.component";
 import { TeacherHomeworkComponent } from "./components/teacher-homework/teacher-homework.component";
 import { TeachersComponent } from "./components/teachers/teachers.component";
 import { UpdateHomeworkComponent } from "./components/update-homework/update-homework.component";
-import { UpdateLiveHomeworkComponent } from './components/update-live-homework/update-live-homework.component';
+import { UpdateLiveHomeworkComponent } from "./components/update-live-homework/update-live-homework.component";
 import { UpdateSchoolComponent } from "./components/update-school/update-school.component";
 import { UpdateSubjectComponent } from "./components/update-subject/update-subject.component";
 import { UsersComponent } from "./components/users/users.component";
@@ -65,9 +67,16 @@ const studentRoutes: Routes = [
   { path: "**", redirectTo: "/menu", pathMatch: "full" },
 ];
 const teacherRoutes: Routes = [
+  { path: "live-instruction", component: LiveInstructionComponent },
   { path: "edit-classes/:lessonId", component: EditClassesComponent },
-  { path: "update-live-homework/:liveHomeworkId", component: UpdateLiveHomeworkComponent },
-  { path: "all-live-homework/:liveHomeworkId", component: AllLiveHomeworkAnswersForTeacherComponent },
+  {
+    path: "update-live-homework/:liveHomeworkId",
+    component: UpdateLiveHomeworkComponent,
+  },
+  {
+    path: "all-live-homework/:liveHomeworkId",
+    component: AllLiveHomeworkAnswersForTeacherComponent,
+  },
   { path: "add-live-homework/:classesId", component: AddLiveHomeworkComponent },
   { path: "users", component: UsersComponent },
   { path: "update-subject/:subjectId", component: UpdateSubjectComponent },
@@ -100,6 +109,7 @@ const adminRoutes: Routes = [
 ];
 
 const loginRoute: Routes = [
+  { path: "regulations", component: RegulationsComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "", redirectTo: "/login", pathMatch: "full" },

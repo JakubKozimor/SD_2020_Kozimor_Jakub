@@ -1,11 +1,7 @@
-<div *ngIf="isTeacher">
-  <h1>Dodaj przedmiot</h1>
-  <button routerLink="/add-subject" class="btn btn-success">
-    Dodaj przedmiot
-  </button>
-</div>
-<!-- list start -->
 <div class="content">
+  <div *ngIf="isTeacher" class="week-options">
+    <button class="btn" routerLink="/add-subject">Dodaj przedmiot</button>
+  </div>
   <div class="main-schedule">
     <div class="info-div">
       <h2>Przedmioty</h2>
@@ -18,9 +14,10 @@
           <span>Długość</span>
           <span *ngIf="!isTeacher">Pliki</span>
           <span *ngIf="!isTeacher" class="last-column">Zadania</span>
-          <span *ngIf="isTeacher">Edytuj</span>
-          <span *ngIf="isTeacher">Dodaj</span>
-          <span *ngIf="isTeacher">Rozpocznij</span>
+          <span *ngIf="isTeacher">Edytuj przedmiot</span>
+          <span *ngIf="isTeacher">Dodaj zadanie</span>
+          <span *ngIf="isTeacher">Edytuj użytkowników</span>
+          <span *ngIf="isTeacher">Rozpocznij live</span>
         </div>
 
         <div class="subject-row" *ngFor="let tempSubject of subjectsList">
@@ -47,23 +44,30 @@
           <button
             *ngIf="isTeacher"
             routerLink="/update-subject/{{ tempSubject.subjectId }}"
-            class="btn"
+            class="btn edit-subject-button"
           >
-            Edytuj przedmiot
+            Edytuj
           </button>
           <button
             *ngIf="isTeacher"
             routerLink="/addHomework/{{ tempSubject.subjectId }}"
-            class="btn btn-success"
+            class="btn add-homework-button"
           >
-            Dodaj zadanie
+            Dodaj
+          </button>
+          <button
+            *ngIf="isTeacher"
+            routerLink="/add-students/{{ tempSubject.subjectId }}"
+            class="btn edit-subject-button"
+          >
+            Edytuj
           </button>
           <button
             *ngIf="isTeacher"
             routerLink="/add-classes/{{ tempSubject.subjectId }}"
-            class="btn btn-primary"
+            class="btn start-live-button"
           >
-            Rozpocznij live
+            Rozpocznij
           </button>
         </div>
       </div>
@@ -92,7 +96,7 @@
         </div>
       </div>
     </div>
-    <div class="info-div">
+    <div *ngIf="!isTeacher" class="info-div">
       <h2>Pliki</h2>
       <h5 *ngIf="actualSubject != undefined">{{ actualSubject.name }}</h5>
       <div class="big-column">
@@ -113,7 +117,12 @@
             Pobierz
           </button>
         </div>
-        <div class="subject-row no-files" *ngIf="actualSubject != undefined && this.actualSubject.files.length == 0">
+        <div
+          class="subject-row no-files"
+          *ngIf="
+            actualSubject != undefined && this.actualSubject.files.length == 0
+          "
+        >
           <span>Brak plików</span>
         </div>
       </div>

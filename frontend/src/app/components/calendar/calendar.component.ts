@@ -95,9 +95,11 @@ export class CalendarComponent implements OnInit {
     this.calendarService.getActualWeek().subscribe((data) => {
       this.week = data.week;
       this.listOfSubjects();
-      this.lastButtonId = data.week;
-      var someElement = document.getElementById(data.week);
-      someElement.classList.add("active-button");
+      if (data.week == "A" || data.week == "B") {
+        this.lastButtonId = data.week;
+        var someElement = document.getElementById(data.week);
+        someElement.classList.add("active-button");
+      }
     });
     this.getAllEvents();
   }
@@ -205,7 +207,7 @@ export class CalendarComponent implements OnInit {
     this.global.setWeek(week);
     this.listOfSubjects();
 
-    if (this.lastButtonId != undefined) {
+    if (this.lastButtonId != undefined && this.lastButtonId != null) {
       var lastElement = document.getElementById(this.lastButtonId);
       lastElement.classList.remove("active-button");
     }

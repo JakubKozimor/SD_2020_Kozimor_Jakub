@@ -1,36 +1,81 @@
-<h1>Odpowiedź</h1>
-<div *ngIf="homeworkAnswerDetails != undefined">
-  <p>Wiadomość: {{ homeworkAnswerDetails.message }}</p>
-  <div>
-    <div *ngFor="let tempFile of homeworkAnswerDetails.files">
-      <p>{{ tempFile.fileName }}</p>
-      <button
-        class="btn btn-primary"
-        (click)="
-          downloadHomeworkAnswerFile(
-            tempFile.homeworkAnswerFileId,
-            tempFile.fileName
-          )
-        "
-      >
-        Pobierz
-      </button>
+<div *ngIf="homeworkAnswerDetails != undefined" class="homework-details">
+  <div class="homework-frame">
+    <h1>Odpowiedź</h1>
+    <div class="frame-test">
+      <div class="one-section">
+        <h3>Wiadomość:</h3>
+        <span>{{ homeworkAnswerDetails.message }}</span>
+      </div>
+      <div class="one-section">
+        <h3>Pliki:</h3>
+        <div
+          class="files-div"
+          *ngFor="let tempFile of homeworkAnswerDetails.files"
+        >
+          <div>
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 16 16"
+              class="bi bi-file-earmark-fill file-icon"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+              />
+            </svg>
+            <span>{{ tempFile.fileName }}</span>
+          </div>
+          <button
+            class="btn download-button"
+            (click)="
+              downloadHomeworkAnswerFile(
+                tempFile.homeworkAnswerFileId,
+                tempFile.fileName
+              )
+            "
+          >
+            <i class="fa fa-download"></i> Pobierz
+          </button>
+        </div>
+        <div *ngIf="homeworkAnswerDetails.files.length == 0">
+          <span>Brak plików</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div>
-    <div>
-      <div>Ocena</div>
-      <select #grade>
-        <option value="6">6</option>
-        <option value="5">5</option>
-        <option value="4">4</option>
-        <option value="3">3</option>
-        <option value="2">2</option>
-        <option value="1">1</option>
-      </select>
-      <input #comment type="text" placeholder="Komentarz" />
+  <div class="homework-frame">
+    <h1 *ngIf="homeworkAnswerDetails.grade == null">Oceń</h1>
+    <h1 *ngIf="homeworkAnswerDetails.grade != null">Edytuj ocenę</h1>
+
+    <div class="frame-test">
+      <div class="one-section">
+        <h3>Ocena</h3>
+        <div class="input-value-div">
+          <select #grade class="form-control" style="width: 220px">
+            <option value="6">6</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option selected value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+      </div>
+      <div class="one-section">
+        <h3>Komentarz</h3>
+        <div class="input-value-div">
+          <div class="input-row">
+            <input #comment type="text" required />
+            <label for="" placeholder="Komentarz" alt="Komentarz"></label>
+          </div>
+        </div>
+      </div>
       <button
-        class="btn btn-success"
+        *ngIf="homeworkAnswerDetails.grade == null"
+        class="btn add-homework-answer-button"
         (click)="
           addGrade(
             homeworkAnswerDetails.homeworkAnswerId,
@@ -40,6 +85,19 @@
         "
       >
         Oceń
+      </button>
+      <button
+        *ngIf="homeworkAnswerDetails.grade != null"
+        class="btn add-homework-answer-button"
+        (click)="
+          addGrade(
+            homeworkAnswerDetails.homeworkAnswerId,
+            grade.value,
+            comment.value
+          )
+        "
+      >
+        Edytuj
       </button>
     </div>
   </div>

@@ -10,7 +10,7 @@
           <span>Zadanie</span>
           <span>Termin</span>
           <span>Pozostało</span>
-          <span></span>
+          <span>Szczegóły</span>
         </div>
         <div
           class="subject-row"
@@ -66,8 +66,7 @@
           <span>Zadanie</span>
           <span>Termin</span>
           <span>Ocena</span>
-          <span>Odpowiedź</span>
-          <span></span>
+          <span>Zobacz</span>
         </div>
         <div class="subject-row" *ngFor="let tempHomework of ratedHomeworkList">
           <span>{{ tempHomework.title }}</span>
@@ -119,7 +118,7 @@
         <div class="subject-row">
           <span>Zadanie</span>
           <span>Termin</span>
-          <span></span>
+          <span>Edytuj</span>
         </div>
         <div class="subject-row" *ngFor="let tempHomework of doneHomeworkList">
           <span>{{ tempHomework.title }}</span>
@@ -178,7 +177,7 @@
         <div class="subject-row">
           <span>Zadanie</span>
           <span>Termin</span>
-          <span></span>
+          <span>Szczegóły</span>
         </div>
         <div class="subject-row" *ngFor="let tempHomework of lateHomeworkList">
           <span>{{ tempHomework.title }}</span>

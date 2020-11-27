@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Classes } from "src/app/common/classes";
 import { ClassesFile } from "src/app/common/classes-file";
 import { ClassesService } from "src/app/services/classes.service";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-edit-classes",
@@ -23,7 +24,7 @@ export class EditClassesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router,
+    private _location: Location,
     private classesService: ClassesService
   ) {}
 
@@ -56,13 +57,12 @@ export class EditClassesComponent implements OnInit {
       });
       this.validateForm.reset();
       this.tempFiles = new Array();
-    } else {
-      this.formSubmitted = false;
-    }
+      window.close();
+    } 
   }
 
   changePage(classesId: number) {
-    // this.router.navigate(["classes/" + classesId]);
+    this._location.back();
   }
 
   createClassesForm(): FormGroup {
