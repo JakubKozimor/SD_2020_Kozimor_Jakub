@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="26" author="Jakub">
+        <insert tableName="roles">
+            <column name="name" value="ROLE_STUDENT"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_TEACHER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+
+
+
+
+        <insert tableName="users">
+            <column name="first_name" value="FirstStudentFirstName"/>
+            <column name="last_name" value="FirstStudentLastName"/>
+            <column name="email" value="firstStudent@gmail.com"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+            <column name="school" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="first_name" value="SecondStudentFirstName"/>
+            <column name="last_name" value="SecondStudentLastName"/>
+            <column name="email" value="secondStudent@gmail.com"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+            <column name="school" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="first_name" value="TeacherFirstName"/>
+            <column name="last_name" value="TeacherLastName"/>
+            <column name="email" value="teacher@gmail.com"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+            <column name="twitch_nick" value="testStreamTeacher"/>
+            <column name="school" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="first_name" value="Admin"/>
+            <column name="last_name" value="Admin"/>
+            <column name="email" value="admin@gmail.com"/>
+            <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
+        </insert>
+
+
+
+
+        <insert tableName="users_roles">
+            <column name="role_id" value="1"/>
+            <column name="user_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="role_id" value="1"/>
+            <column name="user_id" value="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="role_id" value="2"/>
+            <column name="user_id" value="3"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="role_id" value="3"/>
+            <column name="user_id" value="4"/>
+        </insert>
+
+
+
+
+        <insert tableName="subjects">
+            <column name="subject_id" value="1"/>
+            <column name="subject_name" value="Programowanie obiektowe"/>
+            <column name="day" value="MONDAY"/>
+            <column name="week" value="ALL"/>
+            <column name="start_time" value="13:05"/>
+            <column name="long_of_time" value="90"/>
+            <column name="teacher_id" value="3"/>
+        </insert>
+        <insert tableName="subjects">
+            <column name="subject_id" value="2"/>
+            <column name="subject_name" value="Aplikacje internetowe"/>
+            <column name="day" value="WEDNESDAY"/>
+            <column name="week" value="A"/>
+            <column name="start_time" value="10:30"/>
+            <column name="long_of_time" value="90"/>
+            <column name="teacher_id" value="3"/>
+        </insert>
+        <insert tableName="subjects">
+            <column name="subject_id" value="3"/>
+            <column name="subject_name" value="Bazy danych"/>
+            <column name="day" value="FRIDAY"/>
+            <column name="week" value="B"/>
+            <column name="start_time" value="8:00"/>
+            <column name="long_of_time" value="90"/>
+            <column name="teacher_id" value="3"/>
+        </insert>
+        <insert tableName="subjects">
+            <column name="subject_id" value="4"/>
+            <column name="subject_name" value="Programowanie zespołowe"/>
+            <column name="day" value="MONDAY"/>
+            <column name="week" value="ALL"/>
+            <column name="start_time" value="11:30"/>
+            <column name="long_of_time" value="90"/>
+            <column name="teacher_id" value="3"/>
+        </insert>
+
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="1"/>
+            <column name="user_id" value="1"/>
+            <column name="subject_id" value="1"/>
+        </insert>
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="2"/>
+            <column name="user_id" value="1"/>
+            <column name="subject_id" value="2"/>
+        </insert>
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="3"/>
+            <column name="user_id" value="1"/>
+            <column name="subject_id" value="3"/>
+        </insert>
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="4"/>
+            <column name="user_id" value="1"/>
+            <column name="subject_id" value="4"/>
+        </insert>
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="5"/>
+            <column name="user_id" value="2"/>
+            <column name="subject_id" value="2"/>
+        </insert>
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="6"/>
+            <column name="user_id" value="2"/>
+            <column name="subject_id" value="3"/>
+        </insert>
+        <insert tableName="subject_student">
+            <column name="subject_student_id" value="7"/>
+            <column name="user_id" value="2"/>
+            <column name="subject_id" value="4"/>
+        </insert>
+
+
+
+
+        <insert tableName="homeworks">
+            <column name="homework_id" value="1"/>
+            <column name="title" value="Formatka w html"/>
+            <column name="description" value="Zrobić najprostszą formatę w html"/>
+            <column name="deadline" value="2020-09-20"/>
+            <column name="subject_id" value="2"/>
+            <column name="status" value="LATE"/>
+            <column name="rated" value="NOT_RATED"/>
+        </insert>
+        <insert tableName="homeworks">
+            <column name="homework_id" value="2"/>
+            <column name="title" value="Schemat bazy dancyh"/>
+            <column name="description" value="Zrobić przykładowy schemat bazy danych MySQL"/>
+            <column name="deadline" value="2020-10-29"/>
+            <column name="subject_id" value="3"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="rated" value="RATED"/>
+        </insert>
+        <insert tableName="homeworks">
+            <column name="homework_id" value="3"/>
+            <column name="title" value="Użycie bootstrapa"/>
+            <column name="description" value="Poprawić wygląd strony używając bootstrapa"/>
+            <column name="deadline" value="2020-10-28"/>
+            <column name="subject_id" value="2"/>
+            <column name="status" value="LATE"/>
+            <column name="rated" value="NOT_RATED"/>
+        </insert>
+        <insert tableName="homeworks">
+            <column name="homework_id" value="4"/>
+            <column name="title" value="Java podstawy"/>
+            <column name="description" value="Zrobić zadania"/>
+            <column name="deadline" value="2020-11-23"/>
+            <column name="subject_id" value="1"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="rated" value="NOT_RATED"/>
+        </insert>
+        <insert tableName="homeworks">
+            <column name="homework_id" value="5"/>
+            <column name="title" value="Spring"/>
+            <column name="description" value="Zrobić połączenie z angularem"/>
+            <column name="deadline" value="2020-11-30"/>
+            <column name="subject_id" value="4"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="rated" value="NOT_RATED"/>
+        </insert>
+        <insert tableName="homeworks">
+            <column name="homework_id" value="6"/>
+            <column name="title" value="Zadanie nieocenione"/>
+            <column name="description" value="Oceń zadania"/>
+            <column name="deadline" value="2020-10-29"/>
+            <column name="subject_id" value="3"/>
+            <column name="status" value="LATE"/>
+            <column name="rated" value="NOT_RATED"/>
+        </insert>
+
+
+
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="1"/>
+            <column name="message" value="Poprawiona"/>
+            <column name="homework" value="3"/>
+            <column name="student" value="1"/>
+        </insert>
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="2"/>
+            <column name="message" value="Odp"/>
+            <column name="homework" value="2"/>
+            <column name="student" value="1"/>
+            <column name="grade" value="3"/>
+        </insert>
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="3"/>
+            <column name="message" value="Odpowiedź"/>
+            <column name="homework" value="4"/>
+            <column name="student" value="1"/>
+        </insert>
+        <insert tableName="homework_answer">
+            <column name="homework_answer_id" value="4"/>
+            <column name="message" value="Odpgfdgdfgd"/>
+            <column name="homework" value="6"/>
+            <column name="student" value="1"/>
+        </insert>
+
+
+        <insert tableName="messages">
+            <column name="message_id" value="1"/>
+            <column name="title" value="Dokumentacja"/>
+            <column name="content" value="W wiadomości przesyłam dokumentacje"/>
+            <column name="from_user" value="1"/>
+            <column name="to_user" value="3"/>
+            <column name="date" value="2020-09-21 21:17:23"/>
+            <column name="status" value="UNREAD"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="message_id" value="2"/>
+            <column name="title" value="Pytanie"/>
+            <column name="content" value="Chciałbym się dowiedzieć...."/>
+            <column name="from_user" value="2"/>
+            <column name="to_user" value="3"/>
+            <column name="date" value="2020-09-22 12:00:23"/>
+            <column name="status" value="UNREAD"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="message_id" value="3"/>
+            <column name="title" value="Dokumentacja"/>
+            <column name="content" value="Odpowiedź w sprawie dokumentacji"/>
+            <column name="from_user" value="3"/>
+            <column name="to_user" value="1"/>
+            <column name="date" value="2020-09-12 12:55:23"/>
+            <column name="status" value="UNREAD"/>
+        </insert>
+
+
+        <insert tableName="schools">
+            <column name="school_id" value="1"/>
+            <column name="name" value="Uniwersytet Rzeszowski"/>
+            <column name="city" value="Rzeszów"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

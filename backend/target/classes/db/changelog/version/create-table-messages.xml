@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="12" author="Jakub">
+        <createTable tableName="messages">
+            <column autoIncrement="true" name="message_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="message_pkey"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+            </column>
+            <column name="content" type="VARCHAR(255)">
+            </column>
+            <column name="from_user" type="BIGINT">
+            </column>
+            <column name="to_user" type="BIGINT">
+            </column>
+            <column name="date" type="DATETIME">
+            </column>
+            <column name="status" type="VARCHAR(255)">
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
