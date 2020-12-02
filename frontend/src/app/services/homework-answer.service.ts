@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: "root",
 })
 export class HomeworkAnswerService {
-  private BASE_URL = "http://localhost:8080/homework-answer";
+  private BASE_URL = "http://192.168.99.100:8080/homework-answer";
 
   constructor(private httpClient: HttpClient) {}
 

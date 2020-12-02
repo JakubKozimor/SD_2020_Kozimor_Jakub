@@ -9,7 +9,7 @@ import { UsersList } from "../common/users-list";
   providedIn: "root",
 })
 export class UserService {
-  private BASE_URL = "http://localhost:8080/users";
+  private BASE_URL = "http://192.168.99.100:8080/users";
 
   constructor(private httpClient: HttpClient) {}
 

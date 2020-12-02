@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TeacherService {
-  private BASE_URL = 'http://localhost:8080/teachers';
+  private BASE_URL = 'http://192.168.99.100:8080/teachers';
   constructor(private httpClient: HttpClient) { }
 
 

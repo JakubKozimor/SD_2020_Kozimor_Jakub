@@ -8,7 +8,7 @@ import { LiveHomeworkAnswerDetailsDto } from "../common/live-homework-answer-det
   providedIn: "root",
 })
 export class LiveHomeworksAnswerService {
-  private BASE_URL = "http://localhost:8080/live-homework-answer";
+  private BASE_URL = "http://192.168.99.100:8080/live-homework-answer";
   constructor(private httpClient: HttpClient) {}
 
   getAllLiveHomeworkAnswers(

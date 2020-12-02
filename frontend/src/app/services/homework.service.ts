@@ -9,7 +9,7 @@ import { RatedHomework } from "../common/rated-homework";
   providedIn: "root",
 })
 export class HomeworkService {
-  private BASE_URL = "http://localhost:8080/homeworks";
+  private BASE_URL = "http://192.168.99.100:8080/homeworks";
   constructor(private httpClient: HttpClient) {}
 
   getAllActiveHomeworksForTeacher(

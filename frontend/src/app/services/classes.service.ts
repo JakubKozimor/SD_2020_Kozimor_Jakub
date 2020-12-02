@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: "root",
 })
 export class ClassesService {
-  private BASE_URL = "http://localhost:8080/lessons";
+  private BASE_URL = "http://192.168.99.100:8080/lessons";
 
   constructor(private httpClient: HttpClient) {}
 
