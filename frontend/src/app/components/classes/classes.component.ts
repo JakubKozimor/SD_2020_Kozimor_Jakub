@@ -42,7 +42,7 @@ export class ClassesComponent implements OnInit {
   url: string = "";
   urlSafe: SafeResourceUrl;
 
-  private serverUrl = "http://localhost:8080/socket";
+  private serverUrl = "http://192.168.99.100:8080/socket";
   private title = "WebSockets chat";
   private stompClient;
 
