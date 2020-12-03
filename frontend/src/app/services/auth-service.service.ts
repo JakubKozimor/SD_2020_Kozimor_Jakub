@@ -10,7 +10,7 @@ import { User } from "../common/user";
   providedIn: "root",
 })
 export class AuthServiceService {
-  private url = "http://192.168.99.100:8080/auth";
+  private url = "http://localhost:8080/auth";
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<
     boolean
   >(this.loggedIn);

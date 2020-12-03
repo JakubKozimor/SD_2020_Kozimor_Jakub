@@ -10,7 +10,7 @@ import { LiveHomeworksDetails } from "../common/live-homeworks-details";
   providedIn: "root",
 })
 export class LiveHomeworkService {
-  private BASE_URL = "http://192.168.99.100:8080/live-homeworks";
+  private BASE_URL = "http://localhost:8080/live-homeworks";
   constructor(private httpClient: HttpClient) {}
 
   getHomeworkDetails(classesid: number): Observable<LiveHomeworksDetails> {

@@ -7,7 +7,7 @@ import { Subject } from "../common/subject";
   providedIn: "root",
 })
 export class SubjectService {
-  private BASE_URL = "http://192.168.99.100:8080/subjects";
+  private BASE_URL = "http://localhost:8080/subjects";
 
   constructor(private httpClient: HttpClient) {}
 

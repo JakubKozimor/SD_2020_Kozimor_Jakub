@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class MessageService {
 
-  private BASE_URL = 'http://192.168.99.100:8080/messages';
+  private BASE_URL = 'http://localhost:8080/messages';
 
   constructor(
     private httpClient: HttpClient

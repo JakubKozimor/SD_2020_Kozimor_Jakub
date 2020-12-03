@@ -7,7 +7,7 @@ import { School } from "../common/school";
   providedIn: "root",
 })
 export class SchoolServiceService {
-  private BASE_URL = "http://192.168.99.100:8080/school";
+  private BASE_URL = "http://localhost:8080/school";
   constructor(private httpClient: HttpClient) {}
 
   public getAllSchools(

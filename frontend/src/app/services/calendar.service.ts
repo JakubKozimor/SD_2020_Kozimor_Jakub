@@ -10,7 +10,7 @@ import { ActualWeekDto } from '../common/actual-week-dto';
 })
 export class CalendarService {
 
-  private BASE_URL = 'http://192.168.99.100:8080/calendar';
+  private BASE_URL = 'http://localhost:8080/calendar';
   events: CalendarEvent[] = [];
   constructor(
     private httpClient: HttpClient
