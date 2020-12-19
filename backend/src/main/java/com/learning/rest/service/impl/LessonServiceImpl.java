@@ -50,7 +50,7 @@ public class LessonServiceImpl implements LessonService {
         if (students != null) {
             students.forEach(lesson::addStudent);
         }
-        lesson.setUrl("https://player.twitch.tv/?channel=" + teacher.getTwitchNick() + "&parent=192.168.99.100:4200");
+        lesson.setUrl("https://player.twitch.tv/?channel=" + teacher.getTwitchNick() + "&parent=localhost");
         lesson.setSubject(subject);
         lesson.setTeacher(teacher);
         Lesson savedLesson = lessonRepository.save(lesson);
