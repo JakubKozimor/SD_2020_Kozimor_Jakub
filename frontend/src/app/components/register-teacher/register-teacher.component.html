@@ -1,0 +1,165 @@
+<div class="login-page">
+  <div class="login-frame">
+    <h2>Rejestracja</h2>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div class="input-row">
+        <input type="text" required formControlName="firstName" />
+        <label for="" placeholder="Imie*" alt="Imie"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="firstName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row">
+        <input type="text" required formControlName="lastName" />
+        <label for="" placeholder="Nazwisko*" alt="Nazwisko"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="lastName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row">
+        <input type="text" required formControlName="email" />
+        <label for="" placeholder="Email*" alt="Email"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="email.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawy email
+      </label>
+      <div class="input-row">
+        <input
+          type="password"
+          required
+          formControlName="password"
+          (input)="checkPasswordConfirmation()"
+        />
+        <label for="" placeholder="Hasło*" alt="Hasło"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="password.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawne hasło
+      </label>
+
+      <div class="input-row">
+        <input
+          type="password"
+          required
+          formControlName="passwordConfirmation"
+          (input)="checkPasswordConfirmation()"
+        />
+        <label for="" placeholder="Powtórz hasło*" alt="Powtórz hasło"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="passwordConfirmation.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawne hasło
+      </label>
+
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="
+          theSamePassword == false &&
+          passwordConfirmation.valid &&
+          formSubmitted
+        "
+        [ngClass]="'error'"
+      >
+        Hasła muszą być takie same
+      </label>
+
+      <div class="input-row">
+        <label class="twitch-text"
+          >! Wymagana rejestracja na stronie
+          <a href="https://www.twitch.tv/" target="_blank">Twitch.tv</a></label
+        >
+        <input
+          (input)="twitchNickIsEmpty()"
+          type="text"
+          required
+          formControlName="twitchNick"
+        />
+        <label for="" placeholder="Twitch nick*" alt="Twitch nick"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="teacherForm && formSubmitted && twitchNickEmpty"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <label class="info-label">Szkoła*:</label>
+      <div class="input-row select-input">
+        <select class="form-control" formControlName="schoolName">
+          <option
+            *ngFor="let tempSchool of schoolList"
+            value="{{ tempSchool.name }}"
+          >
+            {{ tempSchool.name }}
+          </option>
+        </select>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="schoolName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row checkbox-div">
+        <input
+          class="form-check-input position-static"
+          type="checkbox"
+          id="checkbox"
+          (click)="changeWarningForCheckbox()"
+        />
+        <label (click)="chancheRegulations()">Rozumiem i akceptuję</label>
+        <a class="regulations-label" routerLink="/regulations" target="_blank"
+          >regulamin</a
+        >
+        <label>*</label>
+      </div>
+
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="!warningForCheckbox && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Akceptuj regulamin
+      </label>
+
+      <button class="btn login-button input-row">Rejestracja</button>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="failedMessage != undefined"
+      >
+        {{ failedMessage }}
+      </label>
+      <label class="alert alert-success input-row" *ngIf="message != undefined">
+        {{ message }}
+      </label>
+    </form>
+
+    <button class="btn register-button input-row" routerLink="/login">
+      Wróć
+    </button>
+    <a style="display: block; text-align: center">* - wymagane</a>
+  </div>
+</div>

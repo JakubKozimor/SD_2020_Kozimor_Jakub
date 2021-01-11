@@ -6,6 +6,8 @@ import { Homework } from "src/app/common/homework";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Global } from "src/app/global";
 import { CalendarService } from "src/app/services/calendar.service";
+import { HomeworkDetails } from "src/app/common/homework-details";
+import { HomeworkForFirstView } from "src/app/common/homework-for-first-view";
 
 @Component({
   selector: "app-content",
@@ -16,7 +18,7 @@ export class ContentComponent implements OnInit {
   pageIndex: number;
   pageSize: number;
 
-  homeworkList: Homework[];
+  homeworkList: HomeworkForFirstView[];
 
   hour: number;
   minute: number;

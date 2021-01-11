@@ -1,18 +1,22 @@
 package com.learning.rest.service.impl;
 
 import com.learning.exception.message.MessageNotFoundException;
+import com.learning.exception.subject.SubjectNotFoundException;
 import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.base64.Base64Helper;
+import com.learning.rest.domain.dto.message.GroupMessage;
 import com.learning.rest.domain.dto.message.MessageDetailsDto;
 import com.learning.rest.domain.dto.message.MessageDto;
 import com.learning.rest.domain.dto.message.MessageFileDto;
 import com.learning.rest.domain.entity.Message;
 import com.learning.rest.domain.entity.MessageFile;
+import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
 import com.learning.rest.domain.entity.enums.MessageStatus;
 import com.learning.rest.domain.mapper.MessageFileMapper;
 import com.learning.rest.domain.mapper.MessageMapper;
 import com.learning.rest.domain.repository.MessageRepository;
+import com.learning.rest.domain.repository.SubjectRepository;
 import com.learning.rest.domain.repository.UserRepository;
 import com.learning.rest.pageable.PageHelper;
 import com.learning.rest.service.MessageService;
@@ -25,7 +29,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,6 +43,7 @@ public class MessageServiceImpl implements MessageService {
     private final UserRepository userRepository;
     private final MessageMapper messageMapper;
     private final MessageFileMapper messageFileMapper;
+    private final SubjectRepository subjectRepository;
 
 
     @Override
@@ -62,11 +70,17 @@ public class MessageServiceImpl implements MessageService {
     public Page<MessageDto> getSentMessages(Long userId, Pageable pageable) {
         User userFrom = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         List<Message> allMessagesFromUser = messageRepository.findAllByUserFrom(userFrom);
-        List<MessageDto> allMessagesFromUserDto = allMessagesFromUser
-                .stream()
-                .map(messageMapper::toMessageDto)
-                .collect(Collectors.toList());
-        return (Page<MessageDto>) PageHelper.preparePageFromList(allMessagesFromUserDto, pageable);
+        if (allMessagesFromUser != null) {
+            List<MessageDto> allMessagesFromUserDto = allMessagesFromUser
+                    .stream()
+                    .map(messageMapper::toMessageDto)
+                    .collect(Collectors.toList());
+            HashMap<String, MessageDto> hashMap = new HashMap<>();
+            allMessagesFromUserDto.forEach(messageDto -> hashMap.put(messageDto.getContent(), messageDto));
+            List<MessageDto> uniqueMessagesFromUserDto = new ArrayList<>(hashMap.values());
+            return (Page<MessageDto>) PageHelper.preparePageFromList(uniqueMessagesFromUserDto, pageable);
+        }
+        return (Page<MessageDto>) PageHelper.preparePageFromList(new ArrayList<>(), pageable);
     }
 
     @Override
@@ -93,6 +107,21 @@ public class MessageServiceImpl implements MessageService {
         message.setStatus(MessageStatus.UNREAD);
         message.setDate(LocalDateTime.now());
         messageRepository.save(message);
+    }
+
+    @Override
+    public void addGroupMessage(GroupMessage groupMessage) {
+        Subject subject = subjectRepository.findById(groupMessage.getSubjectId()).orElseThrow(SubjectNotFoundException::new);
+        if (subject != null) {
+            List<MessageDto> messageDtoList = subject.getStudents().stream()
+                    .map(user -> {
+                        MessageDto messageDto = messageMapper.fromGroupMessageToMessageDto(groupMessage);
+                        messageDto.setUserTo(user.getUserId());
+                        return messageDto;
+                    })
+                    .collect(Collectors.toList());
+            messageDtoList.forEach(this::addMessage);
+        }
     }
 
     private MessageFile mapToMessageFile(MessageFileDto messageFileDto) {

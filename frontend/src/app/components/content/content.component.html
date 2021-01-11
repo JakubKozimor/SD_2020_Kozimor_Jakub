@@ -16,7 +16,12 @@
             {{ tempSubject.startTime }} -
             {{ countTime(tempSubject.startTime, tempSubject.longOfTime) }}</span
           >
-          <span> {{ tempSubject.name }}</span>
+          <span
+            class="live-link"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+          >
+            {{ tempSubject.name }}</span
+          >
         </div>
       </div>
     </div>
@@ -25,6 +30,9 @@
       <h2 *ngIf="isTeacher">Zadania do oceny</h2>
       <div class="big-column">
         <div class="homework-row" *ngFor="let tempHomework of homeworkList">
+          <span>
+            {{ tempHomework.subject }}
+          </span>
           <span>
             {{ tempHomework.title }}
           </span>

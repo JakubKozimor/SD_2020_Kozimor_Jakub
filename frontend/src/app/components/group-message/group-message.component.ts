@@ -1,0 +1,89 @@
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { MessageFile } from "src/app/common/message-file";
+import { Message } from "src/app/common/message";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MessageService } from "src/app/services/message.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { GroupMessage } from "src/app/common/group-message";
+
+@Component({
+  selector: "app-group-message",
+  templateUrl: "./group-message.component.html",
+  styleUrls: ["./group-message.component.css"],
+})
+export class GroupMessageComponent implements OnInit {
+  validateForm!: FormGroup;
+  formSubmitted = false;
+  messageFile: MessageFile;
+  tempFiles: MessageFile[] = new Array();
+  message: GroupMessage;
+
+  constructor(
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.validateForm = this.createMessageForm();
+  }
+
+  createMessageForm(): FormGroup {
+    const form = this.fb.group({
+      title: [null, [Validators.required]],
+      content: [null],
+      files: [null],
+    });
+    return form;
+  }
+
+  get title(): any {
+    return this.validateForm.get("title");
+  }
+
+  onUpload(event) {
+    let me = this;
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      me.messageFile = new MessageFile();
+      me.messageFile.fileName = String(event.target.files[0].name);
+      me.messageFile.fileContent = String(reader.result);
+      me.tempFiles.push(me.messageFile);
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
+
+    this.validateForm.controls["files"].setValue(this.tempFiles);
+  }
+
+  reset(fileNumber: MessageFile) {
+    const index: number = this.tempFiles.indexOf(fileNumber);
+    if (index !== -1) {
+      this.tempFiles.splice(index, 1);
+    }
+    this.validateForm.controls["files"].setValue(this.tempFiles);
+  }
+
+  submitForm() {
+    this.formSubmitted = true;
+    if (this.validateForm.valid) {
+      let userToId = Number(this.route.snapshot.paramMap.get("subjectId"));
+      this.message = this.validateForm.value;
+      this.message.subjectId = userToId;
+      this.messageService.addGroupMessage(this.message);
+      this.validateForm.reset();
+      this.tempFiles = new Array();
+      this.formSubmitted = false;
+      setTimeout(() => {
+        this.changePage();
+      }, 500);
+    }
+  }
+
+  changePage() {
+    this.router.navigate(["allSubjects"]);
+  }
+}

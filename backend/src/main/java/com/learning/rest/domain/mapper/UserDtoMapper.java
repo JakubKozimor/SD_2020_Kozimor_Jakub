@@ -1,5 +1,6 @@
 package com.learning.rest.domain.mapper;
 
+import com.learning.rest.domain.dto.user.UpdateUser;
 import com.learning.rest.domain.dto.user.UserDto;
 import com.learning.rest.domain.entity.User;
 import org.mapstruct.Mapper;
@@ -10,4 +11,6 @@ public interface UserDtoMapper {
 
     @Mapping(target = "roleName", ignore = true)
     UserDto toUserDto(User user);
+
+    UpdateUser toUpdateUser(User user);
 }

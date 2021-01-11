@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
   formSubmitted = false;
 
+  wrongData = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthServiceService
@@ -23,9 +25,14 @@ export class LoginComponent implements OnInit {
   submitForm() {
     this.formSubmitted = true;
     if (this.validateForm.valid) {
-      this.authService.login(this.validateForm.value);
-      this.validateForm.reset();
+      this.authService.login(this.validateForm.value).catch((err) => {
+        this.wrongData = true;
+      });
     }
+  }
+
+  changeData() {
+    this.wrongData = false;
   }
 
   createLoginForm(): FormGroup {

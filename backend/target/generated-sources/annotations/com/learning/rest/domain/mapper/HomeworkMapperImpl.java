@@ -2,6 +2,7 @@ package com.learning.rest.domain.mapper;
 
 import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
 import com.learning.rest.domain.dto.homework.HomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkForFirstView;
 import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.domain.entity.HomeworkFile;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-12-02T19:33:21+0100",
+    date = "2021-01-11T22:25:47+0100",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)"
 )
 @Component
@@ -92,6 +93,28 @@ public class HomeworkMapperImpl implements HomeworkMapper {
         ratedHomeworkDto.setDeadline( homework.getDeadline() );
 
         return ratedHomeworkDto;
+    }
+
+    @Override
+    public HomeworkForFirstView toHomeworkForFirstView(Homework homework) {
+        if ( homework == null ) {
+            return null;
+        }
+
+        HomeworkForFirstView homeworkForFirstView = new HomeworkForFirstView();
+
+        homeworkForFirstView.setSubject( homeworkSubjectName( homework ) );
+        homeworkForFirstView.setHomeworkId( homework.getHomeworkId() );
+        homeworkForFirstView.setTitle( homework.getTitle() );
+        homeworkForFirstView.setDescription( homework.getDescription() );
+        homeworkForFirstView.setDeadline( homework.getDeadline() );
+        List<HomeworkFile> list = homework.getFiles();
+        if ( list != null ) {
+            homeworkForFirstView.setFiles( new ArrayList<HomeworkFile>( list ) );
+        }
+        homeworkForFirstView.setStatus( homework.getStatus() );
+
+        return homeworkForFirstView;
     }
 
     private String xmlGregorianCalendarToString( XMLGregorianCalendar xcal, String dateFormat ) {

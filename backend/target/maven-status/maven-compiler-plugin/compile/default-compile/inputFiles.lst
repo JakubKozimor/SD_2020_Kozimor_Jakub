@@ -58,6 +58,7 @@ C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\lear
 C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\exception\user\EmailNotFoundException.java
 C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\security\payload\mapper\UserMapper.java
 C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\rest\domain\entity\CalendarSchool.java
+C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\rest\domain\dto\homework\HomeworkForFirstView.java
 C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\rest\domain\entity\School.java
 C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\security\config\SecurityConfig.java
 C:\Users\Guzik\IdeaProjects\SD_2020_Kozimor_Jakub\backend\src\main\java\com\learning\exception\user\UserNotFoundException.java

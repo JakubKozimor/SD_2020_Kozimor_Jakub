@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HomeworkAnswerDetails } from "src/app/common/homework-answer-details";
 import { FileServiceService } from "src/app/services/file-service.service";
 import { HomeworkAnswerService } from "src/app/services/homework-answer.service";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 @Component({
   selector: "app-rate-homework-answer",
   templateUrl: "./rate-homework-answer.component.html",
@@ -16,7 +16,7 @@ export class RateHomeworkAnswerComponent implements OnInit {
     private route: ActivatedRoute,
     private fileService: FileServiceService,
     private homeworkAnswerService: HomeworkAnswerService,
-    private _location: Location
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,11 +37,13 @@ export class RateHomeworkAnswerComponent implements OnInit {
   }
 
   addGrade(homeworkAnswerId: number, grade: string, comment: string) {
-    this.homeworkAnswerService.addGrade(homeworkAnswerId, grade, comment);
-    this.changePage();
-  }
-
-  changePage() {
-    this._location.back();
+    if (grade != "null") {
+      this.homeworkAnswerService.addGrade(homeworkAnswerId, grade, comment);
+      setTimeout(() => {
+        this.router.navigate([
+          "viewHomework/" + this.route.snapshot.paramMap.get("homeworkId"),
+        ]);
+      }, 500);
+    }
   }
 }

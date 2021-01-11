@@ -3,6 +3,7 @@ package com.learning.rest.service.impl;
 import com.learning.exception.role.RoleNotFoundException;
 import com.learning.exception.subject.SubjectNotFoundException;
 import com.learning.exception.user.UserNotFoundException;
+import com.learning.rest.domain.dto.user.UpdateUser;
 import com.learning.rest.domain.dto.user.UserDto;
 import com.learning.rest.domain.entity.Subject;
 import com.learning.rest.domain.entity.User;
@@ -17,7 +18,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +34,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserDtoMapper userMapper;
     private final SubjectRepository subjectRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -108,4 +112,37 @@ public class UserServiceImpl implements UserService {
             subjectRepository.save(subject);
         }
     }
+
+    @Override
+    public void updateUser(UpdateUser updateUser) {
+        User user = userRepository.findById(updateUser.getUserId()).orElseThrow(UserNotFoundException::new);
+        User userToUpdate = assignNewData(user,updateUser);
+        userRepository.save(userToUpdate);
+    }
+
+    @Override
+    public UpdateUser getUser(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        return userMapper.toUpdateUser(user);
+    }
+
+    private User assignNewData(User user, UpdateUser updateUser) {
+        if(!StringUtils.isEmpty(updateUser.getFirstName())){
+            user.setFirstName(updateUser.getFirstName());
+        }
+        if(!StringUtils.isEmpty(updateUser.getLastName())){
+            user.setLastName(updateUser.getLastName());
+        }
+        if(!StringUtils.isEmpty(updateUser.getEmail())){
+            user.setEmail(updateUser.getEmail());
+        }
+        if(!StringUtils.isEmpty(updateUser.getPassword())){
+            user.setPassword(passwordEncoder.encode(updateUser.getPassword()));
+        }
+        if(!StringUtils.isEmpty(updateUser.getTwitchNick())){
+            user.setTwitchNick(updateUser.getTwitchNick());
+        }
+        return user;
+    }
+
 }

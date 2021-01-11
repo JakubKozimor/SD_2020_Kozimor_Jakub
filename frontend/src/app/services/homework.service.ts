@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Homework } from "../common/homework";
 import { HomeworkDetails } from "../common/homework-details";
 import { RatedHomework } from "../common/rated-homework";
+import { HomeworkForFirstView } from "../common/homework-for-first-view";
 
 @Injectable({
   providedIn: "root",
@@ -11,42 +12,47 @@ import { RatedHomework } from "../common/rated-homework";
 export class HomeworkService {
   private BASE_URL = "http://localhost:8080/homeworks";
   constructor(private httpClient: HttpClient) {}
-
+  //teacher
   getAllActiveHomeworksForTeacher(
+    subjectId: number,
     pageIndex: number,
     pageSize: number
   ): Observable<GetResponseHomework> {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
     return this.httpClient.get<GetResponseHomework>(
-      `${this.BASE_URL}/active/${userId}`,
+      `${this.BASE_URL}/active/${userId}/${subjectId}`,
       { params }
     );
   }
 
   getAllNotRatedHomeworks(
+    subjectId: number,
     pageIndex: number,
     pageSize: number
   ): Observable<GetResponseHomework> {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
     return this.httpClient.get<GetResponseHomework>(
-      `${this.BASE_URL}/not-rated/${userId}`,
+      `${this.BASE_URL}/not-rated/${userId}/${subjectId}`,
       { params }
     );
   }
 
   getAllRatedHomeworks(
+    subjectId: number,
     pageIndex: number,
     pageSize: number
   ): Observable<GetResponseHomework> {
     let params = this.getPageParams(pageIndex, pageSize);
     const userId = this.getAcctualUserId();
     return this.httpClient.get<GetResponseHomework>(
-      `${this.BASE_URL}/rated/${userId}`,
+      `${this.BASE_URL}/rated/${userId}/${subjectId}`,
       { params }
     );
   }
+
+  //user
 
   getAllActiveHomeworkByUser(
     pageIndex: number,
@@ -108,16 +114,16 @@ export class HomeworkService {
     );
   }
 
-  getFiveFirstHomeworksByUser(): Observable<Homework[]> {
+  getFiveFirstHomeworksByUser(): Observable<HomeworkForFirstView[]> {
     const userId = this.getAcctualUserId();
     let role = this.getActualUserRole();
     if (role == "ROLE_TEACHER") {
-      return this.httpClient.get<Homework[]>(
+      return this.httpClient.get<HomeworkForFirstView[]>(
         `${this.BASE_URL}/${userId}/five-first-teacher`
       );
     }
     if (role == "ROLE_STUDENT") {
-      return this.httpClient.get<Homework[]>(
+      return this.httpClient.get<HomeworkForFirstView[]>(
         `${this.BASE_URL}/${userId}/five-first`
       );
     }
@@ -160,16 +166,14 @@ export class HomeworkService {
 
   updateHomework(homework: Homework, homeworkId: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.httpClient
-        .put(this.BASE_URL + `/${homeworkId}`, homework)
-        .subscribe(
-          (data) => {
-            resolve("Zaktualizowano");
-          },
-          (error) => {
-            reject("Aktualizacja nie powiodło się");
-          }
-        );
+      this.httpClient.put(this.BASE_URL + `/${homeworkId}`, homework).subscribe(
+        (data) => {
+          resolve("Zaktualizowano");
+        },
+        (error) => {
+          reject("Aktualizacja nie powiodło się");
+        }
+      );
     });
   }
 }

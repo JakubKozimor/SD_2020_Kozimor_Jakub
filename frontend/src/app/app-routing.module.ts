@@ -17,6 +17,7 @@ import { ClassesComponent } from "./components/classes/classes.component";
 import { ContentComponent } from "./components/content/content.component";
 import { DoneHomeworksComponent } from "./components/done-homeworks/done-homeworks.component";
 import { EditClassesComponent } from "./components/edit-classes/edit-classes.component";
+import { GroupMessageComponent } from "./components/group-message/group-message.component";
 import { HomeworkAnswerDetailsComponent } from "./components/homework-answer-details/homework-answer-details.component";
 import { HomeworkDetailsComponent } from "./components/homework-details/homework-details.component";
 import { HomeworkComponent } from "./components/homework/homework.component";
@@ -27,17 +28,22 @@ import { LoginComponent } from "./components/login/login.component";
 import { MessageDetailsComponent } from "./components/message-details/message-details.component";
 import { MessageComponent } from "./components/message/message.component";
 import { RateHomeworkAnswerComponent } from "./components/rate-homework-answer/rate-homework-answer.component";
+import { RegisterTeacherComponent } from "./components/register-teacher/register-teacher.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { RegulationsComponent } from "./components/regulations/regulations.component";
+import { SubjecthomeworkteacherComponent } from "./components/subjecthomeworkteacher/subjecthomeworkteacher.component";
 import { TeacherHomeworkComponent } from "./components/teacher-homework/teacher-homework.component";
 import { TeachersComponent } from "./components/teachers/teachers.component";
 import { UpdateHomeworkComponent } from "./components/update-homework/update-homework.component";
 import { UpdateLiveHomeworkComponent } from "./components/update-live-homework/update-live-homework.component";
 import { UpdateSchoolComponent } from "./components/update-school/update-school.component";
 import { UpdateSubjectComponent } from "./components/update-subject/update-subject.component";
+import { UpdateUserTeacherComponent } from "./components/update-user-teacher/update-user-teacher.component";
+import { UpdateUserComponent } from "./components/update-user/update-user.component";
 import { UsersComponent } from "./components/users/users.component";
 
 const studentRoutes: Routes = [
+  { path: "update-user", component: UpdateUserComponent },
   { path: "users", component: UsersComponent },
   { path: "callendar", component: CalendarComponent },
   { path: "live", component: LiveComponent },
@@ -67,11 +73,17 @@ const studentRoutes: Routes = [
   { path: "**", redirectTo: "/menu", pathMatch: "full" },
 ];
 const teacherRoutes: Routes = [
+  { path: "update-user", component: UpdateUserTeacherComponent },
+  { path: "group-message/:subjectId", component: GroupMessageComponent },
   { path: "live-instruction", component: LiveInstructionComponent },
   { path: "edit-classes/:lessonId", component: EditClassesComponent },
   {
     path: "update-live-homework/:liveHomeworkId",
     component: UpdateLiveHomeworkComponent,
+  },
+  {
+    path: "subject-homework-teacher/:subjectId",
+    component: SubjecthomeworkteacherComponent,
   },
   {
     path: "all-live-homework/:liveHomeworkId",
@@ -82,7 +94,10 @@ const teacherRoutes: Routes = [
   { path: "update-subject/:subjectId", component: UpdateSubjectComponent },
   { path: "update-homework/:homeworkId", component: UpdateHomeworkComponent },
   { path: "homework", component: TeacherHomeworkComponent },
-  { path: "rate/:homeworkAnswer", component: RateHomeworkAnswerComponent },
+  {
+    path: "rate/:homeworkAnswer/:homeworkId",
+    component: RateHomeworkAnswerComponent,
+  },
   { path: "callendar", component: CalendarComponent },
   { path: "add-students/:subjectId", component: AddStudentsComponent },
   { path: "live", component: LiveComponent },
@@ -110,10 +125,11 @@ const adminRoutes: Routes = [
 
 const loginRoute: Routes = [
   { path: "regulations", component: RegulationsComponent },
-  { path: "login", component: LoginComponent },
+  { path: "", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "", redirectTo: "/login", pathMatch: "full" },
-  { path: "**", redirectTo: "/login", pathMatch: "full" },
+  { path: "register-teacher", component: RegisterTeacherComponent },
+  { path: "", redirectTo: "/", pathMatch: "full" },
+  { path: "**", redirectTo: "/", pathMatch: "full" },
 ];
 
 let routes: Routes;

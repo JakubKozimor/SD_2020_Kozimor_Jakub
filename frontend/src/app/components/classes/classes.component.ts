@@ -242,6 +242,10 @@ export class ClassesComponent implements OnInit {
     }
   }
 
+  refresh() {
+    window.location.reload();
+  }
+
   getAcctualUserId() {
     return localStorage.getItem("user_id");
   }

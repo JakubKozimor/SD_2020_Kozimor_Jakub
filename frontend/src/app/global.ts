@@ -7,6 +7,16 @@ export class Global {
   week = "ALL";
   actualUserRole = "";
 
+  lastHomework: number;
+
+  setLastHomework(homeworkId: number) {
+    this.lastHomework = homeworkId;
+  }
+
+  getLastHomework(): number {
+    return this.lastHomework;
+  }
+
   setWeek(week: string) {
     this.week = week;
   }
@@ -30,7 +40,6 @@ export class Global {
       return false;
     }
   }
-
 
   isAdmin(): boolean {
     if (String(this.getActualUserRoleFromLocalStorage()) == "ROLE_ADMIN") {

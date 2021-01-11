@@ -50,6 +50,11 @@ import { UpdateLiveHomeworkComponent } from "./components/update-live-homework/u
 import { EditClassesComponent } from "./components/edit-classes/edit-classes.component";
 import { LiveInstructionComponent } from './components/live-instruction/live-instruction.component';
 import { RegulationsComponent } from './components/regulations/regulations.component';
+import { SubjecthomeworkteacherComponent } from './components/subjecthomeworkteacher/subjecthomeworkteacher.component';
+import { RegisterTeacherComponent } from './components/register-teacher/register-teacher.component';
+import { GroupMessageComponent } from './components/group-message/group-message.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { UpdateUserTeacherComponent } from './components/update-user-teacher/update-user-teacher.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +97,11 @@ import { RegulationsComponent } from './components/regulations/regulations.compo
     EditClassesComponent,
     LiveInstructionComponent,
     RegulationsComponent,
+    SubjecthomeworkteacherComponent,
+    RegisterTeacherComponent,
+    GroupMessageComponent,
+    UpdateUserComponent,
+    UpdateUserTeacherComponent,
   ],
   imports: [
     CommonModule,
@@ -115,7 +125,7 @@ import { RegulationsComponent } from './components/regulations/regulations.compo
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
-    },
+    }
   ],
   bootstrap: [AppComponent],
 })

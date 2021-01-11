@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { UpdateUser } from "../common/update-user";
 import { User } from "../common/user";
 import { UserDto } from "../common/user-dto";
 import { UsersList } from "../common/users-list";
@@ -12,6 +13,31 @@ export class UserService {
   private BASE_URL = "http://localhost:8080/users";
 
   constructor(private httpClient: HttpClient) {}
+
+  public getUpdateUser(): Observable<UpdateUser> {
+    const userId = Number(this.getAcctualUserId());
+    return this.httpClient.get<UpdateUser>(
+      `${this.BASE_URL}/user-credentials/${userId}`
+    );
+  }
+
+  updateUser(user: UpdateUser): Promise<any> {
+    user.userId = Number(this.getAcctualUserId());
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.put(this.BASE_URL + "/update", user).subscribe(
+        (data) => {
+          resolve("Zaktualizowano");
+        },
+        (error) => {
+          if (error.status === 409) {
+            reject("Użytkownik z takim adresem email istnieje");
+          }
+          reject("Nieudana aktualizacja");
+        }
+      );
+    });
+  }
+
 
   public searchStudents(
     search: string,

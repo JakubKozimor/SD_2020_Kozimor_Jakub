@@ -1,10 +1,10 @@
 <div class="content">
   <div class="week-options">
     <div class="week-options">
-      <button id="A" class="btn week-button" (click)="changeWeek('A')">
+      <button id="A" class="btn week-button-a" (click)="changeWeek('A')">
         A
       </button>
-      <button id="B" class="btn week-button" (click)="changeWeek('B')">
+      <button id="B" class="btn week-button-b" (click)="changeWeek('B')">
         B
       </button>
     </div>
@@ -18,7 +18,11 @@
         </div>
         <div class="subject-row" *ngFor="let tempSubject of subjectsListMonday">
           <span class="first-column">{{ tempSubject.startTime }}</span>
-          <span class="second-column">{{ tempSubject.name }}</span>
+          <span
+            class="second-column live-link"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+            >{{ tempSubject.name }}</span
+          >
         </div>
       </div>
     </div>
@@ -32,7 +36,11 @@
           *ngFor="let tempSubject of subjectsListTuesday"
         >
           <span class="first-column">{{ tempSubject.startTime }}</span>
-          <span class="second-column">{{ tempSubject.name }}</span>
+          <span
+            class="second-column live-link"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+            >{{ tempSubject.name }}</span
+          >
         </div>
       </div>
     </div>
@@ -47,7 +55,11 @@
           *ngFor="let tempSubject of subjectsListWednesday"
         >
           <span class="first-column">{{ tempSubject.startTime }}</span>
-          <span class="second-column">{{ tempSubject.name }}</span>
+          <span
+            class="second-column live-link"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+            >{{ tempSubject.name }}</span
+          >
         </div>
       </div>
     </div>
@@ -62,7 +74,11 @@
           *ngFor="let tempSubject of subjectsListThursday"
         >
           <span class="first-column">{{ tempSubject.startTime }}</span>
-          <span class="second-column">{{ tempSubject.name }}</span>
+          <span
+            class="second-column live-link"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+            >{{ tempSubject.name }}</span
+          >
         </div>
       </div>
     </div>
@@ -74,7 +90,11 @@
         </div>
         <div class="subject-row" *ngFor="let tempSubject of subjectsListFriday">
           <span class="first-column">{{ tempSubject.startTime }}</span>
-          <span class="second-column">{{ tempSubject.name }}</span>
+          <span
+            class="second-column live-link"
+            routerLink="/add-classes/{{ tempSubject.subjectId }}"
+            >{{ tempSubject.name }}</span
+          >
         </div>
       </div>
     </div>

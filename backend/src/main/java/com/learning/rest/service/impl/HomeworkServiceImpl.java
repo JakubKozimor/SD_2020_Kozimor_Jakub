@@ -4,10 +4,7 @@ import com.learning.constants.CustomConstants;
 import com.learning.exception.homework.HomeworkNotFoundException;
 import com.learning.exception.subject.SubjectNotFoundException;
 import com.learning.exception.user.UserNotFoundException;
-import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
-import com.learning.rest.domain.dto.homework.HomeworkDto;
-import com.learning.rest.domain.dto.homework.HomeworkFileDto;
-import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
+import com.learning.rest.domain.dto.homework.*;
 import com.learning.rest.domain.entity.*;
 import com.learning.rest.domain.entity.enums.HomeworkRatedStatus;
 import com.learning.rest.domain.entity.enums.HomeworkStatus;
@@ -106,25 +103,31 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public List<Homework> getFiveActiveHomeworks(Long userId) {
+    public List<HomeworkForFirstView> getFiveActiveHomeworks(Long userId) {
         List<Homework> allHomeworkList = this.getHomeworkListByUser(userId);
         List<Homework> activeHomeworks = homeworkFilter.filterByStatus(allHomeworkList, HomeworkStatus.ACTIVE);
-        return activeHomeworks
+        List<Homework> homeworkList = activeHomeworks
                 .stream()
                 .filter(homework -> homeworkFilter.homeworkHasUserAnswer(userId, homework))
                 .sorted(Comparator.comparing(Homework::getDeadline))
                 .limit(CustomConstants.FIVE_HOMEWORKS)
                 .collect(Collectors.toList());
+        return homeworkList.stream()
+                .map(homeworkMapper::toHomeworkForFirstView)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Homework> getFiveActiveHomeworksForTeacher(Long userId) {
+    public List<HomeworkForFirstView> getFiveActiveHomeworksForTeacher(Long userId) {
         List<Homework> allHomeworks = this.getAllHomeworksByTeacher(userId);
-        return allHomeworks.stream()
+        List<Homework> homeworkList = allHomeworks.stream()
                 .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
                 .filter(homework -> homework.getRated() == HomeworkRatedStatus.NOT_RATED)
                 .sorted(Comparator.comparing(Homework::getDeadline))
                 .limit(CustomConstants.FIVE_HOMEWORKS)
+                .collect(Collectors.toList());
+        return homeworkList.stream()
+                .map(homeworkMapper::toHomeworkForFirstView)
                 .collect(Collectors.toList());
     }
 
@@ -174,9 +177,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Page<Homework> getNotRatedHomeworksForTeacher(Long teacherId, Pageable pageable) {
+    public Page<Homework> getNotRatedHomeworksForTeacher(Long teacherId, Long subjectId, Pageable pageable) {
         List<Homework> allHomeworks = this.getAllHomeworksByTeacher(teacherId);
         List<Homework> allNotRatedHomeworks = allHomeworks.stream()
+                .filter(homework -> homework.getSubject().getSubjectId().equals(subjectId))
                 .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
                 .filter(homework -> homework.getRated() == HomeworkRatedStatus.NOT_RATED)
                 .collect(Collectors.toList());
@@ -184,9 +188,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Page<Homework> getRatedHomeworksForTeacher(Long teacherId, Pageable pageable) {
+    public Page<Homework> getRatedHomeworksForTeacher(Long teacherId, Long subjectId, Pageable pageable) {
         List<Homework> allHomeworks = this.getAllHomeworksByTeacher(teacherId);
         List<Homework> allNotRatedHomeworks = allHomeworks.stream()
+                .filter(homework -> homework.getSubject().getSubjectId().equals(subjectId))
                 .filter(homework -> homework.getStatus() == HomeworkStatus.LATE)
                 .filter(homework -> homework.getRated() == HomeworkRatedStatus.RATED)
                 .collect(Collectors.toList());
@@ -194,9 +199,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Page<Homework> getAllActiveForTeacher(Long teacherId, Pageable pageable) {
+    public Page<Homework> getAllActiveForTeacher(Long teacherId, Long subjectId, Pageable pageable) {
         List<Homework> allHomeworks = this.getAllHomeworksByTeacher(teacherId);
         List<Homework> allActiveHomeworks = allHomeworks.stream()
+                .filter(homework -> homework.getSubject().getSubjectId().equals(subjectId))
                 .filter(homework -> homework.getStatus() == HomeworkStatus.ACTIVE)
                 .collect(Collectors.toList());
         return (Page<Homework>) PageHelper.preparePageFromList(allActiveHomeworks, pageable);

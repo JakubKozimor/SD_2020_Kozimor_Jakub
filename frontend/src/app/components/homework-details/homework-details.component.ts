@@ -1,6 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { HomeworkAnswerDto } from "src/app/common/homework-answer-dto";
 import { HomeworkDetails } from "src/app/common/homework-details";
 import { Global } from "src/app/global";
@@ -37,7 +37,8 @@ export class HomeworkDetailsComponent implements OnInit {
     private fileService: FileServiceService,
     private homeworkAnswerService: HomeworkAnswerService,
     private datePipe: DatePipe,
-    private global: Global
+    private global: Global,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -103,5 +104,9 @@ export class HomeworkDetailsComponent implements OnInit {
 
   transformDate(date) {
     return this.datePipe.transform(date, "yyyy-MM-dd");
+  }
+
+  ratePage(homeworkAnswerId: number) {
+    this.router.navigate(["rate/" + homeworkAnswerId + "/" + this.route.snapshot.paramMap.get("homeworkId")]);
   }
 }

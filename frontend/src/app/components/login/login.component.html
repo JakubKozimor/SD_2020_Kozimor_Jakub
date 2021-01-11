@@ -3,7 +3,12 @@
     <h2>Logowanie</h2>
     <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <div class="input-row">
-        <input type="text" required formControlName="email" />
+        <input
+          (input)="changeData()"
+          type="text"
+          required
+          formControlName="email"
+        />
         <label for="" placeholder="Email" alt="Email"></label>
       </div>
       <label
@@ -14,7 +19,12 @@
         Niepoprawy email
       </label>
       <div class="input-row">
-        <input type="password" required formControlName="password" />
+        <input
+          (input)="changeData()"
+          type="password"
+          required
+          formControlName="password"
+        />
         <label for="" placeholder="Hasło" alt="Hasło"></label>
       </div>
       <label
@@ -23,6 +33,14 @@
         [ngClass]="'error'"
       >
         Niepoprawne hasło
+      </label>
+      <label
+        style="display: block"
+        class="alert alert-danger input-row"
+        *ngIf="wrongData"
+        [ngClass]="'error'"
+      >
+        Błędny email lub hasło
       </label>
       <button class="btn login-button input-row">Zaloguj</button>
     </form>

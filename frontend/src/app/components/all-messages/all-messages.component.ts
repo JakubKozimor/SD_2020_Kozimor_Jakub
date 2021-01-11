@@ -27,19 +27,29 @@ export class AllMessagesComponent implements OnInit {
   theReadMessagesPageSize: number = 5;
   theReadMessagesElements: number = 0;
 
+  studentsList: UserDto[];
+
+  thePageNumber: number = 1;
+  thePageSize: number = 5;
+  theElements: number = 0;
+
+  searchValue = "";
+
   value = 1;
 
   lastButtonId: string;
 
   constructor(
     private messageService: MessageService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.listOfReadMessages();
     this.listOfUnreadMessages();
     this.listOfSentMessages();
+    this.listOfStudents();
 
     this.lastButtonId = String(1);
     var someElement = document.getElementById(String(1));
@@ -124,5 +134,39 @@ export class AllMessagesComponent implements OnInit {
     var someElement = document.getElementById(String(value));
     someElement.classList.add("active-button");
     this.lastButtonId = String(value);
+  }
+
+  listOfStudents() {
+    this.userService
+      .searchStudents(
+        this.searchValue,
+        this.thePageNumber - 1,
+        this.thePageSize
+      )
+      .subscribe((data) => {
+        this.studentsList = data.content;
+        this.thePageNumber = data.number + 1;
+        this.thePageSize = data.size;
+        this.theElements = data.totalElements;
+      });
+  }
+
+  search(search: string) {
+    this.searchValue = search;
+    this.listOfStudents();
+  }
+
+  updateQuantity(pageSize: number) {
+    this.thePageSize = pageSize;
+    this.thePageNumber = 1;
+    this.listOfStudents();
+  }
+
+  getRole(role) {
+    if (role == "ROLE_TEACHER") {
+      return "Nauczyciel";
+    } else {
+      return "Uczeń";
+    }
   }
 }

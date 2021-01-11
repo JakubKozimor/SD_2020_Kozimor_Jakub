@@ -37,9 +37,11 @@ export class AddLiveHomeworkComponent implements OnInit {
         this.validateForm.value,
         classesId
       );
-      this.validateForm.reset();
+
       this.tempFiles = new Array();
-      window.close();
+      setTimeout(() => {
+        window.close();
+      }, 500);
     }
   }
 

@@ -1,5 +1,6 @@
 package com.learning.rest.controller;
 
+import com.learning.rest.domain.dto.message.GroupMessage;
 import com.learning.rest.domain.dto.message.MessageDetailsDto;
 import com.learning.rest.domain.dto.message.MessageDto;
 import com.learning.rest.service.MessageService;
@@ -52,6 +53,14 @@ public class MessageController {
         messageService.addMessage(message);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PostMapping("/group-message")
+    public ResponseEntity<Void> addGroupMessage(@RequestBody GroupMessage groupMessage) throws IOException {
+        messageService.addGroupMessage(groupMessage);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+
 
     @PatchMapping("/update-status-message/{messageId}")
     public ResponseEntity<Void> updateStatusMessage(@PathVariable("messageId") Long messageId) {

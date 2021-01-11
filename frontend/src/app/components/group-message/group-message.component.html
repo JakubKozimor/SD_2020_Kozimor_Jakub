@@ -1,0 +1,78 @@
+<div class="add-homework">
+    <div class="login-frame">
+      <h1>Utwórz wiadomość</h1>
+      <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div>
+          <input type="text" formControlName="title" required />
+          <label for="" placeholder="Tytuł" alt="Tytuł"></label>
+        </div>
+        <label
+          class="alert alert-danger"
+          *ngIf="title.invalid && formSubmitted"
+          [ngClass]="'error'"
+        >
+          Pole nie może być puste
+        </label>
+        <div>
+          <input
+            type="text"
+            formControlName="content"
+            required
+          />
+          <label
+            for=""
+            placeholder="Treść wiadomości"
+            alt="Treść wiadomości"
+          ></label>
+        </div>
+  
+        <div class="input-row calendar-group">
+          <div class="files-div" *ngFor="let tempFile of tempFiles">
+            <div>
+              <svg
+                width="25px"
+                height="25px"
+                viewBox="0 0 16 16"
+                class="bi bi-file-earmark-fill file-icon"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"
+                />
+              </svg>
+              <span>{{ tempFile.fileName }}</span>
+            </div>
+  
+            <button
+              class="btn btn-danger btn-sm rounded-0"
+              (click)="reset(tempFile)"
+              type="button"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Usuń"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+  
+          <div class="custom-file">
+            <input
+              #inputFile
+              type="file"
+              class="custom-file-input"
+              id="customFile"
+              (change)="onUpload($event)"
+            />
+            <label class="custom-file-label" for="customFile">Wybierz plik</label>
+          </div>
+        </div>
+  
+        <button type="submit" class="btn add-homework-button input-row">
+          Wyślij
+        </button>
+      </form>
+    </div>
+  </div>
+  

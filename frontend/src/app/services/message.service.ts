@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GroupMessage } from '../common/group-message';
 import { Message } from '../common/message';
 import { MessageDetails } from '../common/message-details';
 
@@ -26,6 +27,12 @@ export class MessageService {
     const userId = this.getAcctualUserId();
     message.userFrom = Number(userId);
     this.httpClient.post(`${this.BASE_URL}/new-message`, message).subscribe();
+  }
+
+  addGroupMessage(message: GroupMessage) {
+    const userId = this.getAcctualUserId();
+    message.userFrom = Number(userId);
+    this.httpClient.post(`${this.BASE_URL}/group-message`, message).subscribe();
   }
 
   getAllReadMessagesByUser(

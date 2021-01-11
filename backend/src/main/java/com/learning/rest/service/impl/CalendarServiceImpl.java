@@ -119,8 +119,11 @@ public class CalendarServiceImpl implements CalendarService {
     private void checkDays(NewEventDto newEvent) {
         Optional<BaseCalendar> endDay = baseCalendarRepository.findByDate(Date.valueOf(newEvent.getEnd()));
         Optional<BaseCalendar> startDay = baseCalendarRepository.findByDate(Date.valueOf(newEvent.getStart()));
-        if (endDay.isEmpty() || startDay.isEmpty()) {
+        if (endDay.isEmpty()) {
             this.insertAllDaysByYear(newEvent.getEnd().getYear());
+        }
+        if (startDay.isEmpty()) {
+            this.insertAllDaysByYear(newEvent.getStart().getYear());
         }
     }
 

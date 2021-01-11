@@ -175,3 +175,68 @@
     </div>
   </div>
 </div>
+<div class="content">
+  <div class="main-schedule">
+    <div class="info-div">
+      <h2>Wyszukaj</h2>
+      <div class="search-section">
+        <div class="search-group">
+          <input type="text" required (input)="search($event.target.value)" />
+          <label for="" placeholder="Szukaj" alt="Szukaj"></label>
+        </div>
+        <button class="btn search-button" (click)="search(searchValue)">
+          Szukaj
+        </button>
+      </div>
+
+      <div class="big-column">
+        <div class="subject-row">
+          <span>Imie</span>
+          <span>Nazwisko</span>
+          <span>Email</span>
+          <span>Status</span>
+          <span>Wiadomość</span>
+        </div>
+        <div class="subject-row" *ngFor="let tempStudent of studentsList">
+          <span>{{ tempStudent.firstName }}</span>
+          <span>{{ tempStudent.lastName }}</span>
+          <span>{{ tempStudent.email }}</span>
+          <span>{{ getRole(tempStudent.roleName) }}</span>
+          <button
+            class="btn"
+            routerLink="/createMessage/{{ tempStudent.userId }}"
+          >
+            Nowa wiadomość
+          </button>
+        </div>
+        <div class="subject-row no-users" *ngIf="this.studentsList.length == 0">
+          <span>Nie znaleziono</span>
+        </div>
+      </div>
+      <div class="pagin">
+        <div class="pagination">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theElements"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="listOfStudents()"
+          >
+          </ngb-pagination>
+          <div>
+            <select
+              class="form-control"
+              (change)="updateQuantity($event.target.value)"
+            >
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

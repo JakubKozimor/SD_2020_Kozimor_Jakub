@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit {
       this.theSamePassword &&
       this.warningForCheckbox
     ) {
+      this.validateForm.value.roleName = "ROLE_STUDENT";
       this.authService
         .register(this.validateForm.value)
         .then((data) => {
@@ -102,7 +103,7 @@ export class RegisterComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
       passwordConfirmation: [null, [Validators.required]],
-      roleName: [null, [Validators.required]],
+      roleName: [null],
       twitchNick: [null],
       schoolName: [null, [Validators.required]],
     });

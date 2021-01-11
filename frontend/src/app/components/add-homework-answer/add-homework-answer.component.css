@@ -2,6 +2,20 @@
   content: "Przeglądaj";
 }
 
+.formControl {
+  width: 16em;
+  background-color: white;
+  height: 10em;
+  padding: 1em;
+  font-size: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 1.5em;
+  transition: all 0.2s ease-out;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+}
+
 .add-homework {
   display: flex;
   min-height: 70vh;

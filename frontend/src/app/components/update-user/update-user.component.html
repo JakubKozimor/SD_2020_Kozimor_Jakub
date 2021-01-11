@@ -1,0 +1,84 @@
+<div class="login-page">
+  <div class="login-frame">
+    <h2>Profil</h2>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div class="input-row">
+        <input type="text" required formControlName="firstName" />
+        <label for="" placeholder="Imie" alt="Imie"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="firstName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row">
+        <input type="text" required formControlName="lastName" />
+        <label for="" placeholder="Nazwisko" alt="Nazwisko"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="lastName.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Pole nie może być puste
+      </label>
+
+      <div class="input-row">
+        <input type="text" required formControlName="email" />
+        <label for="" placeholder="Email" alt="Email"></label>
+      </div>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="email.invalid && formSubmitted"
+        [ngClass]="'error'"
+      >
+        Niepoprawy email
+      </label>
+      <div class="input-row">
+        <input
+          type="password"
+          required
+          formControlName="password"
+          (input)="checkPasswordConfirmation()"
+        />
+        <label for="" placeholder="Hasło" alt="Hasło"></label>
+      </div>
+
+      <div class="input-row">
+        <input
+          type="password"
+          required
+          formControlName="passwordConfirmation"
+          (input)="checkPasswordConfirmation()"
+        />
+        <label for="" placeholder="Powtórz hasło" alt="Powtórz hasło"></label>
+      </div>
+
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="
+          theSamePassword == false &&
+          passwordConfirmation.valid &&
+          formSubmitted
+        "
+        [ngClass]="'error'"
+      >
+        Hasła muszą być takie same
+      </label>
+
+      <button class="btn login-button input-row">Aktualizuj</button>
+      <label
+        class="alert alert-danger input-row"
+        *ngIf="failedMessage != undefined"
+      >
+        {{ failedMessage }}
+      </label>
+      <label class="alert alert-success input-row" *ngIf="message != undefined">
+        {{ message }}
+      </label>
+    </form>
+  </div>
+</div>

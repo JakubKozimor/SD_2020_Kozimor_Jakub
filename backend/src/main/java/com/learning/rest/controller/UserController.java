@@ -1,5 +1,6 @@
 package com.learning.rest.controller;
 
+import com.learning.rest.domain.dto.user.UpdateUser;
 import com.learning.rest.domain.dto.user.UserDto;
 import com.learning.rest.domain.dto.user.UsersList;
 import com.learning.rest.service.UserService;
@@ -44,4 +45,16 @@ public class UserController {
         userService.deleteUserFromSubject(userId, subjectId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<Void> updateUser(@RequestBody UpdateUser updateUser) {
+        userService.updateUser(updateUser);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/user-credentials/{userId}")
+    public ResponseEntity<UpdateUser> getUser(@PathVariable Long userId){
+        return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
+    }
+
 }

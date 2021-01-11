@@ -8,7 +8,7 @@
       <li routerLink="callendar" routerLinkActive="active">
         <a>Kalendarz</a>
       </li>
-      <li routerLink="homework" routerLinkActive="active">
+      <li *ngIf="!isTeacher" routerLink="homework" routerLinkActive="active">
         <a>Zadania</a>
       </li>
       <li *ngIf="!isTeacher" routerLink="teachers" routerLinkActive="active">
@@ -17,14 +17,14 @@
       <li routerLink="allMessages" routerLinkActive="active">
         <a>Wiadomości</a>
       </li>
-      <li routerLink="users" routerLinkActive="active">
-        <a>Użytkownicy</a>
-      </li>
       <li routerLink="allSubjects" routerLinkActive="active">
         <a>Przedmioty</a>
       </li>
       <li routerLink="live" routerLinkActive="active">
         <a>Live</a>
+      </li>
+      <li routerLink="update-user" routerLinkActive="active">
+        <a>Profil</a>
       </li>
       <li routerLink="login" (click)="logout()">
         <a>Wyloguj</a>

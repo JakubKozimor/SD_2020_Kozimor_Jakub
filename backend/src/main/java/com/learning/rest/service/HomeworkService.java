@@ -2,6 +2,7 @@ package com.learning.rest.service;
 
 import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
 import com.learning.rest.domain.dto.homework.HomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkForFirstView;
 import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import org.springframework.data.domain.Page;
@@ -18,15 +19,15 @@ public interface HomeworkService {
 
     Page<RatedHomeworkDto> getAllRatedHomeworks(Long userId, Pageable pageable, Long subjectId);
 
-    List<Homework> getFiveActiveHomeworks(Long userId);
+    List<HomeworkForFirstView> getFiveActiveHomeworks(Long userId);
 
-    List<Homework> getFiveActiveHomeworksForTeacher(Long userId);
+    List<HomeworkForFirstView> getFiveActiveHomeworksForTeacher(Long userId);
 
-    Page<Homework> getNotRatedHomeworksForTeacher(Long teacherId, Pageable pageable);
+    Page<Homework> getNotRatedHomeworksForTeacher(Long teacherId, Long subjectId, Pageable pageable);
 
-    Page<Homework> getRatedHomeworksForTeacher(Long teacherId, Pageable pageable);
+    Page<Homework> getRatedHomeworksForTeacher(Long teacherId, Long subjectId, Pageable pageable);
 
-    Page<Homework> getAllActiveForTeacher(Long teacherId, Pageable pageable);
+    Page<Homework> getAllActiveForTeacher(Long teacherId, Long subjectId, Pageable pageable);
 
     HomeworkDetailsDto getHomeworkDetails(Long homeworkId);
 

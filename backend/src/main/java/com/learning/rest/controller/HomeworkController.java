@@ -2,6 +2,7 @@ package com.learning.rest.controller;
 
 import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
 import com.learning.rest.domain.dto.homework.HomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkForFirstView;
 import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import com.learning.rest.service.HomeworkService;
@@ -24,24 +25,27 @@ public class HomeworkController {
     private final HomeworkService homeworkService;
 
     @PreAuthorize("#teacherId == principal.id && hasRole('ROLE_TEACHER')")
-    @GetMapping("/not-rated/{teacherId}")
+    @GetMapping("/not-rated/{teacherId}/{subjectId}")
     public ResponseEntity<Page<Homework>> getAllNotRatedHomeworks(@PathVariable Long teacherId,
+                                                                  @PathVariable Long subjectId,
                                                                   Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getNotRatedHomeworksForTeacher(teacherId, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(homeworkService.getNotRatedHomeworksForTeacher(teacherId, subjectId, pageable), HttpStatus.OK);
     }
 
     @PreAuthorize("#teacherId == principal.id && hasRole('ROLE_TEACHER')")
-    @GetMapping("/rated/{teacherId}")
+    @GetMapping("/rated/{teacherId}/{subjectId}")
     public ResponseEntity<Page<Homework>> getAllRatedHomeworks(@PathVariable Long teacherId,
+                                                               @PathVariable Long subjectId,
                                                                Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getRatedHomeworksForTeacher(teacherId, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(homeworkService.getRatedHomeworksForTeacher(teacherId, subjectId, pageable), HttpStatus.OK);
     }
 
     @PreAuthorize("#teacherId == principal.id && hasRole('ROLE_TEACHER')")
-    @GetMapping("/active/{teacherId}")
+    @GetMapping("/active/{teacherId}/{subjectId}")
     public ResponseEntity<Page<Homework>> getAllActiveHomeworks(@PathVariable Long teacherId,
+                                                                @PathVariable Long subjectId,
                                                                 Pageable pageable) {
-        return new ResponseEntity<>(homeworkService.getAllActiveForTeacher(teacherId, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(homeworkService.getAllActiveForTeacher(teacherId, subjectId, pageable), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id")
@@ -78,13 +82,13 @@ public class HomeworkController {
 
     @PreAuthorize("#userId == principal.id")
     @GetMapping("/{userId}/five-first")
-    public ResponseEntity<List<Homework>> getFiveActiveHomeworkByUser(@PathVariable Long userId) {
+    public ResponseEntity<List<HomeworkForFirstView>> getFiveActiveHomeworkByUser(@PathVariable Long userId) {
         return new ResponseEntity<>(homeworkService.getFiveActiveHomeworks(userId), HttpStatus.OK);
     }
 
     @PreAuthorize("#userId == principal.id && hasRole('ROLE_TEACHER')")
     @GetMapping("/{userId}/five-first-teacher")
-    public ResponseEntity<List<Homework>> getFiveActiveHomeworkForTeacher(@PathVariable Long userId) {
+    public ResponseEntity<List<HomeworkForFirstView>> getFiveActiveHomeworkForTeacher(@PathVariable Long userId) {
         return new ResponseEntity<>(homeworkService.getFiveActiveHomeworksForTeacher(userId), HttpStatus.OK);
     }
 

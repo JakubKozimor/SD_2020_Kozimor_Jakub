@@ -2,6 +2,7 @@ package com.learning.rest.domain.mapper;
 
 import com.learning.rest.domain.dto.homework.HomeworkDetailsDto;
 import com.learning.rest.domain.dto.homework.HomeworkDto;
+import com.learning.rest.domain.dto.homework.HomeworkForFirstView;
 import com.learning.rest.domain.dto.homework.RatedHomeworkDto;
 import com.learning.rest.domain.entity.Homework;
 import org.mapstruct.Mapper;
@@ -18,4 +19,7 @@ public interface HomeworkMapper {
     Homework toHomework(HomeworkDto homeworkDto);
 
     RatedHomeworkDto toRatedHomework(Homework homework);
+
+    @Mapping(target = "subject", source = "subject.name")
+    HomeworkForFirstView toHomeworkForFirstView(Homework homework);
 }

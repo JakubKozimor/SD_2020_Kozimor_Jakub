@@ -3,8 +3,9 @@
     <h1>Dodaj odpowiedź</h1>
     <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <div>
-        <input type="text" formControlName="message" required />
-        <label for="" placeholder="Wiadomość" alt="Wiadomość"></label>
+        <textarea class="formControl" formControlName="message"> </textarea>
+        <!-- <input type="text" formControlName="message" required />
+        <label for="" placeholder="Wiadomość" alt="Wiadomość"></label> -->
       </div>
 
       <div class="input-row calendar-group">

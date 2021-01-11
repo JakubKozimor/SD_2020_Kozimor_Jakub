@@ -13,8 +13,9 @@
           <span>Godzina</span>
           <span>Długość</span>
           <span *ngIf="!isTeacher">Pliki</span>
-          <span *ngIf="!isTeacher" class="last-column">Zadania</span>
           <span *ngIf="isTeacher">Edytuj przedmiot</span>
+          <span *ngIf="isTeacher">Wiadomość grupowa</span>
+          <span class="last-column">Zadania</span>
           <span *ngIf="isTeacher">Dodaj zadanie</span>
           <span *ngIf="isTeacher">Edytuj użytkowników</span>
           <span *ngIf="isTeacher">Rozpocznij live</span>
@@ -35,13 +36,6 @@
             Pliki
           </button>
           <button
-            *ngIf="!isTeacher"
-            class="btn last-column"
-            routerLink="/subject-homework/{{ tempSubject.subjectId }}"
-          >
-            Zadania
-          </button>
-          <button
             *ngIf="isTeacher"
             routerLink="/update-subject/{{ tempSubject.subjectId }}"
             class="btn edit-subject-button"
@@ -50,11 +44,33 @@
           </button>
           <button
             *ngIf="isTeacher"
+            routerLink="/group-message/{{ tempSubject.subjectId }}"
+            class="btn add-homework-button"
+          >
+            Nowa
+          </button>
+          <button
+            *ngIf="!isTeacher"
+            class="btn last-column"
+            routerLink="/subject-homework/{{ tempSubject.subjectId }}"
+          >
+            Zadania
+          </button>
+          <button
+            *ngIf="isTeacher"
+            class="btn last-column"
+            routerLink="/subject-homework-teacher/{{ tempSubject.subjectId }}"
+          >
+            Zadania
+          </button>
+          <button
+            *ngIf="isTeacher"
             routerLink="/addHomework/{{ tempSubject.subjectId }}"
             class="btn add-homework-button"
           >
             Dodaj
           </button>
+
           <button
             *ngIf="isTeacher"
             routerLink="/add-students/{{ tempSubject.subjectId }}"

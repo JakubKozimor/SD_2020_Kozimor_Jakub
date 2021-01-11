@@ -54,7 +54,6 @@ const I18N_VALUES = {
       "Gru",
     ],
   },
-
 };
 
 @Injectable()
@@ -219,7 +218,8 @@ export class AddScheduleComponent implements OnInit {
       this.calendarService.addEvent(newEvent, this.schooltId);
       this.validateForm.reset();
       this.events = [];
-      window.location.reload();
+      setTimeout
+
       this.formSubmittedDelete = false;
       this.formSubmitted = false;
     }

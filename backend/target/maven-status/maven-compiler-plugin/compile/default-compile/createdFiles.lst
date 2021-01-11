@@ -227,6 +227,7 @@ com\learning\rest\controller\SubjectController.class
 com\learning\rest\domain\entity\HomeworkAnswerFile_.class
 com\learning\exception\homework\HomeworkFileNotFoundException.class
 com\learning\rest\service\impl\CalendarServiceImpl.class
+com\learning\rest\domain\dto\homework\HomeworkForFirstView.class
 com\learning\rest\domain\entity\MessageFile_.class
 com\learning\rest\domain\entity\enums\HomeworkRatedStatus.class
 com\learning\rest\domain\entity\Message_.class

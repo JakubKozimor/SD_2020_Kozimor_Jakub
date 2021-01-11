@@ -1,5 +1,6 @@
 package com.learning.rest.service;
 
+import com.learning.rest.domain.dto.user.UpdateUser;
 import com.learning.rest.domain.dto.user.UserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,4 +18,8 @@ public interface UserService {
     Page<UserDto> getAllUsersBySubject(Long subjectId, Pageable pageable);
 
     void deleteUserFromSubject(Long userId, Long subjectId);
+
+    void updateUser(UpdateUser updateUser);
+
+    UpdateUser getUser(Long userId);
 }

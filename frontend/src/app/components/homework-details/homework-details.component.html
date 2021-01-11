@@ -67,10 +67,7 @@
         >
           <span>{{ tempHomework.userFirstName }}</span>
           <span>{{ tempHomework.userLastName }}</span>
-          <button
-            class="btn"
-            routerLink="/rate/{{ tempHomework.homeworkAnswerId }}"
-          >
+          <button class="btn" (click)="ratePage(tempHomework.homeworkAnswerId)">
             Oceń
           </button>
         </div>
@@ -122,10 +119,7 @@
           <span>{{ tempHomework.userFirstName }}</span>
           <span>{{ tempHomework.userLastName }}</span>
           <span>{{ tempHomework.grade }}</span>
-          <button
-            class="btn"
-            routerLink="/rate/{{ tempHomework.homeworkAnswerId }}"
-          >
+          <button class="btn" (click)="ratePage(tempHomework.homeworkAnswerId)">
             Zmień ocene
           </button>
         </div>

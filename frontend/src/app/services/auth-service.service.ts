@@ -31,7 +31,7 @@ export class AuthServiceService {
           window.location.reload();
         },
         (error) => {
-          console.log("Login error");
+          reject(error)
         }
       );
     });
