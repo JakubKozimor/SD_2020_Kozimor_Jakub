@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { addMilliseconds } from "date-fns";
 import { BehaviorSubject } from "rxjs";
 import { Credentials } from "../common/credentials";
 import { LoginResponse } from "../common/login-response";
@@ -11,9 +12,9 @@ import { User } from "../common/user";
 })
 export class AuthServiceService {
   private url = "http://localhost:8080/auth";
-  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<
-    boolean
-  >(this.loggedIn);
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    this.loggedIn
+  );
 
   constructor(private http: HttpClient) {}
 
@@ -27,11 +28,15 @@ export class AuthServiceService {
           );
           localStorage.setItem("user_role", data.role);
           localStorage.setItem("user_id", (+tokenDecoded.sub).toString());
+          localStorage.setItem(
+            "token_time",
+            addMilliseconds(new Date(), 6400000).toISOString()
+          );
           this.isLoggedInSubject.next(this.loggedIn);
           window.location.reload();
         },
         (error) => {
-          reject(error)
+          reject(error);
         }
       );
     });

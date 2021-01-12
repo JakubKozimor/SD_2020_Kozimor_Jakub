@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { addMilliseconds } from "date-fns";
 import { AuthServiceService } from "src/app/services/auth-service.service";
 
 @Component({
@@ -21,8 +22,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.createLoginForm();
   }
-
   submitForm() {
+    // console.log(new Date().toISOString());
+
+    // let a = addMilliseconds(new Date(), 6400000).toISOString();
+
+    // const remainingTime = new Date(a).getTime() - new Date().getTime();
+
+    // console.log(remainingTime);
+
     this.formSubmitted = true;
     if (this.validateForm.valid) {
       this.authService.login(this.validateForm.value).catch((err) => {
