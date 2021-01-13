@@ -53,12 +53,12 @@ export class EditClassesComponent implements OnInit {
       this.classes.url = this.validateForm.value.url;
       this.classes.files = this.validateForm.value.files;
       this.classesService.updateClasses(this.classes).subscribe((data) => {
-        this.changePage(data);
+        setTimeout(() => {
+          this.changePage(data);
+          window.close();
+        }, 500);
       });
-      this.validateForm.reset();
-      this.tempFiles = new Array();
-      window.close();
-    } 
+    }
   }
 
   changePage(classesId: number) {
