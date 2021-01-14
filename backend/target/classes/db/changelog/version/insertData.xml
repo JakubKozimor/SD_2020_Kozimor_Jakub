@@ -166,9 +166,9 @@
             <column name="homework_id" value="3"/>
             <column name="title" value="Użycie bootstrapa"/>
             <column name="description" value="Poprawić wygląd strony używając bootstrapa"/>
-            <column name="deadline" value="2020-10-28"/>
+            <column name="deadline" value="2021-03-28"/>
             <column name="subject_id" value="2"/>
-            <column name="status" value="LATE"/>
+            <column name="status" value="ACTIVE"/>
             <column name="rated" value="NOT_RATED"/>
         </insert>
         <insert tableName="homeworks">
@@ -184,7 +184,7 @@
             <column name="homework_id" value="5"/>
             <column name="title" value="Spring"/>
             <column name="description" value="Zrobić połączenie z angularem"/>
-            <column name="deadline" value="2020-11-30"/>
+            <column name="deadline" value="2021-04-25"/>
             <column name="subject_id" value="4"/>
             <column name="status" value="ACTIVE"/>
             <column name="rated" value="NOT_RATED"/>
@@ -254,6 +254,15 @@
             <column name="to_user" value="1"/>
             <column name="date" value="2020-09-12 12:55:23"/>
             <column name="status" value="UNREAD"/>
+        </insert>
+        <insert tableName="messages">
+            <column name="message_id" value="4"/>
+            <column name="title" value="Test"/>
+            <column name="content" value="Testowa wiasomość"/>
+            <column name="from_user" value="3"/>
+            <column name="to_user" value="1"/>
+            <column name="date" value="2020-09-12 12:55:23"/>
+            <column name="status" value="READ"/>
         </insert>
 
 
