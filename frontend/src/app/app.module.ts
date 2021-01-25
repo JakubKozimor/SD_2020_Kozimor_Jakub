@@ -55,6 +55,7 @@ import { RegisterTeacherComponent } from './components/register-teacher/register
 import { GroupMessageComponent } from './components/group-message/group-message.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UpdateUserTeacherComponent } from './components/update-user-teacher/update-user-teacher.component';
+import { GroupMessageSearchComponent } from './components/group-message-search/group-message-search.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { UpdateUserTeacherComponent } from './components/update-user-teacher/upd
     GroupMessageComponent,
     UpdateUserComponent,
     UpdateUserTeacherComponent,
+    GroupMessageSearchComponent,
   ],
   imports: [
     CommonModule,

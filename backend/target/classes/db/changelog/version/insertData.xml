@@ -14,8 +14,6 @@
         </insert>
 
 
-
-
         <insert tableName="users">
             <column name="first_name" value="FirstStudentFirstName"/>
             <column name="last_name" value="FirstStudentLastName"/>
@@ -46,8 +44,6 @@
         </insert>
 
 
-
-
         <insert tableName="users_roles">
             <column name="role_id" value="1"/>
             <column name="user_id" value="1"/>
@@ -64,8 +60,6 @@
             <column name="role_id" value="3"/>
             <column name="user_id" value="4"/>
         </insert>
-
-
 
 
         <insert tableName="subjects">
@@ -142,8 +136,6 @@
         </insert>
 
 
-
-
         <insert tableName="homeworks">
             <column name="homework_id" value="1"/>
             <column name="title" value="Formatka w html"/>
@@ -198,7 +190,6 @@
             <column name="status" value="LATE"/>
             <column name="rated" value="NOT_RATED"/>
         </insert>
-
 
 
         <insert tableName="homework_answer">
@@ -258,7 +249,7 @@
         <insert tableName="messages">
             <column name="message_id" value="4"/>
             <column name="title" value="Test"/>
-            <column name="content" value="Testowa wiasomość"/>
+            <column name="content" value="Testowa wiadomość"/>
             <column name="from_user" value="3"/>
             <column name="to_user" value="1"/>
             <column name="date" value="2020-09-12 12:55:23"/>
@@ -270,6 +261,410 @@
             <column name="school_id" value="1"/>
             <column name="name" value="Uniwersytet Rzeszowski"/>
             <column name="city" value="Rzeszów"/>
+        </insert>
+
+
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="1"/>
+            <column name="calendar_id" value="359"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="2"/>
+            <column name="calendar_id" value="360"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="3"/>
+            <column name="calendar_id" value="361"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="4"/>
+            <column name="calendar_id" value="362"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="5"/>
+            <column name="calendar_id" value="363"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="6"/>
+            <column name="calendar_id" value="364"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="7"/>
+            <column name="calendar_id" value="365"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="8"/>
+            <column name="calendar_id" value="366"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="9"/>
+            <column name="calendar_id" value="367"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="10"/>
+            <column name="calendar_id" value="368"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="11"/>
+            <column name="calendar_id" value="369"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="12"/>
+            <column name="calendar_id" value="372"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="FREE"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="13"/>
+            <column name="calendar_id" value="370"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="14"/>
+            <column name="calendar_id" value="371"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="15"/>
+            <column name="calendar_id" value="373"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="16"/>
+            <column name="calendar_id" value="374"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="17"/>
+            <column name="calendar_id" value="375"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="18"/>
+            <column name="calendar_id" value="376"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="19"/>
+            <column name="calendar_id" value="377"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="20"/>
+            <column name="calendar_id" value="378"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="21"/>
+            <column name="calendar_id" value="379"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="22"/>
+            <column name="calendar_id" value="380"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="23"/>
+            <column name="calendar_id" value="381"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="24"/>
+            <column name="calendar_id" value="382"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="25"/>
+            <column name="calendar_id" value="383"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="26"/>
+            <column name="calendar_id" value="384"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="27"/>
+            <column name="calendar_id" value="385"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="28"/>
+            <column name="calendar_id" value="386"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="29"/>
+            <column name="calendar_id" value="387"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="30"/>
+            <column name="calendar_id" value="388"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="31"/>
+            <column name="calendar_id" value="389"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="32"/>
+            <column name="calendar_id" value="390"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="33"/>
+            <column name="calendar_id" value="391"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="34"/>
+            <column name="calendar_id" value="392"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="35"/>
+            <column name="calendar_id" value="393"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="36"/>
+            <column name="calendar_id" value="394"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="37"/>
+            <column name="calendar_id" value="395"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="38"/>
+            <column name="calendar_id" value="396"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="39"/>
+            <column name="calendar_id" value="397"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="40"/>
+            <column name="calendar_id" value="398"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="41"/>
+            <column name="calendar_id" value="399"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="42"/>
+            <column name="calendar_id" value="400"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="43"/>
+            <column name="calendar_id" value="401"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="44"/>
+            <column name="calendar_id" value="402"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="45"/>
+            <column name="calendar_id" value="403"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="46"/>
+            <column name="calendar_id" value="404"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="47"/>
+            <column name="calendar_id" value="405"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="48"/>
+            <column name="calendar_id" value="406"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="49"/>
+            <column name="calendar_id" value="407"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="50"/>
+            <column name="calendar_id" value="408"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="51"/>
+            <column name="calendar_id" value="409"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="52"/>
+            <column name="calendar_id" value="410"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="53"/>
+            <column name="calendar_id" value="411"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="54"/>
+            <column name="calendar_id" value="412"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="55"/>
+            <column name="calendar_id" value="413"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="56"/>
+            <column name="calendar_id" value="414"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="57"/>
+            <column name="calendar_id" value="415"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="58"/>
+            <column name="calendar_id" value="416"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="59"/>
+            <column name="calendar_id" value="417"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="60"/>
+            <column name="calendar_id" value="418"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="A"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="61"/>
+            <column name="calendar_id" value="419"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="62"/>
+            <column name="calendar_id" value="420"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="63"/>
+            <column name="calendar_id" value="421"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="64"/>
+            <column name="calendar_id" value="422"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="65"/>
+            <column name="calendar_id" value="423"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="66"/>
+            <column name="calendar_id" value="424"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
+        </insert>
+        <insert tableName="calendar_school">
+            <column name="calendar_school_id" value="67"/>
+            <column name="calendar_id" value="425"/>
+            <column name="school_id" value="1"/>
+            <column name="week" value="B"/>
         </insert>
 
     </changeSet>

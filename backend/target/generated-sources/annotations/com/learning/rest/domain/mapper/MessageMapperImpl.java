@@ -1,6 +1,7 @@
 package com.learning.rest.domain.mapper;
 
 import com.learning.rest.domain.dto.message.GroupMessage;
+import com.learning.rest.domain.dto.message.GroupMessageFromSearch;
 import com.learning.rest.domain.dto.message.MessageDetailsDto;
 import com.learning.rest.domain.dto.message.MessageDto;
 import com.learning.rest.domain.dto.message.MessageFileDto;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-01-11T22:25:46+0100",
+    date = "2021-01-25T22:46:19+0100",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)"
 )
 @Component
@@ -86,6 +87,28 @@ public class MessageMapperImpl implements MessageMapper {
 
     @Override
     public MessageDto fromGroupMessageToMessageDto(GroupMessage groupMessage) {
+        if ( groupMessage == null ) {
+            return null;
+        }
+
+        MessageDto messageDto = new MessageDto();
+
+        messageDto.setMessageId( groupMessage.getMessageId() );
+        messageDto.setTitle( groupMessage.getTitle() );
+        messageDto.setContent( groupMessage.getContent() );
+        messageDto.setUserFrom( groupMessage.getUserFrom() );
+        messageDto.setDate( groupMessage.getDate() );
+        messageDto.setStatus( groupMessage.getStatus() );
+        List<MessageFileDto> list = groupMessage.getFiles();
+        if ( list != null ) {
+            messageDto.setFiles( new ArrayList<MessageFileDto>( list ) );
+        }
+
+        return messageDto;
+    }
+
+    @Override
+    public MessageDto fromGroupMessageFromSearchToMessageDto(GroupMessageFromSearch groupMessage) {
         if ( groupMessage == null ) {
             return null;
         }

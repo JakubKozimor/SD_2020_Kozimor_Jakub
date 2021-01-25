@@ -1,6 +1,7 @@
 package com.learning.rest.domain.mapper;
 
 import com.learning.rest.domain.dto.message.GroupMessage;
+import com.learning.rest.domain.dto.message.GroupMessageFromSearch;
 import com.learning.rest.domain.dto.message.MessageDetailsDto;
 import com.learning.rest.domain.dto.message.MessageDto;
 import com.learning.rest.domain.entity.Message;
@@ -33,4 +34,7 @@ public interface MessageMapper {
 
     @Mapping(target = "userTo", ignore = true)
     MessageDto fromGroupMessageToMessageDto(GroupMessage groupMessage);
+
+    @Mapping(target = "userTo", ignore = true)
+    MessageDto fromGroupMessageFromSearchToMessageDto(GroupMessageFromSearch groupMessage);
 }

@@ -113,6 +113,7 @@ export class CalendarComponent implements OnInit {
             title: obj.title,
             color: colors.red,
           });
+          
         }
 
         if (obj.title == "B") {

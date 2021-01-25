@@ -1,6 +1,7 @@
 package com.learning.rest.service;
 
 import com.learning.rest.domain.dto.message.GroupMessage;
+import com.learning.rest.domain.dto.message.GroupMessageFromSearch;
 import com.learning.rest.domain.dto.message.MessageDetailsDto;
 import com.learning.rest.domain.dto.message.MessageDto;
 import org.springframework.data.domain.Page;
@@ -22,4 +23,6 @@ public interface MessageService {
     Page<MessageDto> getSentMessages(Long userId, Pageable pageable);
 
     void addGroupMessage(GroupMessage groupMessage);
+
+    void addGroupMessageFromSearch(GroupMessageFromSearch groupMessage);
 }

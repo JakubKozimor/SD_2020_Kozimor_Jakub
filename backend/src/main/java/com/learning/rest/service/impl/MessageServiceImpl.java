@@ -4,10 +4,7 @@ import com.learning.exception.message.MessageNotFoundException;
 import com.learning.exception.subject.SubjectNotFoundException;
 import com.learning.exception.user.UserNotFoundException;
 import com.learning.rest.base64.Base64Helper;
-import com.learning.rest.domain.dto.message.GroupMessage;
-import com.learning.rest.domain.dto.message.MessageDetailsDto;
-import com.learning.rest.domain.dto.message.MessageDto;
-import com.learning.rest.domain.dto.message.MessageFileDto;
+import com.learning.rest.domain.dto.message.*;
 import com.learning.rest.domain.entity.Message;
 import com.learning.rest.domain.entity.MessageFile;
 import com.learning.rest.domain.entity.Subject;
@@ -27,6 +24,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -130,6 +128,21 @@ public class MessageServiceImpl implements MessageService {
         byte[] decodedFile = Base64Helper.decodeFileFromBase64(fileContentInBase64);
         messageFile.setFileContent(decodedFile);
         return messageFile;
+    }
+
+
+    @Override
+    public void addGroupMessageFromSearch(GroupMessageFromSearch groupMessage) {
+        if (!CollectionUtils.isEmpty(groupMessage.getUsers())) {
+            List<MessageDto> messageDtoList = groupMessage.getUsers().stream()
+                    .map(user -> {
+                        MessageDto messageDto = messageMapper.fromGroupMessageFromSearchToMessageDto(groupMessage);
+                        messageDto.setUserTo(user);
+                        return messageDto;
+                    })
+                    .collect(Collectors.toList());
+            messageDtoList.forEach(this::addMessage);
+        }
     }
 
     @Override

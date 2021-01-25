@@ -17,6 +17,7 @@ import { ClassesComponent } from "./components/classes/classes.component";
 import { ContentComponent } from "./components/content/content.component";
 import { DoneHomeworksComponent } from "./components/done-homeworks/done-homeworks.component";
 import { EditClassesComponent } from "./components/edit-classes/edit-classes.component";
+import { GroupMessageSearchComponent } from "./components/group-message-search/group-message-search.component";
 import { GroupMessageComponent } from "./components/group-message/group-message.component";
 import { HomeworkAnswerDetailsComponent } from "./components/homework-answer-details/homework-answer-details.component";
 import { HomeworkDetailsComponent } from "./components/homework-details/homework-details.component";
@@ -75,6 +76,7 @@ const studentRoutes: Routes = [
 const teacherRoutes: Routes = [
   { path: "update-user", component: UpdateUserTeacherComponent },
   { path: "group-message/:subjectId", component: GroupMessageComponent },
+  { path: "group-message", component: GroupMessageSearchComponent },
   { path: "live-instruction", component: LiveInstructionComponent },
   { path: "edit-classes/:lessonId", component: EditClassesComponent },
   {

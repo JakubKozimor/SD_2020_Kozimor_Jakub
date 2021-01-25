@@ -214,14 +214,10 @@ export class AddScheduleComponent implements OnInit {
       newEvent.title = this.week.value;
       newEvent.start = new Date(this.parseDate(this.start.value));
       newEvent.end = new Date(this.parseDate(this.end.value));
-      console.log(newEvent);
       this.calendarService.addEvent(newEvent, this.schooltId);
-      this.validateForm.reset();
-      this.events = [];
-      setTimeout
-
-      this.formSubmittedDelete = false;
-      this.formSubmitted = false;
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
   }
 
@@ -234,9 +230,11 @@ export class AddScheduleComponent implements OnInit {
       this.calendarService.removeEvent(newEvent, this.schooltId);
       this.validateForm.reset();
       this.events = [];
-      window.location.reload();
       this.formSubmittedDelete = false;
       this.formSubmitted = false;
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
   }
 

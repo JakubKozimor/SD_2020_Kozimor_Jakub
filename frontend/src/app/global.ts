@@ -9,6 +9,8 @@ export class Global {
 
   lastHomework: number;
 
+  userList: number[];
+
   setLastHomework(homeworkId: number) {
     this.lastHomework = homeworkId;
   }

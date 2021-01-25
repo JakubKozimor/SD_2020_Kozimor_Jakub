@@ -98,7 +98,7 @@
 
 .big-column-calendar {
   width: 100%;
-  min-width: 1000px;
+  min-width: 750px;
   border-radius: 8px;
 }
 
@@ -216,4 +216,46 @@ mwl-calendar-month-view /deep/ .cal-event {
     width: 100%;
     margin-top: auto;
   }
+}
+
+/* mwl-calendar-month-view
+  /deep/
+  .cal-month-view
+  .cal-day-cell.cal-in-month.cal-has-events {
+  position: relative !important;
+}
+
+mwl-calendar-month-view
+  /deep/
+  .cal-month-view
+  .cal-day-cell.cal-out-month.cal-has-events {
+  position: relative !important;
+} */
+mwl-calendar-month-view /deep/ .cal-month-view .cal-day-cell {
+  position: relative !important;
+}
+
+/* mwl-calendar-month-view
+  /deep/
+  .cal-month-view
+  .cal-day-cell.cal-in-month.cal-has-events {
+  position: relative !important;
+} */
+
+mwl-calendar-month-view /deep/ .cal-month-view .cal-cell .cal-event {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1001;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  opacity: 0.5;
+}
+
+mwl-calendar-month-view /deep/ .cal-month-view .cal-day-number {
+  position: absolute !important;
+  z-index: 1002;
+  opacity: 1;
 }

@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  min-height: 80vh;
+  min-height: 30vh;
 }
 
 .main-schedule {
@@ -145,7 +145,7 @@ ngb-pagination /deep/ .page-item.active .page-link {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  min-height: 80vh;
+  min-height: 0vh;
 }
 
 .main-schedule {
@@ -365,4 +365,15 @@ input[type="text"]:valid {
 input[type="text"]:valid + label:before {
   content: attr(alt);
   color: #23a045;
+}
+
+.btn-pick {
+  margin: 0px 5px !important;
+  background-color: #f9af28 !important;
+  color: black !important;
+}
+
+.btn-pick :hover {
+  background-color: #ed7633 !important;
+  color: black !important;
 }

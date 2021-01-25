@@ -1,7 +1,9 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Message } from "src/app/common/message";
 import { UserDto } from "src/app/common/user-dto";
+import { Global } from "src/app/global";
 import { MessageService } from "src/app/services/message.service";
 import { UserService } from "src/app/services/user.service";
 
@@ -33,6 +35,10 @@ export class AllMessagesComponent implements OnInit {
   thePageSize: number = 5;
   theElements: number = 0;
 
+  tempUsers = new Set<UserDto>();
+
+  tempUsersIds = new Set<number>();
+
   searchValue = "";
 
   value = 1;
@@ -42,7 +48,9 @@ export class AllMessagesComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private datePipe: DatePipe,
-    private userService: UserService
+    private router: Router,
+    private userService: UserService,
+    private global: Global
   ) {}
 
   ngOnInit(): void {
@@ -160,6 +168,30 @@ export class AllMessagesComponent implements OnInit {
     this.thePageSize = pageSize;
     this.thePageNumber = 1;
     this.listOfStudents();
+  }
+
+  add(user: UserDto) {
+    this.tempUsers.add(user);
+  }
+
+  remove(user: UserDto) {
+    this.tempUsers.delete(user);
+  }
+
+  submit() {
+    this.global.userList = [];
+    this.tempUsers.forEach((a) => {
+      this.global.userList.push(a.userId);
+    });
+    if (this.global.userList.length != 0) {
+      setTimeout(() => {
+        this.changePage();
+      }, 500);
+    }
+  }
+
+  changePage() {
+    this.router.navigate(["group-message"]);
   }
 
   getRole(role) {
