@@ -9,7 +9,7 @@
         <div class="subject-row">
           <span>Szkoła</span>
           <span>Miasto</span>
-          <span>Siatka studiów</span>
+          <span>Oznaczenie dni</span>
           <span>Edytuj</span>
         </div>
         <div class="subject-row" *ngFor="let tempSchool of schoolList">
@@ -19,7 +19,7 @@
             class="btn"
             routerLink="/add-schedule/{{ tempSchool.schoolId }}"
           >
-            Dodaj siatkę studiów
+            Dodaj oznaczenie dni
           </button>
           <button
             class="btn button-edit"
@@ -56,4 +56,3 @@
     </div>
   </div>
 </div>
-

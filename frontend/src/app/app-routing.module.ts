@@ -68,6 +68,7 @@ const studentRoutes: Routes = [
   { path: "createMessage/:userToId", component: MessageComponent },
   { path: "allMessages", component: AllMessagesComponent },
   { path: "teachers", component: TeachersComponent },
+  { path: "group-message", component: GroupMessageSearchComponent },
   { path: "homework", component: HomeworkComponent },
   { path: "menu", component: ContentComponent },
   { path: "", redirectTo: "/menu", pathMatch: "full" },

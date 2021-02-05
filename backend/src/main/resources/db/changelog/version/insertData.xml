@@ -15,30 +15,30 @@
 
 
         <insert tableName="users">
-            <column name="first_name" value="FirstStudentFirstName"/>
-            <column name="last_name" value="FirstStudentLastName"/>
-            <column name="email" value="firstStudent@gmail.com"/>
+            <column name="first_name" value="Jan"/>
+            <column name="last_name" value="Nowak"/>
+            <column name="email" value="jnowak@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
             <column name="school" value="1"/>
         </insert>
         <insert tableName="users">
-            <column name="first_name" value="SecondStudentFirstName"/>
-            <column name="last_name" value="SecondStudentLastName"/>
-            <column name="email" value="secondStudent@gmail.com"/>
+            <column name="first_name" value="Adam"/>
+            <column name="last_name" value="Kowalski"/>
+            <column name="email" value="a.kowalski@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
             <column name="school" value="1"/>
         </insert>
         <insert tableName="users">
-            <column name="first_name" value="TeacherFirstName"/>
-            <column name="last_name" value="TeacherLastName"/>
-            <column name="email" value="teacher@gmail.com"/>
+            <column name="first_name" value="Mateusz"/>
+            <column name="last_name" value="Kowalczyk"/>
+            <column name="email" value="mateusz.kowalczyk@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
             <column name="twitch_nick" value="testStreamTeacher"/>
             <column name="school" value="1"/>
         </insert>
         <insert tableName="users">
-            <column name="first_name" value="Admin"/>
-            <column name="last_name" value="Admin"/>
+            <column name="first_name" value="Łukasz"/>
+            <column name="last_name" value="Wójcik"/>
             <column name="email" value="admin@gmail.com"/>
             <column name="password" value="$2a$08$wqRO/.T4zafVhVHii3kIU.dDt/Yr50z8EgE1Kj18CPusXaSwAo2zO"/>
         </insert>
@@ -166,7 +166,7 @@
         <insert tableName="homeworks">
             <column name="homework_id" value="4"/>
             <column name="title" value="Java podstawy"/>
-            <column name="description" value="Zrobić zadania"/>
+            <column name="description" value="Zrobić drzewo klas dla drzew liściastych i iglastych"/>
             <column name="deadline" value="2020-11-23"/>
             <column name="subject_id" value="1"/>
             <column name="status" value="ACTIVE"/>
@@ -175,7 +175,7 @@
         <insert tableName="homeworks">
             <column name="homework_id" value="5"/>
             <column name="title" value="Spring"/>
-            <column name="description" value="Zrobić połączenie z angularem"/>
+            <column name="description" value="Wystawić REST API do dodawania książek"/>
             <column name="deadline" value="2021-04-25"/>
             <column name="subject_id" value="4"/>
             <column name="status" value="ACTIVE"/>
@@ -183,8 +183,8 @@
         </insert>
         <insert tableName="homeworks">
             <column name="homework_id" value="6"/>
-            <column name="title" value="Zadanie nieocenione"/>
-            <column name="description" value="Oceń zadania"/>
+            <column name="title" value="Java"/>
+            <column name="description" value="Zrobić kalkulator"/>
             <column name="deadline" value="2020-10-29"/>
             <column name="subject_id" value="3"/>
             <column name="status" value="LATE"/>
@@ -194,26 +194,26 @@
 
         <insert tableName="homework_answer">
             <column name="homework_answer_id" value="1"/>
-            <column name="message" value="Poprawiona"/>
+            <column name="message" value="Zadanie dostępne jest pod adresem www.zadaniebootstrap.pl"/>
             <column name="homework" value="3"/>
             <column name="student" value="1"/>
         </insert>
         <insert tableName="homework_answer">
             <column name="homework_answer_id" value="2"/>
-            <column name="message" value="Odp"/>
+            <column name="message" value="Schemat bazy danych"/>
             <column name="homework" value="2"/>
             <column name="student" value="1"/>
             <column name="grade" value="3"/>
         </insert>
         <insert tableName="homework_answer">
             <column name="homework_answer_id" value="3"/>
-            <column name="message" value="Odpowiedź"/>
+            <column name="message" value="Drzewo klas w Javie"/>
             <column name="homework" value="4"/>
             <column name="student" value="1"/>
         </insert>
         <insert tableName="homework_answer">
             <column name="homework_answer_id" value="4"/>
-            <column name="message" value="Odpgfdgdfgd"/>
+            <column name="message" value="Kalkulator w Javie"/>
             <column name="homework" value="6"/>
             <column name="student" value="1"/>
         </insert>
@@ -231,7 +231,7 @@
         <insert tableName="messages">
             <column name="message_id" value="2"/>
             <column name="title" value="Pytanie"/>
-            <column name="content" value="Chciałbym się dowiedzieć...."/>
+            <column name="content" value="Chciałbym się dowiedzieć czy dokumentacja jest poprawna"/>
             <column name="from_user" value="2"/>
             <column name="to_user" value="3"/>
             <column name="date" value="2020-09-22 12:00:23"/>
@@ -240,7 +240,7 @@
         <insert tableName="messages">
             <column name="message_id" value="3"/>
             <column name="title" value="Dokumentacja"/>
-            <column name="content" value="Odpowiedź w sprawie dokumentacji"/>
+            <column name="content" value="Dokumentacja jest poprawna"/>
             <column name="from_user" value="3"/>
             <column name="to_user" value="1"/>
             <column name="date" value="2020-09-12 12:55:23"/>
@@ -248,8 +248,8 @@
         </insert>
         <insert tableName="messages">
             <column name="message_id" value="4"/>
-            <column name="title" value="Test"/>
-            <column name="content" value="Testowa wiadomość"/>
+            <column name="title" value="Zaliczenia"/>
+            <column name="content" value="Uzyskał Pan zaliczenie"/>
             <column name="from_user" value="3"/>
             <column name="to_user" value="1"/>
             <column name="date" value="2020-09-12 12:55:23"/>
